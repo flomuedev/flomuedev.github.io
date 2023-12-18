@@ -12,8 +12,7 @@ url = {https://dl.acm.org/doi/10.1145/3411763.3451671},
 year = {2021},
 video = {https://www.youtube.com/watch?v=wW-d9yokhYI},
 preview={Matviienko2021.jpg},
-bibtex_show={true},
-html = {https://www.youtube.com/watch?v=wW-d9yokhYI}
+bibtex_show=true
 }
 @inproceedings{Guenther2021,
 address = {New York, NY, USA},
