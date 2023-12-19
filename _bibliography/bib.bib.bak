@@ -13,8 +13,8 @@ year = {2021},
 video = {https://www.youtube.com/watch?v=wW-d9yokhYI},
 preview={Matviienko2021.jpg},
 bibtex_show={true},
-html = {https://www.youtube.com/watch?v=wW-d9yokhYI},
-abbr = {CHI}
+pdf ={matviienko2021vrtangibles.pdf},
+arxiv={2303.15800}
 }
 @inproceedings{Guenther2021,
 address = {New York, NY, USA},
@@ -45,7 +45,8 @@ pages = {1046--1055},
 publisher = {ACM},
 title = {{CameraReady: Assessing the Influence of Display Types and Visualizations on Posture Guidance}},
 url = {https://dl.acm.org/doi/10.1145/3461778.3462026},
-year = {2021}
+year = {2021},
+abbr = {CHI}
 }
 @inproceedings{Schmitz2021,
 author = {Schmitz, Martin and Riemann, Jan and M{\"{u}}ller, Florian and Kreis, Steffen and M{\"{u}}hlh{\"{a}}user, Max},
