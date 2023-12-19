@@ -140,6 +140,13 @@
           <div class="links">
           {%- if entry.doi %}
             <a href="{{ entry.doi }}" class="btn btn-sm z-depth-0" role="button"><i class="ai ai-doi"></i></a>
+          {%- endif %}
+		  {%- if entry.pdf %}
+            {% if entry.pdf contains '://' -%}
+            <a href="{{ entry.pdf }}" class="btn btn-sm z-depth-0" role="button"><i class="ai ai-doi"></i></a>
+            {%- else -%}
+            <a href="{{ entry.pdf | prepend: '/assets/pdf/' | relative_url }}" class="btn btn-sm z-depth-0" role="button"><i class="ai ai-doi"></i></a>
+            {%- endif %}
           {%- endif %}		  
           {%- if entry.abstract %}
             <a class="abstract btn btn-sm z-depth-0" role="button">Abs</a>
@@ -158,13 +165,6 @@
           {%- endif %}
 		  {%- if entry.talk %}
             <a href="{{ entry.talk }}" class="btn btn-sm z-depth-0" role="button"><i class="fa-solid fa-person-chalkboard"></i></a>
-          {%- endif %}
-          {%- if entry.pdf %}
-            {% if entry.pdf contains '://' -%}
-            <a href="{{ entry.pdf }}" class="btn btn-sm z-depth-0" role="button"><i class="ai ai-doi"></i></a>
-            {%- else -%}
-            <a href="{{ entry.pdf | prepend: '/assets/pdf/' | relative_url }}" class="btn btn-sm z-depth-0" role="button"><i class="ai ai-doi"></i></a>
-            {%- endif %}
           {%- endif %}
           {%- if entry.supp %}
             {% if entry.supp contains '://' -%}
