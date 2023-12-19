@@ -137,15 +137,7 @@
         </div>
 
           <!-- Links/Buttons -->
-          <div class="links">
-		  
-		  
-		  {% for static_file in site.static_files %}
-			{% if static_file.path == '/{{entry.key}}.jpg' %}
-				
-			{% endif %}
-		  {% endfor %}
-		  
+          <div class="links">	  
           {%- if entry.abstract %}
             <a class="abstract btn btn-sm z-depth-0" role="button">Abs</a>
           {%- endif %}
