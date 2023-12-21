@@ -196,6 +196,14 @@ blockquote {
   }
 }
 
+.desc {
+  color: var(--global-theme-color);
+//background-color: var(--global-code-bg-color);
+  border-radius: 3px;
+  padding: 3px 3px;
+  font-family: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+}
+
 .post-description {
   margin-bottom: 2rem;
   font-size: 0.875rem;
@@ -352,7 +360,7 @@ blockquote {
   text-align: center;
 
   .contact-icons {
-    font-size: 1rem;
+    font-size: 1.5rem;
 
     a {
       i::before {
@@ -726,17 +734,17 @@ footer.sticky-bottom {
       .links {
         a.btn {
           color: var(--global-text-color);
-//         border: 1px solid var(--global-text-color);
-          padding-left: 1rem;
-          padding-right: 1rem;
+          border: 1px solid var(--global-text-color);
+          padding-left: 0.5rem;
+          padding-right: 0.5rem;
           padding-top: 0.25rem;
           padding-bottom: 0.25rem;
           margin-left: 0;
-		  font-size: 1rem;
+		      font-size: 0.68rem;
 
           &:hover {
             color: var(--global-theme-color);
-//           border-color: var(--global-theme-color);
+            border-color: var(--global-theme-color);
           }
         }
       }

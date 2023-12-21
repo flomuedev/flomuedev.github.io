@@ -2,25 +2,18 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Moto. Etc.
+subtitle: urban interaction · hci4ai · ar/vr enthusiast · statistics nerd
 
 profile:
   align: right
-  image: prof_pic.jpg
-  image_circular: false # crops the image to make it circular
-  more_info: >
-    <p>555 your office number</p>
-    <p>123 your address street</p>
-    <p>Your City, State 12345</p>
+  image: florian_profile_square.jpg
+  image_circular: true # crops the image to make it circular
+  more_info:
 
-news: true  # includes a list of news items
-latest_posts: true  # includes a list of the newest posts
+news: false  # includes a list of news items
+latest_posts: false  # includes a list of the newest posts
 selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](http://reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.
-
-Put your address / P.O. box / other info right below your picture. You can also disable any of these elements by editing `profile` property of the YAML header of your `_pages/about.md`. Edit `_bibliography/papers.bib` and Jekyll will render your [publications page](/al-folio/publications/) automatically.
-
-Link to your social media connections, too. This theme is set up to use [Font Awesome icons](https://fontawesome.com/) and [Academicons](https://jpswalsh.github.io/academicons/), like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them.
+I am a postdoctoral `Human-Computer Interaction` researcher at the Human-Centered Ubiquitous Media Lab at the LMU Munich. My research follows the vision of seamless `mobile interaction in and with smart cities` of the future, where digital information, AI agents, and physical environments merge into a unified `eXtended Reality`. Towards this vision, I explore novel interaction techniques for mobile XR and collaboration with AI systems. My approach is informed by a deep understanding of body-centric, tangible and haptic interfaces, as well as  strong technical expertise, aiming to make  the interaction more efficient and accurate but also more enjoyable and fun.
