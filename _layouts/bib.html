@@ -137,6 +137,9 @@
         </div>
 
           <!-- Links/Buttons -->
+
+          {{ entry | inspect }}
+
           <div class="links">
             {%- if entry.pdf %}
             {% if entry.pdf contains '://' -%}
@@ -145,6 +148,12 @@
             <a href="{{ entry.pdf | prepend: '/assets/pdf/' | relative_url }}" class="btn btn-sm z-depth-0" role="button"><i class="fa-solid fa-file-pdf"></i> PDF</a>
             {%- endif %}
           {%- endif %}	
+          {%- if entry.link %}
+          <a href="{{ entry.link}}" class="btn btn-sm z-depth-0" role="button">auto link</a>
+          {%- endif %}	 
+          {%- if entry.link.pdf %}
+          <a href="{{ entry.link.pdf}}" class="btn btn-sm z-depth-0" role="button">auto link.pdf</a>
+          {%- endif %}	 
           {%- if entry.doi %}
             <a href="{{ entry.doi }}" class="btn btn-sm z-depth-0" role="button"><i class="ai ai-doi"> {{entry.publisher}}</i></a>
           {%- endif %}	  
