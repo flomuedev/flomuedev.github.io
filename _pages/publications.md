@@ -1,8 +1,7 @@
 ---
-layout: page
+layout: pub_page
 permalink: /publications/
 title: publications
-description: For an up-to-date list, please see Goolge Scholar.
 nav: true
 nav_order: 1
 ---
