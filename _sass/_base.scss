@@ -632,6 +632,24 @@ footer.sticky-bottom {
   }
 }
 
+.details-buttons {
+  
+  a.btn {
+    color: var(--global-text-color);
+    border: 1px solid var(--global-text-color);
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    margin-left: 0;
+    font-size: 0.8rem;
+
+    &:hover {
+      color: var(--global-theme-color);
+      border-color: var(--global-theme-color);
+    }
+  }
+}
 
 // Publications
 
@@ -704,6 +722,11 @@ footer.sticky-bottom {
 
       .title {
         font-weight: bolder;
+
+          a {
+            color: var(--global-text-color);
+          }
+
       }
 
       .author {
@@ -848,6 +871,11 @@ html.transition *:after {
 
 // Extra Markdown style (post Customization)
 .post {
+
+  .h2 {
+    margin-top:1.2rem;
+  }
+
   .post-meta {
     color: var(--global-text-color-light);
     font-size: 0.875rem;

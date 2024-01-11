@@ -31,7 +31,7 @@
         <div class="title"><i class="fa-solid fa-trophy" style="color: var(--global-theme-color);"></i> {{entry.title}}</div>
         {%- endif %}
         {%- else -%}
-        <div class="title">{{entry.title}}</div>
+        <div class="title"><a href="{{ entry.key | prepend: '/publications/' | relative_url}}">{{entry.title}}</a></div>
         {%- endif %}
         
 
