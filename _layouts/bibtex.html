@@ -55,7 +55,17 @@ layout: default
     {% highlight bibtex %}{{ page.entry.bibtex | hideCustomBibtex }}{% endhighlight %}
   </div>
 
-
+  {%- if page.entry.video -%}
+  {%- assign youtubeId = page.entry.video | split: "=" | last -%}
+  <h2>Video</h2>
+  {% include youtubePlayerGdpr.html id=youtubeId %}
+  {%- endif-%}
+  
+  {%- if page.entry.talk -%}
+  {%- assign youtubeIdtalk = page.entry.talk | split: "=" | last -%}
+  <h2>Talk</h2>
+  {% include youtubePlayerGdpr.html id=youtubeIdtalk %}
+  {%- endif-%}
 
 
   {%- if site.giscus and page.giscus_comments -%}

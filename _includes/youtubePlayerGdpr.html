@@ -1,6 +1,8 @@
-<div class="video_wrapper" style="background-image: url('https://i.ytimg.com/vi/kdEB9L4OCgk/hqdefault.jpg');">
+{% assign base_preview_path = include.id | prepend: '/assets/img/youtube_thumbnails/' | relative_url | append: '.jpg'%}
+
+<div class="video_wrapper" style="background-image: url({{base_preview_path}});">
     <div class="video_trigger" data-source="{{ include.id }}">
-        <p class="text-center">Playing this video requires sharing information with YouTube. Your decision will be saved in a cookie.<br><a target="_blank" href="https://tosdr.org/#youtube">More information</a></p>
+        <p class="text-center video-text">Playing videos on this website requires sharing information with YouTube and accepting cookies. <br><a target="_blank" href="https://tosdr.org/#youtube">More information</a></p>
         <input type="button" class="video-btn" value="Agree" />
     </div>
     <div class="video_layer"><iframe src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>

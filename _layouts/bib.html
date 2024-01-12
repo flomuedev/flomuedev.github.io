@@ -26,9 +26,9 @@
         <!-- Title -->
         {%- if entry.award %}
         {%- if entry.award == "honorablemention" %}
-        <div class="title"><i class="fa-solid fa-award" style="color: var(--global-theme-color);"></i> {{entry.title}}</div>
+        <div class="title"><i class="fa-solid fa-award" style="color: var(--global-theme-color);"></i> <a href="{{ entry.key | prepend: '/publications/' | relative_url}}">{{entry.title}}</a></div>
         {%- elsif entry.award == "bestpaper" -%}
-        <div class="title"><i class="fa-solid fa-trophy" style="color: var(--global-theme-color);"></i> {{entry.title}}</div>
+        <div class="title"><i class="fa-solid fa-trophy" style="color: var(--global-theme-color);"></i> <a href="{{ entry.key | prepend: '/publications/' | relative_url}}">{{entry.title}}</a></div>
         {%- endif %}
         {%- else -%}
         <div class="title"><a href="{{ entry.key | prepend: '/publications/' | relative_url}}">{{entry.title}}</a></div>
