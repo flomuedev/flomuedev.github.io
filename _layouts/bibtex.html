@@ -55,6 +55,8 @@ layout: default
     {% highlight bibtex %}{{ page.entry.bibtex | hideCustomBibtex }}{% endhighlight %}
   </div>
 
+  <div class="bibtex-videos">
+
   {%- if page.entry.video -%}
   {%- assign youtubeId = page.entry.video | split: "=" | last -%}
   <h2>Video</h2>
@@ -67,6 +69,7 @@ layout: default
   {% include youtubePlayerGdpr.html id=youtubeIdtalk %}
   {%- endif-%}
 
+  </div>
 
   {%- if site.giscus and page.giscus_comments -%}
     {% include giscus.html %}
