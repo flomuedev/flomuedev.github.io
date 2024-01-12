@@ -4,74 +4,64 @@ layout: default
 <!-- bibtex.html -->
 <div class="post">
 
+  {% capture pdf_available %}{% file_exists assets/pdf/{{ page.entry.key }}.pdf %}{% endcapture %}
+
+  {% assign acm_alternative_names = "Association for Computing Machinery, ACM, ACM Press" | split: ", " %}
+  {% assign springer_alternative_names = "Springer Nature Switzerland, Springer" | split: ", " %}
+  {% if acm_alternative_names contains page.entry.publisher %}
+  {% assign publisher_display_name = "ACM" %}
+  {% assign publisher_display_icon = "acmdl" %}
+  {% elsif springer_alternative_names contains page.entry.publisher %}
+  {% assign publisher_display_name = "Springer" %}
+  {% assign publisher_display_icon = "springer" %}
+  {% else %}
+  {% assign publisher_display_name = page.entry.publisher %}
+  {% assign publisher_display_icon = "doi" %}
+  {% endif %}
+
+  {% assign arxiv = page.entry.eprint %}
+
+  {% if page.entry.publisher == "arXiv" %}
+  {% assign has_publisher = false %}
+  {% elsif page.entry.doi %}
+  {% assign has_publisher = true %}
+  {% else %}
+  {% assign has_publisher = false %}
+  {% endif %}
+
   <header class="post-header">
     <h1 class="post-title">{{ page.entry.title }}</h1>
     <p class="post-description">{{ page.entry.author }}</p>
   </header>
 
   <article>
-    {{ page.entry.abstract }}
+    <b>Abstract:</b> {{ page.entry.abstract }}
   </article>
 
-  {% comment %}
-
-  {% capture pdf_available %}{% file_exists assets/pdf/{{ page.entry.key }}.pdf %}{% endcapture %}
-
-        {% assign acm_alternative_names = "Association for Computing Machinery, ACM, ACM Press" | split: ", " %}
-        {% assign springer_alternative_names = "Springer Nature Switzerland, Springer" | split: ", " %}
-        {% if acm_alternative_names contains page.entry.publisher %}
-        {% assign publisher_display_name = "ACM" %}
-        {% assign publisher_display_icon = "acmdl" %}
-        {% elsif springer_alternative_names contains page.entry.publisher %}
-        {% assign publisher_display_name = "Springer" %}
-        {% assign publisher_display_icon = "springer" %}
-        {% else %}
-        {% assign publisher_display_name = page.entry.publisher %}
-        {% assign publisher_display_icon = "doi" %}
-        {% endif %}
-
-        {% assign arxiv = page.entry.eprint %}
-
-        {% if page.entry.publisher == "arXiv" %}
-        {% assign has_publisher = false %}
-        {% elsif page.entry.doi %}
-        {% assign has_publisher = true %}
-        {% else %}
-        {% assign has_publisher = false %}
-        {% endif %}
-
   <div class="details-buttons">
-            {%- if pdf_available == "true" %}
-            <a href="{{ page.entry.key | prepend: '/assets/pdf/' | relative_url}}.pdf" class="btn btn-sm z-depth-0" role="button"><i class="fa-solid fa-file-pdf"></i> PDF</a>
-            {%- endif %}
-            {%- if has_publisher %}
-            <a href="https://dx.doi.org/{{ page.entry.doi }}" class="btn btn-sm z-depth-0" role="button"><i class="ai ai-{{ publisher_display_icon }}"> {{ publisher_display_name }}</i></a>
-            {%- endif %}	  
-            {%- if arxiv %}
-            <a href="http://arxiv.org/abs/{{ page.arxiv }}" class="btn btn-sm z-depth-0" role="button"><i class="ai ai-arxiv"></i> arxiv</a>
-            {%- endif %}  
+    {%- if pdf_available == "true" %}
+    <a href="{{ page.entry.key | prepend: '/assets/pdf/' | relative_url}}.pdf" class="btn btn-sm z-depth-0" role="button"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+    {%- endif %}
+    {%- if has_publisher %}
+    <a href="https://dx.doi.org/{{ page.entry.doi }}" class="btn btn-sm z-depth-0" role="button"><i class="ai ai-{{ publisher_display_icon }}"> {{ publisher_display_name }}</i></a>
+    {%- endif %}	  
+    {%- if arxiv %}
+    <a href="http://arxiv.org/abs/{{ page.arxiv }}" class="btn btn-sm z-depth-0" role="button"><i class="ai ai-arxiv"></i> arxiv</a>
+    {%- endif %}  
+    <a href="javascript:;" class="bibtex btn btn-sm z-depth-0" role="button"><i class="fa-solid fa-quote-left"></i> Cite</a>
   </div>
 
-  {%- if page.entry.video -%}
-  {%- assign youtubeId = page.entry.video | split: "=" | last -%}
-  <h2>Video</h2>
-  {% include youtubePlayer.html id=youtubeId %}
-  {%- endif-%}
-
-  {%- if page.entry.talk -%}
-  {%- assign youtubeIdtalk = page.entry.talk | split: "=" | last -%}
-  <h2>Talk</h2>
-  {% include youtubePlayer.html id=youtubeIdtalk %}
-  {%- endif-%}
-
-  <h2>Bibtex</h2>
-  <div class="bibtex">
+  <div class="bibtex hidden" id="bibtexDiv">
     {% highlight bibtex %}{{ page.entry.bibtex | hideCustomBibtex }}{% endhighlight %}
   </div>
 
-  {% endcomment %}
+
+
 
   {%- if site.giscus and page.giscus_comments -%}
     {% include giscus.html %}
   {%- endif -%}
+
+
+
 </div>
