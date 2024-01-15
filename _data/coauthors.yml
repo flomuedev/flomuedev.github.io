@@ -1,15 +1,3 @@
-"Adams":
-  - firstname: ["Edwin", "E.", "E. P.", "Edwin Plimpton"]
-    url: https://en.wikipedia.org/wiki/Edwin_Plimpton_Adams
-
-"Podolsky":
-  - firstname: ["Boris", "B.", "B. Y.", "Boris Yakovlevich"]
-    url: https://en.wikipedia.org/wiki/Boris_Podolsky
-
-"Rosen":
-  - firstname: ["Nathan", "N."]
-    url: https://en.wikipedia.org/wiki/Nathan_Rosen
-
 "Bach": 
   - firstname: ["Johann Sebastian", "J. S."]
     url: https://en.wikipedia.org/wiki/Johann_Sebastian_Bach
@@ -21,14 +9,34 @@
   - firstname: ["Sebastian", "S."]
     url: https://www.sebastian-guenther.com/
 
-"Schrödinger":
-  - firstname: ["Erwin"]
-    url: https://en.wikipedia.org/wiki/Erwin_Schr%C3%B6dinger
+"Schmitz":
+  - firstname: ["Martin", "M"]
+    url: https://mschmitz.org/
 
-"Lorentz":
-  - firstname: ["Hendrik Antoon"]
-    url: https://en.wikipedia.org/wiki/Hendrik_Lorentz
+"Rasch":
+  - firstname: ["Julian", "J"]
+    url: https://julian-rasch.com/
 
-"Planck":
-  - firstname: ["Max"]
-    url: https://en.wikipedia.org/wiki/Max_Planck
+"Rasch":
+  - firstname: ["Julian", "J"]
+    url: https://julian-rasch.com/
+
+"Matviienko":
+  - firstname: ["Andrii", "A"]
+    url: http://andriimatviienko.com/
+
+"Matviienko":
+  - firstname: ["Thomas", "T"]
+    url: https://thomaskosch.com/
+
+"Mayer":
+  - firstname: ["Sven", "S"]
+    url: https://sven-mayer.com/
+
+"Mühlhäuser":
+  - firstname: ["Max", "M"]
+    url: https://www.informatik.tu-darmstadt.de/telekooperation/staff_tk/tk_staff_details_23168.en.jsp
+
+"Weiss":
+  - firstname: ["Yannick", "Y"]
+    url: https://yannick-weiss.com/
