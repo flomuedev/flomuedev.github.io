@@ -29,12 +29,27 @@ layout: default
   {% assign has_publisher = false %}
   {% endif %}
 
+  {% assign base_preview_path = page.entry.key | prepend: '/assets/img/publication_preview/' | relative_url | append: '.jpg'%}
+
   <header class="post-header">
     <h1 class="post-title">{{ page.entry.title }}</h1>
     <p class="post-description">{{ page.entry.author }}</p>
   </header>
 
+
+  {%- assign profile_image_class = "img-fluid z-depth-1 rounded" -%}
+
+
   <article>
+
+    <div class="profile float-left">
+
+    {% include figure.html
+      path=base_preview_path
+      class=profile_image_class -%}
+
+    </div>
+
     <b>Abstract:</b> {{ page.entry.abstract }}
   </article>
 
