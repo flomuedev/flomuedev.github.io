@@ -232,7 +232,7 @@
             "url": "https://www.flomue.com"
         },
         "url": "{{ page.url | prepend: site.baseurl | prepend: site.url }}",
-        "@type": "{%- if page.reference -%}Article{%- else -%}WebSite{%- endif -%}",
+        "@type": "{%- if page.reference -%}NewsArticle{%- else -%}WebSite{%- endif -%}",
         "description": "{%- if page.entry.abstract -%}{{ page.entry.abstract }}{%- elsif page.description -%}{{ page.description }}{%- else if site.description -%}{{ site.description }}{%- endif -%}",
         "headline": "{%- if page.title -%}{{ page.title }}{%- else -%}{{ site.title }}{%- endif -%}",
         {% if has_image == "true" or page.og_image or site.og_image -%}
