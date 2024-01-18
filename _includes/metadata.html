@@ -228,17 +228,22 @@
         "author":
         {
             "@type": "Person",
-            "name": "{{ site.first_name }} {{ site.middle_name }} {{ site.last_name }}"
+            "name": "{{ site.first_name }} {{ site.middle_name }} {{ site.last_name }}",
+            "url": "https://www.flomue.com"
         },
         "url": "{{ page.url | prepend: site.baseurl | prepend: site.url }}",
-        "@type": "{%- if is_blog_post -%}BlogPosting{%- else -%}WebSite{%- endif -%}",
-        "description": "{%- if page.description -%}{{ page.description }}{%- else if site.description -%}{{ site.description }}{%- endif -%}",
+        "@type": "{%- if page.reference -%}Article{%- else -%}WebSite{%- endif -%}",
+        "description": "{%- if page.entry.abstract -%}{{ page.entry.abstract }}{%- elsif page.description -%}{{ page.description }}{%- else if site.description -%}{{ site.description }}{%- endif -%}",
         "headline": "{%- if page.title -%}{{ page.title }}{%- else -%}{{ site.title }}{%- endif -%}",
-        {% if sameaslinks != blank -%}
-        "sameAs": {{ sameaslinks }},
+        {% if has_image == "true" or page.og_image or site.og_image -%}
+        "image":"{%- if has_image == 'true'  -%}{{base_preview_path}}{%- elsif page.og_image -%}{{ page.og_image }}{%- else -%}{{ site.og_image }}{%- endif -%}",
         {%- endif %}
-        "name": "{{ site.first_name }} {{ site.middle_name }} {{ site.last_name }}",
         "@context": "https://schema.org"
     }
     </script>
+
+    {%- if page.layout == 'about' -%}
+    {%- include person_schema.html %}
+    {% endif %}
+
 {%- endif %}
