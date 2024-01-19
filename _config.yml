@@ -230,9 +230,18 @@ plugins:
 # Sitemap settings
 defaults:
   - scope:
-      path: "assets"
+      path: "assets/*.pdf"
+    values:
+      sitemap: true
+  - scope:
+      path: "assets/plotly/**"
     values:
       sitemap: false
+  - scope:
+      path: "googleaa9654ea13825382.html"
+    values:
+      sitemap: false
+
 
 sass:
   style: compressed
