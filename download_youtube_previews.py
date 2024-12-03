@@ -17,6 +17,10 @@ def main():
             donwload_thumbnails(fields.get("talk"))
 
 def donwload_thumbnails(youtubeUrl):
+    youtubeUrl.replace('\\', '')
+
+    print("Clean: " + youtubeUrl)
+
     youtubeId = youtubeUrl.split('=')[-1].replace('\\', '')
     remote_url = 'https://img.youtube.com/vi/' + youtubeId + '/hqdefault.jpg'
 
