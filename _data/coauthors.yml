@@ -29,6 +29,10 @@
   - firstname: ["Thomas", "T"]
     url: https://thomaskosch.com/
 
+"Marky":
+  - firstname: ["Karola", "K"]
+    url: https://informatik.rub.de/digisoul/personen/marky/
+
 "Mayer":
   - firstname: ["Sven", "S"]
     url: https://sven-mayer.com/
@@ -37,9 +41,17 @@
   - firstname: ["Max", "M"]
     url: https://www.informatik.tu-darmstadt.de/telekooperation/staff_tk/tk_staff_details_23168.en.jsp
 
+"Villa":
+  - firstname: ["Steeven", "S"]
+    url: https://posthci.com/
+
 "Weiss":
   - firstname: ["Yannick", "Y"]
     url: https://yannick-weiss.com/
+
+"Welsch":
+  - firstname: ["Robin", "R"]
+    url: https://human-ai-interaction.com/
 
 "Feger":
   - firstname: ["Sebastian", "S"]
