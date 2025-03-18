@@ -61,7 +61,7 @@ layout: default
     <a href="https://dx.doi.org/{{ page.entry.doi }}" class="btn btn-sm z-depth-0" role="button"><i class="ai ai-{{ publisher_display_icon }}"> {{ publisher_display_name }}</i></a>
     {%- endif %}	  
     {%- if arxiv %}
-    <a href="http://arxiv.org/abs/{{ page.arxiv }}" class="btn btn-sm z-depth-0" role="button"><i class="ai ai-arxiv"></i> arxiv</a>
+    <a href="http://arxiv.org/abs/{{ page.entry.arxiv }}" class="btn btn-sm z-depth-0" role="button"><i class="ai ai-arxiv"></i> arxiv</a>
     {%- endif %}  
     <a href="javascript:;" class="bibtex btn btn-sm z-depth-0" role="button"><i class="fa-solid fa-quote-left"></i> Cite</a>
   </div>
