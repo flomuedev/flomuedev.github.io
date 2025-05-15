@@ -8,7 +8,7 @@ middle_name:
 last_name: Müller
 email: mail@flomue.com
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
-  Florian Müller is a a postdoctoral Human-Computer Interaction researcher at the Human-Centered Ubiquitous Media Lab at the LMU Munich.
+  Florian Müller is an Assistant Professor for Mobile Human-Computer Interaction at TU Darmstadt.
 footer_text: >
   Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
   Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
@@ -84,7 +84,7 @@ osf_id: # your OSF ID
 research_gate_profile: Florian-Mueller-52 # your profile on ResearchGate
 scopus_id: # your profile on Scopus
 blogger_url: # your blogger URL
-work_url: https://www.en.um.informatik.uni-muenchen.de/people/employees/mueller_florian/index.html # work page URL
+work_url: https://www.informatik.tu-darmstadt.de/hci/hci_tuda/team_hci/details_152256.de.jsp # work page URL
 keybase_username: # your keybase user name
 wikidata_id: # your wikidata id
 wikipedia_id: # your wikipedia id (Case sensitive)
