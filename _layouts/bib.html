@@ -146,12 +146,16 @@
 
         {% assign acm_alternative_names = "Association for Computing Machinery, ACM, ACM Press" | split: ", " %}
         {% assign springer_alternative_names = "Springer Nature Switzerland, Springer" | split: ", " %}
+        {% assign ieee_alternative_names = "Institute of Electrical and Electronics Engineers, IEEE" | split: ", " %}
         {% if acm_alternative_names contains entry.publisher %}
         {% assign publisher_display_name = "ACM" %}
-        {% assign publisher_display_icon = "acmdl" %}
+        {% assign publisher_display_icon = "acm" %}
         {% elsif springer_alternative_names contains entry.publisher %}
         {% assign publisher_display_name = "Springer" %}
         {% assign publisher_display_icon = "springer" %}
+        {% elsif ieee_alternative_names contains entry.publisher %}
+        {% assign publisher_display_name = "IEEE" %}
+        {% assign publisher_display_icon = "ieee" %}
         {% else %}
         {% assign publisher_display_name = entry.publisher %}
         {% assign publisher_display_icon = "doi" %}
