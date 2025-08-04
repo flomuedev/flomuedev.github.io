@@ -60,3 +60,15 @@
 "Hirsch":
   - firstname: ["Linda", "L"]
     url: https://www.lindahirsch.de/
+    
+"Zyska":
+  - firstname: ["Dennis", "D"]
+    url: http://zyska.org/
+    
+"Chiossi":
+  - firstname: ["Francesco", "F"]
+    url: https://www.francesco-chiossi-hci.com/
+    
+"Hirzle":
+  - firstname: ["Teresa ", "T"]
+    url: https://thirzle.github.io/
