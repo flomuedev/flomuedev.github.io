@@ -226,7 +226,7 @@ def main():
     parser = argparse.ArgumentParser(description='Manage stock media for the website')
     parser.add_argument('--source', choices=['unsplash', 'pexels', 'pixabay'], 
                        default='unsplash', help='Media source')
-    parser.add_argument('--query', required=True, help='Search query')
+    parser.add_argument('--query', help='Search query (required unless using --curate)')
     parser.add_argument('--count', type=int, default=5, help='Number of items to fetch')
     parser.add_argument('--type', choices=['photos', 'videos'], default='photos', 
                        help='Media type')
@@ -256,6 +256,10 @@ def main():
         
         print(f"Curated content saved to curated_media.json")
         return
+    
+    # Validate query for non-curate operations
+    if not args.query:
+        parser.error("--query is required unless using --curate")
     
     # Search for media
     if args.source == 'unsplash':
