@@ -25,6 +25,8 @@ layout: default
   {% endif %}
 
   {% assign arxiv = page.entry.eprint %}
+  
+  {% assign supps = page.enty.supps %}
 
   {% if page.entry.publisher == "arXiv" %}
   {% assign has_publisher = false %}
@@ -67,6 +69,9 @@ layout: default
     {%- endif %}	  
     {%- if arxiv %}
     <a href="http://arxiv.org/abs/{{ page.entry.eprint }}" class="btn btn-sm z-depth-0" role="button"><i class="ai ai-arxiv"></i> arxiv</a>
+    {%- endif %}  
+	{%- if supps %}
+    <a href="page.entry.supps" class="btn btn-sm z-depth-0" role="button"><i class="ai ai-open-data"></i> data</a>
     {%- endif %}  
     <a href="javascript:;" class="bibtex btn btn-sm z-depth-0" role="button"><i class="fa-solid fa-quote-left"></i> Cite</a>
   </div>
