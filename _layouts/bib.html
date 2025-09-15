@@ -204,7 +204,7 @@
           <a href="{{ entry.website}}" class="btn btn-sm z-depth-0" role="button"><i class="fas fa-link"></i> Website</a>
           {%- endif %}
 		  {%- if supps %}
-			<a href="entry.supps" class="btn btn-sm z-depth-0" role="button"><i class="ai ai-open-data"></i> data</a>
+			<a href="{{ entry.supps }}" class="btn btn-sm z-depth-0" role="button"><i class="ai ai-open-data"></i> data</a>
 		  {%- endif %}  		  
           {%- if entry.supp %}
             {% if entry.supp contains '://' -%}
