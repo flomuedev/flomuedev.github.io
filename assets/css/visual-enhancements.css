@@ -1,0 +1,334 @@
+/* Enhanced Visual Effects for flomuedev.github.io */
+
+/* Pan and Zoom Effects for Images */
+.image-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.image-container:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.pan-zoom-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+  cursor: pointer;
+}
+
+.pan-zoom-image:hover {
+  transform: scale(1.05);
+}
+
+/* Advanced pan and zoom for featured images */
+.featured-image-container {
+  position: relative;
+  overflow: hidden;
+  height: 400px;
+  border-radius: 12px;
+}
+
+.featured-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 8s ease-in-out;
+  animation: slowPan 20s ease-in-out infinite;
+}
+
+@keyframes slowPan {
+  0%, 100% {
+    transform: scale(1.1) translateX(0) translateY(0);
+  }
+  25% {
+    transform: scale(1.15) translateX(-2%) translateY(-1%);
+  }
+  50% {
+    transform: scale(1.1) translateX(2%) translateY(1%);
+  }
+  75% {
+    transform: scale(1.15) translateX(1%) translateY(-2%);
+  }
+}
+
+/* Video Background Effects */
+.video-background {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.video-background video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+  filter: brightness(0.7);
+}
+
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  z-index: 2;
+}
+
+/* Research Paper Visual Enhancements */
+.paper-preview {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+.paper-preview:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.paper-preview-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.paper-preview:hover .paper-preview-image {
+  transform: scale(1.02);
+}
+
+/* Interactive Gallery */
+.interactive-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.gallery-item {
+  position: relative;
+  aspect-ratio: 16/9;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.gallery-item:hover {
+  transform: scale(1.02);
+  z-index: 10;
+}
+
+.gallery-item img,
+.gallery-item video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img,
+.gallery-item:hover video {
+  transform: scale(1.1);
+}
+
+.gallery-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  color: white;
+  padding: 1.5rem;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover .gallery-overlay {
+  transform: translateY(0);
+}
+
+/* Research Topic Visual Indicators */
+.topic-tag {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin: 0.25rem;
+  transition: all 0.3s ease;
+}
+
+.topic-tag.vr {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: white;
+}
+
+.topic-tag.ar {
+  background: linear-gradient(135deg, #10b981, #3b82f6);
+  color: white;
+}
+
+.topic-tag.hci {
+  background: linear-gradient(135deg, #ef4444, #f97316);
+  color: white;
+}
+
+.topic-tag.haptics {
+  background: linear-gradient(135deg, #8b5cf6, #d946ef);
+  color: white;
+}
+
+.topic-tag:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Progressive Image Loading */
+.progressive-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.progressive-image img {
+  transition: filter 0.3s ease;
+}
+
+.progressive-image.loading img {
+  filter: blur(5px);
+}
+
+.progressive-image::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.progressive-image.loading::before {
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Parallax Effects */
+.parallax-container {
+  position: relative;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  perspective: 1px;
+}
+
+.parallax-element {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.parallax-back {
+  transform: translateZ(-1px) scale(2);
+}
+
+.parallax-base {
+  transform: translateZ(0);
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+  .featured-image-container {
+    height: 250px;
+  }
+  
+  .video-background {
+    height: 250px;
+  }
+  
+  .interactive-gallery {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .featured-image {
+    animation: none; /* Disable complex animations on mobile */
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pan-zoom-image,
+  .featured-image,
+  .gallery-item img,
+  .gallery-item video {
+    transition: none;
+    animation: none;
+  }
+  
+  .featured-image {
+    transform: scale(1.05);
+  }
+}
+
+/* Accessibility Improvements */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Focus states for better accessibility */
+.gallery-item:focus,
+.image-container:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .topic-tag {
+    border: 2px solid currentColor;
+  }
+  
+  .gallery-overlay {
+    background: rgba(0, 0, 0, 0.9);
+  }
+}

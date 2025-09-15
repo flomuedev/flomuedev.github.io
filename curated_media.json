@@ -1,0 +1,177 @@
+{
+  "virtual reality": {
+    "images": [
+      {
+        "source": "unsplash",
+        "url": "https://source.unsplash.com/800x600/?virtual,reality,technology,research&sig=0",
+        "description": "Sample virtual reality technology research image 1",
+        "photographer": "Sample Photographer",
+        "download_url": "https://source.unsplash.com/1200x800/?virtual,reality,technology,research&sig=0"
+      },
+      {
+        "source": "unsplash",
+        "url": "https://source.unsplash.com/800x600/?virtual,reality,technology,research&sig=1",
+        "description": "Sample virtual reality technology research image 2",
+        "photographer": "Sample Photographer",
+        "download_url": "https://source.unsplash.com/1200x800/?virtual,reality,technology,research&sig=1"
+      },
+      {
+        "source": "pexels",
+        "url": "https://picsum.photos/800/600?random=0",
+        "description": "Sample virtual reality interface design image 1",
+        "photographer": "Sample Photographer",
+        "download_url": "https://picsum.photos/1200/800?random=0"
+      }
+    ],
+    "suggested_animations": [
+      "fade transitions",
+      "parallax scrolling",
+      "3D transforms"
+    ],
+    "color_palette": [
+      "#6366f1",
+      "#8b5cf6",
+      "#06b6d4"
+    ]
+  },
+  "augmented reality": {
+    "images": [
+      {
+        "source": "unsplash",
+        "url": "https://source.unsplash.com/800x600/?augmented,reality,technology,research&sig=0",
+        "description": "Sample augmented reality technology research image 1",
+        "photographer": "Sample Photographer",
+        "download_url": "https://source.unsplash.com/1200x800/?augmented,reality,technology,research&sig=0"
+      },
+      {
+        "source": "unsplash",
+        "url": "https://source.unsplash.com/800x600/?augmented,reality,technology,research&sig=1",
+        "description": "Sample augmented reality technology research image 2",
+        "photographer": "Sample Photographer",
+        "download_url": "https://source.unsplash.com/1200x800/?augmented,reality,technology,research&sig=1"
+      },
+      {
+        "source": "pexels",
+        "url": "https://picsum.photos/800/600?random=0",
+        "description": "Sample augmented reality interface design image 1",
+        "photographer": "Sample Photographer",
+        "download_url": "https://picsum.photos/1200/800?random=0"
+      }
+    ],
+    "suggested_animations": [
+      "overlay effects",
+      "depth transitions",
+      "gesture animations"
+    ],
+    "color_palette": [
+      "#10b981",
+      "#3b82f6",
+      "#f59e0b"
+    ]
+  },
+  "human computer interaction": {
+    "images": [
+      {
+        "source": "unsplash",
+        "url": "https://source.unsplash.com/800x600/?human,computer,interaction,technology,research&sig=0",
+        "description": "Sample human computer interaction technology research image 1",
+        "photographer": "Sample Photographer",
+        "download_url": "https://source.unsplash.com/1200x800/?human,computer,interaction,technology,research&sig=0"
+      },
+      {
+        "source": "unsplash",
+        "url": "https://source.unsplash.com/800x600/?human,computer,interaction,technology,research&sig=1",
+        "description": "Sample human computer interaction technology research image 2",
+        "photographer": "Sample Photographer",
+        "download_url": "https://source.unsplash.com/1200x800/?human,computer,interaction,technology,research&sig=1"
+      },
+      {
+        "source": "pexels",
+        "url": "https://picsum.photos/800/600?random=0",
+        "description": "Sample human computer interaction interface design image 1",
+        "photographer": "Sample Photographer",
+        "download_url": "https://picsum.photos/1200/800?random=0"
+      }
+    ],
+    "suggested_animations": [
+      "hover effects",
+      "progressive disclosure",
+      "smooth transitions"
+    ],
+    "color_palette": [
+      "#ef4444",
+      "#f97316",
+      "#eab308"
+    ]
+  },
+  "haptic feedback": {
+    "images": [
+      {
+        "source": "unsplash",
+        "url": "https://source.unsplash.com/800x600/?haptic,feedback,technology,research&sig=0",
+        "description": "Sample haptic feedback technology research image 1",
+        "photographer": "Sample Photographer",
+        "download_url": "https://source.unsplash.com/1200x800/?haptic,feedback,technology,research&sig=0"
+      },
+      {
+        "source": "unsplash",
+        "url": "https://source.unsplash.com/800x600/?haptic,feedback,technology,research&sig=1",
+        "description": "Sample haptic feedback technology research image 2",
+        "photographer": "Sample Photographer",
+        "download_url": "https://source.unsplash.com/1200x800/?haptic,feedback,technology,research&sig=1"
+      },
+      {
+        "source": "pexels",
+        "url": "https://picsum.photos/800/600?random=0",
+        "description": "Sample haptic feedback interface design image 1",
+        "photographer": "Sample Photographer",
+        "download_url": "https://picsum.photos/1200/800?random=0"
+      }
+    ],
+    "suggested_animations": [
+      "vibration patterns",
+      "wave animations",
+      "spring physics"
+    ],
+    "color_palette": [
+      "#8b5cf6",
+      "#d946ef",
+      "#06b6d4"
+    ]
+  },
+  "mobile interaction": {
+    "images": [
+      {
+        "source": "unsplash",
+        "url": "https://source.unsplash.com/800x600/?mobile,interaction,technology,research&sig=0",
+        "description": "Sample mobile interaction technology research image 1",
+        "photographer": "Sample Photographer",
+        "download_url": "https://source.unsplash.com/1200x800/?mobile,interaction,technology,research&sig=0"
+      },
+      {
+        "source": "unsplash",
+        "url": "https://source.unsplash.com/800x600/?mobile,interaction,technology,research&sig=1",
+        "description": "Sample mobile interaction technology research image 2",
+        "photographer": "Sample Photographer",
+        "download_url": "https://source.unsplash.com/1200x800/?mobile,interaction,technology,research&sig=1"
+      },
+      {
+        "source": "pexels",
+        "url": "https://picsum.photos/800/600?random=0",
+        "description": "Sample mobile interaction interface design image 1",
+        "photographer": "Sample Photographer",
+        "download_url": "https://picsum.photos/1200/800?random=0"
+      }
+    ],
+    "suggested_animations": [
+      "pan and zoom",
+      "fade effects",
+      "slide transitions"
+    ],
+    "color_palette": [
+      "#3b82f6",
+      "#10b981",
+      "#f59e0b"
+    ]
+  }
+}
