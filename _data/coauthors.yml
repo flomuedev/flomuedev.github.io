@@ -70,5 +70,13 @@
     url: https://www.francesco-chiossi-hci.com/
     
 "Hirzle":
-  - firstname: ["Teresa ", "T"]
+  - firstname: ["Teresa", "T"]
     url: https://thirzle.github.io/
+    
+"Gurevych":
+  - firstname: ["Iryna", "I"]
+    url: https://www.informatik.tu-darmstadt.de/ukp/ukp_home/head_ukp/index.en.jsp
+    
+"Schön":
+  - firstname: ["Dominik", "D"]
+    url: https://www.informatik.tu-darmstadt.de/hci/hci_tuda/team_hci/details_152320.en.jsp
