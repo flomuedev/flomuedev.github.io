@@ -1,6 +1,6 @@
 ---
 layout: about
-title: about
+title: Florian Müller — About
 permalink: /
 subtitle: urban interaction · hci4ai · ar/vr enthusiast · statistics nerd
 
