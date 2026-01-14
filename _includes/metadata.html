@@ -137,7 +137,11 @@
             {
                 "@type": "Person",
                 "@id": "{{ person_id }}",
-                "name": {{ "Prof. Dr. Florian Müller" | jsonify }},
+                "name": {{ "Florian Müller" | jsonify }},
+                "honorificPrefix": {{ "Prof. Dr." | jsonify }},
+                "givenName": {{ "Florian" | jsonify }},
+                "familyName": {{ "Müller" | jsonify }},
+                "alternateName": {{ "Florian Mueller" | jsonify }},
                 "url": {{ homepage_url | jsonify }},
                 "image": {{ site.og_image | jsonify }},
                 "jobTitle": {{ "Assistant Professor for Mobile Human-Computer Interaction" | jsonify }},
@@ -155,7 +159,7 @@
             },
             {%- endif -%}
             {
-                "@type": "WebPage",
+                "@type": {% if is_homepage %}["WebPage", "AboutPage"]{% else %}"WebPage"{% endif %},
                 "@id": "{{ page_url }}#webpage",
                 "url": {{ page_url | jsonify }},
                 "name": {{ page_name | jsonify }},
@@ -165,7 +169,10 @@
                 },
                 "about": {
                     "@id": "{{ person_id }}"
-                }{% if page_image != "" %},
+                }{% if is_homepage %},
+                "mainEntity": {
+                    "@id": "{{ person_id }}"
+                }{% endif %}{% if page_image != "" %},
                 "primaryImageOfPage": {
                     "@type": "ImageObject",
                     "@id": "{{ page_url }}#primaryimage",
