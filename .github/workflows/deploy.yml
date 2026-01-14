@@ -35,6 +35,8 @@ jobs:
         value: ${{ github.repository }}
     - name: Install and Build 🔧
       run: |
+        sudo apt-get update
+        sudo apt-get install -y imagemagick
         pip3 install --upgrade jupyter
         npm install -g mermaid.cli
         npm install -g purgecss
@@ -46,4 +48,3 @@ jobs:
       uses: JamesIves/github-pages-deploy-action@v4
       with:
         folder: _site
-
