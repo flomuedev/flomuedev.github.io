@@ -141,11 +141,16 @@
                 "honorificPrefix": {{ "Prof. Dr." | jsonify }},
                 "givenName": {{ "Florian" | jsonify }},
                 "familyName": {{ "Müller" | jsonify }},
-                "alternateName": {{ "Florian Mueller" | jsonify }},
+                "alternateName": [{{ "Florian Mueller" | jsonify }}],
                 "url": {{ homepage_url | jsonify }},
                 "image": {{ site.og_image | jsonify }},
                 "jobTitle": {{ "Assistant Professor for Mobile Human-Computer Interaction" | jsonify }},
                 "worksFor": {
+                    "@type": "CollegeOrUniversity",
+                    "name": {{ "TU Darmstadt" | jsonify }},
+                    "url": {{ "https://www.tu-darmstadt.de/" | jsonify }}
+                },
+                "affiliation": {
                     "@type": "CollegeOrUniversity",
                     "name": {{ "TU Darmstadt" | jsonify }},
                     "url": {{ "https://www.tu-darmstadt.de/" | jsonify }}
