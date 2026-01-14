@@ -13,7 +13,11 @@
             },{
                 "@type": "Person",
                 "@id": "https://www.flomue.com/#person",
-                "name": "Prof. Dr. Florian Müller",
+                "name": "Florian Müller",
+                "honorificPrefix": "Prof. Dr.",
+                "givenName": "Florian",
+                "familyName": "Müller",
+                "alternateName": "Florian Mueller",
                 "url": "https://www.flomue.com/",
                 "image": "https://www.flomue.com/assets/img/florian_profile_square.jpg",
                 "jobTitle": "Assistant Professor for Mobile Human-Computer Interaction",
@@ -24,7 +28,7 @@
                 },
                 "sameAs": ["https://www.informatik.tu-darmstadt.de/hci/hci_tuda/team_hci/details_152256.en.jsp","https://www.informatik.tu-darmstadt.de/hci/hci_tuda/urbanpage.en.jsp","https://orcid.org/0000-0002-9621-6214","https://scholar.google.com/citations?user=slfzfQIAAAAJ","https://dblp.org/pid/m/FlorianMueller-3.html","https://dl.acm.org/profile/81464642529","https://www.linkedin.com/in/florian-mueller-hci","https://github.com/flomuedev","https://www.wikidata.org/wiki/Q130893717"]
             },{
-                "@type": "WebPage",
+                "@type": ["WebPage", "AboutPage"],
                 "@id": "https://www.flomue.com/#webpage",
                 "url": "https://www.flomue.com/",
                 "name": "about",
@@ -33,6 +37,9 @@
                     "@id": "https://www.flomue.com/#website"
                 },
                 "about": {
+                    "@id": "https://www.flomue.com/#person"
+                },
+                "mainEntity": {
                     "@id": "https://www.flomue.com/#person"
                 },
                 "primaryImageOfPage": {
