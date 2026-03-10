@@ -3,7 +3,7 @@ name: Deploy Hugo site to Pages
 on:
   push:
     branches:
-      - old-master
+      - master
   workflow_dispatch:
 
 permissions:
