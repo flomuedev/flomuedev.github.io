@@ -3,6 +3,7 @@ languageCode = "en"
 title = "Florian Müller"
 enableRobotsTXT = true
 buildFuture = true
+disablePathToLower = true
 
 [params]
   description = "Florian Müller is an Assistant Professor for Mobile Human-Computer Interaction at TU Darmstadt."
