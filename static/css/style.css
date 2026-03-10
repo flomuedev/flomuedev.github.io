@@ -898,6 +898,12 @@ h3 {
   .pub-single-sidebar {
     grid-area: sidebar;
     margin-bottom: var(--space-8);
+    position: static;
+  }
+
+  .pub-single-thumbnail-wrapper {
+    transform: none;
+    max-width: 100%;
   }
 }
 
