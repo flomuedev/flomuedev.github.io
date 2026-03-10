@@ -1,0 +1,17 @@
++++
+title = "Let's Frets! Mastering Guitar Playing with Capacitive Sensing and Visual Guidance"
+date = "2021-05-01T00:00:00Z"
+type = "publication"
+authors = "Karola Marky, Andreas Wei\u00df, Florian M\u00fcller, Martin Schmitz, Max M\u00fchlh\u00e4user, Thomas Kosch"
+authors_html = "Karola Marky, Andreas Wei\u00df, <span class=\"highlight-author\">Florian M\u00fcller</span>, Martin Schmitz, Max M\u00fchlh\u00e4user, Thomas Kosch"
+venue = "Extended Abstracts of the 2021 CHI Conference on Human Factors in Computing Systems"
+venue_short = "CHI EA"
+bibtex = "@inproceedings{markyLetsFretsMastering2021,\n  author = {Marky, Karola and Wei\u00df, Andreas and M\u00fcller, Florian and Schmitz, Martin and M\u00fchlh\u00e4user, Max and Kosch, Thomas},\n  title = {Let's Frets! Mastering Guitar Playing with Capacitive Sensing and Visual Guidance},\n  booktitle = {Extended Abstracts of the 2021 CHI Conference on Human Factors in Computing Systems},\n  year = {2021},\n  month = {may},\n  pages = {1--4},\n  publisher = {Association for Computing Machinery},\n  address = {New York, NY, USA},\n  series = {CHI EA '21},\n  doi = {10.1145/3411763.3451536},\n  isbn = {978-1-4503-8095-9},\n  keywords = {capacitive sensing,musical instruments,support setup},\n  abstract = {Mastering the guitar requires regular exercise to develop new skills and maintain existing abilities. We present Let's Frets - a modular guitar support system that provides visual guidance through LEDs that are integrated into a capacitive fretboard to support the practice of chords, scales, melodies, and exercises. Additional feedback is provided through a 3D-printed fretboard that senses the finger positions through capacitive sensing. We envision Let's Frets as an integrated guitar support system that raises the awareness of guitarists about their playing styles, their training progress, the composition of new pieces, and facilitating remote collaborations between teachers as well as guitar students. This interactivity demonstrates Let's Frets with an augmented fretboard and supporting software that runs on a mobile device.},\n}"
+pdf = "markyLetsFretsMastering2021.pdf"
+preview = "markyLetsFretsMastering2021.jpg"
+video = "https://www.youtube.com/watch?v=a0C4TkbiRfg"
+doi = "10.1145/3411763.3451536"
+keywords = ["capacitive sensing", "musical instruments", "support setup"]
++++
+
+Mastering the guitar requires regular exercise to develop new skills and maintain existing abilities. We present Let's Frets - a modular guitar support system that provides visual guidance through LEDs that are integrated into a capacitive fretboard to support the practice of chords, scales, melodies, and exercises. Additional feedback is provided through a 3D-printed fretboard that senses the finger positions through capacitive sensing. We envision Let's Frets as an integrated guitar support system that raises the awareness of guitarists about their playing styles, their training progress, the composition of new pieces, and facilitating remote collaborations between teachers as well as guitar students. This interactivity demonstrates Let's Frets with an augmented fretboard and supporting software that runs on a mobile device.

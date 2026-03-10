@@ -1,0 +1,18 @@
++++
+title = "PneumoVolley: Pressure-based Haptic Feedback on the Head through Pneumatic Actuation"
+date = "2020-06-01T00:00:00Z"
+type = "publication"
+authors = "Sebastian G\u00fcnther, Dominik Sch\u00f6n, Florian M\u00fcller, Max M\u00fchlh\u00e4user, Martin Schmitz"
+authors_html = "Sebastian G\u00fcnther, Dominik Sch\u00f6n, <span class=\"highlight-author\">Florian M\u00fcller</span>, Max M\u00fchlh\u00e4user, Martin Schmitz"
+venue = "Extended Abstracts of the 2020 CHI Conference on Human Factors in Computing Systems - CHI '20"
+venue_short = "CHI EA"
+bibtex = "@inproceedings{Gunther2020a,\n  author = {G\u00fcnther, Sebastian and Sch\u00f6n, Dominik and M\u00fcller, Florian and M\u00fchlh\u00e4user, Max and Schmitz, Martin},\n  title = {PneumoVolley: Pressure-based Haptic Feedback on the Head through Pneumatic Actuation},\n  booktitle = {Extended Abstracts of the 2020 CHI Conference on Human Factors in Computing Systems - CHI '20},\n  year = {2020},\n  publisher = {ACM},\n  doi = {10.1145/3334480.3382916},\n  isbn = {978-1-4503-6819-3},\n  keywords = {2020,April 25-30,CCS Concepts Human-centered computing Human com,CHI 2020,Haptic devices,Haptics,HI,Honolulu,Pressure feedback,Pressure Feedback,USA Author Keywords Virtual Reality,User studies,Virtual reality,Volleyball},\n  abstract = {Haptic Feedback brings immersion and presence in Virtual Reality (VR) to the next level. While research proposes the usage of various tactile sensations, such as vibration or ultrasound approaches, the potential applicability of pressure feedback on the head is still under-explored. In this paper, we contribute concepts and design considerations for pressure-based feedback on the head through pneumatic actuation. As a proof-of-concept implementing our pressure-based haptics, we further present PneumoVolley: a VR experience similar to the classic Volleyball game but played with the head. In an exploratory user study with 9 participants, we evaluated our concepts and identified a significantly increased involvement compared to a no-haptics baseline along with high realism and enjoyment ratings using pressure-based feedback on the head in VR. LBW033, Page 1 CHI 2020 Late-Breaking Work},\n}"
+pdf = "Gunther2020a.pdf"
+preview = "Gunther2020a.jpg"
+video = "https://www.youtube.com/watch?v=ZKnV8HrUx9M"
+talk = "https://www.youtube.com/watch?v=QWLsdfNxgeA"
+doi = "10.1145/3334480.3382916"
+keywords = ["2020", "April 25-30", "CCS Concepts Human-centered computing Human com", "CHI 2020", "Haptic devices", "Haptics", "HI", "Honolulu", "Pressure feedback", "Pressure Feedback", "USA Author Keywords Virtual Reality", "User studies", "Virtual reality", "Volleyball"]
++++
+
+Haptic Feedback brings immersion and presence in Virtual Reality (VR) to the next level. While research proposes the usage of various tactile sensations, such as vibration or ultrasound approaches, the potential applicability of pressure feedback on the head is still under-explored. In this paper, we contribute concepts and design considerations for pressure-based feedback on the head through pneumatic actuation. As a proof-of-concept implementing our pressure-based haptics, we further present PneumoVolley: a VR experience similar to the classic Volleyball game but played with the head. In an exploratory user study with 9 participants, we evaluated our concepts and identified a significantly increased involvement compared to a no-haptics baseline along with high realism and enjoyment ratings using pressure-based feedback on the head in VR. LBW033, Page 1 CHI 2020 Late-Breaking Work

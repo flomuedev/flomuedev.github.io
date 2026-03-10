@@ -1,0 +1,18 @@
++++
+title = "Podoportation: Foot-Based Locomotion in Virtual Reality"
+date = "2020-06-01T00:00:00Z"
+type = "publication"
+authors = "Julius Von Willich, Martin Schmitz, Florian M\u00fcller, Daniel Schmitt, Max M\u00fchlh\u00e4user"
+authors_html = "Julius Von Willich, Martin Schmitz, <span class=\"highlight-author\">Florian M\u00fcller</span>, Daniel Schmitt, Max M\u00fchlh\u00e4user"
+venue = "Proceedings of the 2020 CHI Conference on Human Factors in Computing Systems - CHI '20"
+venue_short = "CHI"
+bibtex = "@inproceedings{Willich2020,\n  author = {Willich, Julius Von and Schmitz, Martin and M\u00fcller, Florian and Schmitt, Daniel and M\u00fchlh\u00e4user, Max},\n  title = {Podoportation: Foot-Based Locomotion in Virtual Reality},\n  booktitle = {Proceedings of the 2020 CHI Conference on Human Factors in Computing Systems - CHI '20},\n  year = {2020},\n  volume = {20},\n  publisher = {ACM},\n  doi = {10.1145/3313831.3376626},\n  isbn = {978-1-4503-6708-0},\n  keywords = {foot-based input,Foot-based input CCS Concepts Human-centered comp,Interaction devices,locomotion,Locomotion,User stud-ies,virtual reality,Virtual Reality},\n  abstract = {Virtual Reality (VR) allows for infinitely large environments. However, the physical traversable space is always limited by real-world boundaries. This discrepancy between physical and virtual dimensions renders traditional locomotion methods used in real world unfeasible. To alleviate these limitations, research proposed various artificial locomotion concepts such as teleportation, treadmills, and redirected walking. However, these concepts occupy the user's hands, require complex hardware or large physical spaces. In this paper, we contribute nine VR locomotion concepts for foot-based locomotion, relying on the 3D position of the user's feet and the pressure applied to the sole as input modalities. We evaluate our concepts and compare them to state-of-the-art point & teleport technique in a controlled experiment with 20 participants. The results confirm the viability of our approaches for foot-based and engaging locomotion. Further, based on the findings, we contribute a wireless hardware prototype implementation.},\n}"
+pdf = "Willich2020.pdf"
+preview = "Willich2020.jpg"
+video = "https://www.youtube.com/watch?v=xvqZTbJdXYE"
+talk = "https://www.youtube.com/watch?v=6c8JujTvVkY"
+doi = "10.1145/3313831.3376626"
+keywords = ["foot-based input", "Foot-based input CCS Concepts Human-centered comp", "Interaction devices", "locomotion", "Locomotion", "User stud-ies", "virtual reality", "Virtual Reality"]
++++
+
+Virtual Reality (VR) allows for infinitely large environments. However, the physical traversable space is always limited by real-world boundaries. This discrepancy between physical and virtual dimensions renders traditional locomotion methods used in real world unfeasible. To alleviate these limitations, research proposed various artificial locomotion concepts such as teleportation, treadmills, and redirected walking. However, these concepts occupy the user's hands, require complex hardware or large physical spaces. In this paper, we contribute nine VR locomotion concepts for foot-based locomotion, relying on the 3D position of the user's feet and the pressure applied to the sole as input modalities. We evaluate our concepts and compare them to state-of-the-art point & teleport technique in a controlled experiment with 20 participants. The results confirm the viability of our approaches for foot-based and engaging locomotion. Further, based on the findings, we contribute a wireless hardware prototype implementation.

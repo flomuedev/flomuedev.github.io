@@ -1,0 +1,15 @@
++++
+title = "Manipulating Stiffness Perception of Compliant Objects While Pinching in Virtual Reality"
+date = "2025-12-01T00:00:00Z"
+type = "publication"
+authors = "Yannick Weiss, Steeven Villa, Moritz Ziarko, Florian M\u00fcller"
+authors_html = "Yannick Weiss, Steeven Villa, Moritz Ziarko, <span class=\"highlight-author\">Florian M\u00fcller</span>"
+venue = "Proceedings of the 2025 31st ACM Symposium on Virtual Reality Software and Technology"
+venue_short = "VRST"
+bibtex = "@inproceedings{weissManipulatingStiffnessPerception2025,\n  author = {Weiss, Yannick and Villa, Steeven and Ziarko, Moritz and M\u00fcller, Florian},\n  title = {Manipulating Stiffness Perception of Compliant Objects While Pinching in Virtual Reality},\n  booktitle = {Proceedings of the 2025 31st ACM Symposium on Virtual Reality Software and Technology},\n  year = {2025},\n  month = {dec},\n  pages = {1--11},\n  publisher = {Association for Computing Machinery},\n  address = {New York, NY, USA},\n  series = {VRST '25},\n  doi = {10.1145/3756884.3765988},\n  isbn = {979-8-4007-2118-2},\n  abstract = {Providing users with realistic sensations of object stiffness in virtual environments remains challenging due to the intricacies of our haptic sense. We investigate the use of a visuo-haptic illusion to alter the perceived stiffness of hand-held objects in virtual reality. We manipulate the Control-to-Display ratio of the index finger and thumb movements during pinching to make virtual objects feel softer or harder. We evaluated this approach on a variety of haptic representations and visualizations we selected through a pre-study survey (N=24). Results of our user study (N=20) demonstrate that this method effectively and reliably modifies stiffness perception, bridging gaps of 50\\% in physical stiffness without adversely affecting the visuo-haptic experience. Our findings offer insights into how different visual and haptic presentations impact stiffness perception, contributing to more effective and adaptable future haptic feedback systems.},\n}"
+pdf = "weissManipulatingStiffnessPerception2025.pdf"
+preview = "weissManipulatingStiffnessPerception2025.jpg"
+doi = "10.1145/3756884.3765988"
++++
+
+Providing users with realistic sensations of object stiffness in virtual environments remains challenging due to the intricacies of our haptic sense. We investigate the use of a visuo-haptic illusion to alter the perceived stiffness of hand-held objects in virtual reality. We manipulate the Control-to-Display ratio of the index finger and thumb movements during pinching to make virtual objects feel softer or harder. We evaluated this approach on a variety of haptic representations and visualizations we selected through a pre-study survey (N=24). Results of our user study (N=20) demonstrate that this method effectively and reliably modifies stiffness perception, bridging gaps of 50\% in physical stiffness without adversely affecting the visuo-haptic experience. Our findings offer insights into how different visual and haptic presentations impact stiffness perception, contributing to more effective and adaptable future haptic feedback systems.

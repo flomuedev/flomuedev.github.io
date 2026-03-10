@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+<head>
+  {{- partial "head.html" . -}}
+</head>
+<body>
+{{- partial "header.html" . -}}
+  <main>
+    {{- block "main" . }}{{ end -}}
+  </main>
+  {{- partial "footer.html" . -}}
+  <div id="bibtex-modal" class="bibtex-modal" hidden aria-modal="true" role="dialog" aria-label="BibTeX Citation">
+    <div class="bibtex-modal-overlay"></div>
+    <div class="bibtex-modal-box">
+      <div class="bibtex-modal-header">
+        <span class="bibtex-modal-title">BibTeX Citation</span>
+        <button class="bibtex-modal-close" aria-label="Close">&times;</button>
+      </div>
+      <pre class="bibtex-modal-code"><code id="bibtex-modal-content"></code></pre>
+      <div class="bibtex-modal-footer">
+        <button class="bibtex-copy-btn">Copy to clipboard</button>
+      </div>
+    </div>
+  </div>
+  <script src="/js/main.js" defer></script>
+</body>
+</html>

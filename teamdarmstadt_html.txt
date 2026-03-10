@@ -1,0 +1,1773 @@
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+
+<script>
+  document.documentElement.classList.remove("no-js");
+</script>
+
+  <!-- JavaScript Libraries -->
+  <script src="lib/jquery/jquery.min.js"></script>
+  <script src="lib/jquery/jquery-migrate.min.js"></script>
+  <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="lib/typed/typed.js"></script>
+  <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+  <script src="lib/magnific-popup/magnific-popup.min.js"></script>
+  <script src="lib/isotope/isotope.pkgd.min.js"></script>
+  
+  <!-- fontawesome -->
+  <script src="https://kit.fontawesome.com/725305bccc.js" crossorigin="anonymous"></script>
+
+  <!-- Contact Form JavaScript File -->
+  <!-- <script src="contactform/contactform.js"></script> -->
+
+  <!-- Template Main Javascript File -->
+  <script src="js/main.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-139254725-1"></script>
+<script type="text/javascript">
+
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('consent', 'default', {
+		  'ad_storage': 'denied',
+		  'analytics_storage': 'denied',
+			'wait_for_update': 500
+		});
+		gtag('config', 'UA-139254725-1');
+		gtag('config', 'GA_TRACKING_ID', { 'anonymize_ip': true});
+			
+			</script>
+
+    <script type="text/javascript" src="js/jquery.ihavecookies.min.js"></script>
+    <script type="text/javascript">
+	
+    var options = {
+        title: '&#x1F36A; Accept Cookies & Privacy Policy?',
+        message: 'This site uses cookies for basic analytics. If you agree, click on accept cookies or customize your cookies by clicking "Customize Cookies".',
+        delay: 200,
+        expires: 1,
+        link: '#contact',
+        onAccept: function(){
+            var myPreferences = $.fn.ihavecookies.cookie();
+            console.log('Yay! The following preferences were saved...');
+            console.log(myPreferences);
+        },
+        uncheckBoxes: true,
+        acceptBtnLabel: 'Accept Cookies',
+        moreInfoLabel: 'More information',
+        cookieTypesTitle: 'Select which cookies you want to accept',
+        fixedCookieTypeLabel: 'Essential',
+        fixedCookieTypeDesc: 'These are essential for the website to work correctly.'
+    }
+
+    $(document).ready(function() {
+        $('body').ihavecookies(options);
+
+        if ($.fn.ihavecookies.preference('marketing') === true) {
+            console.log('This should run because marketing is accepted.');
+			
+			gtag('consent', 'update', {
+			  'ad_storage': 'granted'
+			});
+        }
+        if ($.fn.ihavecookies.preference('analytics') === true) {
+            console.log('This should run because analytics are accepted.');
+			
+			gtag('consent', 'update', {
+			   'analytics_storage': 'granted'
+			});
+        }
+
+        $('#ihavecookiesBtn').on('click', function(){
+            $('body').ihavecookies(options, 'reinit');
+        });
+    });
+
+    </script>
+
+
+  <!-- meta -->
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>#teamdarmstadt - HCI at TU Darmstadt</title>
+  <meta content="teamdarmstadt hci human-computer interaction" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,600,600i,700,700i|Playfair+Display:400,400i,700,700i,900,900i" rel="stylesheet">
+
+  <!-- Bootstrap CSS File -->
+  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" async>
+
+  <!-- Libraries CSS Files -->
+  <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet" async>
+  <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" async>
+  <link href="lib/magnific-popup/magnific-popup.css" rel="stylesheet" async>
+  <link href="lib/hover/hover.min.css" rel="stylesheet" async>
+
+  <!-- Main Stylesheet File -->
+  <link href="css/style.css" rel="stylesheet" async>
+
+  <link href="css/cookies.css" rel="stylesheet" async>
+
+  <!-- Responsive css -->
+  <link href="css/responsive.css" rel="stylesheet" async>
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="images/favicon.png">
+  
+  
+	
+
+  <!-- =======================================================
+    Theme Name: Folio
+    Theme URL: https://bootstrapmade.com/folio-bootstrap-portfolio-template/
+    Author: BootstrapMade.com
+    Author URL: https://bootstrapmade.com
+  ======================================================= -->
+</head>
+
+<body>
+
+	<div class="teamdarmstadt-logo">
+		<!-- <img src="images/teamdarmstadt.webp" alt="teamdarmstadt" /> -->
+		<picture>
+		  <source srcset="images/teamdarmstadt.webp" type="image/webp">
+		  <source srcset="images/teamdarmstadt.png" type="image/png"> 
+		  <img src="images/teamdarmstadt.png" alt="#teamdarmstadt Logo">
+		</picture>
+	</div>
+
+  <!-- start section navbar -->
+  <nav id="main-nav">
+    <div class="row">
+      <div class="container">
+
+        <div class="logo">
+          <a href="#header"><img src="images/logo.png" alt="logo"></a>
+        </div>
+
+        <div class="responsive"><i data-icon="m" class="ion-navicon-round"></i></div>
+
+        <ul class="nav-menu list-unstyled">
+          <li><a href="#header" class="smoothScroll">Home</a></li>
+          <li><a href="#chi" class="smoothScroll">We at CHI</a></li>
+          <li><a href="#research" class="smoothScroll">Our CHI Research</a></li>
+          <li><a href="#tk" class="smoothScroll">HCI@TK</a></li>
+          <li><a href="#peasec" class="smoothScroll">HCI@PEASEC</a></li>
+          <li><a href="#contact" class="smoothScroll">Contact</a></li>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+  <!-- End section navbar -->
+
+
+  <!-- start section header -->
+  <div id="header" class="home">
+	<div id="header-copyright"><a href="https://www.tu-darmstadt.de/universitaet/aktuelles_meldungen/medienservice/pressebilder_campus_und_gebaeude/pressebilder_detailseite_15552.de.jsp">photo by Thomas Ott / TU Darmstadt</a></div>
+	<div class="shading">
+    <div class="container">
+      <div class="header-content">
+        <h1>We do&nbsp;<br /><span class="typed"></span></h1>
+        <p>Human-Computer Interaction at <span class="teamdarmstadt"><a href="https://www.tu-darmstadt.de/">TU Darmstadt</a></span></p>
+		<p><span >We are a collective of the following labs:</span><br/> 
+		<a class="teamdarmstadt" href="https://www.informatik.tu-darmstadt.de/telekooperation/" title="Telecooperation Lab">Telecooperation Lab</a> | 
+		<a class="teamdarmstadt" href="https://gugenheimer.com/" title="HCI Lab of Jan Gugenheimer">HCI Lab</a> | 
+    <a class="teamdarmstadt" href="https://www.flomue.com/" title="Urban Lab">Urban Interaction Lab</a> | 
+		<a class="teamdarmstadt" href="https://peasec.de" title="PEASEC Group of Christian Reuther">PEASEC</a> | 
+		<a class="teamdarmstadt" href="https://www.arbing.psychologie.tu-darmstadt.de/fai/index.de.jsp" title="Arbeits- und Ingenieurpsychologie FAI Group of Joachim Vogt">FAI</a> |
+		<a class="teamdarmstadt" href="https://www.seemoo.tu-darmstadt.de/" title="SEEMOO Group of Matthias Hollick">SEEMOO</a></p>
+
+        <ul class="list-unstyled list-social">
+          <li><a href="javascript:window.location.href=atob('bWFpbHRvOmhjaUB0ay50dS1kYXJtc3RhZHQuZGU=')"><i class="ion-android-mail"></i></a></li>
+          <!--<li><a href="https://www.informatik.tu-darmstadt.de/telekooperation/research_2/tangible_interaction_ti/index.en.jsp"><i class="ion-university"></i></a></li>-->
+          <li><a href="https://www.youtube.com/user/TKLabs"><i class="ion-social-youtube"></i></a></li>
+          <!-- <li><a href="https://www.facebook.com/teamdarmstadt/"><i class="ion-social-facebook"></i></a></li> -->
+          <li><a href="https://www.instagram.com/teamdarmstadt/"><i class="ion-social-instagram"></i></a></li>
+        </ul>
+
+<!--	
+		<a class="popup-img teaser-link" href="images/teamdarmstadt-on-tour.jpg">
+                #stayhealthy #stayteamdarmstadt
+              </a>
+			  -->
+	
+      </div>
+	  </div>
+    </div>
+  </div>
+  <!-- End section header -->
+
+
+	<div id="chi"></div>
+  <!-- start section CHI stuff -->
+  <div id="chi_portfolio" class="text-center paddsection">
+
+	
+	
+    <div class="container">
+      <div class="section-title text-center">
+		<img src="images/chi25logo.png" style="width:250px;margin:-70px 0 25px 0;" class="img-responsive" alt="CHI 2025 Logo" >
+	  
+        <h2>We at CHI '25</h2>
+		<h4 class="td-subtitle">Meet Our Team!</h4>
+      </div>
+    </div>
+	
+	
+	<!-- CHI Teamdarmstadt Team -->
+    <div class="container">
+      <div class="journal-block">
+        <div class="td-row row justify-content-md-center">
+
+    <!-- profile -->
+    <div class="col-md-2 col-sm-6">
+            <div class="journal-info td-team">
+				  <img src="images/team/bader.png" class="img-responsive td-img-s" alt="Helen Bader" ></a>
+              <div class="journal-txt">
+                <h4><a>Helen Bader</a></h4>
+              </div>
+            </div>
+          </div>
+		<!-- end profile -->
+
+    <!-- profile -->
+    <div class="col-md-2 col-sm-6">
+            <div class="journal-info td-team">
+				  <img src="images/team/bajorski.png" class="img-responsive td-img-s" alt="Marius Bajorski" ></a>
+              <div class="journal-txt">
+                <h4><a>Marius Bajorski</a></h4>
+              </div>
+            </div>
+          </div>
+		<!-- end profile -->
+
+    <!-- profile -->
+    <div class="col-md-2 col-sm-6">
+            <div class="journal-info td-team">
+            <a href="https://peasec.de/team/baeumler/" class="td-prof">
+				  <img src="images/team/julian.jpg" class="img-responsive td-img-s" alt="Julian Bäumler" ></a>
+              <div class="journal-txt">
+                <h4><a> Julian Bäumler</a></h4>
+              </div>
+            </div>
+          </div>
+		<!-- end profile -->
+
+    <!-- profile -->
+        <div class="col-md-2 col-sm-6">
+            <div class="journal-info td-team">
+              <a href="https://peasec.de/team/biselli/" class="td-prof">
+				  <img src="images/team/tom.jpg" class="img-responsive td-img-s" alt="Tom Biselli" ></a>
+              <div class="journal-txt">
+                <h4><a href="https://peasec.de/team/biselli/">Tom Biselli</a></h4>
+              </div>
+            </div>
+          </div>
+		<!-- end profile -->
+		
+				
+    <!-- profile -->
+    <div class="col-md-2 col-sm-6">
+            <div class="journal-info td-team">
+              <a href="https://perso.telecom-paristech.fr/ebonnail/" class="td-prof">
+				  <img src="images/team/elise.jpg" class="img-responsive td-img-s" alt="Elise Bonnail" ></a>
+              <div class="journal-txt">
+                <h4><a href="https://perso.telecom-paristech.fr/ebonnail/">Elise Bonnail</a></h4>
+              </div>
+            </div>
+          </div>
+		<!-- end profile -->
+
+    <!-- profile -->
+    <div class="col-md-2 col-sm-6">
+            <div class="journal-info td-team">
+              <a href="https://peasec.de/team/demuth/" class="td-prof">
+				  <img src="images/team/kilian.jpg" class="img-responsive td-img-s" alt="Kilian Demuth" ></a>
+              <div class="journal-txt">
+                <h4><a href="https://peasec.de/team/demuth/">Kilian Demuth</a></h4>
+              </div>
+            </div>
+          </div>
+		<!-- end profile -->
+
+    <!-- profile -->
+    <div class="col-md-2 col-sm-6">
+            <div class="journal-info td-team">
+              <a href="https://www.psychologie.tu-darmstadt.de/institut_psy/personen_psy/personen_psy_detail_31616.de.jsp" class="td-prof">
+				  <img src="images/team/nina.jpg" class="img-responsive td-img-s" alt="Nina Gerber" ></a>
+              <div class="journal-txt">
+                <h4><a href="https://www.psychologie.tu-darmstadt.de/institut_psy/personen_psy/personen_psy_detail_31616.de.jsp">Nina Gerber</a></h4>
+              </div>
+            </div>
+          </div>
+		<!-- end profile -->
+
+    <!-- profile -->
+    <div class="col-md-2 col-sm-6">
+            <div class="journal-info td-team">
+              <a href="https://gugenheimer.com/" class="td-prof">
+				  <img src="images/team/gug.jpg" class="img-responsive td-img-s" alt="Jan Gugenheimer" ></a>
+              <div class="journal-txt">
+                <h4><a href="https://gugenheimer.com/">Jan Gugenheimer</a></h4>
+              </div>
+            </div>
+          </div>
+		<!-- end profile -->
+
+    <!-- profile -->
+    <div class="col-md-2 col-sm-6">
+            <div class="journal-info td-team">
+              <a href="https://peasec.de/team/guntrum/" class="td-prof">
+				  <img src="images/team/laura.jpg" class="img-responsive td-img-s" alt="Laura Guntrum" ></a>
+              <div class="journal-txt">
+                <h4><a href="https://peasec.de/team/guntrum/">Laura Guntrum</a></h4>
+              </div>
+            </div>
+          </div>
+		<!-- end profile -->
+
+    <!-- profile -->
+    <div class="col-md-2 col-sm-6">
+            <div class="journal-info td-team">
+            <a href="https://peasec.de/team/henkel/" class="td-prof">
+				  <img src="images/team/henkel.jpg" class="img-responsive td-img-s" alt="Markus Henkel" ></a>
+              <div class="journal-txt">
+                <h4><a>Markus Henkel</a></h4>
+              </div>
+            </div>
+          </div>
+		<!-- end profile -->
+
+    <!-- profile -->
+    <div class="col-md-2 col-sm-6">
+            <div class="journal-info td-team">
+              <a href="https://peasec.de/team/hartwig/" class="td-prof">
+				  <img src="images/team/katrin.jpg" class="img-responsive td-img-s" alt="Katrin Hartwig" ></a>
+              <div class="journal-txt">
+                <h4><a href="https://peasec.de/team/hartwig/">Katrin Hartwig</a></h4>
+              </div>
+            </div>
+          </div>
+		<!-- end profile -->
+
+    <!-- profile -->
+    <div class="col-md-2 col-sm-6">
+            <div class="journal-info td-team">
+              <a href="https://peasec.de/team/kaufhold/" class="td-prof">
+				  <img src="images/team/kauf.jpg" class="img-responsive td-img-s" alt="Marc-André Kaufhold" ></a>
+              <div class="journal-txt">
+                <h4><a href="https://peasec.de/team/kaufhold/">Marc-André Kaufhold</a></h4>
+              </div>
+            </div>
+          </div>
+		<!-- end profile -->
+
+    <!-- profile -->
+    <div class="col-md-2 col-sm-6">
+            <div class="journal-info td-team">
+              <a class="td-prof">
+				  <img src="images/team/veronika.jpeg" class="img-responsive td-img-s" alt="Veronika Krauss" ></a>
+              <div class="journal-txt">
+                <h4><a>Veronika Krauß</a></h4>
+              </div>
+            </div>
+          </div>
+		<!-- end profile -->
+
+    <!-- profile -->
+    <div class="col-md-2 col-sm-6">
+            <div class="journal-info td-team">
+            <a href="https://peasec.de/team/kuehn/" class="td-prof">
+				  <img src="images/team/PhilippKuehn.jpg" class="img-responsive td-img-s" alt="Philipp Kühn" ></a>
+              <div class="journal-txt">
+                <h4><a>Philipp Kühn</a></h4>
+              </div>
+            </div>
+          </div>
+		<!-- end profile -->
+
+    <!-- profile -->
+    <div class="col-md-2 col-sm-6">
+            <div class="journal-info td-team">
+              <a class="td-prof">
+				  <img src="images/team/yanni.jpg" class="img-responsive td-img-s" alt="Yanni Mei" ></a>
+              <div class="journal-txt">
+                <h4><a>Yanni Mei</a></h4>
+              </div>
+            </div>
+          </div>
+		<!-- end profile -->
+		
+		<!-- profile -->
+          <div class="col-md-2 col-sm-6">
+            <div class="journal-info td-team">
+              <a href="https://www.informatik.tu-darmstadt.de/telekooperation/staff_tk/tk_staff_details_23168.en.jsp" class="td-prof">
+				<picture>
+				  <source srcset="images/team/max.webp" type="image/webp">
+				  <source srcset="images/team/max.jpg" type="image/jpeg"> 
+				  <img src="images/team/max.jpg" class="img-responsive td-img-s" alt="Max Mühlhäuser" >
+				</picture></a>
+
+              <div class="journal-txt">
+                <h4><a href="https://www.informatik.tu-darmstadt.de/telekooperation/staff_tk/tk_staff_details_23168.en.jsp">Max Mühlhäuser</a></h4>
+              </div>
+            </div>
+          </div>
+		<!-- end profile -->
+		
+    <!-- profile -->
+    <div class="col-md-2 col-sm-6">
+            <div class="journal-info td-team">
+              <a href="https://www.flomue.com" class="td-prof">
+				  <img src="images/team/flomue.jpg" class="img-responsive td-img-s" alt="Müller Florian" ></a>
+              <div class="journal-txt">
+                <h4><a href="https://www.flomue.com">Florian Müller</a></h4>
+              </div>
+            </div>
+          </div>
+		<!-- end profile -->
+
+    <!-- profile -->
+    <div class="col-md-2 col-sm-6">
+            <div class="journal-info td-team">
+            <a href="https://peasec.de/team/nelles/" class="td-prof">
+				  <img src="images/team/franknelles.jpg" class="img-responsive td-img-s" alt="Frank Nelles" ></a>
+              <div class="journal-txt">
+                <h4><a>Frank Nelles</a></h4>
+              </div>
+            </div>
+          </div>
+		<!-- end profile -->
+
+    <!-- profile -->
+    <div class="col-md-2 col-sm-6">
+            <div class="journal-info td-team">
+              <a href="https://peasec.de/team/reuter/" class="td-prof">
+				  <img src="images/team/reuter.jpg" class="img-responsive td-img-s" alt="Christian Reuter" ></a>
+              <div class="journal-txt">
+                <h4><a href="https://peasec.de/team/reuter/">Christian Reuter</a></h4>
+              </div>
+            </div>
+          </div>
+		<!-- end profile -->
+
+    <!-- profile -->
+    <div class="col-md-2 col-sm-6">
+            <div class="journal-info td-team">
+              <a href="https://peasec.de/team/riebe/" class="td-prof">
+				  <img src="images/team/thea.jpg" class="img-responsive td-img-s" alt="Thea Riebe" ></a>
+              <div class="journal-txt">
+                <h4><a href="https://peasec.de/team/riebe/">Thea Riebe</a></h4>
+              </div>
+            </div>
+          </div>
+		<!-- end profile -->
+
+    <!-- profile -->
+    <div class="col-md-2 col-sm-6">
+            <div class="journal-info td-team">
+            <a href="https://peasec.de/team/schneider/" class="td-prof">
+				  <img src="images/team/franziska.jpg" class="img-responsive td-img-s" alt="Franziska Schneider" ></a>
+              <div class="journal-txt">
+                <h4><a>Franziska Schneider</a></h4>
+              </div>
+            </div>
+          </div>
+		<!-- end profile -->
+		
+		<!-- profile -->
+          <div class="col-md-2 col-sm-6">
+            <div class="journal-info td-team">
+              <a href="https://www.informatik.tu-darmstadt.de/telekooperation/staff_tk/tk_staff_details_107520.en.jsp" class="td-prof">
+				  <img src="images/team/domi.jpg" class="img-responsive td-img-s" alt="Dominik Schön" ></a>
+              <div class="journal-txt">
+                <h4><a href="https://www.informatik.tu-darmstadt.de/telekooperation/staff_tk/tk_staff_details_107520.en.jsp">Dominik Schön</a></h4>
+              </div>
+            </div>
+          </div>
+		<!-- end profile -->
+
+    <!-- profile -->
+    <div class="col-md-2 col-sm-6">
+            <div class="journal-info td-team">
+              <a href="https://www.psychologie.tu-darmstadt.de/institut_psy/personen_psy/personen_psy_detail_56768.de.jsp" class="td-prof">
+				  <img src="images/team/alina.jpg" class="img-responsive td-img-s" alt="Alina Stöver" ></a>
+              <div class="journal-txt">
+                <h4><a href="https://www.psychologie.tu-darmstadt.de/institut_psy/personen_psy/personen_psy_detail_56768.de.jsp">Alina Stöver</a></h4>
+              </div>
+            </div>
+          </div>
+		<!-- end profile -->
+		
+		
+		
+		
+		<!-- profile 
+          <div class="col-md-2 col-sm-6">
+            <div class="journal-info td-team">
+              <a href="" class="td-prof">
+				  <img src="images/team/philipp.jpg" class="img-responsive td-img-s" alt="Philipp Hoffmann" ></a>
+              <div class="journal-txt">
+                <h4><a href="">Philipp Hoffmann</a></h4>
+              </div>
+            </div>
+          </div>
+		<!-- end profile -->
+
+		
+		<!-- profile -->
+          <div class="col-md-2 col-sm-6">
+            <div class="journal-info td-team">
+              <a href="https://wenjietseng.com/" class="td-prof">
+				  <img src="images/team/wenjie.jpg" class="img-responsive td-img-s" alt="Wen-Jie Tseng" ></a>
+              <div class="journal-txt">
+                <h4><a href="https://wenjietseng.com/">Wen-Jie Tseng</a></h4>
+              </div>
+            </div>
+          </div>
+		<!-- end profile -->
+		
+		<!-- profile -->
+    <div class="col-md-2 col-sm-6">
+            <div class="journal-info td-team">
+              <a href="https://www.informatik.tu-darmstadt.de/telekooperation/staff_tk/tk_staff_details_77312.en.jsp" class="td-prof">
+				  <img src="images/team/julius.jpg" class="img-responsive td-img-s" alt="Julius von Willich" ></a>
+              <div class="journal-txt">
+                <h4><a href="https://www.informatik.tu-darmstadt.de/telekooperation/staff_tk/tk_staff_details_77312.en.jsp">Julius von Willich</a></h4>
+              </div>
+            </div>
+          </div>
+		<!-- end profile -->
+
+    <!-- profile -->
+    <div class="col-md-2 col-sm-6">
+            <div class="journal-info td-team">
+              <a href="https://jonaswombacher.de/" class="td-prof">
+				  <img src="images/team/jonas.JPG" class="img-responsive td-img-s" alt="Jonas Wombacher" ></a>
+              <div class="journal-txt">
+                <h4><a href="https://jonaswombacher.de/">Jonas Wombacher</a></h4>
+              </div>
+            </div>
+          </div>
+		<!-- end profile -->
+
+		
+		
+		<!-- profile -->
+          <!-- <div class="col-md-2 col-sm-6">
+            <div class="journal-info td-team">
+              <a href="https://peasec.de/team/bayer/" class="td-prof">
+				  <img src="images/team/markus_peasec.jpg" class="img-responsive td-img-s" alt="Markus Bayer" ></a>
+              <div class="journal-txt">
+                <h4><a href="https://peasec.de/team/bayer/">Markus Bayer</a></h4>
+              </div>
+            </div>
+          </div> -->
+		<!-- end profile -->
+
+		
+		
+		<!-- profile -->
+          <!-- <div class="col-md-2 col-sm-6">
+            <div class="journal-info td-team">
+              <a href="https://peasec.de/team/haesler/" class="td-prof">
+				  <img src="images/team/steffen.jpg" class="img-responsive td-img-s" alt="Steffen Haesler" ></a>
+              <div class="journal-txt">
+                <h4><a href="https://peasec.de/team/haesler/">Steffen Haesler</a></h4>
+              </div>
+            </div>
+          </div> -->
+		<!-- end profile -->
+		
+		
+		<!-- profile --
+          <div class="col-md-2 col-sm-6">
+            <div class="journal-info td-team">
+              <a href="https://stemasov.dev/" class="td-prof">
+				  <img src="images/team/evgeny.webp" class="img-responsive td-img-s" alt="Evgeny Stemasov" ></a>
+              <div class="journal-txt">
+                <h4><a href="https://stemasov.dev/">Evgeny Stemasov</a></h4>
+              </div>
+            </div>
+          </div>
+		<!-- end profile -->
+		
+		
+		<!-- profile -
+          <div class="col-md-2 col-sm-6">
+            <div class="journal-info td-team">
+              <a href="https://www.seemoo.tu-darmstadt.de/team/lwuersching/" class="td-prof">
+				  <img src="images/team/leon.jpg" class="img-responsive td-img-s" alt="Leon Würsching" ></a>
+              <div class="journal-txt">
+                <h4><a href="https://www.seemoo.tu-darmstadt.de/team/lwuersching/">Leon Würsching</a></h4>
+              </div>
+            </div>
+          </div>
+		<!-- end profile -->
+		
+		<!-- profile -
+          <div class="col-md-2 col-sm-6">
+            <div class="journal-info td-team">
+              <a href="https://www.seemoo.tu-darmstadt.de/team/fputz/" class="td-prof">
+				  <img src="images/team/florentin.jpg" class="img-responsive td-img-s" alt="Florentin Putz" ></a>
+              <div class="journal-txt">
+                <h4><a href="https://www.seemoo.tu-darmstadt.de/team/fputz/">Florentin Putz</a></h4>
+              </div>
+            </div>
+          </div>
+		<!-- end profile -->
+		
+	</div></div></div>
+		
+	
+	
+	<!-- CHI publications -->
+	
+	<div id="research"></div>
+
+  <div id="portfolio" class="text-center paddsection">
+    
+    <div class="container">
+      <div class="section-title text-center" style="margin-bottom: -50px;">
+        <h2 id="research">Research</h2>
+        <h4 class="td-subtitle">our publications at CHI '25</h4>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="journal-block text-center">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="portfolio-container paddsection text-center">
+              <!-- First Publication: AR You on Track? -->
+<div id="pub-kaufhold_Track2025" class="white-popup mfp-hide">
+  <h3 class="pub-title">[CHI '25] AR You on Track? Investigating Effects of Augmented Reality Anchoring on Dual-Task Performance While Walking</h3>
+  <div class="pub-authors">J. Rasch, M. Wilhalm, F. Müller, and F. Chiossi</div>
+  <p class="pub-abstract">
+      ABSTRACT - With the increasing spread of AR head-mounted displays for everyday use, interaction with information becomes ubiquitous, even while walking, requiring constant attention shifts between walking and virtual interaction; thus, we systematically investigate the effects of different AR anchors (hand, head, torso) and task difficulties on user experience and performance through a dual-task paradigm with 26 participants, assessing virtual and walking performance as well as mental and physical load, finding that head-anchored AR content least affected walking while enabling fast and accurate interaction, whereas hand-anchored content increased reaction times and workload.
+  </p>
+  <div class="pub-conf">In Proceedings of the Conference on Human Factors in Computing Systems (CHI)</div>
+  <div class="pub-menu">
+      <a class="pub-doi" href="https://doi.org/10.1145/3706598.3714258"><i class="ai ai-doi"></i> 10.1145/3706598.3714258</a> &nbsp;&nbsp;
+      <input id="pub-bibtex-toggle-1" type="checkbox" class="bibtex-checkbox" />
+      <label for="pub-bibtex-toggle-1" class="expander" tabindex="1" style="display:inline-block;">
+          <i class="ion-quote"></i> Bibtex
+      </label>
+      <pre class="pub-bibtex" id="pub-bibtex-pre-1">
+@inproceedings{Rasch2025ARYO,
+          title={AR You on Track? Investigating Effects of Augmented Reality Anchoring on Dual-Task Performance While Walking},
+          author={Julian Rasch and Matthias Wilhalm and Florian Muller and Francesco Chiossi},
+          year={2025},
+          url={https://api.semanticscholar.org/CorpusID:276724633}
+        }
+      </pre>
+  </div>
+</div>
+
+<div class="col-lg-4 col-md-6 portfolio-thumbnail">
+  <div class="journal-info">
+      <div class="pub-series">CHI '25</div>
+      <a href="#pub-kaufhold_Track2025" class="open-popup-link">
+          <picture>
+              <source srcset="publications/track25.png" type="image/jpeg">
+              <img class="pub-thumbnail" src="/publications/kaufhold_cybersituationalawareness_2024.jpg" alt="Thumbnail for 'AR You on Track?'">
+          </picture>
+      </a>
+      <div class="journal-txt">
+          <h4>
+              <a href="#pub-kaufhold_Track2025" class="open-popup-link">AR You on Track? Investigating Effects of Augmented Reality Anchoring on Dual-Task Performance While Walking</a>
+          </h4>
+      </div>
+  </div>
+</div>
+
+<!-- Second Publication: CreepyCoCreator -->
+<div id="pub-hartwig_adolescents_2025" class="white-popup mfp-hide">
+  <h3 class="pub-title">[CHI '25] CreepyCoCreator? Investigating AI Representation Modes for 3D Object Co-Creation in Virtual Reality</h3>
+  <div class="pub-authors">J. Rasch, J. Töws, T. Hirzle, F. Müller, M. Schmitz</div>
+  <p class="pub-abstract">
+      ABSTRACT - Generative AI in Virtual Reality offers the potential for collaborative object-building, yet challenges remain in aligning AI contributions with user expectations. In particular, users often struggle to understand and collaborate with AI when its actions are not transparently represented. This paper thus explores the co-creative object-building process through a Wizard-of-Oz study, focusing on how AI can effectively convey its intent to users during object customization in Virtual Reality. Inspired by human-to-human collaboration, we focus on three representation modes: the presence of an embodied avatar, whether the AI’s contributions are visualized immediately or incrementally, and whether the areas modified are highlighted in advance. The findings provide insights into how these factors affect user perception and interaction with object-generating AI tools in Virtual Reality as well as satisfaction and ownership of the created objects. The results offer design implications for co-creative world-building systems, aiming to foster more effective and satisfying collaborations between humans and AI in Virtual Reality.
+  </p>
+  <div class="pub-conf">In Proceedings of the Conference on Human Factors in Computing Systems (CHI)</div>
+  <div class="pub-menu">
+      <a class="pub-doi" href="https://doi.org/10.1145/3706598.3713720"><i class="ai ai-doi"></i> 10.1145/3706598.3713720</a> &nbsp;&nbsp;
+      <input id="pub-bibtex-toggle-2" type="checkbox" class="bibtex-checkbox" />
+      <label for="pub-bibtex-toggle-2" class="expander" tabindex="2" style="display:inline-block;">
+          <i class="ion-quote"></i> Bibtex
+      </label>
+      <pre class="pub-bibtex" id="pub-bibtex-pre-2">
+@article{Rasch2025CreepyCoCreatorIA,
+          title={CreepyCoCreator? Investigating AI Representation Modes for 3D Object Co-Creation in Virtual Reality},
+          author={Julian Rasch and Julia T{\"o}ws and Teresa Hirzle and Florian M{\"u}ller and Martin Schmitz},
+          journal={ArXiv},
+          year={2025},
+          volume={abs/2502.03069},
+          url={https://api.semanticscholar.org/CorpusID:276116524}
+        }
+      </pre>
+  </div>
+</div>
+
+<div class="col-lg-4 col-md-6 portfolio-thumbnail">
+  <div class="journal-info">
+      <div class="pub-series">CHI '25</div>
+      <a href="#pub-hartwig_adolescents_2025" class="open-popup-link">
+          <img class="pub-thumbnail" src="publications/creepy25.png" alt="Thumbnail for 'CreepyCoCreator'">
+      </a>
+      <div class="journal-txt">
+          <h4>
+              <a href="#pub-hartwig_adolescents_2025" class="open-popup-link">CreepyCoCreator? Investigating AI Representation Modes for 3D Object Co-Creation in Virtual Reality</a>
+          </h4>
+      </div>
+  </div>
+</div>
+
+
+
+<div class="col-lg-4 col-md-6 portfolio-thumbnail">
+  <div class="journal-info">
+    <div class="pub-series">CHI '25</div>
+    <a href="#pub-baumler_hateful_content_2024" data-pubid="baumler_hateful_content_2024" class="open-popup-link">
+      <picture>
+        <source srcset="publications/towards25.png" type="image/jpeg">
+        <img class="pub-thumbnail" src="publications/towards25.png" alt="Thumbnail for Towards Youth-Sensitive Hateful Content Reporting: An Inclusive Focus Group Study in Germany">
+      </picture>
+    </a>
+    <div class="journal-txt">
+      <h4>
+        <a href="#pub-baumler_hateful_content_2024" data-pubid="baumler_hateful_content_2024" class="open-popup-link"> <i class="fas fa-trophy" title="Best Paper Award"></i>&nbsp;
+          Towards Youth-Sensitive Hateful Content Reporting: An Inclusive Focus Group Study in Germany
+        </a>
+      </h4>
+    </div>
+  </div>
+</div>
+
+<div id="pub-baumler_hateful_content_2024" class="white-popup mfp-hide">
+  <h3 class="pub-title"><i class="fas fa-trophy" title="Best Paper Award"></i>&nbsp;[CHI '25] Towards Youth-Sensitive Hateful Content Reporting: An Inclusive Focus Group Study in Germany</h3>
+  <div class="pub-authors">J. Bäumler, H. Bader, M. Kaufhold, C. Reuter</div>
+  <p class="pub-abstract">ABSTRACT - Youth are particularly likely to encounter hateful internet content, which can severely impact their well-being. While most social media provide reporting mechanisms, in several countries, severe hateful content can alternatively be reported to law enforcement or dedicated reporting centers. However, in Germany, many youth never resort to reporting. While research in human-computer interaction has investigated adults’ views on platform-based reporting, youth perspectives and platform-independent alternatives have received little attention. By involving a diverse group of 47 German adolescents and young adults in eight focus group interviews, we investigate how youth-sensitive reporting systems for hateful content can be designed. We explore German youth’s reporting barriers, finding that on platforms, they feel particularly discouraged by deficient rule enforcement and feedback, while platform-independent alternatives are rather unknown and perceived as time-consuming and disruptive. We further elicit their requirements for platform-independent reporting tools and contribute with heuristics for designing youth-sensitive and inclusive reporting systems.  </p>
+  <div class="pub-conf">In Proceedings of the CHI Conference on Human Factors in Computing Systems (CHI)</div>
+  <div class="pub-menu">
+    <a class="pub-doi" href="https://doi.org/10.1145/3706598.3713542">
+      <i class="ai ai-doi"></i> 10.1145/3706598.3713542
+    </a> &nbsp;&nbsp;
+    <input id="pub-bibtex-toggle-4" type="checkbox" class="bibtex-checkbox" />
+    <!-- <label for="pub-bibtex-toggle-4" class="expander" tabindex="4" style="display:inline-block;">
+      <i class="ion-quote"></i> Bibtex
+    </label>
+    <pre class="pub-bibtex" id="pub-bibtex-pre-4">
+@inproceedings{baumler_hateful_content_2024,
+  author    = {Bäumler, Julian and Bader, Helen and Kaufhold, Marc-André and Reuter, Christian},
+  booktitle = {Proceedings of the CHI Conference on Human Factors in Computing Systems (CHI '24)},
+  series    = {CHI '24},
+  title     = {Towards Youth-Sensitive Hateful Content Reporting: An Inclusive Focus Group Study in Germany},
+  year      = {2024},
+  address   = {New York, NY, USA},
+  month     = {May},
+  publisher = {ACM},
+  doi       = {10.1145/3706598.3713542},
+  abstract  = {Placeholder text for abstract.}
+} -->
+    </pre>
+  </div>
+</div>
+
+
+<div class="col-lg-4 col-md-6 portfolio-thumbnail">
+  <div class="journal-info">
+      <div class="pub-series">CHI '25</div>
+      <a href="#pub-Kaufhold2024cyberthreat" data-pubid="Kaufhold2024cyberthreat" class="open-popup-link">
+          <picture>
+              <source srcset="publications/cyber25.png" type="image/jpeg">
+              <img class="pub-thumbnail" src="publications/cyber25.png" alt="Thumbnail for Cyber Threat Awareness, Protective Measures and Communication Preferences in Germany: Implications from Three Representative Surveys (2021-2024)">
+          </picture>
+      </a>
+      <div class="journal-txt">
+          <h4>
+              <a href="#pub-Kaufhold2024cyberthreat" data-pubid="Kaufhold2024cyberthreat" class="open-popup-link">
+                  Cyber Threat Awareness, Protective Measures and Communication Preferences in Germany: Implications from Three Representative Surveys (2021-2024)
+              </a>
+          </h4>
+      </div>
+  </div>
+</div>
+
+<div id="pub-Kaufhold2024cyberthreat" class="white-popup mfp-hide">
+  <h3 class="pub-title">[CHI '25] Cyber Threat Awareness, Protective Measures and Communication Preferences in Germany: Implications from Three Representative Surveys (2021-2024)</h3>
+  <div class="pub-authors">M.-A. Kaufhold, J. Bäumler, M. Bajorski, C. Reuter</div>
+  <p class="pub-abstract">ABSTRACT - In light of the increasing vulnerability of citizens against cyberattacks, we conducted three representative surveys with German citizens in 2021 (N=1,093), 2023 (N=1,011), and 2024 (N=1,004) to examine their cyber threat awareness, use of protective security measures, and preferred information channels. While our findings attest large proportions of the German population a high level of cyber threat awareness, many citizens feel inadequately informed about coping with cyberattacks and show little confidence in German security authorities to protect citizens and infrastructures. While age correlated with citizens’ awareness and behavior, we only saw minor temporal differences between datasets. Finally, we provide design and policy implications for enhancing citizens’ awareness of cyber threats and implementing security measures.  </p>
+  <div class="pub-conf">In Proceedings of the CHI Conference on Human Factors in Computing Systems (CHI)</div>
+  <div class="pub-menu">
+      <a class="pub-doi" href="https://doi.org/10.1145/3706598.3713795">
+          <i class="ai ai-doi"></i> 10.1145/3706598.3713795
+      </a> 
+      &nbsp;&nbsp;
+      <input id="pub-bibtex-toggle-5" type="checkbox" class="bibtex-checkbox" />
+      <label for="pub-bibtex-toggle-5" class="expander" tabindex="5" style="display:inline-block;">
+          <i class="ion-quote"></i> Bibtex
+      </label>
+      <pre class="pub-bibtex" id="pub-bibtex-pre-5">
+@inproceedings{kaufholdCyberThreatAwareness2025,
+          series = {{CHI} '25},
+          title = {Cyber {Threat} {Awareness}, {Protective} {Measures} and {Communication} {Preferences} in {Germany}: {Implications} from {Three} {Representative} {Surveys} (2021-2024)},
+          doi = {10.1145/3706598.371379},
+          booktitle = {Proceedings of the {Conference} on {Human} {Factors} in {Computing} {Systems} ({CHI})},
+          publisher = {Association for Computing Machinery},
+          author = {Kaufhold, Marc-André and Bäumler, Julian and Bajorski, Marius and Reuter, Christian},
+          year = {2025},
+          keywords = {HCI, Selected, UsableSec, Security, A-Paper, Ranking-CORE-A*, AuswahlUsableSec, Projekt-ATHENE-CyAware},
+          }
+      </pre>
+  </div>
+</div>
+
+
+<div class="col-lg-4 col-md-6 portfolio-thumbnail">
+  <div class="journal-info">
+      <div class="pub-series">CHI '25</div>
+      <a href="#pub-Willich2024crossreality" data-pubid="Willich2024crossreality" class="open-popup-link">
+          <picture>
+              <source srcset="publications/qual25.png" type="image/jpeg">
+              <img class="pub-thumbnail" src="publications/qual25.png" alt="Thumbnail for A Qualitative Investigation of User Transitions and Frictions in Cross-Reality Applications">
+          </picture>
+      </a>
+      <div class="journal-txt">
+          <h4>
+              <a href="#pub-Willich2024crossreality" data-pubid="Willich2024crossreality" class="open-popup-link">
+                  A Qualitative Investigation of User Transitions and Frictions in Cross-Reality Applications
+              </a>
+          </h4>
+      </div>
+  </div>
+</div>
+
+<div id="pub-Willich2024crossreality" class="white-popup mfp-hide">
+  <h3 class="pub-title">[CHI '25] A Qualitative Investigation of User Transitions and Frictions in Cross-Reality Applications</h3>
+  <div class="pub-authors">J. von Willich, F. Nelles, W. Tseng, J. Gugenheimer, S. Günther, M. Mühlhäuser</div>
+  <p class="pub-abstract">ABSTRACT - Research in Augmented Reality (AR) and Virtual Reality (VR) has mostly viewed them in isolation. Yet, when used together in practical settings, AR and VR each offer unique strengths, necessitating multiple transitions to harness their advantages. This paper investigates potential challenges in Cross-Reality (CR) transitions to inform future application design. We implemented a CR system featuring a 3D modeling task that requires users to switch between PC, AR, and VR. Using a talk-aloud study (n=12) and thematic analysis, we revealed that frictions primarily arose when transitions conflicted with users’ Spatial Mental Model (SMM). Furthermore, we found five transition archetypes employed to enhance productivity once an SMM was established. Our findings uncover that transitions have to focus on establishing and upholding the SMM of users across realities by communicating differences between them.  </p>
+  <div class="pub-conf">In Proceedings of the CHI Conference on Human Factors in Computing Systems (CHI)</div>
+  <div class="pub-menu">
+      <a class="pub-doi" href="https://doi.org/10.1145/3706598.3713921">
+          <i class="ai ai-doi"></i> 10.1145/3706598.3713921
+      </a> 
+      &nbsp;&nbsp;
+      <input id="pub-bibtex-toggle-6" type="checkbox" class="bibtex-checkbox" />
+      <label for="pub-bibtex-toggle-6" class="expander" tabindex="6" style="display:inline-block;">
+          <i class="ion-quote"></i> Bibtex
+      </label>
+      <pre class="pub-bibtex" id="pub-bibtex-pre-6">
+@misc{https://tudatalib.ulb.tu-darmstadt.de/handle/tudatalib/4428,
+          url = { https://tudatalib.ulb.tu-darmstadt.de/handle/tudatalib/4428 },
+          author = { von Willich, Julius and Tseng, Wen-Jie and Nelles, Frank },
+          keywords = { cross reality, cross reality transition, transcript, cross reality interaction, 4.43-05 Bild- und Sprachverarbeitung, Computergraphik und Visualisierung, Human Computer Interaction, Ubiquitous und Wearable Computing, 004 },
+          publisher = { Technical University of Darmstadt },
+          year = { 2023-05 },
+          copyright = { Creative Commons Attribution 4.0 },
+          title = { A Qualitative Investigation of User Transitions and Frictions in Cross-Reality Applications - dataset }
+          }
+      </pre>
+  </div>
+</div>
+
+
+
+<div class="col-lg-4 col-md-6 portfolio-thumbnail">
+  <div class="journal-info">
+      <div class="pub-series">CHI '25</div>
+      <a href="#pub-Janzen2024island6g" data-pubid="Janzen2024island6g" class="open-popup-link">
+          <picture>
+              <source srcset="publications/sixg25.png" type="image/jpeg">
+              <img class="pub-thumbnail" src="publications/sixg25.png" alt="Thumbnail for The User Perspective on Island-Ready 6G Communication: A Survey of Future Smartphone Usage in Crisis-Struck Areas with Local Cellular Connectivity">
+          </picture>
+      </a>
+      <div class="journal-txt">
+          <h4>
+              <a href="#pub-Janzen2024island6g" data-pubid="Janzen2024island6g" class="open-popup-link"><i class="fas fa-trophy" title="Best Paper Award"></i>&nbsp;
+                  The User Perspective on Island-Ready 6G Communication: A Survey of Future Smartphone Usage in Crisis-Struck Areas with Local Cellular Connectivity
+              </a>
+          </h4>
+      </div>
+  </div>
+</div>
+
+<div id="pub-Janzen2024island6g" class="white-popup mfp-hide">
+  <h3 class="pub-title"><i class="fas fa-trophy" title="Best Paper Award"></i>&nbsp;[CHI '25] The User Perspective on Island-Ready 6G Communication: A Survey of Future Smartphone Usage in Crisis-Struck Areas with Local Cellular Connectivity</h3>
+  <div class="pub-authors">Leon Janzen, Florentin Putz, Marc-André Kaufhold, Kolja Straub, Matthias Hollick</div>
+  <p class="pub-abstract">ABSTRACT - Using smartphone apps during crises is well-established, proving critical for efficient crisis response; however, such apps become futile without an Internet connection, a common issue during crises. The ongoing 6G standardization explores the capability to provide local cellular connectivity for areas cut off from the Internet in crises. This paper introduces to the HCI community the concept of cellular island connectivity in isolated areas, promising a seamless transition from normal operation to island operation with local-only cellular connectivity. It presents findings from a survey (𝑁 = 857) among adult smartphone users from major German cities regarding their smartphone usage preferences in this model. Results show a shift in app demand, with users favoring general-purpose apps over dedicated crisis apps in specific scenarios. We prioritize smartphone services based on their criticality, distinguishing between apps essential for crisis response and those supporting routines. Our findings provide operators, developers, and authorities insights into making user-centric design decisions for implementing island-ready 6G communication.  </p>
+  <div class="pub-conf">In Proceedings of the CHI Conference on Human Factors in Computing Systems (CHI)</div>
+  <div class="pub-menu">
+      <a class="pub-doi" href="https://doi.org/10.1145/3706598.3714324">
+          <i class="ai ai-doi"></i> 10.1145/3706598.3714324
+      </a> 
+      &nbsp;&nbsp;
+      <input id="pub-bibtex-toggle-7" type="checkbox" class="bibtex-checkbox" />
+      <!-- <label for="pub-bibtex-toggle-7" class="expander" tabindex="7" style="display:inline-block;">
+          <i class="ion-quote"></i> Bibtex
+      </label>
+      <pre class="pub-bibtex" id="pub-bibtex-pre-7">
+@inproceedings{Janzen2024island6g,
+  author    = {Leon Janzen and Florentin Putz and Marc-André Kaufhold and Kolja Straub and Matthias Hollick},
+  booktitle = {Proceedings of the CHI Conference on Human Factors in Computing Systems (CHI '24)},
+  series    = {CHI '24},
+  title     = {The User Perspective on Island-Ready 6G Communication: A Survey of Future Smartphone Usage in Crisis-Struck Areas with Local Cellular Connectivity},
+  year      = {2024},
+  address   = {New York, NY, USA},
+  month     = {May},
+  publisher = {ACM},
+  doi       = {10.1145/3706598.3714324},
+  abstract  = {Placeholder text for abstract.}
+}
+      </pre> -->
+  </div>
+</div>
+
+
+<div class="col-lg-4 col-md-6 portfolio-thumbnail">
+  <div class="journal-info">
+      <div class="pub-series">CHI '25</div>
+      <a href="#pub-Krauss2024deceptivedesigns" data-pubid="Krauss2024deceptivedesigns" class="open-popup-link">
+          <picture>
+              <source srcset="publications/fear25.png" type="image/jpeg">
+              <img class="pub-thumbnail" src="publications/fear25.png" alt="Thumbnail for 'Create a Fear of Missing Out' – ChatGPT Implements Unsolicited Deceptive Designs in Generated Websites Without Warning">
+          </picture>
+      </a>
+      <div class="journal-txt">
+          <h4>
+              <a href="#pub-Krauss2024deceptivedesigns" data-pubid="Krauss2024deceptivedesigns" class="open-popup-link"> <i class="fas fa-trophy" title="Best Paper Award"></i>&nbsp;
+                  "Create a Fear of Missing Out" – ChatGPT Implements Unsolicited Deceptive Designs in Generated Websites Without Warning
+              </a>
+          </h4>
+      </div>
+  </div>
+</div>
+
+<div id="pub-Krauss2024deceptivedesigns" class="white-popup mfp-hide">
+  <h3 class="pub-title"><i class="fas fa-trophy" title="Best Paper Award"></i>&nbsp;[CHI '25] "Create a Fear of Missing Out" – ChatGPT Implements Unsolicited Deceptive Designs in Generated Websites Without Warning</h3>
+  <div class="pub-authors">V. Krauß, M. McGill, T. Kosch, Y. Thiel, D. Schön, J. Gugenheimer</div>
+  <p class="pub-abstract">ABSTRACT - With the recent advancements in Large Language Models (LLMs), web developers increasingly apply their code-generation capabilities to website design; however, since these models are trained on existing designerly knowledge, they may inadvertently replicate bad or even illegal practices, especially deceptive designs (DD). This paper examines whether users can accidentally create DD for a fictitious webshop using GPT-4. We recruited 20 participants, asking them to use ChatGPT to generate functionalities (product overview or checkout) and then modify these using neutral prompts to meet a business goal (e.g., “increase the likelihood of us selling our product”). We found that all 20 generated websites contained at least one DD pattern (mean: 5, max: 9), with GPT-4 providing no warnings. When reflecting on the designs, only 4 participants expressed concerns, while most considered the outcomes satisfactory and not morally problematic, despite the potential ethical and legal implications for end-users and those adopting ChatGPT’s recommendations.  </p>
+  <div class="pub-conf">In Proceedings of the CHI Conference on Human Factors in Computing Systems (CHI)</div>
+  <div class="pub-menu">
+      <a class="pub-doi" href="https://doi.org/10.1145/3706598.3713083">
+          <i class="ai ai-doi"></i> 10.1145/3706598.3713083
+      </a> 
+      &nbsp;&nbsp;
+      <input id="pub-bibtex-toggle-8" type="checkbox" class="bibtex-checkbox" />
+      <label for="pub-bibtex-toggle-8" class="expander" tabindex="8" style="display:inline-block;">
+          <i class="ion-quote"></i> Bibtex
+      </label>
+      <pre class="pub-bibtex" id="pub-bibtex-pre-8">
+@article{krauss2024create,
+          title={" Create a Fear of Missing Out"--ChatGPT Implements Unsolicited Deceptive Designs in Generated Websites Without Warning},
+          author={Krau{\ss}, Veronika and McGill, Mark and Kosch, Thomas and Thiel, Yolanda and Sch{\"o}n, Dominik and Gugenheimer, Jan},
+          journal={arXiv preprint arXiv:2411.03108},
+          year={2024}
+        }
+      </pre>
+  </div>
+</div>
+
+
+
+
+<!-- ToCHI Paper: "What Makes XR Dark? Examining Emerging Dark Patterns in Augmented and Virtual Reality through Expert Co-Design" -->
+
+<div class="col-lg-4 col-md-6 portfolio-thumbnail">
+  <div class="journal-info">
+      <div class="pub-series">CHI '25</div>
+      <a href="#pub-Krauss2024XRdark" data-pubid="Krauss2024XRdark" class="open-popup-link">
+          <picture>
+              <source srcset="publications/xrdark25.png" type="image/jpeg">
+              <img class="pub-thumbnail" src="publications/xrdark25.png" alt="Thumbnail for What Makes XR Dark? Examining Emerging Dark Patterns in Augmented and Virtual Reality through Expert Co-Design">
+          </picture>
+      </a>
+      <div class="journal-txt">
+          <h4>
+              <a href="#pub-Krauss2024XRdark" data-pubid="Krauss2024XRdark" class="open-popup-link">
+                  What Makes XR Dark? Examining Emerging Dark Patterns in Augmented and Virtual Reality through Expert Co-Design
+              </a>
+          </h4>
+      </div>
+  </div>
+</div>
+
+<div id="pub-Krauss2024XRdark" class="white-popup mfp-hide">
+  <h3 class="pub-title">[ToCHI] What Makes XR Dark? Examining Emerging Dark Patterns in Augmented and Virtual Reality through Expert Co-Design</h3>
+  <div class="pub-authors">V. Krauß, P. Saeghe, A. Boden, M. Khamis, M. McGill, J. Gugenheimer, M. Nebeling</div>
+  <p class="pub-abstract">ABSTRACT - Dark Patterns are deceptive designs that influence a user's interactions with an interface to benefit someone other than the user. Prior work has identified dark patterns in WIMP interfaces and ubicomp environments, but how dark patterns can manifest in Augmented and Virtual Reality (collectively XR) requires more attention. We therefore conducted ten co-design workshops with 20 experts in XR and deceptive design. Our participants co-designed 42 scenarios containing dark patterns, based on application archetypes presented in recent HCI/XR literature. In the co-designed scenarios, we identified ten novel dark patterns in addition to 39 existing ones, as well as ten examples in which specific characteristics associated with XR potentially amplified the effect dark patterns could have on users. Based on our findings and prior work, we present a classification of XR-specific properties that facilitate dark patterns: perception, spatiality, physical/virtual barriers, and XR device sensing. We also present the experts’ assessments of the likelihood and severity of the co-designed scenarios and highlight key aspects they considered for this evaluation, for example, technological feasibility, ease of upscaling and distributing malicious implementations, and the application's context of use. Finally, we discuss means to mitigate XR dark patterns and support regulatory bodies to reduce potential harms.  </p>
+  <div class="pub-conf">In ACM Transactions on Computer-Human Interaction (ToCHI)</div>
+  <div class="pub-menu">
+      <a class="pub-doi" href="https://doi.org/10.1145/3660340">
+          <i class="ai ai-doi"></i> 10.1145/3660340
+      </a> 
+      &nbsp;&nbsp;
+      <input id="pub-bibtex-toggle-9" type="checkbox" class="bibtex-checkbox" />
+      <label for="pub-bibtex-toggle-9" class="expander" tabindex="9" style="display:inline-block;">
+          <i class="ion-quote"></i> Bibtex
+      </label>
+      <pre class="pub-bibtex" id="pub-bibtex-pre-9">
+@article{10.1145/3660340,
+        author = {Krau\ss{}, Veronika and Saeghe, Pejman and Boden, Alexander and Khamis, Mohamed and McGill, Mark and Gugenheimer, Jan and Nebeling, Michael},
+        title = {What Makes XR Dark? Examining Emerging Dark Patterns in Augmented and Virtual Reality through Expert Co-Design},
+        year = {2024},
+        issue_date = {June 2024},
+        publisher = {Association for Computing Machinery},
+        address = {New York, NY, USA},
+        volume = {31},
+        number = {3},
+        issn = {1073-0516},
+        url = {https://doi.org/10.1145/3660340},
+        doi = {10.1145/3660340},
+        abstract = {Dark patterns are deceptive designs that influence a user’s interactions with an interface to benefit someone other than the user. Prior work has identified dark patterns in windows, icons, menus, and pointer (WIMP) interfaces and ubicomp environments, but how dark patterns can manifest in Augmented and Virtual Reality (collectively XR) requires more attention. We therefore conducted 10 co-design workshops with 20 experts in XR and deceptive design. Our participants co-designed 42 scenarios containing dark patterns, based on application archetypes presented in recent HCI/XR literature. In the co-designed scenarios, we identified 10 novel dark patterns in addition to 39 existing ones, as well as 10 examples in which specific characteristics associated with XR potentially amplified the effect dark patterns could have on users. Based on our findings and prior work, we present a classification of XR-specific properties that facilitate dark patterns: perception, spatiality, physical/virtual barriers, and XR device sensing. We also present the experts’ assessments of the likelihood and severity of the co-designed scenarios and highlight key aspects they considered for this evaluation, for example, technological feasibility, ease of upscaling and distributing malicious implementations, and the application’s context of use. Finally, we discuss means to mitigate XR dark patterns and support regulatory bodies to reduce potential harms.},
+        journal = {ACM Trans. Comput.-Hum. Interact.},
+        month = aug,
+        articleno = {32},
+        numpages = {39},
+        keywords = {Speculative design workshops, deceptive design, augmented reality, virtual reality, dark patterns}
+        }
+      </pre>
+  </div>
+</div>
+
+
+<!-- CHI '25 Paper: "SwitchAR: Enabling Perceptual Manipulations in Augmented Reality Leveraging Change Blindness and Inattentional Blindness" -->
+
+<div class="col-lg-4 col-md-6 portfolio-thumbnail">
+  <div class="journal-info">
+      <div class="pub-series">CHI '25</div>
+      <a href="#pub-Wombacher2025SwitchAR" data-pubid="Wombacher2025SwitchAR" class="open-popup-link">
+          <picture>
+              <source srcset="publications/switch25.png" type="image/jpeg">
+              <img class="pub-thumbnail" src="publications/switch25.png" alt="Thumbnail for SwitchAR: Enabling Perceptual Manipulations in Augmented Reality Leveraging Change Blindness and Inattentional Blindness">
+          </picture>
+      </a>
+      <div class="journal-txt">
+          <h4>
+              <a href="#pub-Wombacher2025SwitchAR" data-pubid="Wombacher2025SwitchAR" class="open-popup-link">
+                  SwitchAR: Enabling Perceptual Manipulations in Augmented Reality Leveraging Change Blindness and Inattentional Blindness
+              </a>
+          </h4>
+      </div>
+  </div>
+</div>
+
+<div id="pub-Wombacher2025SwitchAR" class="white-popup mfp-hide">
+  <h3 class="pub-title">[CHI '25] SwitchAR: Enabling Perceptual Manipulations in Augmented Reality Leveraging Change Blindness and Inattentional Blindness</h3>
+  <div class="pub-authors">J. Wombacher, Z. Li, J. Gugenheimer</div>
+  <p class="pub-abstract">ABSTRACT - Perceptual manipulations (PMs) like redirected walking (RDW) are frequently applied in Virtual Reality (VR) to overcome technological limitations; these PMs manipulate the user’s visual perceptions (e.g., rotational gains), which is currently challenging in Augmented Reality (AR). We propose SwitchAR, a PM for video pass-through AR leveraging change and inattentional blindness to imperceptibly switch between the camera stream of the real environment and a 3D reconstruction, enabling VR redirection techniques in what users still perceive as AR. We present our pipeline consisting of (1) Reconstruction, (2) Switch (AR -> VR), (3) PM, and (4) Switch (VR -> AR), together with a prototype implementing this pipeline, establishing SwitchAR as a fundamental basis for enabling AR PMs.  </p>
+  <div class="pub-conf">In Proceedings of the CHI Conference on Human Factors in Computing Systems (CHI)</div>
+  <div class="pub-menu">
+      <a class="pub-doi" href="https://doi.org/10.1145/3706599.3721159">
+          <i class="ai ai-doi"></i> 10.1145/3706599.3721159
+      </a> 
+      &nbsp;&nbsp;
+      <input id="pub-bibtex-toggle-10" type="checkbox" class="bibtex-checkbox" />
+      <!-- <label for="pub-bibtex-toggle-10" class="expander" tabindex="10" style="display:inline-block;">
+          <i class="ion-quote"></i> Bibtex
+      </label>
+      <pre class="pub-bibtex" id="pub-bibtex-pre-10">
+@inproceedings{Wombacher2025SwitchAR,
+  author    = {Jonas Wombacher and Zhipeng Li and Jan Gugenheimer},
+  booktitle = {Proceedings of the CHI Conference on Human Factors in Computing Systems (CHI '25)},
+  series    = {CHI '25},
+  title     = {SwitchAR: Enabling Perceptual Manipulations in Augmented Reality Leveraging Change Blindness and Inattentional Blindness},
+  year      = {2025},
+  address   = {New York, NY, USA},
+  month     = {May},
+  publisher = {ACM},
+  doi       = {10.1145/3706599.3721159},
+  abstract  = {Placeholder text for abstract.}
+}
+      </pre> -->
+  </div>
+</div>
+
+<!-- CHI '25 Paper: "I Have Not Understood but Agree: Studying Informed Consent in the Context of the German COVID-19 Contact Tracing App" -->
+
+<div class="col-lg-4 col-md-6 portfolio-thumbnail">
+  <div class="journal-info">
+      <div class="pub-series">CHI '25</div>
+      <a href="#pub-Haring2025Consent" data-pubid="Haring2025Consent" class="open-popup-link">
+          <picture>
+              <source srcset="publications/agree25.png" type="image/jpeg">
+              <img class="pub-thumbnail" src="publications/agree25.png" alt="Thumbnail for I Have Not Understood but Agree: Studying Informed Consent in the Context of the German COVID-19 Contact Tracing App">
+          </picture>
+      </a>
+      <div class="journal-txt">
+          <h4>
+              <a href="#pub-Haring2025Consent" data-pubid="Haring2025Consent" class="open-popup-link">
+                  I Have Not Understood but Agree: Studying Informed Consent in the Context of the German COVID-19 Contact Tracing App
+              </a>
+          </h4>
+      </div>
+  </div>
+</div>
+
+<div id="pub-Haring2025Consent" class="white-popup mfp-hide">
+  <h3 class="pub-title">[CHI '25] I Have Not Understood but Agree: Studying Informed Consent in the Context of the German COVID-19 Contact Tracing App</h3>
+  <div class="pub-authors">M. Häring, E. Tiefenau, C. Tiefenau, F. Kretschmer, A. Stöver, N. Gerber</div>
+  <p class="pub-abstract">ABSTRACT - Many EU data collectors rely on informed consent for data processing, requiring users to consent after being informed, which necessitates users having at least partially correct assumptions about the software's functionality. The introduction of Germany’s contact tracing app, the Corona-Warn-App (CWA), provides a case to explore whether potential users can be sufficiently informed with reasonable effort by software publishers. Through interviews (N=20) and a survey (N=352), we captured CWA users’ and non-users’ mental models of data collection and processing, finding that participants had misconceptions. We argue that user consent often lacks the required level of informedness and may need to be replaced by a more rigorous privacy-by-design principle.  </p>
+  <div class="pub-conf">In Proceedings of the CHI Conference on Human Factors in Computing Systems (CHI)</div>
+  <div class="pub-menu">
+      <a class="pub-doi" href="https://doi.org/10.1145/3716380">
+          <i class="ai ai-doi"></i> 10.1145/3716380
+      </a> 
+      &nbsp;&nbsp;
+      <input id="pub-bibtex-toggle-11" type="checkbox" class="bibtex-checkbox" />
+      <label for="pub-bibtex-toggle-11" class="expander" tabindex="11" style="display:inline-block;">
+          <i class="ion-quote"></i> Bibtex
+      </label>
+      <pre class="pub-bibtex" id="pub-bibtex-pre-11">
+        @article{10.1145/3716380,
+          author = {H\"{a}ring, Maximilian and Tiefenau, Eva and Tiefenau, Christian and Kretschmer, Felix and St\"{o}ver, Alina and Gerber, Nina},
+          title = {I Have Not Understood but Agree: Studying Informed Consent in the Context of the German COVID-19 Contact Tracing App},
+          year = {2025},
+          publisher = {Association for Computing Machinery},
+          address = {New York, NY, USA},
+          issn = {1073-0516},
+          url = {https://doi.org/10.1145/3716380},
+          doi = {10.1145/3716380},
+          abstract = {Many EU data collectors rely on informed consent for data processing, requiring users to consent after being informed. To do so, it is necessary for users to have at least partially correct assumptions about what the software does. The introduction of the official German contact tracing app, the Corona-Warn-App (CWA), provides an interesting use case to explore whether potential users are capable of being informed with a reasonable amount of effort by the publishers of software. We captured CWA users’ and non-users’ mental models of data collection and processing in the app in interviews (N=20) and a survey study (N=352). We investigated whether users have enough correct assumptions to be considered informed. Our findings show that the participants had misconceptions. Therefore, we argue that user consent might often lack the required level of informedness and may be replaced by a more rigorous privacy-by-design principle.},
+          note = {Just Accepted},
+          journal = {ACM Trans. Comput.-Hum. Interact.},
+          month = feb,
+          keywords = {contact tracing apps, mental models, informed consent}
+          }
+      </pre>
+  </div>
+</div>
+
+
+
+<!-- CHI '25 Paper: "Assessing Visualization and Interaction Techniques to Support Comparison Tasks in Virtual Reality" -->
+
+<div class="col-lg-4 col-md-6 portfolio-thumbnail">
+  <div class="journal-info">
+      <div class="pub-series">CHI '25</div>
+      <a href="#pub-Weingartner2025VRComparison" data-pubid="Weingartner2025VRComparison" class="open-popup-link">
+          <picture>
+              <source srcset="publications/last25.png" type="image/jpeg">
+              <img class="pub-thumbnail" src="publications/last25.png" alt="Thumbnail for Assessing Visualization and Interaction Techniques to Support Comparison Tasks in Virtual Reality">
+          </picture>
+      </a>
+      <div class="journal-txt">
+          <h4>
+              <a href="#pub-Weingartner2025VRComparison" data-pubid="Weingartner2025VRComparison" class="open-popup-link">
+                  Assessing Visualization and Interaction Techniques to Support Comparison Tasks in Virtual Reality
+              </a>
+          </h4>
+      </div>
+  </div>
+</div>
+
+<div id="pub-Weingartner2025VRComparison" class="white-popup mfp-hide">
+  <h3 class="pub-title">[CHI '25] Assessing Visualization and Interaction Techniques to Support Comparison Tasks in Virtual Reality</h3>
+  <div class="pub-authors">H. Weingärtner, J. Rasch, N. Rothamel, F. Müller</div>
+  <!-- <p class="pub-abstract">ABSTRACT - Placeholder text for abstract.</p> -->
+  <div class="pub-conf">In Proceedings of the CHI Conference on Human Factors in Computing Systems (CHI)</div>
+  <div class="pub-menu">
+      <a class="pub-doi" href="https://doi.org/10.1145/3706599.3719737">
+          <i class="ai ai-doi"></i> 10.1145/3706599.3719737
+      </a> 
+      &nbsp;&nbsp;
+      <input id="pub-bibtex-toggle-12" type="checkbox" class="bibtex-checkbox" />
+      <!-- <label for="pub-bibtex-toggle-12" class="expander" tabindex="12" style="display:inline-block;">
+          <i class="ion-quote"></i> Bibtex
+      </label>
+      <pre class="pub-bibtex" id="pub-bibtex-pre-12">
+@inproceedings{Weingartner2025VRComparison,
+  author    = {Henrike Weingärtner and Julian Rasch and Nils Rothamel and Florian Müller},
+  booktitle = {Proceedings of the CHI Conference on Human Factors in Computing Systems (CHI '25)},
+  series    = {CHI '25},
+  title     = {Assessing Visualization and Interaction Techniques to Support Comparison Tasks in Virtual Reality},
+  year      = {2025},
+  address   = {New York, NY, USA},
+  month     = {May},
+  publisher = {ACM},
+  doi       = {10.1145/3706599.3719737},
+  abstract  = {Placeholder text for abstract.}
+}
+      </pre> -->
+  </div>
+</div>
+
+
+
+
+
+
+<style type="text/css">#pub-bibtex-toggle-0:checked ~ #pub-bibtex-pre-0 {
+							 max-height:800px;
+								padding: .4em;
+							}#pub-bibtex-toggle-1:checked ~ #pub-bibtex-pre-1 {
+							 max-height:800px;
+								padding: .4em;
+							}#pub-bibtex-toggle-2:checked ~ #pub-bibtex-pre-2 {
+							 max-height:800px;
+								padding: .4em;
+							}#pub-bibtex-toggle-3:checked ~ #pub-bibtex-pre-3 {
+							 max-height:800px;
+								padding: .4em;
+							}#pub-bibtex-toggle-4:checked ~ #pub-bibtex-pre-4 {
+							 max-height:800px;
+								padding: .4em;
+							}#pub-bibtex-toggle-5:checked ~ #pub-bibtex-pre-5 {
+							 max-height:800px;
+								padding: .4em;
+							}#pub-bibtex-toggle-6:checked ~ #pub-bibtex-pre-6 {
+							 max-height:800px;
+								padding: .4em;
+							}#pub-bibtex-toggle-7:checked ~ #pub-bibtex-pre-7 {
+							 max-height:800px;
+								padding: .4em;
+							}#pub-bibtex-toggle-8:checked ~ #pub-bibtex-pre-8 {
+							 max-height:800px;
+								padding: .4em;
+							}#pub-bibtex-toggle-9:checked ~ #pub-bibtex-pre-9 {
+							 max-height:800px;
+								padding: .4em;
+							}</style>            </div>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <h4>our publications from last year at CHI '24</h4>
+            <div class="text-center portfolio-container paddsection" style="width:50%; margin-top: -50px;">
+              <div id="pub-kaufhold_cybersituationalawareness_2024" class="white-popup mfp-hide"><h3 class="pub-title"><i class="fas fa-trophy" title="Best Paper Award"></i>&nbsp;[CHI '24] 'We Do Not Have the Capacity to Monitor All Media': A Design Case Study on Cyber Situational Awareness in Computer Emergency Response Teams</h3><div class="pub-authors">M. Kaufhold, T. Riebe, M. Bayer, C. Reuter</div><p class="pub-abstract">ABSTRACT - Computer Emergency Response Teams (CERTs) have been established in the public sector globally to provide advisory, preventive and reactive cybersecurity services for government agencies, citizens, and businesses. Nevertheless, their responsibility of monitoring, analyzing, and communicating cyber threats and security vulnerabilities have become increasingly challenging due to the growing volume and varying quality of information disseminated through public and social channels. Based on a design case study conducted from 2021 to 2023, this paper combines three iterations of expert interviews (N=25), design workshops (N=4) and cognitive walkthroughs (N=25) to design an automated, cross-platform and real-time cybersecurity dashboard. By adopting the notion of cyber situational awareness, the study further extracts user requirements and design heuristics for enhanced threat intelligence and mission awareness in CERTs, discussing the aspects of source integration, data management, customizable visualization, relationship awareness, information assessment, software integration, (inter-)organizational collaboration, and communication of stakeholder warnings.</p><div class="pub-conf">In Proceedings of the Conference on Human Factors in Computing Systems (CHI)</div><div class="pub-menu"><a class="pub-doi" href="https://doi.org/10.1145/3613904.3642368"><i class="ai ai-doi"></i> 10.1145/3613904.3642368</a> &nbsp;&nbsp;<a class="pub-file" href="https://peasec.de/wp-content/uploads/2024/03/2024_KaufholdRiebeBayerReuter_CertDesignCaseStudy_CHI.pdf"><i class="ion-document"></i> PDF</a> &nbsp;&nbsp;<input id="pub-bibtex-toggle-1" type="checkbox" class="bibtex-checkbox" /><label for="pub-bibtex-toggle-1" class="expander" tabindex="1" style="display:inline-block;"><i class="ion-quote"></i> Bibtex</label><pre class="pub-bibtex" id="pub-bibtex-pre-1">@inproceedings{kaufhold_cybersituationalawareness_2024,
+	title        = {'We Do Not Have the Capacity to Monitor All Media': A Design Case Study on Cyber Situational Awareness in Computer Emergency Response Teams},
+	author       = {Kaufhold, Marc-André and Riebe, Thea and Bayer, Markus and Reuter, Christian},
+	year         = 2024,
+	month        = {may},
+	booktitle    = {Proceedings of the Conference on Human Factors in Computing Systems (CHI)},
+	publisher    = {ACM},
+	series       = {CHI '24},
+	doi          = {10.1145/3613904.3642368},
+	url          = {https://doi.org/10.1145/3613904.3642368},
+	abstract     = {Computer Emergency Response Teams (CERTs) have been established in the public sector globally to provide advisory, preventive and reactive cybersecurity services for government agencies, citizens, and businesses. Nevertheless, their responsibility of monitoring, analyzing, and communicating cyber threats and security vulnerabilities have become increasingly challenging due to the growing volume and varying quality of information disseminated through public and social channels. Based on a design case study conducted from 2021 to 2023, this paper combines three iterations of expert interviews (N=25), design workshops (N=4) and cognitive walkthroughs (N=25) to design an automated, cross-platform and real-time cybersecurity dashboard. By adopting the notion of cyber situational awareness, the study further extracts user requirements and design heuristics for enhanced threat intelligence and mission awareness in CERTs, discussing the aspects of source integration, data management, customizable visualization, relationship awareness, information assessment, software integration, (inter-)organizational collaboration, and communication of stakeholder warnings.},
+	file         = {https://peasec.de/wp-content/uploads/2024/03/2024_KaufholdRiebeBayerReuter_CertDesignCaseStudy_CHI.pdf},
+ award={Best Paper},
+ note={Best Paper Award}
+}
+
+</pre></div></div><div class="col-lg-4 col-md-6 portfolio-thumbnail"><div class="journal-info"><div class="pub-series">CHI '24</div><a href="#pub-kaufhold_cybersituationalawareness_2024" data-pubid="kaufhold_cybersituationalawareness_2024" class="open-popup-link"><picture><source srcset="publications/kaufhold_cybersituationalawareness_2024.jpg" type="image/jpeg"><img class="pub-thumbnail" src="publications/kaufhold_cybersituationalawareness_2024.jpg" alt="Thumbnail for 'We Do Not Have the Capacity to Monitor All Media': A Design Case Study on Cyber Situational Awareness in Computer Emergency Response Teams"></picture></a><div class="journal-txt"><h4><a href="#pub-kaufhold_cybersituationalawareness_2024" data-pubid="kaufhold_cybersituationalawareness_2024" class="open-popup-link"><i class="fas fa-trophy" title="Best Paper Award"></i>&nbsp;'We Do Not Have the Capacity to Monitor All Media': A Design Case Study on Cyber Situational Awareness in Computer Emergency Response Teams</a></h4></div></div></div><div id="pub-hartwig_adolescents_2024" class="white-popup mfp-hide"><h3 class="pub-title">[CHI '24] From Adolescents' Eyes: Assessing an Indicator-Based Intervention to Combat Misinformation on TikTok</h3><div class="pub-authors">K. Hartwig, T. Biselli, F. Schneider, C. Reuter</div><p class="pub-abstract">ABSTRACT - Misinformation poses a recurrent challenge for video-sharing platforms (VSPs) like TikTok. Obtaining user perspectives on digital interventions addressing the need for transparency (e.g., through indicators) is essential. This article offers a thorough examination of the comprehensibility, usefulness, and limitations of an indicator-based intervention from an adolescents’ perspective. This study (𝑁 = 39; aged 13-16 years) comprised two qualitative steps: (1) focus group discussions and (2) think-aloud sessions, where participants engaged with a smartphone-app for TikTok. The results offer new insights into how video-based indicators can assist adolescents' assessments. The intervention received positive feedback, especially for its transparency, and could be applicable to new content. This paper sheds light on how adolescents are expected to be experts while also being prone to video-based misinformation, with limited understanding of an interventions's limitations. by adopting teenagers' perspectives, we contribute to HCI research and provide new insights into the chances and limitations of interventions for VSPs.</p><div class="pub-conf">In Proceedings of the Conference on Human Factors in Computing Systems (CHI)</div><div class="pub-menu"><a class="pub-doi" href="https://doi.org/10.1145/3613904.3642264"><i class="ai ai-doi"></i> 10.1145/3613904.3642264</a> &nbsp;&nbsp;<a class="pub-file" href="https://peasec.de/wp-content/uploads/2024/02/2024_AdolescentsTikTok_CHI.pdf"><i class="ion-document"></i> PDF</a> &nbsp;&nbsp;<input id="pub-bibtex-toggle-2" type="checkbox" class="bibtex-checkbox" /><label for="pub-bibtex-toggle-2" class="expander" tabindex="2" style="display:inline-block;"><i class="ion-quote"></i> Bibtex</label><pre class="pub-bibtex" id="pub-bibtex-pre-2">@InProceedings{hartwig_adolescents_2024,
+  author    = {Hartwig, Katrin and Biselli, Tom and Schneider, Franziska and Reuter, Christian},
+	booktitle    = {Proceedings of the Conference on Human Factors in Computing Systems (CHI)},
+  series      = {CHI '24},
+  title     = {From Adolescents' Eyes: Assessing an Indicator-Based Intervention to Combat Misinformation on TikTok},
+  year      = {2024},
+  address   = {New York, NY, USA},
+  month     = {may},
+  publisher = {ACM},
+  doi       = {10.1145/3613904.3642264},
+  url         = {https://doi.org//10.1145/3613904.3642264}, 
+  file        = {https://peasec.de/wp-content/uploads/2024/02/2024_AdolescentsTikTok_CHI.pdf},
+  abstract    = {Misinformation poses a recurrent challenge for video-sharing platforms (VSPs) like TikTok. Obtaining user perspectives on digital interventions addressing the need for transparency (e.g., through indicators) is essential. This article offers a thorough examination of the comprehensibility, usefulness, and limitations of an indicator-based intervention from an adolescents’ perspective. This study (𝑁 = 39; aged 13-16 years) comprised two qualitative steps: (1) focus group discussions and (2) think-aloud sessions, where participants engaged with a smartphone-app for TikTok. The results offer new insights into how video-based indicators can assist adolescents' assessments. The intervention received positive feedback, especially for its transparency, and could be applicable to new content. This paper sheds light on how adolescents are expected to be experts while also being prone to video-based misinformation, with limited understanding of an interventions's limitations. by adopting teenagers' perspectives, we contribute to HCI research and provide new insights into the chances and limitations of interventions for VSPs.}
+}
+
+
+</pre></div></div><div class="col-lg-4 col-md-6 portfolio-thumbnail"><div class="journal-info"><div class="pub-series">CHI '24</div><a href="#pub-hartwig_adolescents_2024" data-pubid="hartwig_adolescents_2024" class="open-popup-link"><picture><source srcset="publications/hartwig_adolescents_2024.jpg" type="image/jpeg"><img class="pub-thumbnail" src="publications/hartwig_adolescents_2024.jpg" alt="Thumbnail for From Adolescents' Eyes: Assessing an Indicator-Based Intervention to Combat Misinformation on TikTok"></picture></a><div class="journal-txt"><h4><a href="#pub-hartwig_adolescents_2024" data-pubid="hartwig_adolescents_2024" class="open-popup-link">From Adolescents' Eyes: Assessing an Indicator-Based Intervention to Combat Misinformation on TikTok</a></h4></div></div></div><div id="pub-guntrum_keyboard_2024" class="white-popup mfp-hide"><h3 class="pub-title">[CHI '24] Keyboard Fighters: The Use of ICTs by Activists in Times of Military Coup in Myanmar</h3><div class="pub-authors">L. Guntrum</div><p class="pub-abstract">ABSTRACT - Amidst the ongoing anti-military protests in Myanmar since 2021, there is a noticeable research gap on ICT-supported activism. Generally, ICTs play an important role during political crises in conjunction with activists’ practices on the ground. Inspired by Resource Mobilization Theory, I conducted qualitative interviews (N=16) and a qualitative online survey (N=34), which demonstrate the intersection between analog and digital domains, showcasing the ingenuity of the activists, and the rapid adoption of ICTs in a country that has experienced a digital revolution within the last few years. As not all people were able to protest on-the-ground, they acted as keyboard fighters to organize protests, to share information, and to support the civil disobedience movement in Myanmar. The study identifies, inter alia, the need for better offline applications with wider coverage in times of internet shutdowns, applications that cannot be easily identified during physical controls, and providing free and secure VPN access.</p><div class="pub-conf">In Proceedings of the CHI Conference on Human Factors in Computing Systems (CHI '24)</div><div class="pub-menu"><a class="pub-doi" href="https://doi.org/10.1145/3613904.3642279"><i class="ai ai-doi"></i> 10.1145/3613904.3642279</a> &nbsp;&nbsp;<input id="pub-bibtex-toggle-3" type="checkbox" class="bibtex-checkbox" /><label for="pub-bibtex-toggle-3" class="expander" tabindex="3" style="display:inline-block;"><i class="ion-quote"></i> Bibtex</label><pre class="pub-bibtex" id="pub-bibtex-pre-3">@inproceedings{guntrum_keyboard_2024,
+  author    = {Guntrum, Laura},
+  booktitle = {Proceedings of the CHI Conference on Human Factors in Computing Systems (CHI '24)},
+  series      = {CHI '24},
+  title     = {Keyboard Fighters: The Use of ICTs by Activists in Times of Military Coup in Myanmar},
+  year      = {2024},
+  address   = {New York, NY, USA},
+  month     = {May},
+  publisher = {ACM},
+  doi       = {10.1145/3613904.3642279},
+abstract    = {Amidst the ongoing anti-military protests in Myanmar since 2021, there is a noticeable research gap on ICT-supported activism. Generally, ICTs play an important role during political crises in conjunction with activists’ practices on the ground. Inspired by Resource Mobilization Theory, I conducted qualitative interviews (N=16) and a qualitative online survey (N=34), which demonstrate the intersection between analog and digital domains, showcasing the ingenuity of the activists, and the rapid adoption of ICTs in a country that has experienced a digital revolution within the last few years. As not all people were able to protest on-the-ground, they acted as keyboard fighters to organize protests, to share information, and to support the civil disobedience movement in Myanmar. The study identifies, inter alia, the need for better offline applications with wider coverage in times of internet shutdowns, applications that cannot be easily identified during physical controls, and providing free and secure VPN access.}
+}
+
+</pre></div></div><div class="col-lg-4 col-md-6 portfolio-thumbnail"><div class="journal-info"><div class="pub-series">CHI '24</div><a href="#pub-guntrum_keyboard_2024" data-pubid="guntrum_keyboard_2024" class="open-popup-link"><picture><source srcset="publications/guntrum_keyboard_2024.jpg" type="image/jpeg"><img class="pub-thumbnail" src="publications/guntrum_keyboard_2024.jpg" alt="Thumbnail for Keyboard Fighters: The Use of ICTs by Activists in Times of Military Coup in Myanmar"></picture></a><div class="journal-txt"><h4><a href="#pub-guntrum_keyboard_2024" data-pubid="guntrum_keyboard_2024" class="open-popup-link">Keyboard Fighters: The Use of ICTs by Activists in Times of Military Coup in Myanmar</a></h4></div></div></div><div id="pub-Guenther2024thermomap" class="white-popup mfp-hide"><h3 class="pub-title">[CHI '24] Assessing the Influence of Visual Cues in Virtual Reality on the Spatial Perception of Physical Thermal Stimuli</h3><div class="pub-authors">S. Günther, A. Skogseide, R. Buhlmann, M. Mühlhäuser</div><p class="pub-abstract">ABSTRACT - Advancements in haptics for Virtual Reality (VR) increased the quality of immersive content. Particularly, recent efforts to provide realistic temperature sensations have gained traction, but most often require very specialized or large complex devices to create precise thermal actuations. However, being largely detached from the real world, such a precise correspondence between the physical location of thermal stimuli and the shown visuals in VR might not be necessary for an authentic experience. In this work, we contribute the findings of a controlled experiment with 20 participants, investigating the spatial localization accuracy of thermal stimuli while having matching and non-matching visual cues of a virtual heat source in VR. Although participants were highly confident in their localization decisions, their ability to accurately pinpoint thermal stimuli was notably deficient.</p><div class="pub-conf">In Proceedings of the CHI Conference on Human Factors in Computing Systems (CHI '24)</div><div class="pub-menu"><a class="pub-doi" href="https://doi.org/10.1145/3613904.3642154"><i class="ai ai-doi"></i> 10.1145/3613904.3642154</a> &nbsp;&nbsp;<a class="pub-file" href="https://fileserver.tk.informatik.tu-darmstadt.de/Publications/2024/guenther2024thermomap.pdf"><i class="ion-document"></i> PDF</a> &nbsp;&nbsp;<input id="pub-bibtex-toggle-4" type="checkbox" class="bibtex-checkbox" /><label for="pub-bibtex-toggle-4" class="expander" tabindex="4" style="display:inline-block;"><i class="ion-quote"></i> Bibtex</label><pre class="pub-bibtex" id="pub-bibtex-pre-4">@InProceedings{Guenther2024thermomap,
+  author    = {Günther, Sebastian and Skogseide, Alexandra and Buhlmann, Robin and Mühlhäuser, Max},
+  booktitle = {Proceedings of the CHI Conference on Human Factors in Computing Systems (CHI '24)},
+  title     = {Assessing the Influence of Visual Cues in Virtual Reality on the Spatial Perception of Physical Thermal Stimuli},
+  year      = {2024},
+  address   = {New York, NY, USA},
+  month     = {May},
+  publisher = {ACM},
+	series       = {CHI '24},
+  doi       = {10.1145/3613904.3642154},
+  abstract  = {Advancements in haptics for Virtual Reality (VR) increased the quality of immersive content. Particularly, recent efforts to provide realistic temperature sensations have gained traction, but most often require very specialized or large complex devices to create precise thermal actuations. However, being largely detached from the real world, such a precise correspondence between the physical location of thermal stimuli and the shown visuals in VR might not be necessary for an authentic experience. In this work, we contribute the findings of a controlled experiment with 20 participants, investigating the spatial localization accuracy of thermal stimuli while having matching and non-matching visual cues of a virtual heat source in VR. Although participants were highly confident in their localization decisions, their ability to accurately pinpoint thermal stimuli was notably deficient.},
+  file 		= {https://fileserver.tk.informatik.tu-darmstadt.de/Publications/2024/guenther2024thermomap.pdf}
+}
+
+
+
+
+</pre></div></div><div class="col-lg-4 col-md-6 portfolio-thumbnail"><div class="journal-info"><div class="pub-series">CHI '24</div><a href="#pub-Guenther2024thermomap" data-pubid="Guenther2024thermomap" class="open-popup-link"><picture><source srcset="publications/Guenther2024thermomap.jpg" type="image/jpeg"><img class="pub-thumbnail" src="publications/Guenther2024thermomap.jpg" alt="Thumbnail for Assessing the Influence of Visual Cues in Virtual Reality on the Spatial Perception of Physical Thermal Stimuli"></picture></a><div class="journal-txt"><h4><a href="#pub-Guenther2024thermomap" data-pubid="Guenther2024thermomap" class="open-popup-link">Assessing the Influence of Visual Cues in Virtual Reality on the Spatial Perception of Physical Thermal Stimuli</a></h4></div></div></div><div id="pub-bonnail2024wasitreal" class="white-popup mfp-hide"><h3 class="pub-title">[CHI '24] Was it Real or Virtual? Confirming the Occurrence and Explaining Causes of Memory Source Confusion between Reality and Virtual Reality</h3><div class="pub-authors">E. Bonnail, J. Frommel, E. Lecolinet, S. Huron, J. Gugenheimer</div><p class="pub-abstract">ABSTRACT - Source confusion occurs when individuals attribute a memory to the wrong source (e.g., confusing a picture with an experienced event). Virtual Reality (VR) represents a new source of memories particularly prone to being confused with reality. While previous research identified causes of source confusion between reality and other sources (e.g., imagination, pictures), there is currently no understanding of what characteristics specific to VR (e.g., immersion, presence) could influence source confusion. Through a laboratory study (n=29), we 1) confirm the existence of VR source confusion with current technology, and 2) present a quantitative and qualitative exploration of factors influencing VR source confusion. Building on the Source Monitoring Framework, we identify VR characteristics and assumptions about VR capabilities (e.g., poor rendering) that are used to distinguish virtual from real memories. From these insights, we reflect on how the increasing realism of VR could leave users vulnerable to memory errors and perceptual manipulations.</p><div class="pub-conf">In Proceedings of the 2024 CHI Conference on Human Factors in Computing Systems</div><div class="pub-menu"><a class="pub-doi" href="https://doi.org/10.1145/3613904.3641992"><i class="ai ai-doi"></i> 10.1145/3613904.3641992</a> &nbsp;&nbsp;<input id="pub-bibtex-toggle-5" type="checkbox" class="bibtex-checkbox" /><label for="pub-bibtex-toggle-5" class="expander" tabindex="5" style="display:inline-block;"><i class="ion-quote"></i> Bibtex</label><pre class="pub-bibtex" id="pub-bibtex-pre-5">@inproceedings{bonnail2024wasitreal,
+  title={Was it Real or Virtual? Confirming the Occurrence and Explaining Causes of Memory Source Confusion between Reality and Virtual Reality},
+  author={Bonnail, Elise and Frommel, Julian and Lecolinet, Eric and Huron, Samuel and Gugenheimer, Jan},
+  series = {CHI '24}, 
+  booktitle={Proceedings of the 2024 CHI Conference on Human Factors in Computing Systems},
+  pages={1--17},
+  year={2024},
+  publisher = {Association for Computing Machinery (ACM)},
+  doi = {10.1145/3613904.3641992},
+  url = {https://dl.acm.org/doi/10.1145/3613904.3641992},
+  abstract = {Source confusion occurs when individuals attribute a memory to the wrong source (e.g., confusing a picture with an experienced event). Virtual Reality (VR) represents a new source of memories particularly prone to being confused with reality. While previous research identified causes of source confusion between reality and other sources (e.g., imagination, pictures), there is currently no understanding of what characteristics specific to VR (e.g., immersion, presence) could influence source confusion. Through a laboratory study (n=29), we 1) confirm the existence of VR source confusion with current technology, and 2) present a quantitative and qualitative exploration of factors influencing VR source confusion. Building on the Source Monitoring Framework, we identify VR characteristics and assumptions about VR capabilities (e.g., poor rendering) that are used to distinguish virtual from real memories. From these insights, we reflect on how the increasing realism of VR could leave users vulnerable to memory errors and perceptual manipulations.}
+}
+
+</pre></div></div><div class="col-lg-4 col-md-6 portfolio-thumbnail"><div class="journal-info"><div class="pub-series">CHI '24</div><a href="#pub-bonnail2024wasitreal" data-pubid="bonnail2024wasitreal" class="open-popup-link"><picture><source srcset="publications/bonnail2024wasitreal.jpg" type="image/jpeg"><img class="pub-thumbnail" src="publications/bonnail2024wasitreal.jpg" alt="Thumbnail for Was it Real or Virtual? Confirming the Occurrence and Explaining Causes of Memory Source Confusion between Reality and Virtual Reality"></picture></a><div class="journal-txt"><h4><a href="#pub-bonnail2024wasitreal" data-pubid="bonnail2024wasitreal" class="open-popup-link">Was it Real or Virtual? Confirming the Occurrence and Explaining Causes of Memory Source Confusion between Reality and Virtual Reality</a></h4></div></div></div><div id="pub-Stemasov2024param" class="white-popup mfp-hide"><h3 class="pub-title">[CHI '24] pARam: Leveraging Parametric Design in Extended Reality to Support the Personalization of Artifacts for Personal Fabrication</h3><div class="pub-authors">E. Stemasov, S. Demharter, M. Rädler, J. Gugenheimer, E. Rukzio</div><iframe id="yt-Stemasov2024param" data-yt="https://www.youtube-nocookie.com/embed/yZcv58nkeVE" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><p class="pub-abstract">ABSTRACT - Extended Reality (XR) allows in-situ previewing of designs to be manufactured through Personal Fabrication (PF). These in-situ interactions exhibit advantages for PF, like incorporating the environment into the design process. However, design-for-fabrication in XR often happens through either highly complex 3D-modeling or is reduced to rudimentary adaptations of crowd-sourced models. We present pARam, a tool combining parametric designs (PDs) and XR, enabling in-situ configuration of artifacts for PF. In contrast to modeling- or search-focused approaches, pARam supports customization through embodied and practical inputs (e.g., gestures, recommendations) and evaluation (e.g., lighting estimation) without demanding complex 3D-modeling skills. We implemented pARam for HoloLens 2 and evaluated it (n=20), comparing XR and desktop conditions. Users succeeded in choosing context-related parameters and took their environment into account for their configuration using pARam. We reflect on the prospects and challenges of PDs in XR to streamline complex design methods for PF while retaining suitable expressivity.</p><div class="pub-conf">In Proceedings of the 2024 {{CHI Conference</div><div class="pub-menu"><a class="pub-doi" href="https://doi.org/10.1145/3613904.3642083"><i class="ai ai-doi"></i> 10.1145/3613904.3642083</a> &nbsp;&nbsp;<a class="pub-file" href="https://stemasov.dev/papers/stemasov-acm_chi_2024-param.pdf"><i class="ion-document"></i> PDF</a> &nbsp;&nbsp;<a class="pub-video" href="https://youtu.be/_mj40ft96tY"><i class="ion-social-youtube"></i> Teaser Video</a> &nbsp;&nbsp;<a class="pub-video" href="https://youtu.be/yZcv58nkeVE"><i class="ion-social-youtube"></i> Full Video</a> &nbsp;&nbsp;<input id="pub-bibtex-toggle-6" type="checkbox" class="bibtex-checkbox" /><label for="pub-bibtex-toggle-6" class="expander" tabindex="6" style="display:inline-block;"><i class="ion-quote"></i> Bibtex</label><pre class="pub-bibtex" id="pub-bibtex-pre-6">@inproceedings{Stemasov2024param,
+author      = {Stemasov, Evgeny and Demharter, Simon and Rädler, Max and Gugenheimer, Jan and Rukzio, Enrico},  
+booktitle   = {Proceedings of the 2024 {{CHI Conference}} on {{Human Factors}} in {{Computing Systems}}},
+series      = {CHI '24},
+title       = {pARam: Leveraging Parametric Design in Extended Reality to Support the Personalization of Artifacts for Personal Fabrication},
+year        = {2024},
+publisher   = {Association for Computing Machinery (ACM)},
+address     = {New York, NY, USA},
+month       = {may},
+pages       = {1--23},
+doi         = {10.1145/3613904.3642083},
+url         = {https://dl.acm.org/doi/10.1145/3613904.3642083},
+teaservideo = {https://youtu.be/_mj40ft96tY},
+video       = {https://youtu.be/yZcv58nkeVE},
+file        = {https://stemasov.dev/papers/stemasov-acm_chi_2024-param.pdf},
+abstract    = {Extended Reality (XR) allows in-situ previewing of designs to be manufactured through Personal Fabrication (PF). These in-situ interactions exhibit advantages for PF, like incorporating the environment into the design process. However, design-for-fabrication in XR often happens through either highly complex 3D-modeling or is reduced to rudimentary adaptations of crowd-sourced models. We present pARam, a tool combining parametric designs (PDs) and XR, enabling in-situ configuration of artifacts for PF. In contrast to modeling- or search-focused approaches, pARam supports customization through embodied and practical inputs (e.g., gestures, recommendations) and evaluation (e.g., lighting estimation) without demanding complex 3D-modeling skills. We implemented pARam for HoloLens 2 and evaluated it (n=20), comparing XR and desktop conditions. Users succeeded in choosing context-related parameters and took their environment into account for their configuration using pARam. We reflect on the prospects and challenges of PDs in XR to streamline complex design methods for PF while retaining suitable expressivity.}
+}
+
+</pre></div></div><div class="col-lg-4 col-md-6 portfolio-thumbnail"><div class="journal-info"><div class="pub-series">CHI '24</div><a href="#pub-Stemasov2024param" data-pubid="Stemasov2024param" class="open-popup-link"><picture><source srcset="publications/Stemasov2024param.jpg" type="image/jpeg"><img class="pub-thumbnail" src="publications/Stemasov2024param.jpg" alt="Thumbnail for pARam: Leveraging Parametric Design in Extended Reality to Support the Personalization of Artifacts for Personal Fabrication"></picture></a><div class="journal-txt"><h4><a href="#pub-Stemasov2024param" data-pubid="Stemasov2024param" class="open-popup-link">pARam: Leveraging Parametric Design in Extended Reality to Support the Personalization of Artifacts for Personal Fabrication</a></h4></div></div></div><div id="pub-Stemasov2024dungeonmaker" class="white-popup mfp-hide"><h3 class="pub-title">[CHI '24] DungeonMaker: Embedding Tangible Creation and Destruction in Hybrid Board Games through Personal Fabrication Technology</h3><div class="pub-authors">E. Stemasov, T. Wagner, A. Askari, J. Janek, O. Rajabi, A. Schikorr, J. Frommel, J. Gugenheimer, E. Rukzio</div><iframe id="yt-Stemasov2024dungeonmaker" data-yt="https://www.youtube-nocookie.com/embed/NbIc-sOfT5Y" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><p class="pub-abstract">ABSTRACT - Hybrid board games (HBGs) augment their analog origins digitally (e.g., through apps) and are an increasingly popular pastime activity. Continuous world and character development and customization, known to facilitate engagement in video games, remain rare in HBGs. If present, they happen digitally or imaginarily, often leaving physical aspects generic. We developed DungeonMaker, a fabrication-augmented HBG bridging physical and digital game elements: 1) the setup narrates a story and projects a digital game board onto a laser cutter; 2) DungeonMaker assesses player-crafted artifacts; 3) DungeonMaker's modified laser head senses and moves player- and non-player figures, and 4) can physically damage figures. An evaluation (n=4x3) indicated that DungeonMaker provides an engaging experience, may support players' connection to their figures, and potentially spark novices' interest in fabrication. DungeonMaker provides a rich constellation to play HBGs by blending aspects of craft and automation to couple the physical and digital elements of an HBG tightly.</p><div class="pub-conf">In Proceedings of the 2024 CHI Conference on Human Factors in Computing Systems</div><div class="pub-menu"><a class="pub-doi" href="https://doi.org/10.1145/3613904.3642243"><i class="ai ai-doi"></i> 10.1145/3613904.3642243</a> &nbsp;&nbsp;<a class="pub-file" href="https://stemasov.dev/papers/stemasov-acm_chi_2024-dungeonmaker.pdf"><i class="ion-document"></i> PDF</a> &nbsp;&nbsp;<a class="pub-video" href="https://youtu.be/kKJD8Nv33qI"><i class="ion-social-youtube"></i> Teaser Video</a> &nbsp;&nbsp;<a class="pub-video" href="https://youtu.be/NbIc-sOfT5Y"><i class="ion-social-youtube"></i> Full Video</a> &nbsp;&nbsp;<input id="pub-bibtex-toggle-7" type="checkbox" class="bibtex-checkbox" /><label for="pub-bibtex-toggle-7" class="expander" tabindex="7" style="display:inline-block;"><i class="ion-quote"></i> Bibtex</label><pre class="pub-bibtex" id="pub-bibtex-pre-7">@inproceedings{Stemasov2024dungeonmaker,
+author      = {Stemasov, Evgeny and Wagner, Tobias and Askari, Ali and Janek, Jessica and Rajabi, Omid and Schikorr, Anja and Frommel, Julian and Gugenheimer, Jan and Rukzio, Enrico},
+booktitle   = {Proceedings of the 2024 CHI Conference on Human Factors in Computing Systems},
+series      = {CHI '24},
+title       = {DungeonMaker: Embedding Tangible Creation and Destruction in Hybrid Board Games through Personal Fabrication Technology},
+year        = {2024},
+publisher   = {Association for Computing Machinery (ACM)},
+address     = {New York, NY, USA},
+month       = {may},
+pages       = {1--17},
+doi         = {10.1145/3613904.3642243},
+url         = {https://dl.acm.org/doi/10.1145/3613904.3642243},
+teaservideo = {https://youtu.be/kKJD8Nv33qI},
+video       = {https://youtu.be/NbIc-sOfT5Y},
+file        = {https://stemasov.dev/papers/stemasov-acm_chi_2024-dungeonmaker.pdf},
+abstract    = {Hybrid board games (HBGs) augment their analog origins digitally (e.g., through apps) and are an increasingly popular pastime activity. Continuous world and character development and customization, known to facilitate engagement in video games, remain rare in HBGs. If present, they happen digitally or imaginarily, often leaving physical aspects generic. We developed DungeonMaker, a fabrication-augmented HBG bridging physical and digital game elements: 1) the setup narrates a story and projects a digital game board onto a laser cutter; 2) DungeonMaker assesses player-crafted artifacts; 3) DungeonMaker's modified laser head senses and moves player- and non-player figures, and 4) can physically damage figures. An evaluation (n=4x3) indicated that DungeonMaker provides an engaging experience, may support players' connection to their figures, and potentially spark novices' interest in fabrication. DungeonMaker provides a rich constellation to play HBGs by blending aspects of craft and automation to couple the physical and digital elements of an HBG tightly.}
+}
+
+
+
+</pre></div></div><div class="col-lg-4 col-md-6 portfolio-thumbnail"><div class="journal-info"><div class="pub-series">CHI '24</div><a href="#pub-Stemasov2024dungeonmaker" data-pubid="Stemasov2024dungeonmaker" class="open-popup-link"><picture><source srcset="publications/Stemasov2024dungeonmaker.jpg" type="image/jpeg"><img class="pub-thumbnail" src="publications/Stemasov2024dungeonmaker.jpg" alt="Thumbnail for DungeonMaker: Embedding Tangible Creation and Destruction in Hybrid Board Games through Personal Fabrication Technology"></picture></a><div class="journal-txt"><h4><a href="#pub-Stemasov2024dungeonmaker" data-pubid="Stemasov2024dungeonmaker" class="open-popup-link">DungeonMaker: Embedding Tangible Creation and Destruction in Hybrid Board Games through Personal Fabrication Technology</a></h4></div></div></div><div id="pub-Gerber2024exploringnudges" class="white-popup mfp-hide"><h3 class="pub-title">[CHI ’24] Don’t Accept All and Continue: Exploring Nudges for More Deliberate Interaction with Tracking Consent Notices</h3><div class="pub-authors">N. Gerber, A. St&ouml;ver, J. Peschke, V. Zimmermann</div><p class="pub-abstract">ABSTRACT - Legal frameworks rely on users to make an informed decision about data collection, e.g., by accepting or declining the use of tracking technologies. In practice, however, users hardly interact with tracking consent notices on a deliberate website per website level, but usually accept or decline optional tracking technologies altogether in a habituated behavior. We explored the potential of three different nudge types (color highlighting, social cue, timer) and default settings to interrupt this auto-response in an experimental between-subject design with 167 participants. We did not find statistically significant differences regarding the buttons clicked. Our results showed that opt-in default settings significantly decrease tracking technology use acceptance rates. These results are a first step towards understanding the effects of different nudging concepts on users’ interaction with tracking consent notices.</p><div class="pub-conf">In ACM Trans. Comput.-Hum. Interact.</div><div class="pub-menu"><a class="pub-doi" href="https://doi.org/10.1145/3617363"><i class="ai ai-doi"></i> 10.1145/3617363</a> &nbsp;&nbsp;<input id="pub-bibtex-toggle-8" type="checkbox" class="bibtex-checkbox" /><label for="pub-bibtex-toggle-8" class="expander" tabindex="8" style="display:inline-block;"><i class="ion-quote"></i> Bibtex</label><pre class="pub-bibtex" id="pub-bibtex-pre-8">@article{Gerber2024exploringnudges,
+author = {Gerber, Nina and St\"{o}ver, Alina and Peschke, Justin and Zimmermann, Verena},
+title = {Don’t Accept All and Continue: Exploring Nudges for More Deliberate Interaction with Tracking Consent Notices},
+year = {2024},
+issue_date = {February 2024},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+volume = {31},
+number = {1},
+issn = {1073-0516},
+url = {https://doi.org/10.1145/3617363},
+doi = {10.1145/3617363},
+abstract = {Legal frameworks rely on users to make an informed decision about data collection, e.g., by accepting or declining the use of tracking technologies. In practice, however, users hardly interact with tracking consent notices on a deliberate website per website level, but usually accept or decline optional tracking technologies altogether in a habituated behavior. We explored the potential of three different nudge types (color highlighting, social cue, timer) and default settings to interrupt this auto-response in an experimental between-subject design with 167 participants. We did not find statistically significant differences regarding the buttons clicked. Our results showed that opt-in default settings significantly decrease tracking technology use acceptance rates. These results are a first step towards understanding the effects of different nudging concepts on users’ interaction with tracking consent notices.},
+journal = {ACM Trans. Comput.-Hum. Interact.},
+month = {nov},
+articleno = {1},
+numpages = {36},
+keywords = {Nudges, cookie consent, privacy protection, informed decision},
+series = {CHI ’24}
+}
+
+</pre></div></div><div class="col-lg-4 col-md-6 portfolio-thumbnail"><div class="journal-info"><div class="pub-series">CHI ’24</div><a href="#pub-Gerber2024exploringnudges" data-pubid="Gerber2024exploringnudges" class="open-popup-link"><picture><source srcset="publications/Gerber2024exploringnudges.jpg" type="image/jpeg"><img class="pub-thumbnail" src="publications/Gerber2024exploringnudges.jpg" alt="Thumbnail for Don’t Accept All and Continue: Exploring Nudges for More Deliberate Interaction with Tracking Consent Notices"></picture></a><div class="journal-txt"><h4><a href="#pub-Gerber2024exploringnudges" data-pubid="Gerber2024exploringnudges" class="open-popup-link">Don’t Accept All and Continue: Exploring Nudges for More Deliberate Interaction with Tracking Consent Notices</a></h4></div></div></div><div id="pub-marky2024chi" class="white-popup mfp-hide"><h3 class="pub-title">[CHI ’24] Decide Yourself or Delegate - User Preferences Regarding the Autonomy of Personal Privacy Assistants in Private IoT-Equipped Environments</h3><div class="pub-authors">K. Marky, A. Stöver, S. Prange, K. Bleck, P. Gerber, V. Zimmermann, F. Müller, F. Alt, M. Mühlhäuser</div><iframe id="yt-marky2024chi" data-yt="https://www.youtube-nocookie.com/embed/marky2024chi" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><p class="pub-abstract">ABSTRACT - Personalized privacy assistants (PPAs) communicate privacy-related decisions of their users to Internet of Things (IoT) devices. There are different ways to implement PPAs by varying the degree of autonomy or decision model. This paper investigates user perceptions of PPA autonomy models and privacy profiles -- archetypes of individual privacy needs -- as a basis for PPA decisions in private environments (e.g., a friend's home). We first explore how privacy profiles can be assigned to users and propose an assignment method. Next, we investigate user perceptions in 18 usage scenarios with varying contexts, data types and number of decisions in a study with 1126 participants. We found considerable differences between the profiles in settings with few decisions. If the number of decisions gets high ($>$ 1/h), participants exclusively preferred fully autonomous PPAs. Finally, we discuss implications and recommendations for designing scalable PPAs that serve as privacy interfaces for future IoT devices.</p><div class="pub-conf">In Proceedings of the 2024 CHI Conference on Human Factors in Computing Systems</div><div class="pub-menu"><a class="pub-doi" href="https://doi.org/10.1145/3613904.3642591"><i class="ai ai-doi"></i> 10.1145/3613904.3642591</a> &nbsp;&nbsp;<a class="pub-file" href="https://www.unibw.de/usable-security-and-privacy/publikationen/pdf/marky2024chi.pdf"><i class="ion-document"></i> PDF</a> &nbsp;&nbsp;<a class="pub-video" href="marky2024chi"><i class="ion-social-youtube"></i> Full Video</a> &nbsp;&nbsp;<input id="pub-bibtex-toggle-9" type="checkbox" class="bibtex-checkbox" /><label for="pub-bibtex-toggle-9" class="expander" tabindex="9" style="display:inline-block;"><i class="ion-quote"></i> Bibtex</label><pre class="pub-bibtex" id="pub-bibtex-pre-9">@InProceedings{marky2024chi,
+author = {Marky, Karola and Stöver, Alina and Prange, Sarah and Bleck, Kira and Gerber, Paul and Zimmermann, Verena and Müller, Florian and Alt, Florian and Mühlhäuser, Max},
+booktitle = {Proceedings of the 2024 CHI Conference on Human Factors in Computing Systems},
+title = {Decide Yourself or Delegate - User Preferences Regarding the Autonomy of Personal Privacy Assistants in Private IoT-Equipped Environments},
+year = {2024},
+address = {New York, NY, USA},
+note = {marky2024chi},
+publisher = {Association for Computing Machinery},
+series = {CHI ’24},
+abstract = {Personalized privacy assistants (PPAs) communicate privacy-related decisions of their users to Internet of Things (IoT) devices. There are different ways to implement PPAs by varying the degree of autonomy or decision model. This paper investigates user perceptions of PPA autonomy models and privacy profiles -- archetypes of individual privacy needs -- as a basis for PPA decisions in private environments (e.g., a friend's home). We first explore how privacy profiles can be assigned to users and propose an assignment method. Next, we investigate user perceptions in 18 usage scenarios with varying contexts, data types and number of decisions in a study with 1126 participants. We found considerable differences between the profiles in settings with few decisions. If the number of decisions gets high ($>$ 1/h), participants exclusively preferred fully autonomous PPAs. Finally, we discuss implications and recommendations for designing scalable PPAs that serve as privacy interfaces for future IoT devices.},
+doi = {10.1145/3613904.3642591},
+isbn = {979-8-4007-0330-0/24/05},
+location = {Honolulu, HI, USA},
+timestamp = {2024.05.16},
+url = {http://florian-alt.org/unibw/wp-content/publications/marky2024chi.pdf},
+file = {https://www.unibw.de/usable-security-and-privacy/publikationen/pdf/marky2024chi.pdf},
+video = {marky2024chi},
+}
+
+
+</pre></div></div><div class="col-lg-4 col-md-6 portfolio-thumbnail"><div class="journal-info"><div class="pub-series">CHI ’24</div><a href="#pub-marky2024chi" data-pubid="marky2024chi" class="open-popup-link"><picture><source srcset="publications/marky2024chi.jpg" type="image/jpeg"><img class="pub-thumbnail" src="publications/marky2024chi.jpg" alt="Thumbnail for Decide Yourself or Delegate - User Preferences Regarding the Autonomy of Personal Privacy Assistants in Private IoT-Equipped Environments"></picture></a><div class="journal-txt"><h4><a href="#pub-marky2024chi" data-pubid="marky2024chi" class="open-popup-link">Decide Yourself or Delegate - User Preferences Regarding the Autonomy of Personal Privacy Assistants in Private IoT-Equipped Environments</a></h4></div></div></div><div id="pub-Schmitz20243da" class="white-popup mfp-hide"><h3 class="pub-title">[CHI EA '24] 3DA: Assessing 3D-Printed Electrodes for Measuring Electrodermal Activity</h3><div class="pub-authors">M. Schmitz, D. Schön, H. Klagemann, T. Kosch</div><p class="pub-abstract">ABSTRACT - Electrodermal activity (EDA) reflects changes in skin conductance, closely tied to human psychological states. EDA sensors can assess stress, cognitive workload, arousal, and activity related to the parasympathetic nervous system used in various human-computer interaction applications. Yet, current limitations involve the complex attachment and proper skin contact with EDA sensors. This paper explores the concept of 3D printing electrodes for EDA measurements, potentially integrating sensors into arbitrary 3D printed objects, alleviating the need for complex assembly and attachment. We examine the adaptation of conventional EDA circuits for 3D-printed electrodes, assessing different electrode shapes and their impact on the sensing accuracy. A user study (N=6) revealed that 3D-printed electrodes can measure EDA with similar accuracy while recommending larger contact areas for improved precision. We discuss design implications to facilitate EDA sensor integration into 3D-printed devices, fostering a diverse integration into everyday items using consumer-grade 3D printers for physiological interface prototyping.</p><div class="pub-conf">In </div><div class="pub-menu"><a class="pub-doi" href="https://doi.org/10.1145/3613905.3650938"><i class="ai ai-doi"></i> 10.1145/3613905.3650938</a> &nbsp;&nbsp;<input id="pub-bibtex-toggle-10" type="checkbox" class="bibtex-checkbox" /><label for="pub-bibtex-toggle-10" class="expander" tabindex="10" style="display:inline-block;"><i class="ion-quote"></i> Bibtex</label><pre class="pub-bibtex" id="pub-bibtex-pre-10">@InProceedings{Schmitz20243da,
+  author    = {Schmitz, Martin and Schön, Dominik and Klagemann, Henning and Kosch, Thomas},
+  booktitle = {Extended Abstracts of the CHI Conference on Human Factors in
+  Computing Systems},
+  series      = {CHI EA '24},
+  title     = {3DA: Assessing 3D-Printed Electrodes for Measuring Electrodermal Activity},
+  year      = {2024},
+  address   = {New York, NY, USA},
+  month     = {may},
+  publisher = {ACM},
+  doi       = {10.1145/3613905.3650938},
+  url         = {https://doi.org/10.1145/3613905.3650938},
+  abstract    = {Electrodermal activity (EDA) reflects changes in skin conductance, closely tied to human psychological states. EDA sensors can assess stress, cognitive workload, arousal, and activity related to the parasympathetic nervous system used in various human-computer interaction applications. Yet, current limitations involve the complex attachment and proper skin contact with EDA sensors. This paper explores the concept of 3D printing electrodes for EDA measurements, potentially integrating sensors into arbitrary 3D printed objects, alleviating the need for complex assembly and attachment. We examine the adaptation of conventional EDA circuits for 3D-printed electrodes, assessing different electrode shapes and their impact on the sensing accuracy. A user study (N=6) revealed that 3D-printed electrodes can measure EDA with similar accuracy while recommending larger contact areas for improved precision. We discuss design implications to facilitate EDA sensor integration into 3D-printed devices, fostering a diverse integration into everyday items using consumer-grade 3D printers for physiological interface prototyping.}
+}</pre></div></div><div class="col-lg-4 col-md-6 portfolio-thumbnail"><div class="journal-info"><div class="pub-series">CHI EA '24</div><a href="#pub-Schmitz20243da" data-pubid="Schmitz20243da" class="open-popup-link"><picture><source srcset="publications/Schmitz20243da.jpg" type="image/jpeg"><img class="pub-thumbnail" src="publications/Schmitz20243da.jpg" alt="Thumbnail for 3DA: Assessing 3D-Printed Electrodes for Measuring Electrodermal Activity"></picture></a><div class="journal-txt"><h4><a href="#pub-Schmitz20243da" data-pubid="Schmitz20243da" class="open-popup-link">3DA: Assessing 3D-Printed Electrodes for Measuring Electrodermal Activity</a></h4></div></div></div><style type="text/css">#pub-bibtex-toggle-0:checked ~ #pub-bibtex-pre-0 {
+							 max-height:800px;
+								padding: .4em;
+							}#pub-bibtex-toggle-1:checked ~ #pub-bibtex-pre-1 {
+							 max-height:800px;
+								padding: .4em;
+							}#pub-bibtex-toggle-2:checked ~ #pub-bibtex-pre-2 {
+							 max-height:800px;
+								padding: .4em;
+							}#pub-bibtex-toggle-3:checked ~ #pub-bibtex-pre-3 {
+							 max-height:800px;
+								padding: .4em;
+							}#pub-bibtex-toggle-4:checked ~ #pub-bibtex-pre-4 {
+							 max-height:800px;
+								padding: .4em;
+							}#pub-bibtex-toggle-5:checked ~ #pub-bibtex-pre-5 {
+							 max-height:800px;
+								padding: .4em;
+							}#pub-bibtex-toggle-6:checked ~ #pub-bibtex-pre-6 {
+							 max-height:800px;
+								padding: .4em;
+							}#pub-bibtex-toggle-7:checked ~ #pub-bibtex-pre-7 {
+							 max-height:800px;
+								padding: .4em;
+							}#pub-bibtex-toggle-8:checked ~ #pub-bibtex-pre-8 {
+							 max-height:800px;
+								padding: .4em;
+							}#pub-bibtex-toggle-9:checked ~ #pub-bibtex-pre-9 {
+							 max-height:800px;
+								padding: .4em;
+							}</style>            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <h4>our publications at CHI '23</h4>
+            <div class="text-center portfolio-container paddsection" style="width:50%; margin-top: -50px;">
+              <div id="pub-tseng2023fingermapper" class="white-popup mfp-hide"><h3 class="pub-title">[CHI '23] FingerMapper: Mapping Finger Motions onto Virtual Arms to Enable Safe Virtual Reality Interaction in Confined Spaces</h3><div class="pub-authors">W. Tseng, S. Huron, E. Lecolinet, J. Gugenheimer</div><iframe id="yt-tseng2023fingermapper" data-yt="https://www.youtube-nocookie.com/embed/7Kfq7Ej1krw" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><p class="pub-abstract">ABSTRACT - Whole-body movements enhance the presence and enjoyment of Virtual Reality (VR) experiences. However, using large gestures is often uncomfortable and impossible in confined spaces (e.g., public transport). We introduce FingerMapper, mapping small-scale finger motions onto virtual arms and hands to enable whole-body virtual movements in VR. In a first target selection study (n=13) comparing FingerMapper to hand tracking and ray-casting, we found that FingerMapper can significantly reduce physical motions and fatigue while having a similar degree of precision. In a consecutive study (n=13), we compared FingerMapper to hand tracking inside a confined space (the front passenger seat of a car). The results showed participants had significantly higher perceived safety and fewer collisions with FingerMapper while preserving a similar degree of presence and enjoyment as hand tracking. Finally, we present three example applications demonstrating how FingerMapper could be applied for locomotion and interaction for VR in confined spaces.</p><div class="pub-conf">In Proceedings of the 2023 CHI Conference on Human Factors in Computing Systems</div><div class="pub-menu"><a class="pub-doi" href="https://doi.org/10.1145/3544548.3580736"><i class="ai ai-doi"></i> 10.1145/3544548.3580736</a> &nbsp;&nbsp;<a class="pub-file" href="https://fileserver.tk.informatik.tu-darmstadt.de/Publications/2023/tseng2023fingermapper.pdf"><i class="ion-document"></i> PDF</a> &nbsp;&nbsp;<a class="pub-video" href="https://www.youtube.com/watch?v=KomrhEYGBDw"><i class="ion-social-youtube"></i> Teaser Video</a> &nbsp;&nbsp;<a class="pub-video" href="https://www.youtube.com/watch?v=7Kfq7Ej1krw"><i class="ion-social-youtube"></i> Full Video</a> &nbsp;&nbsp;<input id="pub-bibtex-toggle-1" type="checkbox" class="bibtex-checkbox" /><label for="pub-bibtex-toggle-1" class="expander" tabindex="1" style="display:inline-block;"><i class="ion-quote"></i> Bibtex</label><pre class="pub-bibtex" id="pub-bibtex-pre-1">@inproceedings{tseng2023fingermapper,
+  title={FingerMapper: Mapping Finger Motions onto Virtual Arms to Enable Safe Virtual Reality Interaction in Confined Spaces},
+  author={Tseng, Wen-Jie and Huron, Samuel and Lecolinet, Eric and Gugenheimer, Jan},
+  booktitle={Proceedings of the 2023 CHI Conference on Human Factors in Computing Systems},
+  year={2023},
+  month={apr},
+  series={CHI '23},
+  publisher={ACM},
+  url={https://doi.org/10.1145/3544548.3580736},
+  doi = {10.1145/3544548.3580736},
+  teaservideo={https://www.youtube.com/watch?v=KomrhEYGBDw},
+  video={https://www.youtube.com/watch?v=7Kfq7Ej1krw},
+  file={https://fileserver.tk.informatik.tu-darmstadt.de/Publications/2023/tseng2023fingermapper.pdf},
+  abstract={Whole-body movements enhance the presence and enjoyment of Virtual Reality (VR) experiences. However, using large gestures is often uncomfortable and impossible in confined spaces (e.g., public transport). We introduce FingerMapper, mapping small-scale finger motions onto virtual arms and hands to enable whole-body virtual movements in VR. In a first target selection study (n=13) comparing FingerMapper to hand tracking and ray-casting, we found that FingerMapper can significantly reduce physical motions and fatigue while having a similar degree of precision. In a consecutive study (n=13), we compared FingerMapper to hand tracking inside a confined space (the front passenger seat of a car). The results showed participants had significantly higher perceived safety and fewer collisions with FingerMapper while preserving a similar degree of presence and enjoyment as hand tracking. Finally, we present three example applications demonstrating how FingerMapper could be applied for locomotion and interaction for VR in confined spaces.}
+}
+</pre></div></div><div class="col-lg-4 col-md-6 portfolio-thumbnail"><div class="journal-info"><div class="pub-series">CHI '23</div><a href="#pub-tseng2023fingermapper" data-pubid="tseng2023fingermapper" class="open-popup-link"><picture><source srcset="publications/tseng2023fingermapper.jpg" type="image/jpeg"><img class="pub-thumbnail" src="publications/tseng2023fingermapper.jpg" alt="Thumbnail for FingerMapper: Mapping Finger Motions onto Virtual Arms to Enable Safe Virtual Reality Interaction in Confined Spaces"></picture></a><div class="journal-txt"><h4><a href="#pub-tseng2023fingermapper" data-pubid="tseng2023fingermapper" class="open-popup-link">FingerMapper: Mapping Finger Motions onto Virtual Arms to Enable Safe Virtual Reality Interaction in Confined Spaces</a></h4></div></div></div><div id="pub-schoen2023tailortwist" class="white-popup mfp-hide"><h3 class="pub-title">[CHI '23] Tailor Twist: Assessing Rotational Mid-Air Interactions for Augmented Reality</h3><div class="pub-authors">D. Sch&ouml;n, T. Kosch, F. M&uuml;ller, M. Schmitz, S. G&uuml;nther, L. Bommhardt, M. M&uuml;hlh&auml;user</div><iframe id="yt-schoen2023tailortwist" data-yt="https://www.youtube-nocookie.com/embed/K3q7uDyGu2o" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><p class="pub-abstract">ABSTRACT - Mid-air gestures, widely used in today's Augmented Reality applications, are prone to the "gorilla arm" effect, leading to discomfort with prolonged interactions. While prior work has proposed metrics to quantify this effect and means to improve comfort and ergonomics, these works usually only consider simplistic, one-dimensional AR interactions, like reaching for a point or pushing a button. However, interacting with AR environments also involves far more complex tasks, such as rotational knobs, potentially impacting ergonomics. This paper advances the understanding of the ergonomics of rotational mid-air interactions in AR. For this, we contribute the results of a controlled experiment exposing the participants to a rotational task in the interaction space defined by their arms' reach. Based on the results, we discuss how novel future mid-air gesture modalities benefit from our findings concerning ergonomic-aware rotational interaction.</p><div class="pub-conf">In Proceedings of the 2023 CHI Conference on Human Factors in Computing Systems</div><div class="pub-menu"><a class="pub-doi" href="https://doi.org/10.1145/3544548.3581461"><i class="ai ai-doi"></i> 10.1145/3544548.3581461</a> &nbsp;&nbsp;<a class="pub-file" href="https://fileserver.tk.informatik.tu-darmstadt.de/Publications/2023/schoen2023tailortwist.pdf"><i class="ion-document"></i> PDF</a> &nbsp;&nbsp;<a class="pub-video" href="https://www.youtube.com/watch?v=FqFr_Eeh1dY"><i class="ion-social-youtube"></i> Teaser Video</a> &nbsp;&nbsp;<a class="pub-video" href="https://www.youtube.com/watch?v=K3q7uDyGu2o"><i class="ion-social-youtube"></i> Full Video</a> &nbsp;&nbsp;<input id="pub-bibtex-toggle-2" type="checkbox" class="bibtex-checkbox" /><label for="pub-bibtex-toggle-2" class="expander" tabindex="2" style="display:inline-block;"><i class="ion-quote"></i> Bibtex</label><pre class="pub-bibtex" id="pub-bibtex-pre-2">@inproceedings{schoen2023tailortwist,
+  title={Tailor Twist: Assessing Rotational Mid-Air Interactions for Augmented Reality},
+  author={Sch\"{o}n, Dominik and Kosch, Thomas and M\"{u}ller, Florian and Schmitz, Martin and G\"{u}nther, Sebastian and Bommhardt, Lukas and M\"{u}hlh\"{a}user, Max},
+  booktitle={Proceedings of the 2023 CHI Conference on Human Factors in Computing Systems},
+  year={2023},
+  month={apr},
+  series={CHI '23},
+  publisher={ACM},
+  url={https://doi.org/10.1145/3544548.3581461},
+  doi = {10.1145/3544548.3581461},
+  teaservideo={https://www.youtube.com/watch?v=FqFr_Eeh1dY},
+  video={https://www.youtube.com/watch?v=K3q7uDyGu2o},
+  file={https://fileserver.tk.informatik.tu-darmstadt.de/Publications/2023/schoen2023tailortwist.pdf},
+  abstract={Mid-air gestures, widely used in today's Augmented Reality applications, are prone to the "gorilla arm" effect, leading to discomfort with prolonged interactions. While prior work has proposed metrics to quantify this effect and means to improve comfort and ergonomics, these works usually only consider simplistic, one-dimensional AR interactions, like reaching for a point or pushing a button. However, interacting with AR environments also involves far more complex tasks, such as rotational knobs, potentially impacting ergonomics. This paper advances the understanding of the ergonomics of rotational mid-air interactions in AR. For this, we contribute the results of a controlled experiment exposing the participants to a rotational task in the interaction space defined by their arms' reach. Based on the results, we discuss how novel future mid-air gesture modalities benefit from our findings concerning ergonomic-aware rotational interaction.}
+}
+</pre></div></div><div class="col-lg-4 col-md-6 portfolio-thumbnail"><div class="journal-info"><div class="pub-series">CHI '23</div><a href="#pub-schoen2023tailortwist" data-pubid="schoen2023tailortwist" class="open-popup-link"><picture><source srcset="publications/schoen2023tailortwist.jpg" type="image/jpeg"><img class="pub-thumbnail" src="publications/schoen2023tailortwist.jpg" alt="Thumbnail for Tailor Twist: Assessing Rotational Mid-Air Interactions for Augmented Reality"></picture></a><div class="journal-txt"><h4><a href="#pub-schoen2023tailortwist" data-pubid="schoen2023tailortwist" class="open-popup-link">Tailor Twist: Assessing Rotational Mid-Air Interactions for Augmented Reality</a></h4></div></div></div><div id="pub-wuersching2023fido2" class="white-popup mfp-hide"><h3 class="pub-title"><i class="fas fa-trophy" title="Best Paper Award"></i>&nbsp;[CHI '23] FIDO2 the Rescue? Platform vs. Roaming Authentication on Smartphones</h3><div class="pub-authors">L. W&uuml;rsching, F. Putz, S. Haesler, M. Hollick</div><iframe id="yt-wuersching2023fido2" data-yt="https://www.youtube-nocookie.com/embed/tZ1gzBoCEAc" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><p class="pub-abstract">ABSTRACT - Modern smartphones support FIDO2 passwordless authentication using either external security keys or internal biometric authentication, but it is unclear whether users appreciate and accept these new forms of web authentication for their own accounts. We present the first lab study (N=87) comparing platform and roaming authentication on smartphones, determining the practical strengths and weaknesses of FIDO2 as perceived by users in a mobile scenario. Most participants were willing to adopt passwordless authentication during our in-person user study, but closer analysis shows that participants prioritize usability, security, and availability differently depending on the account type. We identify remaining adoption barriers that prevent FIDO2 from succeeding password authentication, such as missing support for contemporary usage patterns, including account delegation and usage on multiple clients.</p><div class="pub-conf">In Proceedings of the 2023 CHI Conference on Human Factors in Computing Systems</div><div class="pub-menu"><a class="pub-doi" href="https://doi.org/10.1145/3544548.3580993"><i class="ai ai-doi"></i> 10.1145/3544548.3580993</a> &nbsp;&nbsp;<a class="pub-file" href="https://arxiv.org/abs/2302.07777"><i class="ion-document"></i> PDF</a> &nbsp;&nbsp;<a class="pub-video" href="https://www.youtube.com/watch?v=tZ1gzBoCEAc"><i class="ion-social-youtube"></i> Full Video</a> &nbsp;&nbsp;<input id="pub-bibtex-toggle-3" type="checkbox" class="bibtex-checkbox" /><label for="pub-bibtex-toggle-3" class="expander" tabindex="3" style="display:inline-block;"><i class="ion-quote"></i> Bibtex</label><pre class="pub-bibtex" id="pub-bibtex-pre-3">@inproceedings{wuersching2023fido2,
+  title={FIDO2 the Rescue? Platform vs. Roaming Authentication on Smartphones},
+  author={W\"{u}rsching, Leon and Putz, Florentin and Haesler, Steffen and Hollick, Matthias},
+  booktitle={Proceedings of the 2023 CHI Conference on Human Factors in Computing Systems},
+  year={2023},
+  month={apr},
+  series={CHI '23},
+  publisher={ACM},
+  url={https://doi.org/10.1145/3544548.3580993},
+  doi = {10.1145/3544548.3580993},
+  file={https://arxiv.org/abs/2302.07777},
+  abstract={Modern smartphones support FIDO2 passwordless authentication using either external security keys or internal biometric authentication, but it is unclear whether users appreciate and accept these new forms of web authentication for their own accounts. We present the first lab study (N=87) comparing platform and roaming authentication on smartphones, determining the practical strengths and weaknesses of FIDO2 as perceived by users in a mobile scenario. Most participants were willing to adopt passwordless authentication during our in-person user study, but closer analysis shows that participants prioritize usability, security, and availability differently depending on the account type. We identify remaining adoption barriers that prevent FIDO2 from succeeding password authentication, such as missing support for contemporary usage patterns, including account delegation and usage on multiple clients.},
+  video={https://www.youtube.com/watch?v=tZ1gzBoCEAc},
+ award={Best Paper},
+ note={Best Paper Award}
+}
+</pre></div></div><div class="col-lg-4 col-md-6 portfolio-thumbnail"><div class="journal-info"><div class="pub-series">CHI '23</div><a href="#pub-wuersching2023fido2" data-pubid="wuersching2023fido2" class="open-popup-link"><picture><source srcset="publications/wuersching2023fido2.jpg" type="image/jpeg"><img class="pub-thumbnail" src="publications/wuersching2023fido2.jpg" alt="Thumbnail for FIDO2 the Rescue? Platform vs. Roaming Authentication on Smartphones"></picture></a><div class="journal-txt"><h4><a href="#pub-wuersching2023fido2" data-pubid="wuersching2023fido2" class="open-popup-link"><i class="fas fa-trophy" title="Best Paper Award"></i>&nbsp;FIDO2 the Rescue? Platform vs. Roaming Authentication on Smartphones</a></h4></div></div></div><div id="pub-bonnail2023memory" class="white-popup mfp-hide"><h3 class="pub-title">[CHI '23] Memory Manipulations in Extended Reality</h3><div class="pub-authors">E. Bonnail, W. Tseng, M. Mcgill, E. Lecolinet, S. Huron, J. Gugenheimer</div><iframe id="yt-bonnail2023memory" data-yt="https://www.youtube-nocookie.com/embed/asSejQTZILI" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><p class="pub-abstract">ABSTRACT - Human memory has notable limitations (e.g., forgetting) which have necessitated a variety of memory aids (e.g., calendars). As we grow closer to mass adoption of everyday Extended Reality (XR), which is frequently leveraging perceptual limitations (e.g., redirected walking), it becomes pertinent to consider how XR could leverage memory limitations (forgetting, distorting, persistence) to induce memory manipulations. As memories highly impact our self-perception, social interactions, and behaviors, there is a pressing need to understand XR Memory Manipulations (XRMMs). We ran three speculative design workshops (n=12), with XR and memory researchers creating 48 XRMM scenarios. Through thematic analysis, we define XRMMs, present a framework of their core components and reveal three classes (at encoding, pre-retrieval, at retrieval). Each class differs in terms of technology (AR/VR) and impact on memory (influencing quality of memories, inducing forgetting, distorting memories). We raise ethical concerns and discuss opportunities of perceptual and memory manipulations in XR.</p><div class="pub-conf">In Proceedings of the 2023 CHI Conference on Human Factors in Computing Systems</div><div class="pub-menu"><a class="pub-doi" href="https://doi.org/10.1145/3544548.3580988"><i class="ai ai-doi"></i> 10.1145/3544548.3580988</a> &nbsp;&nbsp;<a class="pub-video" href="https://www.youtube.com/watch?v=asSejQTZILI"><i class="ion-social-youtube"></i> Teaser Video</a> &nbsp;&nbsp;<input id="pub-bibtex-toggle-4" type="checkbox" class="bibtex-checkbox" /><label for="pub-bibtex-toggle-4" class="expander" tabindex="4" style="display:inline-block;"><i class="ion-quote"></i> Bibtex</label><pre class="pub-bibtex" id="pub-bibtex-pre-4">@inproceedings{bonnail2023memory,
+  title={Memory Manipulations in Extended Reality},
+  author={Bonnail, Elise and Tseng, Wen-Jie and Mcgill, Mark and Lecolinet, Eric and Huron, Samuel and Gugenheimer, Jan},
+  booktitle={Proceedings of the 2023 CHI Conference on Human Factors in Computing Systems},
+  pages={1--20},
+  year={2023},
+  month={apr},
+  series={CHI '23},
+  publisher={ACM},
+  url={https://doi.org/10.1145/3544548.3580988},
+  doi = {10.1145/3544548.3580988},
+  teaservideo={https://www.youtube.com/watch?v=asSejQTZILI},
+  file={},
+  abstract={Human memory has notable limitations (e.g., forgetting) which have necessitated a variety of memory aids (e.g., calendars). As we grow closer to mass adoption of everyday Extended Reality (XR), which is frequently leveraging perceptual limitations (e.g., redirected walking), it becomes pertinent to consider how XR could leverage memory limitations (forgetting, distorting, persistence) to induce memory manipulations. As memories highly impact our self-perception, social interactions, and behaviors, there is a pressing need to understand XR Memory Manipulations (XRMMs). We ran three speculative design workshops (n=12), with XR and memory researchers creating 48 XRMM scenarios. Through thematic analysis, we define XRMMs, present a framework of their core components and reveal three classes (at encoding, pre-retrieval, at retrieval). Each class differs in terms of technology (AR/VR) and impact on memory (influencing quality of memories, inducing forgetting, distorting memories). We raise ethical concerns and discuss opportunities of perceptual and memory manipulations in XR.}
+}
+</pre></div></div><div class="col-lg-4 col-md-6 portfolio-thumbnail"><div class="journal-info"><div class="pub-series">CHI '23</div><a href="#pub-bonnail2023memory" data-pubid="bonnail2023memory" class="open-popup-link"><picture><source srcset="publications/bonnail2023memory.jpg" type="image/jpeg"><img class="pub-thumbnail" src="publications/bonnail2023memory.jpg" alt="Thumbnail for Memory Manipulations in Extended Reality"></picture></a><div class="journal-txt"><h4><a href="#pub-bonnail2023memory" data-pubid="bonnail2023memory" class="open-popup-link">Memory Manipulations in Extended Reality</a></h4></div></div></div><div id="pub-hoffmann2023thermalpen" class="white-popup mfp-hide"><h3 class="pub-title">[CHI '23 Demo] ThermalPen: Adding Thermal Haptic Feedback to 3D Sketching</h3><div class="pub-authors">P. Hoffmann, H. Elsayed, M. M&uuml;hlh&auml;user, R. Wehbe, M. Barrera Machuca</div><p class="pub-abstract">ABSTRACT - Sketching in virtual 3D environments has enabled new forms of artistic expression and a variety of novel design use-cases. However, the lack of haptic feedback proves to be one of the main challenges in this field. While prior work has investigated vibrotactile and force-feedback devices, this paper proposes the addition of thermal feedback. We present ThermalPen, a novel pen for 3D sketching that associates the texture and colour of strokes with different thermal properties. For example, a fire texture elicits an increase in temperature, while an ice texture causes a temperature drop in the pen. Our goal with ThermalPen is to enhance the 3D sketching experience and allow users to use this tool to increase their creativity while sketching. We plan on evaluating the influence of thermal feedback on the 3D sketching experience, with a focus on user creativity in the future.</p><div class="pub-conf">In CHI Conference on Human Factors in Computing Systems Extended Abstracts (CHI '23 Extended Abstracts)</div><div class="pub-menu"><a class="pub-doi" href="https://doi.org/10.1145/3544549.3583901"><i class="ai ai-doi"></i> 10.1145/3544549.3583901</a> &nbsp;&nbsp;<input id="pub-bibtex-toggle-5" type="checkbox" class="bibtex-checkbox" /><label for="pub-bibtex-toggle-5" class="expander" tabindex="5" style="display:inline-block;"><i class="ion-quote"></i> Bibtex</label><pre class="pub-bibtex" id="pub-bibtex-pre-5">@inproceedings{hoffmann2023thermalpen,
+  title={ThermalPen: Adding Thermal Haptic Feedback to 3D Sketching},
+  author={Hoffmann, Philipp and Elsayed, Hesham and M\"{u}hlh\"{a}user, Max and Wehbe, Rina and Barrera Machuca, Mayra D},
+  booktitle={CHI Conference on Human Factors in Computing Systems Extended Abstracts (CHI '23 Extended Abstracts)},
+  year={2023},
+  month={apr},
+  series={CHI '23 Demo},
+  publisher={ACM},
+  url={https://doi.org/10.1145/3544549.3583901},
+  doi = {10.1145/3544549.3583901},
+  abstract={Sketching in virtual 3D environments has enabled new forms of artistic expression and a variety of novel design use-cases. However, the lack of haptic feedback proves to be one of the main challenges in this field. While prior work has investigated vibrotactile and force-feedback devices, this paper proposes the addition of thermal feedback. We present ThermalPen, a novel pen for 3D sketching that associates the texture and colour of strokes with different thermal properties. For example, a fire texture elicits an increase in temperature, while an ice texture causes a temperature drop in the pen. Our goal with ThermalPen is to enhance the 3D sketching experience and allow users to use this tool to increase their creativity while sketching. We plan on evaluating the influence of thermal feedback on the 3D sketching experience, with a focus on user creativity in the future.}
+}
+</pre></div></div><div class="col-lg-4 col-md-6 portfolio-thumbnail"><div class="journal-info"><div class="pub-series">CHI '23 Demo</div><a href="#pub-hoffmann2023thermalpen" data-pubid="hoffmann2023thermalpen" class="open-popup-link"><picture><source srcset="publications/hoffmann2023thermalpen.jpg" type="image/jpeg"><img class="pub-thumbnail" src="publications/hoffmann2023thermalpen.jpg" alt="Thumbnail for ThermalPen: Adding Thermal Haptic Feedback to 3D Sketching"></picture></a><div class="journal-txt"><h4><a href="#pub-hoffmann2023thermalpen" data-pubid="hoffmann2023thermalpen" class="open-popup-link">ThermalPen: Adding Thermal Haptic Feedback to 3D Sketching</a></h4></div></div></div><div id="pub-mueller2023tictactoes" class="white-popup mfp-hide"><h3 class="pub-title">[CHI '23] TicTacToes: Assessing Toe Movements as an Input Modality</h3><div class="pub-authors">F. M&uuml;ller, D. Schmitt, A. Matviienko, D. Sch&ouml;n, S. G&uuml;nther, T. Kosch, M. Schmitz, M. M&uuml;hlh&auml;user</div><iframe id="yt-mueller2023tictactoes" data-yt="https://www.youtube-nocookie.com/embed/kVVY6ZZ5aHY" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><p class="pub-abstract">ABSTRACT - From carrying grocery bags to holding onto handles on the bus, there are a variety of situations where one or both hands are busy, hindering the vision of ubiquitous interaction with technology. Voice commands, as a popular hands-free alternative, struggle with ambient noise and privacy issues. As an alternative approach, research explored movements of various body parts (e.g., head, arms) as input modalities, with foot-based techniques proving particularly suitable for hands-free interaction. Whereas previous research only considered the movement of the foot as a whole, in this work, we argue that our toes offer further degrees of freedom that can be leveraged for interaction. To explore the viability of toe-based interaction, we contribute the results of a controlled experiment with 18 participants assessing the impact of five factors on the accuracy, efficiency and user experience of such interfaces. Based on the findings, we provide design recommendations for future toe-based interfaces.</p><div class="pub-conf">In Proceedings of the 2023 CHI Conference on Human Factors in Computing Systems</div><div class="pub-menu"><a class="pub-doi" href="https://doi.org/10.1145/3544548.3580954"><i class="ai ai-doi"></i> 10.1145/3544548.3580954</a> &nbsp;&nbsp;<a class="pub-video" href="https://www.youtube.com/watch?v=2cGBqSQq0LM"><i class="ion-social-youtube"></i> Teaser Video</a> &nbsp;&nbsp;<a class="pub-video" href="https://www.youtube.com/watch?v=kVVY6ZZ5aHY"><i class="ion-social-youtube"></i> Full Video</a> &nbsp;&nbsp;<input id="pub-bibtex-toggle-6" type="checkbox" class="bibtex-checkbox" /><label for="pub-bibtex-toggle-6" class="expander" tabindex="6" style="display:inline-block;"><i class="ion-quote"></i> Bibtex</label><pre class="pub-bibtex" id="pub-bibtex-pre-6">@inproceedings{mueller2023tictactoes,
+  title={TicTacToes: Assessing Toe Movements as an Input Modality},
+  author={M\"{u}ller, Florian and Schmitt, Daniel and Matviienko, Andrii and Sch\"{o}n, Dominik and G\"{u}nther, Sebastian and Kosch, Thomas and Schmitz, Martin and M\"{u}hlh\"{a}user, Max},
+  booktitle={Proceedings of the 2023 CHI Conference on Human Factors in Computing Systems},
+  year={2023},
+  month={apr},
+  series={CHI '23},
+  publisher={ACM},
+  url={https://doi.org/10.1145/3544548.3580954},
+  doi = {10.1145/3544548.3580954},
+  teaservideo={https://www.youtube.com/watch?v=2cGBqSQq0LM},
+  video={https://www.youtube.com/watch?v=kVVY6ZZ5aHY},
+  abstract={From carrying grocery bags to holding onto handles on the bus, there are a variety of situations where one or both hands are busy, hindering the vision of ubiquitous interaction with technology. Voice commands, as a popular hands-free alternative, struggle with ambient noise and privacy issues. As an alternative approach, research explored movements of various body parts (e.g., head, arms) as input modalities, with foot-based techniques proving particularly suitable for hands-free interaction. Whereas previous research only considered the movement of the foot as a whole, in this work, we argue that our toes offer further degrees of freedom that can be leveraged for interaction. To explore the viability of toe-based interaction, we contribute the results of a controlled experiment with 18 participants assessing the impact of five factors on the accuracy, efficiency and user experience of such interfaces. Based on the findings, we provide design recommendations for future toe-based interfaces.}
+}
+</pre></div></div><div class="col-lg-4 col-md-6 portfolio-thumbnail"><div class="journal-info"><div class="pub-series">CHI '23</div><a href="#pub-mueller2023tictactoes" data-pubid="mueller2023tictactoes" class="open-popup-link"><picture><source srcset="publications/mueller2023tictactoes.jpg" type="image/jpeg"><img class="pub-thumbnail" src="publications/mueller2023tictactoes.jpg" alt="Thumbnail for TicTacToes: Assessing Toe Movements as an Input Modality"></picture></a><div class="journal-txt"><h4><a href="#pub-mueller2023tictactoes" data-pubid="mueller2023tictactoes" class="open-popup-link">TicTacToes: Assessing Toe Movements as an Input Modality</a></h4></div></div></div><div id="pub-mueller2023undoport" class="white-popup mfp-hide"><h3 class="pub-title">[CHI '23] UndoPort: Exploring the Influence of Undo-Actions for Locomotion in Virtual Reality on the Efficiency, Spatial Understanding and User Experience</h3><div class="pub-authors">F. M&uuml;ller, . Arantxa, D. Sch&ouml;n, J. Rasch</div><iframe id="yt-mueller2023undoport" data-yt="https://www.youtube-nocookie.com/embed/pcifaRvG0yA" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><p class="pub-abstract">ABSTRACT - When we get lost in Virtual Reality (VR) or want to return to a previous location, we use the same methods of locomotion for the way back as for the way forward. This is time-consuming and requires additional physical orientation changes, increasing the risk of getting tangled in the headsets' cables. In this paper, we propose the use of undo actions to revert locomotion steps in VR. We explore eight different variations of undo actions as extensions of point&teleport, based on the possibility to undo position and orientation changes together with two different visualizations of the undo step (discrete and continuous). We contribute the results of a controlled experiment with 24 participants investigating the efficiency and orientation of the undo techniques in a radial maze task. We found that the combination of position and orientation undo together with a discrete visualization resulted in the highest efficiency without increasing orientation errors.</p><div class="pub-conf">In Proceedings of the 2023 CHI Conference on Human Factors in Computing Systems</div><div class="pub-menu"><a class="pub-doi" href="https://doi.org/10.1145/3544548.3581557"><i class="ai ai-doi"></i> 10.1145/3544548.3581557</a> &nbsp;&nbsp;<a class="pub-video" href="https://www.youtube.com/watch?v=16ylRYe7WVk"><i class="ion-social-youtube"></i> Teaser Video</a> &nbsp;&nbsp;<a class="pub-video" href="https://www.youtube.com/watch?v=pcifaRvG0yA"><i class="ion-social-youtube"></i> Full Video</a> &nbsp;&nbsp;<input id="pub-bibtex-toggle-7" type="checkbox" class="bibtex-checkbox" /><label for="pub-bibtex-toggle-7" class="expander" tabindex="7" style="display:inline-block;"><i class="ion-quote"></i> Bibtex</label><pre class="pub-bibtex" id="pub-bibtex-pre-7">@inproceedings{mueller2023undoport,
+  title={UndoPort: Exploring the Influence of Undo-Actions for Locomotion in Virtual Reality on the Efficiency, Spatial Understanding and User Experience},
+  author={M\"{u}ller, Florian and Arantxa and Sch\"{o}n, Dominik and Rasch, Julian},
+  booktitle={Proceedings of the 2023 CHI Conference on Human Factors in Computing Systems},
+  year={2023},
+  month={apr},
+  series={CHI '23},
+  publisher={ACM},
+  url={https://doi.org/10.1145/3544548.3581557},
+  doi = {10.1145/3544548.3581557},
+  teaservideo={https://www.youtube.com/watch?v=16ylRYe7WVk},
+  video={https://www.youtube.com/watch?v=pcifaRvG0yA},
+  abstract={When we get lost in Virtual Reality (VR) or want to return to a previous location, we use the same methods of locomotion for the way back as for the way forward. This is time-consuming and requires additional physical orientation changes, increasing the risk of getting tangled in the headsets' cables. In this paper, we propose the use of undo actions to revert locomotion steps in VR. We explore eight different variations of undo actions as extensions of point&teleport, based on the possibility to undo position and orientation changes together with two different visualizations of the undo step (discrete and continuous). We contribute the results of a controlled experiment with 24 participants investigating the efficiency and orientation of the undo techniques in a radial maze task. We found that the combination of position and orientation undo together with a discrete visualization resulted in the highest efficiency without increasing orientation errors.}
+}
+</pre></div></div><div class="col-lg-4 col-md-6 portfolio-thumbnail"><div class="journal-info"><div class="pub-series">CHI '23</div><a href="#pub-mueller2023undoport" data-pubid="mueller2023undoport" class="open-popup-link"><picture><source srcset="publications/mueller2023undoport.jpg" type="image/jpeg"><img class="pub-thumbnail" src="publications/mueller2023undoport.jpg" alt="Thumbnail for UndoPort: Exploring the Influence of Undo-Actions for Locomotion in Virtual Reality on the Efficiency, Spatial Understanding and User Experience"></picture></a><div class="journal-txt"><h4><a href="#pub-mueller2023undoport" data-pubid="mueller2023undoport" class="open-popup-link">UndoPort: Exploring the Influence of Undo-Actions for Locomotion in Virtual Reality on the Efficiency, Spatial Understanding and User Experience</a></h4></div></div></div><div id="pub-marky2022annoying" class="white-popup mfp-hide"><h3 class="pub-title">[CHI '23] “Nah, It’s Just Annoying!” A Deep Dive into User Perceptions of Two-Factor Authentication</h3><div class="pub-authors">K. Marky, K. Ragozin, G. Chernyshov, A. Matviienko, M. Schmitz, M. M&uuml;hlh&auml;user, C. Eghtebas, K. Kunze</div><p class="pub-abstract">ABSTRACT - Two-factor authentication (2FA) is a recommended or imposed authentication mechanism for valuable online assets. However, 2FA mechanisms usually exhibit user experience issues that create user friction and even lead to poor acceptance, hampering the wider spread of 2FA. In this article, we investigate user perceptions of 2FA through in-depth interviews with 42 participants, revealing key requirements that are not well met today despite recently emerged 2FA solutions. First, we investigate past experiences with authentication mechanisms emphasizing problems and aspects that hamper good user experience. Second, we investigate the different authentication factors more closely. Our results reveal particularly interesting preferences regarding the authentication factor “ownership” in terms of properties, physical realizations, and interaction. These findings suggest a path toward 2FA mechanisms with considerably better user experience, promising to improve the acceptance and hence, the proliferation of 2FA for the benefit of security in the digital world.</p><div class="pub-conf">In ACM Trans. Comput.-Hum. Interact.</div><div class="pub-menu"><a class="pub-doi" href="https://doi.org/10.1145/3503514"><i class="ai ai-doi"></i> 10.1145/3503514</a> &nbsp;&nbsp;<input id="pub-bibtex-toggle-8" type="checkbox" class="bibtex-checkbox" /><label for="pub-bibtex-toggle-8" class="expander" tabindex="8" style="display:inline-block;"><i class="ion-quote"></i> Bibtex</label><pre class="pub-bibtex" id="pub-bibtex-pre-8">@inproceedings{marky2022annoying,
+  author = {Marky, Karola and Ragozin, Kirill and Chernyshov, George and Matviienko, Andrii and Schmitz, Martin and M\"{u}hlh\"{a}user, Max and Eghtebas, Chloe and Kunze, Kai},
+title = {“Nah, It’s Just Annoying!” A Deep Dive into User Perceptions of Two-Factor Authentication},
+year = {2022},
+issue_date = {October 2022},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+volume = {29},
+number = {5},
+issn = {1073-0516},
+url = {https://doi.org/10.1145/3503514},
+doi = {10.1145/3503514},
+abstract = {Two-factor authentication (2FA) is a recommended or imposed authentication mechanism for valuable online assets. However, 2FA mechanisms usually exhibit user experience issues that create user friction and even lead to poor acceptance, hampering the wider spread of 2FA. In this article, we investigate user perceptions of 2FA through in-depth interviews with 42 participants, revealing key requirements that are not well met today despite recently emerged 2FA solutions. First, we investigate past experiences with authentication mechanisms emphasizing problems and aspects that hamper good user experience. Second, we investigate the different authentication factors more closely. Our results reveal particularly interesting preferences regarding the authentication factor “ownership” in terms of properties, physical realizations, and interaction. These findings suggest a path toward 2FA mechanisms with considerably better user experience, promising to improve the acceptance and hence, the proliferation of 2FA for the benefit of security in the digital world.},
+journal = {ACM Trans. Comput.-Hum. Interact.},
+series={CHI '23},
+month = {oct},
+articleno = {43},
+numpages = {32},
+keywords = {usability, user experience, human factors, Two-factor authentication}
+}
+</pre></div></div><div class="col-lg-4 col-md-6 portfolio-thumbnail"><div class="journal-info"><div class="pub-series">CHI '23</div><a href="#pub-marky2022annoying" data-pubid="marky2022annoying" class="open-popup-link"><picture><source srcset="publications/marky2022annoying.jpg" type="image/jpeg"><img class="pub-thumbnail" src="publications/marky2022annoying.jpg" alt="Thumbnail for “Nah, It’s Just Annoying!” A Deep Dive into User Perceptions of Two-Factor Authentication"></picture></a><div class="journal-txt"><h4><a href="#pub-marky2022annoying" data-pubid="marky2022annoying" class="open-popup-link">“Nah, It’s Just Annoying!” A Deep Dive into User Perceptions of Two-Factor Authentication</a></h4></div></div></div><div id="pub-matviienko2023vrcycling" class="white-popup mfp-hide"><h3 class="pub-title">[CHI '23] What does it mean to cycle in Virtual Reality? Exploring Cycling Fidelity and Control of VR Bicycle Simulators</h3><div class="pub-authors">A. Matviienko, H. Hoxha, M. M&uuml;hlh&auml;user</div><p class="pub-abstract">ABSTRACT - Creating highly realistic Virtual Reality (VR) bicycle experiences can be time-consuming and expensive. Moreover, it is unclear what hardware parts are necessary to design a bicycle simulator and whether a bicycle is needed at all. In this paper, we investigated cycling fidelity and control of VR bicycle simulators. For this, we developed and evaluated three cycling simulators: (1) cycling without a bicycle (bikeless), (2) cycling on a fixed (stationary) and (3) moving bicycle (tandem) with four levels of control (no control, steering, pedaling, and steering + pedaling). To evaluate all combinations of fidelity and control, we conducted a controlled experiment (N = 24) in indoor and outdoor settings. We found that the bikeless setup provides the highest feeling of safety, while the tandem leads to the highest realism without increasing motion sickness. Moreover, we discovered that bicycles are not essential for cycling in VR.</p><div class="pub-conf">In Proceedings of the 2023 CHI Conference on Human Factors in Computing Systems</div><div class="pub-menu"><a class="pub-doi" href="https://doi.org/10.1145/3544548.3581050"><i class="ai ai-doi"></i> 10.1145/3544548.3581050</a> &nbsp;&nbsp;<input id="pub-bibtex-toggle-9" type="checkbox" class="bibtex-checkbox" /><label for="pub-bibtex-toggle-9" class="expander" tabindex="9" style="display:inline-block;"><i class="ion-quote"></i> Bibtex</label><pre class="pub-bibtex" id="pub-bibtex-pre-9">@inproceedings{matviienko2023vrcycling,
+  title={What does it mean to cycle in Virtual Reality? Exploring Cycling Fidelity and Control of VR Bicycle Simulators},
+  author={Matviienko, Andrii and Hoxha, Hajris and M\"{u}hlh\"{a}user, Max},
+  booktitle={Proceedings of the 2023 CHI Conference on Human Factors in Computing Systems},
+  year={2023},
+  month={apr},
+  series={CHI '23},
+  publisher={ACM},
+  url={https://doi.org/10.1145/3544548.3581050},
+  doi = {10.1145/3544548.3581050},
+  abstract={Creating highly realistic Virtual Reality (VR) bicycle experiences can be time-consuming and expensive. Moreover, it is unclear what hardware parts are necessary to design a bicycle simulator and whether a bicycle is needed at all. In this paper, we investigated cycling fidelity and control of VR bicycle simulators. For this, we developed and evaluated three cycling simulators: (1) cycling without a bicycle (bikeless), (2) cycling on a fixed (stationary) and (3) moving bicycle (tandem) with four levels of control (no control, steering, pedaling, and steering + pedaling). To evaluate all combinations of fidelity and control, we conducted a controlled experiment (N = 24) in indoor and outdoor settings. We found that the bikeless setup provides the highest feeling of safety, while the tandem leads to the highest realism without increasing motion sickness. Moreover, we discovered that bicycles are not essential for cycling in VR.}
+}
+</pre></div></div><div class="col-lg-4 col-md-6 portfolio-thumbnail"><div class="journal-info"><div class="pub-series">CHI '23</div><a href="#pub-matviienko2023vrcycling" data-pubid="matviienko2023vrcycling" class="open-popup-link"><picture><source srcset="publications/matviienko2023vrcycling.jpg" type="image/jpeg"><img class="pub-thumbnail" src="publications/matviienko2023vrcycling.jpg" alt="Thumbnail for What does it mean to cycle in Virtual Reality? Exploring Cycling Fidelity and Control of VR Bicycle Simulators"></picture></a><div class="journal-txt"><h4><a href="#pub-matviienko2023vrcycling" data-pubid="matviienko2023vrcycling" class="open-popup-link">What does it mean to cycle in Virtual Reality? Exploring Cycling Fidelity and Control of VR Bicycle Simulators</a></h4></div></div></div><div id="pub-clavelin2023painperception" class="white-popup mfp-hide"><h3 class="pub-title">[CHI '23 EA] Exploring the Perception of Pain in Virtual Reality using Perceptual Manipulations</h3><div class="pub-authors">G. Clavelin, M. Bouhier, W. Tseng, J. Gugenheimer</div><p class="pub-abstract">ABSTRACT - Perceptual manipulations (PMs) in Virtual Reality (VR) can steer users’ actions (e.g., redirection techniques) and amplify haptic perceptions (e.g., weight). However, their ability to amplify or induce negative perceptions such as physical pain is not well understood. In this work, we explore if PMs can be leveraged to induce the perception of pain, without modifying the physical stimulus. We implemented a VR experience combined with a haptic prototype, simulating the dislocation of a finger. A user study (n=18) compared three conditions (visual-only, haptic-only and combined) on the perception of physical pain and physical discomfort. We observed that using PMs with a haptic device resulted in a significantly higher perception of physical discomfort and an increase in the perception of pain compared to the unmodified sensation (haptic-only). Finally, we discuss how perception of pain can be leveraged in future VR applications and reflect on ethical concerns.</p><div class="pub-conf">In CHI Conference on Human Factors in Computing Systems Extended Abstracts (CHI '23 Extended Abstracts)</div><div class="pub-menu"><a class="pub-doi" href="https://doi.org/10.1145/3544549.3585674"><i class="ai ai-doi"></i> 10.1145/3544549.3585674</a> &nbsp;&nbsp;<input id="pub-bibtex-toggle-10" type="checkbox" class="bibtex-checkbox" /><label for="pub-bibtex-toggle-10" class="expander" tabindex="10" style="display:inline-block;"><i class="ion-quote"></i> Bibtex</label><pre class="pub-bibtex" id="pub-bibtex-pre-10">@inproceedings{clavelin2023painperception,
+  title={Exploring the Perception of Pain in Virtual Reality using Perceptual Manipulations},
+  author={Clavelin, Gaelle and Bouhier, Mickael and Tseng, Wen-Jie and Gugenheimer, Jan},
+  booktitle={CHI Conference on Human Factors in Computing Systems Extended Abstracts (CHI '23 Extended Abstracts)},
+  year={2023},
+  month={apr},
+  series={CHI '23 EA},
+  publisher={ACM},
+  url={https://doi.org/10.1145/3544549.3585674},
+  doi = {10.1145/3544549.3585674},
+  abstract={Perceptual manipulations (PMs) in Virtual Reality (VR) can steer users’ actions (e.g., redirection techniques) and amplify haptic perceptions (e.g., weight). However, their ability to amplify or induce negative perceptions such as physical pain is not well understood. In this work, we explore if PMs can be leveraged to induce the perception of pain, without modifying the physical stimulus. We implemented a VR experience combined with a haptic prototype, simulating the dislocation of a finger. A user study (n=18) compared three conditions (visual-only, haptic-only and combined) on the perception of physical pain and physical discomfort. We observed that using PMs with a haptic device resulted in a significantly higher perception of physical discomfort and an increase in the perception of pain compared to the unmodified sensation (haptic-only). Finally, we discuss how perception of pain can be leveraged in future VR applications and reflect on ethical concerns.}
+}
+</pre></div></div><div class="col-lg-4 col-md-6 portfolio-thumbnail"><div class="journal-info"><div class="pub-series">CHI '23 EA</div><a href="#pub-clavelin2023painperception" data-pubid="clavelin2023painperception" class="open-popup-link"><picture><source srcset="publications/clavelin2023painperception.jpg" type="image/jpeg"><img class="pub-thumbnail" src="publications/clavelin2023painperception.jpg" alt="Thumbnail for Exploring the Perception of Pain in Virtual Reality using Perceptual Manipulations"></picture></a><div class="journal-txt"><h4><a href="#pub-clavelin2023painperception" data-pubid="clavelin2023painperception" class="open-popup-link">Exploring the Perception of Pain in Virtual Reality using Perceptual Manipulations</a></h4></div></div></div><div id="pub-matviienko2023textme" class="white-popup mfp-hide"><h3 class="pub-title">[CHI '23 EA] Text Me if You Can: Investigating Text Input Methods for Cyclists</h3><div class="pub-authors">A. Matviienko, J. Durand-Pierre, J. Cvancar, M. M&uuml;hlh&auml;user</div><p class="pub-abstract">ABSTRACT - Cycling is emerging as a relevant alternative to cars. However, the more people commute by bicycle, the higher the number of cyclists who use their smartphones on the go and endanger road safety. To better understand input while cycling, in this paper, we present the design and evaluation of three text input methods for cyclists: (1) touch input using smartphones, (2) midair input using a Microsoft Hololens 2, and (3) a set of ten physical buttons placed on both sides of the handlebar. We conducted a controlled indoor experiment (N = 12) on a bicycle simulator to evaluate these input methods. We found that text input via touch input was faster and less mentally demanding than input with midair gestures and physical buttons. However, the midair gestures were the least error-prone, and the physical buttons facilitated keeping both hands on the handlebars and were more intuitive and less distracting.</p><div class="pub-conf">In CHI Conference on Human Factors in Computing Systems Extended Abstracts (CHI '23 Extended Abstracts)</div><div class="pub-menu"><a class="pub-doi" href="https://doi.org/10.1145/3544549.3585734"><i class="ai ai-doi"></i> 10.1145/3544549.3585734</a> &nbsp;&nbsp;<input id="pub-bibtex-toggle-11" type="checkbox" class="bibtex-checkbox" /><label for="pub-bibtex-toggle-11" class="expander" tabindex="11" style="display:inline-block;"><i class="ion-quote"></i> Bibtex</label><pre class="pub-bibtex" id="pub-bibtex-pre-11">@inproceedings{matviienko2023textme,
+  title={Text Me if You Can: Investigating Text Input Methods for Cyclists},
+  author={Matviienko, Andrii and Durand-Pierre, Jean-Baptiste and Cvancar, Jona and M\"{u}hlh\"{a}user, Max},
+  booktitle={CHI Conference on Human Factors in Computing Systems Extended Abstracts (CHI '23 Extended Abstracts)},
+  year={2023},
+  month={apr},
+  series={CHI '23 EA},
+  publisher={ACM},
+  url={https://doi.org/10.1145/3544549.3585734},
+  doi = {10.1145/3544549.3585734},
+  abstract={Cycling is emerging as a relevant alternative to cars. However, the more people commute by bicycle, the higher the number of cyclists who use their smartphones on the go and endanger road safety. To better understand input while cycling, in this paper, we present the design and evaluation of three text input methods for cyclists: (1) touch input using smartphones, (2) midair input using a Microsoft Hololens 2, and (3) a set of ten physical buttons placed on both sides of the handlebar. We conducted a controlled indoor experiment (N = 12) on a bicycle simulator to evaluate these input methods. We found that text input via touch input was faster and less mentally demanding than input with midair gestures and physical buttons. However, the midair gestures were the least error-prone, and the physical buttons facilitated keeping both hands on the handlebars and were more intuitive and less distracting.}
+}</pre></div></div><div class="col-lg-4 col-md-6 portfolio-thumbnail"><div class="journal-info"><div class="pub-series">CHI '23 EA</div><a href="#pub-matviienko2023textme" data-pubid="matviienko2023textme" class="open-popup-link"><picture><source srcset="publications/matviienko2023textme.jpg" type="image/jpeg"><img class="pub-thumbnail" src="publications/matviienko2023textme.jpg" alt="Thumbnail for Text Me if You Can: Investigating Text Input Methods for Cyclists"></picture></a><div class="journal-txt"><h4><a href="#pub-matviienko2023textme" data-pubid="matviienko2023textme" class="open-popup-link">Text Me if You Can: Investigating Text Input Methods for Cyclists</a></h4></div></div></div><style type="text/css">#pub-bibtex-toggle-0:checked ~ #pub-bibtex-pre-0 {
+							 max-height:800px;
+								padding: .4em;
+							}#pub-bibtex-toggle-1:checked ~ #pub-bibtex-pre-1 {
+							 max-height:800px;
+								padding: .4em;
+							}#pub-bibtex-toggle-2:checked ~ #pub-bibtex-pre-2 {
+							 max-height:800px;
+								padding: .4em;
+							}#pub-bibtex-toggle-3:checked ~ #pub-bibtex-pre-3 {
+							 max-height:800px;
+								padding: .4em;
+							}#pub-bibtex-toggle-4:checked ~ #pub-bibtex-pre-4 {
+							 max-height:800px;
+								padding: .4em;
+							}#pub-bibtex-toggle-5:checked ~ #pub-bibtex-pre-5 {
+							 max-height:800px;
+								padding: .4em;
+							}#pub-bibtex-toggle-6:checked ~ #pub-bibtex-pre-6 {
+							 max-height:800px;
+								padding: .4em;
+							}#pub-bibtex-toggle-7:checked ~ #pub-bibtex-pre-7 {
+							 max-height:800px;
+								padding: .4em;
+							}#pub-bibtex-toggle-8:checked ~ #pub-bibtex-pre-8 {
+							 max-height:800px;
+								padding: .4em;
+							}#pub-bibtex-toggle-9:checked ~ #pub-bibtex-pre-9 {
+							 max-height:800px;
+								padding: .4em;
+							}#pub-bibtex-toggle-10:checked ~ #pub-bibtex-pre-10 {
+							 max-height:800px;
+								padding: .4em;
+							}</style>            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+	<div id="tk"></div>
+  <!-- start section portfolio -->
+  <div id="portfolio" class="text-center paddsection">
+
+	
+	
+				 <div class="container">
+				  <div class="section-title text-center">
+					<a style="display:inline-block; background:#fff; padding:5px; margin: 0px 0 10px 0; border:1px solid #fff; border-radius:15px;width:100px;"  href="?tk=true#tk" title="Telecooperation Lab homepage"><img style="width:90px;" src="images/tk.png" alt="Telecooperation Lab" /></a><br>
+					<h2 id="research">Research at TK</h2>
+					<h4 class="td-subtitle"><a href="?tk=true#tk">Click here if you are interested in the HCI research done by the <span class="teamdarmstadt-highlight">Telecooperation Lab</span></a></h4>
+				  </div>
+				</div>
+
+							</div>
+  
+	<div id="peasec"></div>
+	
+  <div id="portfolio" class="text-center paddsection">
+  <div class="container">
+				  <div class="section-title text-center">
+					<a href="https://peasec.de/themen/" title="PEASEC homepage"><img style="width:100px; margin: 0px 0 10px 0;"  src="images/peasec.png" alt="PEASEC Lab" /></a><br>
+					<h2 id="research">Research at PEASEC</h2>
+					<h4 class="td-subtitle"><a href="https://peasec.de/topics/">Click here if you are interested in the HCI research done by the <span class="teamdarmstadt-highlight">PEASEC</span> group.</a></h4>
+				  </div>
+				</div>
+				</div>
+  
+  
+  <!-- End section journal -->
+		
+		
+  <!-- start section contact -->
+  <div id="contact" class="paddsection">
+    <div class="container">
+      <div class="contact-block1">
+        <div class="row">
+
+          <div class="mx-auto">
+            <div class="contact-contact">
+
+              <h2 class="mb-30">GET IN TOUCH</h2>
+
+              <ul class="contact-details">
+                <li><span><strong>Teamdarmstadt (Telecooperation Lab)</strong></span></li>
+                <li><span>Hochschulstraße 10</span></li>
+                <li><span>64289 Darmstadt, Germany</span></li>
+                <li><span><a href="javascript:window.location.href=atob('bWFpbHRvOmhjaUB0ay50dS1kYXJtc3RhZHQuZGU=')"><i class="ion-android-mail"></i> hci @ tk.tu-darmstadt.de</a></span></li>
+              </ul>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- start sectoion contact -->
+
+
+  <!-- start section footer -->
+  <div id="footer" class="text-center">
+    <div class="container">
+      <div class="socials-media text-center">
+
+        <ul class="list-unstyled">
+          <li><a href="javascript:window.location.href=atob('bWFpbHRvOmhjaUB0ay50dS1kYXJtc3RhZHQuZGU=')"><i class="ion-android-mail"></i></a></li>
+          <!-- <li><a href="https://www.informatik.tu-darmstadt.de/telekooperation/research_2/tangible_interaction_ti/index.en.jsp"><i class="ion-university"></i></a></li> -->
+          <li><a href="https://www.youtube.com/user/TKLabs"><i class="ion-social-youtube"></i></a></li>
+          <!-- <li><a href="https://www.facebook.com/teamdarmstadt/"><i class="ion-social-facebook"></i></a></li> -->
+          <li><a href="https://www.instagram.com/teamdarmstadt/"><i class="ion-social-instagram"></i></a></li>
+        </ul>
+
+      </div>
+
+      <p>&copy; Copyrights #teamdarmstadt. All rights reserved.</p>
+      <p><a href="https://www.tu-darmstadt.de/datenschutzerklaerung.de.jsp">Impressum und Datenschutz</a> / <a href="https://www.tu-darmstadt.de/datenschutzerklaerung.en.jsp">Imprint and Privacy Policy</a></p>
+	  <p><a href="/impressum.html">Google Services Datenschutzerklärung</a> / <a href="/imprint.html">Google Services Privacy Policy</a></p>
+	  <p></p>
+
+      <div class="credits">
+        <!--
+          All the links in the footer should remain intact.
+          You can delete the links only if you purchased the pro version.
+          Licensing information: https://bootstrapmade.com/license/
+          Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Folio
+        <a href="http://www.sebastian-guenther.com" title="Sebastian Günther Private Webpage">sebastian-guenther.com</a>-->
+		<br />
+		<br />Title Image by <a href="https://www.tu-darmstadt.de/universitaet/aktuelles_meldungen/medienservice/pressebilder_campus_und_gebaeude/pressebilder_detailseite_15552.de.jsp">Thomas Ott / TU Darmstadt</a>
+		<br />
+		Icons by <a href="https://ionicframework.com/docs/v2/ionicons/">Ionicons</a>
+		<br />
+        Template by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>
+
+    </div>
+	
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
+	
+  </div>
+  <!-- End section footer -->
+  
+  
+	<div class="tk-logos">
+		<div>
+		<a href="https://www.informatik.tu-darmstadt.de/telekooperation/research_2/tangible_interaction_ti/index.en.jsp" title="Telecooperation Lab homepage"><img src="images/tk.png" alt="Telecooperation Lab" /></a>
+		<a href="https://gugenheimer.com/" title="HCI Lab homepage"><img src="images/newhcilablogo.png" style="height:22px;" alt="Gugenheimer HCI Lab" /></a>
+    <a href="https://flomue.com/" title="Urban Lab homepage"><img src="images/urbanlab.png" style="height:22px;" alt="Urban Lab" /></a>
+		<a href="https://peasec.de/" title="PEASEC homepage"><img src="images/peasec.png" alt="PEASEC Lab" /></a>
+		<a href="https://www.arbing.psychologie.tu-darmstadt.de/fai/index.de.jsp" title="Arbeits- und Ingenieurpsychologie FAI Group of Joachim Vogt"><img src="images/arbing.png" alt="Arbeits- und Ingenieurpsychologie FAI Group" /></a>
+		<a href="https://www.seemoo.tu-darmstadt.de/" title="SEEMO homepage"><img src="images/seemo.svg" style="height:20px;" alt="SEEMOO Lab" /></a>
+		<a href="http://www.tu-darmstadt.de" title="Technische Universitaet Darmstadt"><img src="images/tuda.png" alt="TU Darmstadt" /></a>
+		</div>
+	</div>
+
+  
+  
+
+</body>
+
+</html>

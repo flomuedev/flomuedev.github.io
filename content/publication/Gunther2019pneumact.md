@@ -1,0 +1,17 @@
++++
+title = "PneumAct: Pneumatic Kinesthetic Actuation of Body Joints in Virtual Reality Environments"
+date = "2019-06-01T00:00:00Z"
+type = "publication"
+authors = "Sebastian G\u00fcnther, Mohit Makhija, Florian M\u00fcller, Dominik Sch\u00f6n, Max M\u00fchlh\u00e4user, Markus Funk"
+authors_html = "Sebastian G\u00fcnther, Mohit Makhija, <span class=\"highlight-author\">Florian M\u00fcller</span>, Dominik Sch\u00f6n, Max M\u00fchlh\u00e4user, Markus Funk"
+venue = "Proceedings of the 2019 on Designing Interactive Systems Conference"
+venue_short = "DIS"
+bibtex = "@inproceedings{Gunther2019pneumact,\n  author = {G\u00fcnther, Sebastian and Makhija, Mohit and M\u00fcller, Florian and Sch\u00f6n, Dominik and M\u00fchlh\u00e4user, Max and Funk, Markus},\n  title = {PneumAct: Pneumatic Kinesthetic Actuation of Body Joints in Virtual Reality Environments},\n  booktitle = {Proceedings of the 2019 on Designing Interactive Systems Conference},\n  year = {2019},\n  month = {jun},\n  pages = {227--240},\n  publisher = {ACM},\n  address = {New York, NY, USA},\n  doi = {10.1145/3322276.3322302},\n  isbn = {978-1-4503-5850-7},\n  keywords = {compressed air,force feedback,haptics,kinesthetic,pneumatic,virtual reality},\n  abstract = {Virtual Reality Environments (VRE) create an immersive user experience through visual, aural, and haptic sensations. However, the latter is often limited to vibrotactile sensations that are not able to actively provide kinesthetic motion actuation. Further, such sensations do not cover natural representations of physical forces, for example, when lifting a weight. We present PneumAct, a jacket to enable pneumatically actuated kinesthetic movements of arm joints in VRE. It integrates two types of actuators inflated through compressed air: a Contraction Actuator and an Extension Actuator. We evaluate our PneumAct jacket through two user studies with a total of 32 participants: First, we perform a technical evaluation measuring the contraction and extension angles of different inflation patterns and inflation durations. Second, we evaluate PneumAct in three VRE scenarios comparing our system to traditional controller-based vibrotactile and a baseline without haptic feedback.},\n}"
+pdf = "Gunther2019pneumact.pdf"
+preview = "Gunther2019pneumact.jpg"
+video = "https://www.youtube.com/watch?v=4lRWxzs4Rgs"
+doi = "10.1145/3322276.3322302"
+keywords = ["compressed air", "force feedback", "haptics", "kinesthetic", "pneumatic", "virtual reality"]
++++
+
+Virtual Reality Environments (VRE) create an immersive user experience through visual, aural, and haptic sensations. However, the latter is often limited to vibrotactile sensations that are not able to actively provide kinesthetic motion actuation. Further, such sensations do not cover natural representations of physical forces, for example, when lifting a weight. We present PneumAct, a jacket to enable pneumatically actuated kinesthetic movements of arm joints in VRE. It integrates two types of actuators inflated through compressed air: a Contraction Actuator and an Extension Actuator. We evaluate our PneumAct jacket through two user studies with a total of 32 participants: First, we perform a technical evaluation measuring the contraction and extension angles of different inflation patterns and inflation durations. Second, we evaluate PneumAct in three VRE scenarios comparing our system to traditional controller-based vibrotactile and a baseline without haptic feedback.

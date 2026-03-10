@@ -1,0 +1,17 @@
++++
+title = "E-ScootAR: Exploring Unimodal Warnings for E-Scooter Riders in Augmented Reality"
+date = "2022-04-01T00:00:00Z"
+type = "publication"
+authors = "Andrii Matviienko, Florian M\u00fcller, Dominik Sch\u00f6n, R\u00e9gis Fayard, Salar Abaspur, Yi Li, Max M\u00fchlh\u00e4user"
+authors_html = "Andrii Matviienko, <span class=\"highlight-author\">Florian M\u00fcller</span>, Dominik Sch\u00f6n, R\u00e9gis Fayard, Salar Abaspur, Yi Li, Max M\u00fchlh\u00e4user"
+venue = "Extended Abstracts of the 2022 CHI Conference on Human Factors in Computing Systems"
+venue_short = "CHI EA"
+bibtex = "@inproceedings{matviienkoEScootARExploringUnimodal2022,\n  author = {Matviienko, Andrii and M\u00fcller, Florian and Sch\u00f6n, Dominik and Fayard, R\u00e9gis and Abaspur, Salar and Li, Yi and M\u00fchlh\u00e4user, Max},\n  title = {E-ScootAR: Exploring Unimodal Warnings for E-Scooter Riders in Augmented Reality},\n  booktitle = {Extended Abstracts of the 2022 CHI Conference on Human Factors in Computing Systems},\n  year = {2022},\n  month = {apr},\n  pages = {1--7},\n  publisher = {Association for Computing Machinery},\n  address = {New York, NY, USA},\n  series = {CHI EA '22},\n  doi = {10.1145/3491101.3519831},\n  isbn = {978-1-4503-9156-6},\n  keywords = {augmented reality,E-Scooter,micro-mobility,traffic safety},\n  abstract = {Micro-mobility is becoming a more popular means of transportation. However, this increased popularity brings its challenges. In particular, the accident rates for E-Scooter riders increase, which endangers the riders and other road users. In this paper, we explore the idea of augmenting E-Scooters with unimodal warnings to prevent collisions with other road users, which include Augmented Reality (AR) notifications, vibrotactile feedback on the handlebar, and auditory signals in the AR glasses. We conducted an outdoor experiment (N = 13) using an Augmented Reality simulation and compared these types of warnings in terms of reaction time, accident rate, and feeling of safety. Our results indicate that AR and auditory warnings lead to shorter reaction times, have a better perception, and create a better feeling of safety than vibrotactile warnings. Moreover, auditory signals have a higher acceptance by the riders compared to the other two types of warnings.},\n}"
+pdf = "matviienkoEScootARExploringUnimodal2022.pdf"
+preview = "matviienkoEScootARExploringUnimodal2022.jpg"
+talk = "https://www.youtube.com/watch?v=uYBIB51xgNs"
+doi = "10.1145/3491101.3519831"
+keywords = ["augmented reality", "E-Scooter", "micro-mobility", "traffic safety"]
++++
+
+Micro-mobility is becoming a more popular means of transportation. However, this increased popularity brings its challenges. In particular, the accident rates for E-Scooter riders increase, which endangers the riders and other road users. In this paper, we explore the idea of augmenting E-Scooters with unimodal warnings to prevent collisions with other road users, which include Augmented Reality (AR) notifications, vibrotactile feedback on the handlebar, and auditory signals in the AR glasses. We conducted an outdoor experiment (N = 13) using an Augmented Reality simulation and compared these types of warnings in terms of reaction time, accident rate, and feeling of safety. Our results indicate that AR and auditory warnings lead to shorter reaction times, have a better perception, and create a better feeling of safety than vibrotactile warnings. Moreover, auditory signals have a higher acceptance by the riders compared to the other two types of warnings.

@@ -1,0 +1,17 @@
++++
+title = "Using Pseudo-Stiffness to Enrich the Haptic Experience in Virtual Reality"
+date = "2023-04-01T00:00:00Z"
+type = "publication"
+authors = "Yannick Weiss, Steeven Villa, Albrecht Schmidt, Sven Mayer, Florian M\u00fcller"
+authors_html = "Yannick Weiss, Steeven Villa, Albrecht Schmidt, Sven Mayer, <span class=\"highlight-author\">Florian M\u00fcller</span>"
+venue = "Proceedings of the 2023 CHI Conference on Human Factors in Computing Systems"
+venue_short = "CHI"
+bibtex = "@inproceedings{weissUsingPseudoStiffnessEnrich2023a,\n  author = {Weiss, Yannick and Villa, Steeven and Schmidt, Albrecht and Mayer, Sven and M\u00fcller, Florian},\n  title = {Using Pseudo-Stiffness to Enrich the Haptic Experience in Virtual Reality},\n  booktitle = {Proceedings of the 2023 CHI Conference on Human Factors in Computing Systems},\n  year = {2023},\n  month = {apr},\n  pages = {1--15},\n  publisher = {Association for Computing Machinery},\n  address = {New York, NY, USA},\n  series = {CHI '23},\n  doi = {10.1145/3544548.3581223},\n  isbn = {978-1-4503-9421-5},\n  keywords = {haptic illusions,pseudo-haptics,virtual reality},\n  abstract = {Providing users with a haptic sensation of the hardness and softness of objects in virtual reality is an open challenge. While physical props and haptic devices help, their haptic properties do not allow for dynamic adjustments. To overcome this limitation, we present a novel technique for changing the perceived stiffness of objects based on a visuo-haptic illusion. We achieved this by manipulating the hands' Control-to-Display (C/D) ratio in virtual reality while pressing down on an object with fixed stiffness. In the first study (N=12), we determine the detection thresholds of the illusion. Our results show that we can exploit a C/D ratio from 0.7 to 3.5 without user detection. In the second study (N=12), we analyze the illusion's impact on the perceived stiffness. Our results show that participants perceive the objects to be up to 28.1\\% softer and 8.9\\% stiffer, allowing for various haptic applications in virtual reality.},\n}"
+pdf = "weissUsingPseudoStiffnessEnrich2023a.pdf"
+preview = "weissUsingPseudoStiffnessEnrich2023a.jpg"
+talk = "https://www.youtube.com/watch?v=Oex8NlPvcVU"
+doi = "10.1145/3544548.3581223"
+keywords = ["haptic illusions", "pseudo-haptics", "virtual reality"]
++++
+
+Providing users with a haptic sensation of the hardness and softness of objects in virtual reality is an open challenge. While physical props and haptic devices help, their haptic properties do not allow for dynamic adjustments. To overcome this limitation, we present a novel technique for changing the perceived stiffness of objects based on a visuo-haptic illusion. We achieved this by manipulating the hands' Control-to-Display (C/D) ratio in virtual reality while pressing down on an object with fixed stiffness. In the first study (N=12), we determine the detection thresholds of the illusion. Our results show that we can exploit a C/D ratio from 0.7 to 3.5 without user detection. In the second study (N=12), we analyze the illusion's impact on the perceived stiffness. Our results show that participants perceive the objects to be up to 28.1\% softer and 8.9\% stiffer, allowing for various haptic applications in virtual reality.

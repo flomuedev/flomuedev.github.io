@@ -1,0 +1,19 @@
++++
+title = "Oh, Snap! A Fabrication Pipeline to Magnetically Connect Conventional and 3D-Printed Electronics"
+date = "2021-05-01T00:00:00Z"
+type = "publication"
+authors = "Martin Schmitz, Jan Riemann, Florian M\u00fcller, Steffen Kreis, Max M\u00fchlh\u00e4user"
+authors_html = "Martin Schmitz, Jan Riemann, <span class=\"highlight-author\">Florian M\u00fcller</span>, Steffen Kreis, Max M\u00fchlh\u00e4user"
+venue = "Proceedings of the 2021 CHI Conference on Human Factors in Computing Systems"
+venue_short = "CHI"
+bibtex = "@inproceedings{schmitzOhSnapFabrication2021,\n  author = {Schmitz, Martin and Riemann, Jan and M\u00fcller, Florian and Kreis, Steffen and M\u00fchlh\u00e4user, Max},\n  title = {Oh, Snap! A Fabrication Pipeline to Magnetically Connect Conventional and 3D-Printed Electronics},\n  booktitle = {Proceedings of the 2021 CHI Conference on Human Factors in Computing Systems},\n  year = {2021},\n  month = {may},\n  pages = {1--11},\n  publisher = {Association for Computing Machinery},\n  address = {New York, NY, USA},\n  series = {CHI '21},\n  doi = {10.1145/3411764.3445641},\n  isbn = {978-1-4503-8096-6},\n  keywords = {3d printing,3D printing,capacitive sensing,Capacitive sensing,prototyping,Prototyping,proximity,Proximity,touch,Touch},\n  abstract = {3D printing has revolutionized rapid prototyping by speeding up the creation of custom-shaped objects. With the rise of multi-material 3D printers, these custom-shaped objects can now be made interactive in a single pass through passive conductive structures. However, connecting conventional electronics to these conductive structures often still requires time-consuming manual assembly involving many wires, soldering or gluing. To alleviate these shortcomings, we propose : a fabrication pipeline and interfacing concept to magnetically connect a 3D-printed object equipped with passive sensing structures to conventional sensing electronics. To this end, utilizes ferromagnetic and conductive 3D-printed structures, printable in a single pass on standard printers. We further present a proof-of-concept capacitive sensing board that enables easy and robust magnetic assembly to quickly create interactive 3D-printed objects. We evaluate by assessing the robustness and quality of the connection and demonstrate its broad applicability by a series of example applications.},\n}"
+pdf = "schmitzOhSnapFabrication2021.pdf"
+preview = "schmitzOhSnapFabrication2021.jpg"
+video = "https://www.youtube.com/watch?v=JX3ZwKnnJVs"
+talk = "https://www.youtube.com/watch?v=0AUrrtwaPVQ"
+code = "https://github.com/Telecooperation/oh-snap"
+doi = "10.1145/3411764.3445641"
+keywords = ["3d printing", "3D printing", "capacitive sensing", "Capacitive sensing", "prototyping", "Prototyping", "proximity", "Proximity", "touch", "Touch"]
++++
+
+3D printing has revolutionized rapid prototyping by speeding up the creation of custom-shaped objects. With the rise of multi-material 3D printers, these custom-shaped objects can now be made interactive in a single pass through passive conductive structures. However, connecting conventional electronics to these conductive structures often still requires time-consuming manual assembly involving many wires, soldering or gluing. To alleviate these shortcomings, we propose : a fabrication pipeline and interfacing concept to magnetically connect a 3D-printed object equipped with passive sensing structures to conventional sensing electronics. To this end, utilizes ferromagnetic and conductive 3D-printed structures, printable in a single pass on standard printers. We further present a proof-of-concept capacitive sensing board that enables easy and robust magnetic assembly to quickly create interactive 3D-printed objects. We evaluate by assessing the robustness and quality of the connection and demonstrate its broad applicability by a series of example applications.

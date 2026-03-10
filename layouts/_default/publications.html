@@ -1,0 +1,115 @@
+{{ define "main" }}
+<section class="section">
+    <div class="section-header">
+        <h1 class="section-title">Publications</h1>
+        <p class="section-description">
+            For an up-to-date list of {{ mul (div (len .Site.Data.publications) 10) 10 }}+ publications, please see
+            <a href="{{ .Site.Params.googleScholar }}" target="_blank" rel="noopener">Google Scholar</a>.
+        </p>
+    </div>
+
+    <div class="pub-search-wrapper">
+        <svg class="pub-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" id="pub-search" class="pub-search"
+            placeholder="Search publications by title, author, venue, or keyword…" aria-label="Search publications">
+        <div id="pub-count" class="pub-count">{{ len .Site.Data.publications }} publications</div>
+    </div>
+
+    {{/* Group publications by year */}}
+    {{ $currentYear := 0 }}
+    {{ $inGroup := false }}
+    {{ range .Site.Data.publications }}
+    {{ if ne .year $currentYear }}
+    {{ if $inGroup }}</div>{{ end }}
+    {{ $currentYear = .year }}
+    {{ $inGroup = true }}
+    <div class="pub-year-group">
+        <h2 class="pub-year-label">{{ .year }}</h2>
+        {{ end }}
+        <article class="pub-card">
+            {{ if .preview }}
+            <img src="/publication_preview/{{ .preview }}" alt="{{ .title }}" class="pub-card-image" loading="lazy">
+            {{ end }}
+            <div class="pub-card-content">
+                <h3 class="pub-card-title"><a href="/publication/{{ .key }}/" class="pub-card-link-overlay">{{ .title
+                        }}</a></h3>
+                <div class="pub-card-authors">{{ .authors_html | safeHTML }}</div>
+                <div class="pub-card-venue">{{ if .venue_short }}<span class="venue-short-badge">{{ .venue_short }}</span> {{ end }}{{ .venue }}{{ if .year }}, {{ .year }}{{ end }}</div>
+                <div class="pub-card-links">
+                    {{ if .pdf }}
+                    <a href="/pdf/{{ .pdf }}" class="pub-link" target="_blank">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                            <polyline points="14 2 14 8 20 8" />
+                            <line x1="16" y1="13" x2="8" y2="13" />
+                            <line x1="16" y1="17" x2="8" y2="17" />
+                        </svg>
+                        PDF
+                    </a>
+                    {{ end }}
+                    {{ if .doi }}
+                    <a href="https://doi.org/{{ .doi }}" class="pub-link" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+                        </svg>
+                        DOI
+                    </a>
+                    {{ end }}
+                    {{ if .arxiv }}
+                    <a href="{{ .arxiv }}" class="pub-link" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                        </svg>
+                        arXiv
+                    </a>
+                    {{ end }}
+                    {{ if .video }}
+                    <a href="{{ .video }}" class="pub-link" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="23 7 16 12 23 17 23 7" />
+                            <rect x="1" y="5" width="15" height="14" rx="2" ry="2" />
+                        </svg>
+                        Video
+                    </a>
+                    {{ end }}
+                    {{ if .talk }}
+                    <a href="{{ .talk }}" class="pub-link" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+                            <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                        </svg>
+                        Talk
+                    </a>
+                    {{ end }}
+                    {{ if .code }}
+                    <a href="{{ .code }}" class="pub-link" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="16 18 22 12 16 6" />
+                            <polyline points="8 6 2 12 8 18" />
+                        </svg>
+                        Code
+                    </a>
+                    {{ end }}
+                    {{ if .bibtex }}
+                    <button class="pub-link bibtex-trigger" data-bibtex="{{ .bibtex }}">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M8 3H7a2 2 0 0 0-2 2v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5c0 1.1.9 2 2 2h1" />
+                            <path d="M16 21h1a2 2 0 0 0 2-2v-5c0-1.1.9-2 2-2a2 2 0 0 1-2-2V5a2 2 0 0 0-2-2h-1" />
+                        </svg>
+                        BibTeX
+                    </button>
+                    {{ end }}
+                </div>
+            </div>
+        </article>
+        {{ end }}
+        {{ if $inGroup }}
+    </div>{{ end }}
+</section>
+{{ end }}

@@ -1,0 +1,16 @@
++++
+title = "A Study on Proximity-based Hand Input for One-handed Mobile Interaction"
+date = "2015-08-01T00:00:00Z"
+type = "publication"
+authors = "Florian M\u00fcller, Mohammadreza Khalilbeigi, Niloofar Dezfuli, Alireza Sahami Shirazi, Sebastian G\u00fcnther, Max M\u00fchlh\u00e4user"
+authors_html = "<span class=\"highlight-author\">Florian M\u00fcller</span>, Mohammadreza Khalilbeigi, Niloofar Dezfuli, Alireza Sahami Shirazi, Sebastian G\u00fcnther, Max M\u00fchlh\u00e4user"
+venue = "Proceedings of the 3rd ACM Symposium on Spatial User Interaction"
+venue_short = "SUI"
+bibtex = "@inproceedings{Muller2015,\n  author = {M\u00fcller, Florian and Khalilbeigi, Mohammadreza and Dezfuli, Niloofar and Sahami Shirazi, Alireza and G\u00fcnther, Sebastian and M\u00fchlh\u00e4user, Max},\n  title = {A Study on Proximity-based Hand Input for One-handed Mobile Interaction},\n  booktitle = {Proceedings of the 3rd ACM Symposium on Spatial User Interaction},\n  year = {2015},\n  month = {aug},\n  pages = {53--56},\n  publisher = {ACM},\n  address = {New York, NY, USA},\n  doi = {10.1145/2788940.2788955},\n  isbn = {978-1-4503-3703-8},\n  keywords = {Design,Human Factors,Measurement,Measurement.,notion,tosync},\n  abstract = {On-body user interfaces utilize the human's skin for both sensing input and displaying graphical output. In this paper, we present how the degree of freedom offered by the elbow joint, i.e., exion and extension, can be leveraged to extend the input space of projective user interfaces. The user can move his hand towards or away from himself to browse through a multi-layer information space. We conducted a controlled experiment to investigate how accurately and ef-ficiently users can interact in the space. The results revealed that the accuracy and effciency of proximity-based interactions mainly depend on the traveling distance to the target layer while neither the hand side nor the direction of interaction have a signifcant inuence. Based on our findings, we propose guidelines for designing on-body user interfaces.},\n}"
+pdf = "Muller2015.pdf"
+preview = "Muller2015.jpg"
+doi = "10.1145/2788940.2788955"
+keywords = ["Design", "Human Factors", "Measurement", "Measurement.", "notion", "tosync"]
++++
+
+On-body user interfaces utilize the human's skin for both sensing input and displaying graphical output. In this paper, we present how the degree of freedom offered by the elbow joint, i.e., exion and extension, can be leveraged to extend the input space of projective user interfaces. The user can move his hand towards or away from himself to browse through a multi-layer information space. We conducted a controlled experiment to investigate how accurately and ef-ficiently users can interact in the space. The results revealed that the accuracy and effciency of proximity-based interactions mainly depend on the traveling distance to the target layer while neither the hand side nor the direction of interaction have a signifcant inuence. Based on our findings, we propose guidelines for designing on-body user interfaces.

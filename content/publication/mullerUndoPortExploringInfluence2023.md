@@ -1,0 +1,19 @@
++++
+title = "UndoPort: Exploring the Influence of Undo-Actions for Locomotion in Virtual Reality on the Efficiency, Spatial Understanding and User Experience"
+date = "2023-04-01T00:00:00Z"
+type = "publication"
+authors = "Florian M\u00fcller, Arantxa Ye, Dominik Sch\u00f6n, Julian Rasch"
+authors_html = "<span class=\"highlight-author\">Florian M\u00fcller</span>, Arantxa Ye, Dominik Sch\u00f6n, Julian Rasch"
+venue = "Proceedings of the 2023 CHI Conference on Human Factors in Computing Systems"
+venue_short = "CHI"
+bibtex = "@inproceedings{mullerUndoPortExploringInfluence2023,\n  author = {M\u00fcller, Florian and Ye, Arantxa and Sch\u00f6n, Dominik and Rasch, Julian},\n  title = {UndoPort: Exploring the Influence of Undo-Actions for Locomotion in Virtual Reality on the Efficiency, Spatial Understanding and User Experience},\n  booktitle = {Proceedings of the 2023 CHI Conference on Human Factors in Computing Systems},\n  year = {2023},\n  month = {apr},\n  pages = {1--15},\n  publisher = {Association for Computing Machinery},\n  address = {New York, NY, USA},\n  series = {CHI '23},\n  doi = {10.1145/3544548.3581557},\n  isbn = {978-1-4503-9421-5},\n  eprint = {2303.15800},\n  archiveprefix = {arXiv},\n  keywords = {Locomotion,Teleport,Undo,Virtual Reality},\n  abstract = {When we get lost in Virtual Reality (VR) or want to return to a previous location, we use the same methods of locomotion for the way back as for the way forward. This is time-consuming and requires additional physical orientation changes, increasing the risk of getting tangled in the headsets' cables. In this paper, we propose the use of undo actions to revert locomotion steps in VR. We explore eight different variations of undo actions as extensions of point&teleport, based on the possibility to undo position and orientation changes together with two different visualizations of the undo step (discrete and continuous). We contribute the results of a controlled experiment with 24 participants investigating the efficiency and orientation of the undo techniques in a radial maze task. We found that the combination of position and orientation undo together with a discrete visualization resulted in the highest efficiency without increasing orientation errors.},\n  selected = {true},\n}"
+pdf = "mullerUndoPortExploringInfluence2023.pdf"
+preview = "mullerUndoPortExploringInfluence2023.jpg"
+video = "https://www.youtube.com/watch?v=BwRc4f8VSEk"
+talk = "https://www.youtube.com/watch?v=INzk1\\_a2Z3k"
+arxiv = "https://arxiv.org/abs/2303.15800"
+doi = "10.1145/3544548.3581557"
+keywords = ["Locomotion", "Teleport", "Undo", "Virtual Reality"]
++++
+
+When we get lost in Virtual Reality (VR) or want to return to a previous location, we use the same methods of locomotion for the way back as for the way forward. This is time-consuming and requires additional physical orientation changes, increasing the risk of getting tangled in the headsets' cables. In this paper, we propose the use of undo actions to revert locomotion steps in VR. We explore eight different variations of undo actions as extensions of point&teleport, based on the possibility to undo position and orientation changes together with two different visualizations of the undo step (discrete and continuous). We contribute the results of a controlled experiment with 24 participants investigating the efficiency and orientation of the undo techniques in a radial maze task. We found that the combination of position and orientation undo together with a discrete visualization resulted in the highest efficiency without increasing orientation errors.

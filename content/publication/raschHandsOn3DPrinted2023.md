@@ -1,0 +1,16 @@
++++
+title = "Hands-On 3D Printed Electronics"
+date = "2023-02-01T00:00:00Z"
+type = "publication"
+authors = "Julian Rasch, Florian M\u00fcller, Thomas Kosch, Martin Schmitz, Sebastian S. Feger"
+authors_html = "Julian Rasch, <span class=\"highlight-author\">Florian M\u00fcller</span>, Thomas Kosch, Martin Schmitz, Sebastian S. Feger"
+venue = "Proceedings of the Seventeenth International Conference on Tangible, Embedded, and Embodied Interaction"
+venue_short = "TEI"
+bibtex = "@inproceedings{raschHandsOn3DPrinted2023,\n  author = {Rasch, Julian and M\u00fcller, Florian and Kosch, Thomas and Schmitz, Martin and Feger, Sebastian S.},\n  title = {Hands-On 3D Printed Electronics},\n  booktitle = {Proceedings of the Seventeenth International Conference on Tangible, Embedded, and Embodied Interaction},\n  year = {2023},\n  month = {feb},\n  pages = {1--2},\n  publisher = {ACM},\n  address = {Warsaw Poland},\n  doi = {10.1145/3569009.3571846},\n  isbn = {978-1-4503-9977-7},\n  keywords = {3D Printing,Additive Manufacturing,Circuit Engineering,Printed Electronics},\n  abstract = {The parallel improvements in multi-material 3D printers and the quality of conductive filament open new possibilities for the fabrication of tangible and functional objects. In this studio, we discuss best practices for 3D printed electronics, talk about encountered problems, and derive design recommendations. We will guide the participants through a fabrication process by practically designing and printing objects. Consequently, we contemplate individual functional fabricated components, including small printed circuits and multi-material prints. We aim to spark a discussion about individually experienced challenges participants encountered during their design and fabrication process. This discussion includes problemsolving strategies, whose insights benefit other participants. Finally, we show the potential of printed electronics and discuss encouraging new opportunities in this field.},\n  langid = {english},\n}"
+pdf = "raschHandsOn3DPrinted2023.pdf"
+preview = "raschHandsOn3DPrinted2023.jpg"
+doi = "10.1145/3569009.3571846"
+keywords = ["3D Printing", "Additive Manufacturing", "Circuit Engineering", "Printed Electronics"]
++++
+
+The parallel improvements in multi-material 3D printers and the quality of conductive filament open new possibilities for the fabrication of tangible and functional objects. In this studio, we discuss best practices for 3D printed electronics, talk about encountered problems, and derive design recommendations. We will guide the participants through a fabrication process by practically designing and printing objects. Consequently, we contemplate individual functional fabricated components, including small printed circuits and multi-material prints. We aim to spark a discussion about individually experienced challenges participants encountered during their design and fabrication process. This discussion includes problemsolving strategies, whose insights benefit other participants. Finally, we show the potential of printed electronics and discuss encouraging new opportunities in this field.

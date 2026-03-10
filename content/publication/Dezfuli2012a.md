@@ -1,0 +1,16 @@
++++
+title = "Leveraging the Palm Surface as an Eyes-Free Tv Remote Control"
+date = "2012-05-01T00:00:00Z"
+type = "publication"
+authors = "Niloofar Dezfuli, Mohammadreza Khalilbeigi, Jochen Huber, Florian M\u00fcller, Max M\u00fchlh\u00e4user"
+authors_html = "Niloofar Dezfuli, Mohammadreza Khalilbeigi, Jochen Huber, <span class=\"highlight-author\">Florian M\u00fcller</span>, Max M\u00fchlh\u00e4user"
+venue = "CHI '12 Extended Abstracts on Human Factors in Computing Systems"
+venue_short = "CHI EA"
+bibtex = "@inproceedings{Dezfuli2012a,\n  author = {Dezfuli, Niloofar and Khalilbeigi, Mohammadreza and Huber, Jochen and M\u00fcller, Florian and M\u00fchlh\u00e4user, Max},\n  title = {Leveraging the Palm Surface as an Eyes-Free Tv Remote Control},\n  booktitle = {CHI '12 Extended Abstracts on Human Factors in Computing Systems},\n  year = {2012},\n  month = {may},\n  pages = {2483--2488},\n  publisher = {ACM},\n  address = {New York, NY, USA},\n  doi = {10.1145/2212776.2223823},\n  isbn = {978-1-4503-1016-1},\n  keywords = {device-less,eyes-free,input,omnipresent,tv},\n  abstract = {User input on television typically requires a mediator device such as a handheld remote control. While being a well-established interaction paradigm, a handheld device has serious drawbacks: it can be easily misplaced due to its mobility and in case of a touch screen interface, it also requires additional visual attention. Emerging interaction paradigms like 3D mid-air gestures using novel depth sensors such as Microsoft's Kinect aim at overcoming these limitations, but are known for instance to be tiring. In this paper, we propose to leverage the palm as an interactive surface for TV remote control. Our contribution is two-fold: (1) we have explored the conceptual design space in an exploratory study. (2) Based upon these results, we investigated the accuracy and effectiveness of such an interface in a controlled experiment. Our results show that the palm has the potential to be leveraged for device-less and eyes-free TV interactions without any third-party mediator device.},\n}"
+pdf = "Dezfuli2012a.pdf"
+preview = "Dezfuli2012a.jpg"
+doi = "10.1145/2212776.2223823"
+keywords = ["device-less", "eyes-free", "input", "omnipresent", "tv"]
++++
+
+User input on television typically requires a mediator device such as a handheld remote control. While being a well-established interaction paradigm, a handheld device has serious drawbacks: it can be easily misplaced due to its mobility and in case of a touch screen interface, it also requires additional visual attention. Emerging interaction paradigms like 3D mid-air gestures using novel depth sensors such as Microsoft's Kinect aim at overcoming these limitations, but are known for instance to be tiring. In this paper, we propose to leverage the palm as an interactive surface for TV remote control. Our contribution is two-fold: (1) we have explored the conceptual design space in an exploratory study. (2) Based upon these results, we investigated the accuracy and effectiveness of such an interface in a controlled experiment. Our results show that the palm has the potential to be leveraged for device-less and eyes-free TV interactions without any third-party mediator device.

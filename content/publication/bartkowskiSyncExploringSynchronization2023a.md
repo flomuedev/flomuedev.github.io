@@ -1,0 +1,19 @@
++++
+title = "In Sync: Exploring Synchronization to Increase Trust Between Humans and Non-humanoid Robots"
+date = "2023-04-01T00:00:00Z"
+type = "publication"
+authors = "Wieslaw Bartkowski, Andrzej Nowak, Filip Ignacy Czajkowski, Albrecht Schmidt, Florian M\u00fcller"
+authors_html = "Wieslaw Bartkowski, Andrzej Nowak, Filip Ignacy Czajkowski, Albrecht Schmidt, <span class=\"highlight-author\">Florian M\u00fcller</span>"
+venue = "Proceedings of the 2023 CHI Conference on Human Factors in Computing Systems"
+venue_short = "CHI"
+bibtex = "@inproceedings{bartkowskiSyncExploringSynchronization2023a,\n  author = {Bartkowski, Wieslaw and Nowak, Andrzej and Czajkowski, Filip Ignacy and Schmidt, Albrecht and M\u00fcller, Florian},\n  title = {In Sync: Exploring Synchronization to Increase Trust Between Humans and Non-humanoid Robots},\n  booktitle = {Proceedings of the 2023 CHI Conference on Human Factors in Computing Systems},\n  year = {2023},\n  month = {apr},\n  pages = {1--14},\n  publisher = {Association for Computing Machinery},\n  address = {New York, NY, USA},\n  series = {CHI '23},\n  doi = {10.1145/3544548.3581193},\n  isbn = {978-1-4503-9421-5},\n  eprint = {2303.15917},\n  archiveprefix = {arXiv},\n  keywords = {design strategy,dynamical approach,non-humanoid robot,synchronization,trust},\n  abstract = {When we go for a walk with friends, we can observe an interesting effect: From step lengths to arm movements - our movements unconsciously align; they synchronize. Prior research found that this synchronization is a crucial aspect of human relations that strengthens social cohesion and trust. Generalizing from these findings in synchronization theory, we propose a dynamical approach that can be applied in the design of non-humanoid robots to increase trust. We contribute the results of a controlled experiment with 51 participants exploring our concept in a between-subjects design. For this, we built a prototype of a simple non-humanoid robot that can bend to follow human movements and vary the movement synchronization patterns. We found that synchronized movements lead to significantly higher ratings in an established questionnaire on trust between people and automation but did not influence the willingness to spend money in a trust game.},\n}"
+pdf = "bartkowskiSyncExploringSynchronization2023a.pdf"
+preview = "bartkowskiSyncExploringSynchronization2023a.jpg"
+video = "https://www.youtube.com/watch?v=kdEB9L4OCgk"
+talk = "https://www.youtube.com/watch?v=dEYNV4KaBR8"
+arxiv = "https://arxiv.org/abs/2303.15917"
+doi = "10.1145/3544548.3581193"
+keywords = ["design strategy", "dynamical approach", "non-humanoid robot", "synchronization", "trust"]
++++
+
+When we go for a walk with friends, we can observe an interesting effect: From step lengths to arm movements - our movements unconsciously align; they synchronize. Prior research found that this synchronization is a crucial aspect of human relations that strengthens social cohesion and trust. Generalizing from these findings in synchronization theory, we propose a dynamical approach that can be applied in the design of non-humanoid robots to increase trust. We contribute the results of a controlled experiment with 51 participants exploring our concept in a between-subjects design. For this, we built a prototype of a simple non-humanoid robot that can bend to follow human movements and vary the movement synchronization patterns. We found that synchronized movements lead to significantly higher ratings in an established questionnaire on trust between people and automation but did not influence the willingness to spend money in a trust game.

@@ -1,0 +1,17 @@
++++
+title = "TrackItPipe: A Fabrication Pipeline To Incorporate Location and Rotation Tracking Into 3D Printed Objects"
+date = "2022-10-01T00:00:00Z"
+type = "publication"
+authors = "Dominik Sch\u00f6n, Thomas Kosch, Martin Schmitz, Florian M\u00fcller, Sebastian G\u00fcnther, Johannes Kreutz, Max M\u00fchlh\u00e4user"
+authors_html = "Dominik Sch\u00f6n, Thomas Kosch, Martin Schmitz, <span class=\"highlight-author\">Florian M\u00fcller</span>, Sebastian G\u00fcnther, Johannes Kreutz, Max M\u00fchlh\u00e4user"
+venue = "Adjunct Proceedings of the 35th Annual ACM Symposium on User Interface Software and Technology"
+venue_short = "UIST"
+bibtex = "@inproceedings{schonTrackItPipeFabricationPipeline2022,\n  author = {Sch\u00f6n, Dominik and Kosch, Thomas and Schmitz, Martin and M\u00fcller, Florian and G\u00fcnther, Sebastian and Kreutz, Johannes and M\u00fchlh\u00e4user, Max},\n  title = {TrackItPipe: A Fabrication Pipeline To Incorporate Location and Rotation Tracking Into 3D Printed Objects},\n  booktitle = {Adjunct Proceedings of the 35th Annual ACM Symposium on User Interface Software and Technology},\n  year = {2022},\n  month = {oct},\n  pages = {1--5},\n  publisher = {Association for Computing Machinery},\n  address = {New York, NY, USA},\n  series = {UIST '22 Adjunct},\n  doi = {10.1145/3526114.3558719},\n  isbn = {978-1-4503-9321-8},\n  keywords = {3D Printing,Fabrication,Mixed Reality,Tracking},\n  abstract = {The increasing convergence of the digital and physical world creates a growing urgency to integrate 3D printed physical tangibles with virtual environments. A precise position and rotation tracking are essential to integrate such physical objects with a virtual environment. However, available 3D models commonly do not provide tracking support on their composition, which requires modifications by CAD experts. This poses a challenge for users with no prior CAD experience. This work presents TrackItPipe, a fabrication pipeline supporting users by semi-automatically adding tracking capabilities for 3D printable tangibles tailored to environmental requirements. TrackItPipe integrates modifications to the 3D model, produces the respective tangibles for 3D printing, and provides integration scripts for Mixed Reality. Using TrackItPipe, users can rapidly equip objects with tracking capabilities.},\n}"
+pdf = "schonTrackItPipeFabricationPipeline2022.pdf"
+preview = "schonTrackItPipeFabricationPipeline2022.jpg"
+code = "https://github.com/Dominik-Schoen/TrackItPipe"
+doi = "10.1145/3526114.3558719"
+keywords = ["3D Printing", "Fabrication", "Mixed Reality", "Tracking"]
++++
+
+The increasing convergence of the digital and physical world creates a growing urgency to integrate 3D printed physical tangibles with virtual environments. A precise position and rotation tracking are essential to integrate such physical objects with a virtual environment. However, available 3D models commonly do not provide tracking support on their composition, which requires modifications by CAD experts. This poses a challenge for users with no prior CAD experience. This work presents TrackItPipe, a fabrication pipeline supporting users by semi-automatically adding tracking capabilities for 3D printable tangibles tailored to environmental requirements. TrackItPipe integrates modifications to the 3D model, produces the respective tangibles for 3D printing, and provides integration scripts for Mixed Reality. Using TrackItPipe, users can rapidly equip objects with tracking capabilities.

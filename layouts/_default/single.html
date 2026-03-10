@@ -1,0 +1,5 @@
+{{ define "main" }}
+<div class="{{ if eq .Title " Imprint / Impressum" }}imprint-content{{ else }}section{{ end }}">
+    {{ .Content }}
+</div>
+{{ end }}

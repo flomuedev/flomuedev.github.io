@@ -1,0 +1,46 @@
+baseURL = "https://www.flomue.com/"
+languageCode = "en"
+title = "Florian Müller"
+enableRobotsTXT = true
+buildFuture = true
+
+[params]
+  description = "Florian Müller is an Assistant Professor for Mobile Human-Computer Interaction at TU Darmstadt."
+  author = "Florian Müller"
+  profileImage = "/img/profile.jpg"
+  googleScholar = "https://scholar.google.com/citations?user=slfzfQIAAAAJ"
+  orcid = "https://orcid.org/0000-0002-9621-6214"
+  github = "https://github.com/flomuedev"
+  linkedin = "https://www.linkedin.com/in/florian-mueller-hci"
+  dblp = "https://dblp.org/pid/m/FlorianMueller-3.html"
+  labUrl = "https://www.informatik.tu-darmstadt.de/hci/hci_tuda/urbanpage.en.jsp"
+  labName = "Urban Interaction Lab"
+  universityUrl = "https://www.tu-darmstadt.de/"
+  universityName = "TU Darmstadt"
+
+[menu]
+  [[menu.main]]
+    name = "About"
+    url = "/"
+    weight = 1
+  [[menu.main]]
+    name = "Publications"
+    url = "/publications/"
+    weight = 2
+  [[menu.main]]
+    name = "Teaching"
+    url = "/teaching/"
+    weight = 3
+
+[outputs]
+  home = ["HTML"]
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+
+[privacy]
+  [privacy.youtube]
+    privacyEnhanced = true
