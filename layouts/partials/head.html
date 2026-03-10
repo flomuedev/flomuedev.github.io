@@ -10,7 +10,7 @@
     content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
 <meta property="og:type" content="{{ if .IsHome }}website{{ else }}article{{ end }}">
 <meta property="og:url" content="{{ .Permalink }}">
-<meta property="og:image" content="{{ .Site.BaseURL }}img/profile.jpg">
+<meta property="og:image" content="{{ .Site.BaseURL }}{{ strings.TrimPrefix " /" .Site.Params.profileImage }}">
 
 <!-- Self-hosted Inter font -->
 <style>
@@ -35,3 +35,9 @@
 <link rel="canonical" href="{{ .Permalink }}">
 
 {{- partial "jsonld.html" . -}}
+
+<!-- TelemetryDeck Analytics -->
+{{ if hugo.IsProduction }}
+<script defer src="https://cdn.telemetrydeck.com/websdk/telemetrydeck.min.js"
+    data-app-id="A19A11BC-58CD-4EB7-83FA-40FFCFEB64F1"></script>
+{{ end }}
