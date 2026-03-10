@@ -463,6 +463,7 @@ def main():
             f"title = {json.dumps(pub['title'])}",
             f"date = {json.dumps(date_str)}",
             "type = \"publication\"",
+            f"aliases = [\"/publications/{pub['key']}/\"]",
             f"authors = {json.dumps(pub['authors'])}",
             f"authors_html = {json.dumps(pub['authors_html'])}",
             f"venue = {json.dumps(pub['venue'])}",
