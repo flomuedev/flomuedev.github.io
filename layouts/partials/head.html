@@ -31,7 +31,8 @@
     }
 </style>
 
-<link rel="stylesheet" href="/css/style.css">
+{{ $style := resources.Get "css/style.css" | fingerprint }}
+<link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}" crossorigin="anonymous">
 <link rel="canonical" href="{{ .Permalink }}">
 
 {{- partial "jsonld.html" . -}}
