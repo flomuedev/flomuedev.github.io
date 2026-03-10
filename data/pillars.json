@@ -1,0 +1,51 @@
+[
+  {
+    "id": "xr",
+    "label": "Extended Reality",
+    "short": "XR",
+    "color": "indigo",
+    "icon": "globe",
+    "description": "AR, VR, and mixed reality. Immersive environments, spatial interaction, and XR collaboration",
+    "keywords": ["extended reality", "xr", "augmented reality", " ar ", "virtual reality", " vr ",
+      "mixed reality", " mr ", "immersive", "head-mounted display", "hmd", "locomotion",
+      "teleportation", "spatial interaction", "3d interaction", "immersive visualization",
+      "collaborative xr", "shared gaze", "expert perspective", "passthrough"]
+  },
+  {
+    "id": "mobile",
+    "label": "Mobile Interaction",
+    "short": "Mobile",
+    "color": "sky",
+    "icon": "walking",
+    "description": "Interaction while moving. Walking, cycling, urban environments, and wearable devices",
+    "keywords": ["mobile", "mobile interaction", "mobile hci", "on-the-go", "while walking", "dual-task",
+      "pedestrian", "cyclist", "cycling", "e-scooter", "urban interaction", "smartwatch",
+      "one-handed", "situated", "in motion", "everyday mobility", "outdoor", "location-aware",
+      "heads-up interaction", "around-body", "wearable interaction"]
+  },
+  {
+    "id": "embodied",
+    "label": "Embodied Interaction",
+    "short": "Embodied",
+    "color": "orange",
+    "icon": "hand",
+    "description": "Tangible, haptic, and body-centric interfaces. Physical input and feedback",
+    "keywords": ["embodied", "embodied interaction", "body-centric", "on-body", "tangible", "haptic", "multisensory",
+      "thermal", "vibrotactile", "pneumatic", "encountered-type", "palm input", "hand input",
+      "foot input", "toe input", "pinching", "posture", "fabrication", "3d print",
+      "physical interface", "physical computing", "sensorized", "squeeze", "vibro"]
+  },
+  {
+    "id": "ai",
+    "label": "Human-AI Interaction",
+    "short": "Human-AI",
+    "color": "violet",
+    "icon": "brain",
+    "description": "AI systems, LLMs, co-creation, proactive AI, and AI-driven adaptation",
+    "keywords": ["human ai interaction", "human-ai interaction", "artificial intelligence", " ai ", "ai-", "llm",
+      "large language model", "generative ai", "co-creation", "co-creativity", "creative ai",
+      "proactive ai", "adaptive system", "ai-driven", "privacy assistant", "machine learning",
+      "intelligent system", "voice-based modeling", "ai in xr", "ai-supported", "robot",
+      "autonomous", "deep learning", "chatbot", "language model"]
+  }
+]

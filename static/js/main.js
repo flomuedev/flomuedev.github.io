@@ -69,34 +69,64 @@ document.addEventListener('DOMContentLoaded', () => {
     staggerContainers.forEach(el => staggerObserver.observe(el));
   }
 
-  // ---- Publication search / filter ----
+  // ---- Publication search + pillar filter ----
   const searchInput = document.getElementById('pub-search');
   const pubCards = document.querySelectorAll('.pub-card');
   const yearGroups = document.querySelectorAll('.pub-year-group');
   const pubCount = document.getElementById('pub-count');
+  const pillarButtons = document.querySelectorAll('.pillar-filter-btn');
 
-  if (searchInput && pubCards.length > 0) {
-    searchInput.addEventListener('input', () => {
-      const query = searchInput.value.toLowerCase().trim();
+  if (pubCards.length > 0) {
+    let activePillar = '';
+
+    function applyFilters() {
+      const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
       let visibleCount = 0;
-
       pubCards.forEach(card => {
-        const text = card.textContent.toLowerCase();
-        const match = !query || text.includes(query);
-        card.style.display = match ? '' : 'none';
-        if (match) visibleCount++;
+        const textMatch = !query || card.textContent.toLowerCase().includes(query);
+        const pillarMatch = !activePillar || (card.dataset.pillar || '').split(' ').includes(activePillar);
+        const show = textMatch && pillarMatch;
+        card.style.display = show ? '' : 'none';
+        if (show) visibleCount++;
       });
-
-      // Hide year groups with no visible cards
       yearGroups.forEach(group => {
-        const visibleCards = group.querySelectorAll('.pub-card:not([style*="display: none"])');
-        group.style.display = visibleCards.length > 0 ? '' : 'none';
+        const visible = group.querySelectorAll('.pub-card:not([style*="display: none"])');
+        group.style.display = visible.length > 0 ? '' : 'none';
       });
+      if (pubCount) pubCount.textContent = `${visibleCount} publication${visibleCount !== 1 ? 's' : ''}`;
+    }
 
-      if (pubCount) {
-        pubCount.textContent = `${visibleCount} publication${visibleCount !== 1 ? 's' : ''}`;
-      }
+    // Read URL param on page load
+    const validPillars = ['xr', 'mobile', 'embodied', 'ai'];
+    const urlPillar = validPillars.includes(new URLSearchParams(window.location.search).get('pillar'))
+      ? new URLSearchParams(window.location.search).get('pillar') : '';
+    if (urlPillar) {
+      activePillar = urlPillar;
+      const activeBtn = document.querySelector(`[data-pillar-filter="${urlPillar}"]`);
+      if (activeBtn) activeBtn.classList.add('active');
+      document.querySelector('.pillar-filter-btn--all')?.classList.remove('active');
+      applyFilters();
+      document.querySelector('.pillar-filters')?.scrollIntoView({ block: 'start' });
+    } else {
+      document.querySelector('.pillar-filter-btn--all')?.classList.add('active');
+    }
+
+    // Pillar button clicks
+    pillarButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const pillar = btn.dataset.pillarFilter;
+        activePillar = activePillar === pillar ? '' : pillar;
+        pillarButtons.forEach(b => b.classList.remove('active'));
+        const nextActive = activePillar
+          ? document.querySelector(`[data-pillar-filter="${activePillar}"]`)
+          : document.querySelector('[data-pillar-filter=""]');
+        if (nextActive) nextActive.classList.add('active');
+        history.replaceState(null, '', activePillar ? `?pillar=${activePillar}` : window.location.pathname);
+        applyFilters();
+      });
     });
+
+    if (searchInput) searchInput.addEventListener('input', applyFilters);
   }
 
   // ---- BibTeX Modal ----

@@ -30,9 +30,9 @@
     "month": 6,
     "venue": "Proceedings of the 21st ACM/IEEE International Conference on Human-Robot Interaction (HRI '26)",
     "venue_short": "HRI",
-    "bibtex": "@inproceedings{leusmannIfItsSafe2026,\n  author = {Leusmann, Jan and Schömbs, Sarah and Diedrich, Maximilian and Müller, Florian},\n  title = {If It's Safe, Don't Ask: Decreasing Frustration through User Involvement for Risky Robot Behaviors},\n  booktitle = {Proceedings of the 21st ACM/IEEE International Conference on Human-Robot Interaction (HRI '26)},\n  year = {2026},\n  publisher = {ACM},\n  address = {Edinburgh, Scotland, UK},\n  abstract = {Human--robot collaboration faces a speed--accuracy trade-off (SAT): higher speed lowers latency but increases errors; lower speed improves accuracy but extends waiting time. Both pathways can frustrate users in research and real-world deployments. Despite this importance, the impact of SAT on frustration and how to mitigate it remains underexplored. We conducted a user study (N = 24) in which participants collaborated with a robot in an assembly task. We investigate three levels of SAT (conservative, moderate, risky), and examine how uncertainty communication and offering decision autonomy affect user frustration. Our results show that user frustration is highest for risky robot behavior. User involvement decreased frustration for risky behaviors, but increased it for conservative ones, while verbal uncertainty communication had no effects. We further found that perceived transparency, agency, intelligence, and utility of the robot increase with conservative SAT, with user workload decreasing. We propose that user involvement is advisable in higher-risk settings to mitigate user frustration, whereas autonomous operation is preferable in lower-risk scenarios.},\n  langid = {english},\n}",
+    "bibtex": "@inproceedings{leusmannIfItsSafe2026,\n  author = {Leusmann, Jan and Schömbs, Sarah and Diedrich, Maximilian and Müller, Florian},\n  title = {If It's Safe, Don't Ask: Decreasing Frustration through User Involvement for Risky Robot Behaviors},\n  booktitle = {Proceedings of the 21st ACM/IEEE International Conference on Human-Robot Interaction (HRI '26)},\n  year = {2026},\n  publisher = {ACM},\n  address = {Edinburgh, Scotland, UK},\n  doi = {10.1145/3757279.3785545},\n  abstract = {Human--robot collaboration faces a speed--accuracy trade-off (SAT): higher speed lowers latency but increases errors; lower speed improves accuracy but extends waiting time. Both pathways can frustrate users in research and real-world deployments. Despite this importance, the impact of SAT on frustration and how to mitigate it remains underexplored. We conducted a user study (N = 24) in which participants collaborated with a robot in an assembly task. We investigate three levels of SAT (conservative, moderate, risky), and examine how uncertainty communication and offering decision autonomy affect user frustration. Our results show that user frustration is highest for risky robot behavior. User involvement decreased frustration for risky behaviors, but increased it for conservative ones, while verbal uncertainty communication had no effects. We further found that perceived transparency, agency, intelligence, and utility of the robot increase with conservative SAT, with user workload decreasing. We propose that user involvement is advisable in higher-risk settings to mitigate user frustration, whereas autonomous operation is preferable in lower-risk scenarios.},\n  langid = {english},\n}",
     "abstract": "Human--robot collaboration faces a speed--accuracy trade-off (SAT): higher speed lowers latency but increases errors; lower speed improves accuracy but extends waiting time. Both pathways can frustrate users in research and real-world deployments. Despite this importance, the impact of SAT on frustration and how to mitigate it remains underexplored. We conducted a user study (N = 24) in which participants collaborated with a robot in an assembly task. We investigate three levels of SAT (conservative, moderate, risky), and examine how uncertainty communication and offering decision autonomy affect user frustration. Our results show that user frustration is highest for risky robot behavior. User involvement decreased frustration for risky behaviors, but increased it for conservative ones, while verbal uncertainty communication had no effects. We further found that perceived transparency, agency, intelligence, and utility of the robot increase with conservative SAT, with user workload decreasing. We propose that user involvement is advisable in higher-risk settings to mitigate user frustration, whereas autonomous operation is preferable in lower-risk scenarios.",
-    "doi": "",
+    "doi": "10.1145/3757279.3785545",
     "pdf": "leusmannIfItsSafe2026.pdf",
     "preview": "leusmannIfItsSafe2026.jpg",
     "video": "",
@@ -2119,5 +2119,26 @@
     "code": "",
     "arxiv": "",
     "keywords": "device-less,eyes-free,input,omnipresent,tv"
+  },
+  {
+    "key": "IfItsSafe",
+    "type": "misc",
+    "title": "If It's Safe, Don't Ask: Decreasing Frustration through User Involvement for Risky Robot Behaviors \\textbar Proceedings of the 21st ACM/IEEE International Conference on Human-Robot Interaction",
+    "authors": "",
+    "authors_html": "",
+    "year": 0,
+    "month": 6,
+    "venue": "ACM Conferences",
+    "venue_short": "",
+    "bibtex": "@misc{IfItsSafe,\n  title = {If It's Safe, Don't Ask: Decreasing Frustration through User Involvement for Risky Robot Behaviors \\textbar Proceedings of the 21st ACM/IEEE International Conference on Human-Robot Interaction},\n  journal = {ACM Conferences},\n  howpublished = {https://dl.acm.org/doi/10.1145/3757279.3785545},\n  langid = {english},\n}",
+    "abstract": "",
+    "doi": "",
+    "pdf": null,
+    "preview": null,
+    "video": "",
+    "talk": "",
+    "code": "",
+    "arxiv": "",
+    "keywords": ""
   }
 ]

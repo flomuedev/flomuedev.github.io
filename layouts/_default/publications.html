@@ -19,10 +19,31 @@
         <div id="pub-count" class="pub-count">{{ len .Site.Data.publications }} publications</div>
     </div>
 
+    <div class="pillar-filters">
+        <button class="pillar-filter-btn pillar-filter-btn--all active" data-pillar-filter="">All</button>
+        {{ range .Site.Data.pillars }}
+        <button class="pillar-filter-btn pillar-filter-btn--{{ .color }}" data-pillar-filter="{{ .id }}">{{ .short }}</button>
+        {{ end }}
+    </div>
+
     {{/* Group publications by year */}}
     {{ $currentYear := 0 }}
     {{ $inGroup := false }}
     {{ range .Site.Data.publications }}
+    {{/* Assign pillars based on keyword matching */}}
+    {{ $pub := . }}
+    {{ $assigned := slice }}
+    {{ $text := lower (printf "%s %s %s" $pub.title $pub.keywords $pub.venue) }}
+    {{ range $.Site.Data.pillars }}
+        {{ $pillar := . }}
+        {{ $matched := false }}
+        {{ range $pillar.keywords }}
+            {{ if and (not $matched) (strings.Contains $text .) }}
+                {{ $assigned = $assigned | append $pillar.id }}
+                {{ $matched = true }}
+            {{ end }}
+        {{ end }}
+    {{ end }}
     {{ if ne .year $currentYear }}
     {{ if $inGroup }}</div>{{ end }}
     {{ $currentYear = .year }}
@@ -30,7 +51,7 @@
     <div class="pub-year-group">
         <h2 class="pub-year-label">{{ .year }}</h2>
         {{ end }}
-        <article class="pub-card">
+        <article class="pub-card" data-pillar="{{ delimit $assigned " " }}">
             {{ if .preview }}
             <img src="/publication_preview/{{ .preview }}" alt="{{ .title }}" class="pub-card-image" loading="lazy">
             {{ end }}

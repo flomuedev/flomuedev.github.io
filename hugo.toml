@@ -35,6 +35,8 @@ buildFuture = true
 [outputs]
   home = ["HTML"]
 
+[taxonomies]
+
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]
