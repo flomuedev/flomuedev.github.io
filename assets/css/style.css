@@ -903,6 +903,10 @@ h3 {
   .pub-single-thumbnail-wrapper {
     max-width: 100%;
   }
+
+  .video-container {
+    min-height: 320px;
+  }
 }
 
 .pub-single-actions {
