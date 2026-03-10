@@ -367,7 +367,7 @@ def main():
     script_dir = os.path.dirname(os.path.abspath(__file__))
     project_dir = os.path.dirname(script_dir)
 
-    bib_path = os.path.join(project_dir, 'assets', 'bib.bib')
+    bib_path = os.path.join(script_dir, 'bib.bib')
     pdf_dir = os.path.join(project_dir, 'static', 'pdf')
     preview_dir = os.path.join(project_dir, 'static', 'publication_preview')
     output_path = os.path.join(project_dir, 'data', 'publications.json')
