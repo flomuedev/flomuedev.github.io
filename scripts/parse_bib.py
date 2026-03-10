@@ -368,8 +368,8 @@ def main():
     project_dir = os.path.dirname(script_dir)
 
     bib_path = os.path.join(project_dir, 'assets', 'bib.bib')
-    pdf_dir = os.path.join(project_dir, 'assets', 'pdf')
-    preview_dir = os.path.join(project_dir, 'assets', 'publication_preview')
+    pdf_dir = os.path.join(project_dir, 'static', 'pdf')
+    preview_dir = os.path.join(project_dir, 'static', 'publication_preview')
     output_path = os.path.join(project_dir, 'data', 'publications.json')
 
     if not os.path.isfile(bib_path):
