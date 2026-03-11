@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://www.flomue.com/sitemap.xml

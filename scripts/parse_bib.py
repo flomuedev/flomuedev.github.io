@@ -425,6 +425,7 @@ def main():
             'talk': entry.get('talk', ''),
             'code': entry.get('code', '') or entry.get('website', ''),
             'supps': entry.get('supps', ''),
+            'publisher': entry.get('publisher', ''),
             'arxiv': arxiv_url,
             'keywords': entry.get('keywords', ''),
         }
@@ -475,7 +476,7 @@ def main():
             frontmatter.append(f"bibtex = {json.dumps(pub['bibtex'])}")
 
         # Add optional items
-        for field in ['pdf', 'preview', 'video', 'talk', 'code', 'supps', 'arxiv', 'doi', 'keywords']:
+        for field in ['pdf', 'preview', 'video', 'talk', 'code', 'supps', 'arxiv', 'doi', 'publisher', 'keywords']:
             if pub.get(field):
                 if field == 'keywords':
                     kws = [k.strip() for k in pub[field].split(',') if k.strip()]

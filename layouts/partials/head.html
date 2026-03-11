@@ -3,7 +3,7 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
 <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Summary }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}{{ end }}">
-<meta name="author" content="{{ .Site.Params.author }}">
+<meta name="author" content="{{ with .Params.authors }}{{ . }}{{ else }}{{ $.Site.Params.author }}{{ end }}">
 
 <!-- Open Graph -->
 <meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}">
@@ -12,6 +12,16 @@
 <meta property="og:type" content="{{ if .IsHome }}website{{ else }}article{{ end }}">
 <meta property="og:url" content="{{ .Permalink }}">
 <meta property="og:image" content="{{ if .Params.preview }}{{ .Site.BaseURL }}publication_preview/{{ .Params.preview }}{{ else }}{{ .Site.BaseURL }}{{ strings.TrimPrefix "/" .Site.Params.profileImage }}{{ end }}">
+{{ if eq .Type "publication" }}
+<meta property="article:published_time" content="{{ .Date.Format "2006-01-02" }}">
+<meta property="article:author" content="{{ .Site.BaseURL }}">
+{{ end }}
+
+<!-- Twitter / X Cards -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}">
+<meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Summary }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}{{ end }}">
+<meta name="twitter:image" content="{{ if .Params.preview }}{{ .Site.BaseURL }}publication_preview/{{ .Params.preview }}{{ else }}{{ .Site.BaseURL }}{{ strings.TrimPrefix "/" .Site.Params.profileImage }}{{ end }}">
 
 <!-- Self-hosted Inter font -->
 <style>

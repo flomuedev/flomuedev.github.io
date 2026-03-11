@@ -9,6 +9,11 @@
             "name": "{{ .Site.Title }}",
             "publisher": {
                 "@id": "{{ .Site.BaseURL }}#person"
+            },
+            "potentialAction": {
+                "@type": "SearchAction",
+                "target": "{{ .Site.BaseURL }}publication/?q={search_term_string}",
+                "query-input": "required name=search_term_string"
             }
         },{
             "@type": "Person",
@@ -21,15 +26,16 @@
             "url": "{{ .Site.BaseURL }}",
             "image": "{{ .Site.BaseURL }}img/profile.jpg",
             "jobTitle": "Assistant Professor for Mobile Human-Computer Interaction",
+            "description": "{{ .Site.Params.description }}",
             "worksFor": {
                 "@type": "CollegeOrUniversity",
                 "name": "TU Darmstadt",
                 "url": "https://www.tu-darmstadt.de/"
             },
             "affiliation": {
-                "@type": "CollegeOrUniversity",
-                "name": "TU Darmstadt",
-                "url": "https://www.tu-darmstadt.de/"
+                "@type": "ResearchOrganization",
+                "name": "{{ .Site.Params.labName }}",
+                "url": "{{ .Site.Params.labUrl }}"
             },
             "sameAs": [
                 "https://www.informatik.tu-darmstadt.de/hci/hci_tuda/team_hci/details_152256.en.jsp",
@@ -48,6 +54,7 @@
             "url": "{{ .Site.BaseURL }}",
             "name": "Florian Müller — About",
             "description": "{{ .Site.Params.description }}",
+            "dateModified": "{{ .Lastmod.Format "2006-01-02" }}",
             "isPartOf": {
                 "@id": "{{ .Site.BaseURL }}#website"
             },
@@ -60,7 +67,71 @@
             "primaryImageOfPage": {
                 "@type": "ImageObject",
                 "@id": "{{ .Site.BaseURL }}#primaryimage",
-                "url": "{{ .Site.BaseURL }}img/profile.jpg"
+                "url": "{{ .Site.BaseURL }}img/profile.jpg",
+                "width": 1417,
+                "height": 1418
+            }
+        }{{- else if eq .Type "publications" }}{
+            "@type": ["WebPage", "CollectionPage"],
+            "@id": "{{ .Permalink }}#webpage",
+            "url": "{{ .Permalink }}",
+            "name": "{{ .Title }} | {{ .Site.Title }}",
+            "description": "{{ .Site.Params.description }}",
+            "about": {
+                "@id": "{{ .Site.BaseURL }}#person"
+            },
+            "isPartOf": {
+                "@id": "{{ .Site.BaseURL }}#website"
+            }
+        }{{- else if eq .Type "publication" }}{
+            "@type": ["WebPage", "ItemPage"],
+            "@id": "{{ .Permalink }}#webpage",
+            "url": "{{ .Permalink }}",
+            "name": "{{ .Title }} | {{ .Site.Title }}",
+            "description": {{ .Summary | jsonify }},
+            "isPartOf": {
+                "@id": "{{ .Site.BaseURL }}#website"
+            }
+        },{
+            "@type": "ScholarlyArticle",
+            "@id": "{{ .Permalink }}#article",
+            "headline": {{ .Title | jsonify }},
+            "name": {{ .Title | jsonify }},
+            "author": [
+                {{- $authors := split .Params.authors ", " -}}
+                {{- range $i, $a := $authors -}}
+                {{- if $i }},{{ end }}
+                {
+                    "@type": "Person",
+                    "name": {{ $a | jsonify }}
+                    {{- if findRE `(?i)florian.*m.ller|m.ller.*florian` $a }},
+                    "@id": "{{ $.Site.BaseURL }}#person"
+                    {{- end }}
+                }
+                {{- end }}
+            ],
+            "datePublished": "{{ .Date.Format "2006" }}",
+            "description": {{ .Summary | jsonify }},
+            "isPartOf": {
+                "@type": "Periodical",
+                "name": {{ .Params.venue | jsonify }}
+            }
+            {{- if .Params.doi }},
+            "identifier": {
+                "@type": "PropertyValue",
+                "propertyID": "doi",
+                "value": "{{ .Params.doi }}"
+            },
+            "url": "https://doi.org/{{ .Params.doi }}"
+            {{- end }}
+            {{- if .Params.publisher }},
+            "publisher": {
+                "@type": "Organization",
+                "name": {{ .Params.publisher | jsonify }}
+            }
+            {{- end }},
+            "mainEntityOfPage": {
+                "@id": "{{ .Permalink }}#webpage"
             }
         }{{- else }}{
             "@type": "WebPage",
