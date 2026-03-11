@@ -1,17 +1,28 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
-<meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Summary }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}{{ end }}">
+{{- $pubTitle := "" -}}
+{{- if eq .Type "publication" -}}{{- $pubTitle = .Title | truncate 60 "…" -}}{{- end -}}
+{{- $metaDesc := "" -}}
+{{- with .Description -}}{{- $metaDesc = . | truncate 155 "…" -}}{{- else -}}{{- with .Summary -}}{{- $metaDesc = . | plainify | htmlUnescape | truncate 155 "…" -}}{{- else -}}{{- $metaDesc = $.Site.Params.description -}}{{- end -}}{{- end -}}
+{{- $ogImage := "" -}}
+{{- if .Params.preview -}}
+  {{- $img := resources.Get (printf "publication_preview/%s" .Params.preview) -}}
+  {{- if $img -}}{{- $ogImage = ($img.Fill "1200x628").Permalink -}}{{- else -}}{{- $ogImage = printf "%spublication_preview/%s" .Site.BaseURL .Params.preview -}}{{- end -}}
+{{- else -}}
+  {{- $profileImg := resources.Get "img/profile.jpg" -}}
+  {{- if $profileImg -}}{{- $ogImage = ($profileImg.Fill "1200x628").Permalink -}}{{- else -}}{{- $ogImage = printf "%s%s" .Site.BaseURL (strings.TrimPrefix "/" .Site.Params.profileImage) -}}{{- end -}}
+{{- end -}}
+<title>{{ if .IsHome }}{{ .Site.Title }}{{ else if eq .Type "publication" }}{{ $pubTitle }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+<meta name="description" content="{{ $metaDesc }}">
 <meta name="author" content="{{ with .Params.authors }}{{ . }}{{ else }}{{ $.Site.Params.author }}{{ end }}">
 
 <!-- Open Graph -->
-<meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}">
-<meta property="og:description"
-    content="{{ with .Description }}{{ . }}{{ else }}{{ with .Summary }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}{{ end }}">
+<meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else if eq .Type "publication" }}{{ $pubTitle }}{{ else }}{{ .Title }}{{ end }}">
+<meta property="og:description" content="{{ $metaDesc }}">
 <meta property="og:type" content="{{ if .IsHome }}website{{ else }}article{{ end }}">
 <meta property="og:url" content="{{ .Permalink }}">
-<meta property="og:image" content="{{ if .Params.preview }}{{ .Site.BaseURL }}publication_preview/{{ .Params.preview }}{{ else }}{{ .Site.BaseURL }}{{ strings.TrimPrefix "/" .Site.Params.profileImage }}{{ end }}">
+<meta property="og:image" content="{{ $ogImage }}">
 {{ if eq .Type "publication" }}
 <meta property="article:published_time" content="{{ .Date.Format "2006-01-02" }}">
 <meta property="article:author" content="{{ .Site.BaseURL }}">
@@ -19,9 +30,9 @@
 
 <!-- Twitter / X Cards -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}">
-<meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Summary }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}{{ end }}">
-<meta name="twitter:image" content="{{ if .Params.preview }}{{ .Site.BaseURL }}publication_preview/{{ .Params.preview }}{{ else }}{{ .Site.BaseURL }}{{ strings.TrimPrefix "/" .Site.Params.profileImage }}{{ end }}">
+<meta name="twitter:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else if eq .Type "publication" }}{{ $pubTitle }}{{ else }}{{ .Title }}{{ end }}">
+<meta name="twitter:description" content="{{ $metaDesc }}">
+<meta name="twitter:image" content="{{ $ogImage }}">
 
 <!-- Self-hosted Inter font -->
 <style>

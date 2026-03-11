@@ -138,8 +138,10 @@ def clean_latex(text):
     text = text.replace('~', ' ')
     # Collapse whitespace
     text = re.sub(r'\s+', ' ', text)
+    # Strip spurious wrapping quotes left by {"Title"}-style BibTeX entries
+    text = text.strip('"')
 
-    return text
+    return text.strip()
 
 
 def format_authors(author_str):

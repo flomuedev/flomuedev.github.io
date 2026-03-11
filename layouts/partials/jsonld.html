@@ -88,7 +88,7 @@
             "@id": "{{ .Permalink }}#webpage",
             "url": "{{ .Permalink }}",
             "name": "{{ .Title }} | {{ .Site.Title }}",
-            "description": {{ .Summary | plainify | jsonify }},
+            "description": {{ .Summary | plainify | htmlUnescape | jsonify }},
             "isPartOf": {
                 "@id": "{{ .Site.BaseURL }}#website"
             },
@@ -114,7 +114,7 @@
                 {{- end }}
             ],
             "datePublished": "{{ .Date.Format "2006-01-02" }}",
-            "description": {{ .Summary | plainify | jsonify }},
+            "description": {{ .Summary | plainify | htmlUnescape | jsonify }},
             "isPartOf": {
                 "@type": "CreativeWork",
                 "name": {{ .Params.venue | jsonify }}
@@ -137,7 +137,7 @@
             "encoding": {
                 "@type": "MediaObject",
                 "encodingFormat": "application/pdf",
-                "contentUrl": "{{ .Params.pdf }}"
+                "contentUrl": "{{ .Site.BaseURL }}pdf/{{ .Params.pdf }}"
             }
             {{- end }},
             "mainEntityOfPage": {
