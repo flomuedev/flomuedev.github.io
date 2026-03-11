@@ -88,9 +88,12 @@
             "@id": "{{ .Permalink }}#webpage",
             "url": "{{ .Permalink }}",
             "name": "{{ .Title }} | {{ .Site.Title }}",
-            "description": {{ .Summary | jsonify }},
+            "description": {{ .Summary | plainify | jsonify }},
             "isPartOf": {
                 "@id": "{{ .Site.BaseURL }}#website"
+            },
+            "mainEntity": {
+                "@id": "{{ .Permalink }}#article"
             }
         },{
             "@type": "ScholarlyArticle",
@@ -110,10 +113,10 @@
                 }
                 {{- end }}
             ],
-            "datePublished": "{{ .Date.Format "2006" }}",
-            "description": {{ .Summary | jsonify }},
+            "datePublished": "{{ .Date.Format "2006-01-02" }}",
+            "description": {{ .Summary | plainify | jsonify }},
             "isPartOf": {
-                "@type": "Periodical",
+                "@type": "CreativeWork",
                 "name": {{ .Params.venue | jsonify }}
             }
             {{- if .Params.doi }},
@@ -128,6 +131,13 @@
             "publisher": {
                 "@type": "Organization",
                 "name": {{ .Params.publisher | jsonify }}
+            }
+            {{- end }}
+            {{- if .Params.pdf }},
+            "encoding": {
+                "@type": "MediaObject",
+                "encodingFormat": "application/pdf",
+                "contentUrl": "{{ .Params.pdf }}"
             }
             {{- end }},
             "mainEntityOfPage": {
