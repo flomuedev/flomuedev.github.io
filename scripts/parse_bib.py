@@ -369,7 +369,7 @@ def main():
 
     bib_path = os.path.join(script_dir, 'bib.bib')
     pdf_dir = os.path.join(project_dir, 'static', 'pdf')
-    preview_dir = os.path.join(project_dir, 'static', 'publication_preview')
+    preview_dir = os.path.join(project_dir, 'assets', 'publication_preview')
     output_path = os.path.join(project_dir, 'data', 'publications.json')
 
     if not os.path.isfile(bib_path):
@@ -491,6 +491,13 @@ def main():
             f.write("\n".join(frontmatter))
 
     print(f"Generated {len(publications)} markdown files -> {pub_content_dir}")
+
+    # Write bib.json for lazy-loading BibTeX on the publications page
+    bib_json_path = os.path.join(os.path.dirname(__file__), '..', 'static', 'bib.json')
+    bib_map = {pub['key']: pub['bibtex'] for pub in publications if pub.get('bibtex')}
+    with open(bib_json_path, 'w', encoding='utf-8') as f:
+        json.dump(bib_map, f, ensure_ascii=False, separators=(',', ':'))
+    print(f"Wrote bib.json with {len(bib_map)} entries -> {bib_json_path}")
 
     # Stats
     with_pdf = sum(1 for p in publications if p['pdf'])

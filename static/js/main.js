@@ -150,8 +150,20 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.style.overflow = '';
     }
 
+    let bibCache = null;
+    async function fetchBib(key) {
+      if (!bibCache) {
+        const r = await fetch('/bib.json');
+        bibCache = await r.json();
+      }
+      return bibCache[key] || '';
+    }
+
     document.querySelectorAll('.bibtex-trigger').forEach(btn => {
-      btn.addEventListener('click', () => openBibtex(btn.getAttribute('data-bibtex')));
+      btn.addEventListener('click', async () => {
+        const text = await fetchBib(btn.dataset.key);
+        openBibtex(text);
+      });
     });
 
     bibtexClose.addEventListener('click', closeBibtex);
