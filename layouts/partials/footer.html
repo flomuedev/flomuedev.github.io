@@ -27,11 +27,21 @@
             </a>
         </div>
         <div class="footer-logos">
+            {{ $td := resources.Get "img/logoteamdarmstadt.png" }}
+            {{ $tdWebP := $td.Process "webp" }}
             <a href="https://teamdarmstadt.de" class="affiliation-logo-link" target="_blank" rel="noopener noreferrer" aria-label="Team Darmstadt">
-                <img src="https://www.informatik.tu-darmstadt.de/media/hci/hcilogos/logoteamdarmstadt.png" alt="Team Darmstadt" class="footer-logo" loading="lazy" height="28">
+                <picture>
+                    <source type="image/webp" srcset="{{ $tdWebP.RelPermalink }}">
+                    <img src="{{ $td.RelPermalink }}" alt="Team Darmstadt" class="footer-logo" loading="lazy" height="28">
+                </picture>
             </a>
+            {{ $ul := resources.Get "img/urban_logo-cropped-1.png" }}
+            {{ $ulWebP := $ul.Process "webp" }}
             <a href="https://www.informatik.tu-darmstadt.de/hci/hci_tuda/urbanlab/urbanpage.en.jsp" class="affiliation-logo-link" target="_blank" rel="noopener noreferrer" aria-label="Urban Interaction Lab at TU Darmstadt">
-                <img src="https://www.informatik.tu-darmstadt.de/media/hci/hcilogos/urban_logo-cropped-1.png" alt="Urban Interaction Lab" class="footer-logo" loading="lazy" height="28">
+                <picture>
+                    <source type="image/webp" srcset="{{ $ulWebP.RelPermalink }}">
+                    <img src="{{ $ul.RelPermalink }}" alt="Urban Interaction Lab" class="footer-logo" loading="lazy" height="28">
+                </picture>
             </a>
         </div>
         <div class="footer-meta">

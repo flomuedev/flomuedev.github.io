@@ -3,6 +3,23 @@
    Modern light-mode academic portfolio
    ========================================================================== */
 
+/* Skip navigation link — visually hidden until focused */
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: var(--space-2);
+    z-index: 9999;
+    padding: var(--space-2) var(--space-4);
+    background: var(--color-accent);
+    color: #fff;
+    font-weight: 600;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+}
+.skip-link:focus-visible {
+    left: var(--space-2);
+}
+
 /* ---------- CSS Custom Properties ---------- */
 :root {
   /* Colors */
