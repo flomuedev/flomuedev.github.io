@@ -204,7 +204,7 @@ def format_bibtex(entry):
     ]
     skip = {
         'type', 'key', 'file', 'urldate', 'mendeley-tags', 'note',
-        'annotation', 'url', 'video', 'talk', 'code', 'website',
+        'annotation', 'url', 'video', 'talk', 'code', 'website', 'supps',
         'shorttitle', 'primaryclass',
     }
 
@@ -424,6 +424,7 @@ def main():
             'video': entry.get('video', ''),
             'talk': entry.get('talk', ''),
             'code': entry.get('code', '') or entry.get('website', ''),
+            'supps': entry.get('supps', ''),
             'arxiv': arxiv_url,
             'keywords': entry.get('keywords', ''),
         }
@@ -474,7 +475,7 @@ def main():
             frontmatter.append(f"bibtex = {json.dumps(pub['bibtex'])}")
 
         # Add optional items
-        for field in ['pdf', 'preview', 'video', 'talk', 'code', 'arxiv', 'doi', 'keywords']:
+        for field in ['pdf', 'preview', 'video', 'talk', 'code', 'supps', 'arxiv', 'doi', 'keywords']:
             if pub.get(field):
                 if field == 'keywords':
                     kws = [k.strip() for k in pub[field].split(',') if k.strip()]

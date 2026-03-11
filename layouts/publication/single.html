@@ -54,6 +54,11 @@
                     Code
                 </a>
                 {{ end }}
+                {{ if .Params.supps }}
+                <a href="{{ .Params.supps }}" class="pub-action-btn secondary" target="_blank" rel="noopener">
+                    Data
+                </a>
+                {{ end }}
                 {{ if .Params.bibtex }}
                 <button class="pub-action-btn secondary bibtex-trigger" data-bibtex="{{ .Params.bibtex }}">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
