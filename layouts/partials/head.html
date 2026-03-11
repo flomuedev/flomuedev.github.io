@@ -11,7 +11,7 @@
   {{- if $img -}}{{- $ogImage = ($img.Fill "1200x628").Permalink -}}{{- else -}}{{- $ogImage = printf "%spublication_preview/%s" .Site.BaseURL .Params.preview -}}{{- end -}}
 {{- else -}}
   {{- $profileImg := resources.Get "img/profile.jpg" -}}
-  {{- if $profileImg -}}{{- $ogImage = ($profileImg.Fill "1200x628").Permalink -}}{{- else -}}{{- $ogImage = printf "%s%s" .Site.BaseURL (strings.TrimPrefix "/" .Site.Params.profileImage) -}}{{- end -}}
+  {{- if $profileImg -}}{{- $ogImage = ($profileImg.Resize "1200x").Permalink -}}{{- else -}}{{- $ogImage = printf "%s%s" .Site.BaseURL (strings.TrimPrefix "/" .Site.Params.profileImage) -}}{{- end -}}
 {{- end -}}
 <title>{{ if .IsHome }}{{ .Site.Title }}{{ else if eq .Type "publication" }}{{ $pubTitle }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
 <meta name="description" content="{{ $metaDesc }}">
