@@ -47,6 +47,13 @@ jobs:
         id: pages
         uses: actions/configure-pages@v4
 
+      - name: Cache Hugo processed resources
+        uses: actions/cache@v4
+        with:
+          path: resources
+          key: hugo-resources-${{ hashFiles('assets/**') }}
+          restore-keys: hugo-resources-
+
       - name: Build with Hugo
         env:
           HUGO_ENVIRONMENT: production

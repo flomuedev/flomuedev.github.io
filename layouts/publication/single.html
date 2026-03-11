@@ -210,7 +210,17 @@
         <aside class="pub-single-sidebar">
             {{ if .Params.preview }}
             <div class="pub-single-thumbnail-wrapper">
+                {{ $img := resources.Get (printf "publication_preview/%s" .Params.preview) }}
+                {{ if $img }}
+                {{ $webp := $img.Process "webp" }}
+                <picture>
+                    <source type="image/webp" srcset="{{ $webp.RelPermalink }}">
+                    <img src="{{ $img.RelPermalink }}" alt="{{ .Title }}" class="pub-single-thumbnail"
+                         width="{{ $img.Width }}" height="{{ $img.Height }}">
+                </picture>
+                {{ else }}
                 <img src="/publication_preview/{{ .Params.preview }}" alt="{{ .Title }}" class="pub-single-thumbnail">
+                {{ end }}
             </div>
             {{ end }}
 

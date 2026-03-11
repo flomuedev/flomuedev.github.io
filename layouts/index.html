@@ -14,7 +14,13 @@
             </p>
         </div>
         <div class="hero-image-wrapper">
-            <img src="{{ .Site.Params.profileImage }}" alt="Florian Müller" class="hero-image">
+            {{ $p := resources.Get "img/profile.jpg" }}
+            {{ $pWebP := $p.Process "webp" }}
+            <picture>
+                <source type="image/webp" srcset="{{ $pWebP.RelPermalink }}">
+                <img src="{{ $p.RelPermalink }}" alt="Florian Müller" class="hero-image"
+                     width="{{ $p.Width }}" height="{{ $p.Height }}">
+            </picture>
         </div>
     </div>
 </section>
@@ -46,7 +52,17 @@
         {{ range first 6 .Site.Data.publications }}
         <article class="pub-card">
             {{ if .preview }}
+            {{ $img := resources.Get (printf "publication_preview/%s" .preview) }}
+            {{ if $img }}
+            {{ $webp := $img.Process "webp" }}
+            <picture>
+                <source type="image/webp" srcset="{{ $webp.RelPermalink }}">
+                <img src="{{ $img.RelPermalink }}" alt="{{ .title }}" class="pub-card-image"
+                     loading="lazy" width="{{ $img.Width }}" height="{{ $img.Height }}">
+            </picture>
+            {{ else }}
             <img src="/publication_preview/{{ .preview }}" alt="{{ .title }}" class="pub-card-image" loading="lazy">
+            {{ end }}
             {{ end }}
             <div class="pub-card-content">
                 <h3 class="pub-card-title"><a href="/publication/{{ .key }}/" class="pub-card-link-overlay">{{ .title

@@ -53,7 +53,17 @@
         {{ end }}
         <article class="pub-card" data-pillar="{{ delimit $assigned " " }}">
             {{ if .preview }}
+            {{ $img := resources.Get (printf "publication_preview/%s" .preview) }}
+            {{ if $img }}
+            {{ $webp := $img.Process "webp" }}
+            <picture>
+                <source type="image/webp" srcset="{{ $webp.RelPermalink }}">
+                <img src="{{ $img.RelPermalink }}" alt="{{ .title }}" class="pub-card-image"
+                     loading="lazy" width="{{ $img.Width }}" height="{{ $img.Height }}">
+            </picture>
+            {{ else }}
             <img src="/publication_preview/{{ .preview }}" alt="{{ .title }}" class="pub-card-image" loading="lazy">
+            {{ end }}
             {{ end }}
             <div class="pub-card-content">
                 <h3 class="pub-card-title"><a href="/publication/{{ .key }}/" class="pub-card-link-overlay">{{ .title
