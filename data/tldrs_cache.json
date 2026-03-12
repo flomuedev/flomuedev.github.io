@@ -260,11 +260,6 @@
       "found": "We found that the combination of visual indicators and finger position capturing yields the highest playing accuracy, while visual indicators facilitate quicker learning of new finger positions.",
       "takeaway": "Let’s Frets enables independent practice sessions for guitar students, demonstrating potential applicability to other musical instruments."
     },
-    "895df4c0b8337044fc364d64ea5cf9019c208f908871f7b2080a749930bd69b7": {
-      "did": "We hosted the Mensch und Computer 2022 conference at the Technische Universität Darmstadt, gathering nearly 600 participants from academia and industry.",
-      "found": "We found that the conference theme 'Facing Realities' resonated strongly with attendees, highlighting the importance of real-world applications in Human-Computer Interaction.",
-      "takeaway": "We contribute to the ongoing dialogue in Human-Computer Interaction by emphasizing the value of in-person interactions and practical engagement within the field."
-    },
     "8a95ac08c6c910bda9dd8b0ee8e1c059d5f67649b12b060435ecce9cdbaeba76": {
       "did": "We conducted a Wizard-of-Oz study to investigate how different representation modes of an artificial intelligence influence user perception and interaction during 3D object co-creation in Virtual Reality.",
       "found": "We found that an embodied AI significantly enhances user perception of its contributions, while highlighting areas for AI modification reduces user satisfaction and perceived partnership with the AI.",
@@ -484,6 +479,11 @@
       "did": "We built FreeTop, an approach that automatically identifies suitable areas for projection and touch interaction using depth and color information.",
       "found": "We found that FreeTop generates a continuous projectability score for each pixel, allowing for flexible and adaptive placement of projected content based on various environmental factors.",
       "takeaway": "Our work significantly enhances the usability of projection technologies in dynamic environments by providing a system that adjusts to surface conditions and user preferences."
+    },
+    "6cc94fb711f0c8deccdb5f72f82bfe391c98ed33c3cf69426521d5509ddd2cbd": {
+      "did": "We hosted the Mensch und Computer 2022 conference at the Technische Universität Darmstadt, gathering nearly 600 participants from academia and industry.",
+      "found": "We found that the conference theme 'Facing Realities' resonated strongly with attendees, highlighting the importance of real-world applications in Human-Computer Interaction.",
+      "takeaway": "We contribute to the ongoing dialogue in Human-Computer Interaction by emphasizing the value of in-person interactions and practical engagement within the field."
     }
   },
   "version": 1

@@ -98,6 +98,10 @@ def parse_bibtex(filepath):
 
 def clean_latex(text):
     """Remove common LaTeX formatting from text."""
+    # LaTeX quotation marks → Unicode (must be before brace/other processing)
+    text = text.replace('``', '\u201c')   # `` → " (left double quotation mark)
+    text = text.replace("''", '\u201d')   # '' → " (right double quotation mark)
+    text = text.replace(',,', '\u201e')   # ,, → „ (double low-9 / German open quote)
     # Remove \textbackslash
     text = text.replace('\\textbackslash', '\\')
     # Remove \texttimes
