@@ -22,6 +22,7 @@ Return ONLY a JSON object with these three keys:
 - "takeaway": one sentence about the practical implication or contribution
 
 Do not use generic phrases like "This paper presents". Be specific. Always use "we" as the subject for "did" and "found".
+Do not introduce abbreviations — always write terms out in full (e.g. "Extended Reality" not "XR", "Augmented Reality" not "AR", "Human-Computer Interaction" not "HCI").
 
 {paper_content}"""
 
@@ -129,6 +130,10 @@ def main():
         "--years", metavar="YEARS",
         help="Comma-separated years to filter (e.g. 2025,2026)"
     )
+    parser.add_argument(
+        "--force-all", action="store_true",
+        help="Regenerate TL;DRs for all papers, ignoring the cache"
+    )
     args = parser.parse_args()
 
     project_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -192,8 +197,8 @@ def main():
             continue
 
         h = abstract_hash(abstract)
-        # Force regeneration when a specific key is targeted
-        use_cache = h in cache and not target_key
+        # Force regeneration when a specific key is targeted or --force-all is set
+        use_cache = h in cache and not target_key and not args.force_all
 
         if use_cache:
             tldr = cache[h]
