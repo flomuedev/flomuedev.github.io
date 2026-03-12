@@ -4,6 +4,7 @@ Parse BibTeX file and generate publications.json for Hugo.
 Usage: python scripts/parse_bib.py
 """
 
+import hashlib
 import json
 import re
 import os
@@ -381,6 +382,17 @@ def main():
     entries = parse_bibtex(bib_path)
     print(f"Parsed {len(entries)} BibTeX entries")
 
+    # Load TL;DR cache (committed to git, keyed by SHA256 of abstract)
+    tldr_cache_path = os.path.join(project_dir, "data", "tldrs_cache.json")
+    tldr_entries = {}
+    if os.path.isfile(tldr_cache_path):
+        try:
+            tldr_data = json.load(open(tldr_cache_path, encoding="utf-8"))
+            tldr_entries = tldr_data.get("entries", {})
+            print(f"Loaded {len(tldr_entries)} TL;DR cache entries")
+        except Exception:
+            pass
+
     publications = []
 
     for entry in entries:
@@ -408,6 +420,10 @@ def main():
         arxiv = entry.get('eprint', '')
         arxiv_url = f"https://arxiv.org/abs/{arxiv}" if arxiv and entry.get('archiveprefix', '').lower() == 'arxiv' else ''
 
+        abstract = entry.get('abstract', '')
+        tldr_hash = hashlib.sha256(abstract.strip().encode("utf-8")).hexdigest() if abstract else ""
+        tldr = tldr_entries.get(tldr_hash, {})
+
         pub = {
             'key': entry['key'],
             'type': entry.get('type', 'misc'),
@@ -419,7 +435,7 @@ def main():
             'venue': venue,
             'venue_short': get_venue_short(venue),
             'bibtex': format_bibtex(entry),
-            'abstract': entry.get('abstract', ''),
+            'abstract': abstract,
             'doi': doi,
             'pdf': pdf_file,
             'preview': preview_file,
@@ -430,6 +446,9 @@ def main():
             'publisher': entry.get('publisher', ''),
             'arxiv': arxiv_url,
             'keywords': entry.get('keywords', ''),
+            'tldr_did': tldr.get('did', ''),
+            'tldr_found': tldr.get('found', ''),
+            'tldr_takeaway': tldr.get('takeaway', ''),
         }
 
         publications.append(pub)
@@ -485,7 +504,12 @@ def main():
                     frontmatter.append(f"{field} = {json.dumps(kws)}")
                 else:
                     frontmatter.append(f"{field} = {json.dumps(pub[field])}")
-                
+
+        # Add TL;DR fields from cache (if available)
+        for field in ['tldr_did', 'tldr_found', 'tldr_takeaway']:
+            if pub.get(field):
+                frontmatter.append(f"{field} = {json.dumps(pub[field])}")
+
         frontmatter.append("+++")
         frontmatter.append("\n" + pub.get('abstract', ''))
         
