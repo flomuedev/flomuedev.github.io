@@ -70,6 +70,11 @@
                 <div class="pub-card-authors">{{ .authors_html | safeHTML }}</div>
                 <div class="pub-card-venue">{{ if .venue_short }}<span class="venue-short-badge">{{ .venue_short
                         }}</span> {{ end }}{{ .venue }}, {{ .year }}</div>
+                {{ if .tldr_did }}
+                <div class="pub-card-tldr">
+                    <span class="pub-card-tldr-arrow">›</span><span class="pub-card-tldr-text">{{ .tldr_did }}</span>
+                </div>
+                {{ end }}
                 <div class="pub-card-links">
                     {{ if .pdf }}
                     <a href="/pdf/{{ .pdf }}" class="pub-link" target="_blank">

@@ -1,0 +1,490 @@
+{
+  "entries": {
+    "014e3c1fa86ae01a25eb56ff64e8679a5f9c7af15657eed6c9575dab7c81afee": {
+      "did": "We designed a user interface that prioritizes simplicity and intuitive accessibility for enhanced user interaction.",
+      "found": "We found that our interface significantly improved user satisfaction and efficiency in control tasks compared to existing systems.",
+      "takeaway": "Our findings contribute to the development of user-centric designs that meet the growing demands of the ICT and smartphone industries."
+    },
+    "01824fd1d42c21fa6c321d3849e3a50e85ba00497136bf6302176614dd0cbde9": {
+      "did": "We built Therminator, a thermal display concept that provides localized warm and cold feedback in VR through a network of liquid-filled tubes.",
+      "found": "We found that the interdependency of visual and thermal stimuli significantly affects temperature perception, with congruent stimuli increasing user involvement and comfort.",
+      "takeaway": "Our findings suggest that combining appropriate visualizations with thermal feedback can enhance immersion and presence in virtual reality experiences."
+    },
+    "0347a8e0082b1306558268dfa093ba15def4849c09085654aa2a148802d1845e": {
+      "did": "We built an experimental setup to manipulate the perceived stiffness of compliant objects in virtual reality by adjusting the Control-to-Display ratio of finger movements during pinching.",
+      "found": "We found that this visuo-haptic illusion effectively and reliably influences stiffness perception, bridging gaps of up to 50% in physical stiffness without negatively impacting the visuo-haptic experience.",
+      "takeaway": "Our findings contribute to creating more adaptable haptic feedback systems in virtual environments, which could enhance user interactions and experiences."
+    },
+    "07b441d25416c186813e8d942fbfca5eb0fe2c5424841ace2ca9586b68f0726f": {
+      "did": "We conducted a comparative analysis of the Nine Hole Peg Test (NHPT) and a digital Copy Drawing Test to assess Fine Motor Control (FMC) using touch and stylus inputs on mobile devices.",
+      "found": "We found that drawing metrics such as pressure, velocity, and entropy can effectively predict NHPT completion times, providing a viable method to assess FMC without specialized equipment.",
+      "takeaway": "Our approach enables convenient and accessible FMC assessment through common mobile devices, facilitating personalized and adaptive user interfaces in digital systems."
+    },
+    "08792342015f2e7b02570365f53b49c0b889f531732259b17d526b29a61caac0": {
+      "did": "We built Let’s Frets, a modular guitar support system that provides visual guidance and finger position capturing using capacitive sensing and integrated LEDs.",
+      "found": "We found that Let’s Frets effectively assists both beginners and advanced guitarists in mastering chords, scales, and melodies by providing real-time feedback and visual cues.",
+      "takeaway": "Let’s Frets serves as an innovative tool for enhancing guitar learning, enabling remote collaborations, and facilitating the composition of new pieces, thereby improving practice efficiency."
+    },
+    "0afead8711d5030e78acd2e8e8074c4c5b782c614bdbeefe946e9b7692097e69": {
+      "did": "We conducted a controlled experiment to evaluate various visualization and interaction techniques for supporting comparison tasks in Virtual Reality (VR) involving 24 participants.",
+      "found": "We found that button interactions significantly outperformed gesture-based interactions in terms of usability, with higher System Usability Scale (SUS) scores and fewer scene switches.",
+      "takeaway": "Our research indicates that effective design of visualization techniques, particularly combining full-scene transparency and appropriate interaction modalities, can enhance user performance in comparison tasks within VR environments."
+    },
+    "0f052e9b3e1f629afd3bc8eb393aed4a2b0fcf17934d0b4ad6fae11554508819": {
+      "did": "We conducted a study exploring different undo techniques for basic object manipulation in multi-user virtual reality, focusing on their effects on user performance and social connection.",
+      "found": "We found that users desire and utilize undo mechanics in VR, with techniques like WorldUndo enhancing social connection, while IndividualUndo helps to prevent mutual disturbances during collaborative tasks.",
+      "takeaway": "Our findings indicate that the choice of undo technique should be tailored to the collaborative context and specific goals of VR applications to balance social connectedness and task performance."
+    },
+    "11767d55e38d859e5cbf5fe8690149dcf1069f968559a51dfad75ebb405443ad": {
+      "did": "We conducted an experiment to assess how different visual stimuli affect the haptic perception of roughness in virtual reality using a prototype designed for arm stroking.",
+      "found": "We found that the expectation of roughness set by visual stimuli significantly influences haptic perception, demonstrating that two physical textures (smooth and very rough) can effectively convey a realistic tactile experience across multiple visualizations.",
+      "takeaway": "Our results suggest that haptic systems can be simplified by using fewer physical textures while still achieving immersive experiences, which has practical implications for the design of future wearable haptic devices."
+    },
+    "1655def6b0f83f50a5621e5e79e9b6d95dc3aa612df8cfd9a33868e3bca15451": {
+      "did": "We conducted an experimental user study examining the effects of visual shape and size illusions on performance, experience, and behavior during a collaborative handover task in virtual reality.",
+      "found": "We found that visual-haptic mismatches significantly disrupted collaboration, leading to reduced performance and user experience, although users adapted over time by shifting reliance to haptic feedback.",
+      "takeaway": "Our findings highlight the need for careful integration of haptic illusions in collaborative XR environments, emphasizing the importance of minimizing mismatches and supporting user adaptation to enhance collaboration quality."
+    },
+    "17699f7504cda881de84384bc8ba8ad838bd483c337c80f6deee63ce4ac338ab": {
+      "did": "We designed an Encountered-type Haptic Display (ETHD) that integrates thermal feedback to enhance user interaction in virtual reality.",
+      "found": "We found that the addition of thermal feedback significantly improved user immersion and haptic realism during virtual interactions.",
+      "takeaway": "Our work highlights the potential of thermal feedback as a critical component in enhancing the realism and engagement of haptic experiences in virtual reality."
+    },
+    "17a1dcb7cf001d8559a2b8d7b2d9744cd21b77433fb389e797c3717c455b1beb": {
+      "did": "We conducted a user study to investigate the effects of shared gaze visualization on user performance, social connectedness, and shared attention during collocated Augmented Reality collaboration across three task types in two interaction spaces.",
+      "found": "We found that shared gaze increased joint attention and was perceived as helpful by users, but it did not significantly affect task completion time or perceived workload.",
+      "takeaway": "Our results suggest that shared gaze visualization enhances the quality of collaboration and user experience in spatial problem-solving tasks, but it should not be relied upon as a method for increasing efficiency."
+    },
+    "18e0b02ca9518ec1b72233484e667d3ee522421a658acd66de33369ce93b0fc1": {
+      "did": "We designed and built Slappyfications, a novel palm-based interface for sending unmissable physical and embodied notifications.",
+      "found": "We found that our prototype effectively delivered notifications, with none of the participants missing a single Slappyfication during our Wizard-of-Oz study.",
+      "takeaway": "We demonstrate that embodied notifications can outperform traditional modalities, suggesting a new direction for enhancing user experience in notification systems."
+    },
+    "1949730d43846d0e01738db6aab88f8c485dbbd99f7a5b2adfe8f08bcbd7df63": {
+      "did": "We built CameraReady, a mobile and cross-platform posture guidance system that evaluates various display types and visualizations.",
+      "found": "We found that larger displays result in improved user performance, showing a 12% reduction in error rates compared to smartphones and significantly higher usability scores for 3D body model visualizations.",
+      "takeaway": "Our findings suggest that utilizing larger displays and more detailed visualizations can enhance posture guidance applications, potentially leading to better user outcomes in sports, therapy, and other movement-based training contexts."
+    },
+    "22820f21b39a5721dd6327f7349ed2636c8aee433533fce715fea7503cd6b5c5": {
+      "did": "We conducted a user study comparing five point & teleport locomotion techniques in virtual reality that allow users to select target orientations during teleportation.",
+      "found": "We found that while techniques with orientation indication increase the average teleportation time, they significantly reduce the need for users to correct their orientation after teleportation.",
+      "takeaway": "Our results suggest that incorporating an orientation selection feature in point & teleport locomotion can enhance navigation accuracy, making it a valuable addition to VR environments."
+    },
+    "22ca686214b51b27e0d25be0b98f791c8632eae900813f25ea2b8cfad8316da1": {
+      "did": "We conducted two controlled experiments to assess foot-tapping as a direct and indirect input modality for head-mounted displays (HMDs).",
+      "found": "We found that direct foot-taps yielded higher accuracy and efficiency compared to indirect foot-based interactions, with a significant preference for direct methods in short-term use.",
+      "takeaway": "Our findings suggest that while foot-tapping can enhance interaction with HMDs, direct interfaces are more suitable for tasks requiring high accuracy, while indirect interfaces may be preferred for longer-term, less precise interactions."
+    },
+    "248604f05affaaf9ca8c8ebc16fa67efab267dae627d474231bb34bf6e10777a": {
+      "did": "We built ThermoFeet, a system that provides thermal feedback on the user's feet using four Peltier actuators to convey directional cues.",
+      "found": "We found that detection accuracy for cold signals was significantly higher than for warm signals, and stimuli linked to actuator distribution yielded better recognition rates compared to phantom sensations.",
+      "takeaway": "Our findings suggest that thermal feedback on the foot can effectively enhance navigation and interaction experiences, opening new avenues for mobile and immersive applications."
+    },
+    "250dd9fe1c5a5d2d690d446b4d2559a7076d33eb8560db7bcbb9889740db8a78": {
+      "did": "We conducted a user study to evaluate the co-creativity between humans and LLMs in generating memes, comparing outputs from human-only, human-AI collaborative, and AI-only groups.",
+      "found": "We found that while participants who collaborated with LLMs generated significantly more ideas and reported less effort, the quality of memes from human-AI collaborations did not surpass those made solely by humans, and AI-generated memes performed better on average.",
+      "takeaway": "Our study highlights the importance of human creativity in generating humor, showing that while LLMs can increase productivity, they may not enhance the emotional depth and cultural resonance critical for effective humor."
+    },
+    "2879a011f743548251b1498d8f42504f54693ab85890239dbcf55f4a068f2ece": {
+      "did": "We designed PalmRC, an eyes-free, palm-surface-based TV remote control that allows users to interact with their television without requiring a traditional handheld remote or visual attention.",
+      "found": "We found that users can effectively and accurately touch specific landmarks on their palm to control TV functions, achieving over 90% effectiveness in a controlled experiment.",
+      "takeaway": "Our findings suggest that a palm-based interaction model can enhance the user experience by enabling intuitive, device-less TV control, allowing viewers to maintain focus on the screen."
+    },
+    "2bf2633dbcf17a8e6b342c9acd6f98ea1f01c84fb69507f972a04aac62eb974a": {
+      "did": "We designed and evaluated six 3D teleportation methods that combined linear and parabolic aiming with different transition types in virtual environments.",
+      "found": "We found that the linear aiming method results in faster and more accurate target selection, and combining it with instant transitioning yields the highest efficiency and accuracy while minimizing VR sickness.",
+      "takeaway": "Our findings suggest that optimizing teleportation strategies in VR can significantly enhance user performance and comfort, paving the way for improved immersive experiences."
+    },
+    "2c036f0882e997f20d1b85254990571c81d5848c951446b30e83c873d5de3cff": {
+      "did": "We conducted a hands-on workshop exploring the practice of 3D printed electronics, guiding participants through the design and fabrication of functional components.",
+      "found": "We found that participants experienced a variety of challenges in the design and fabrication process, which led to fruitful discussions that generated problem-solving strategies and insights.",
+      "takeaway": "We emphasize the value of shared experiences and collaborative problem solving to inspire and equip new users to create their own tangible electronic objects using 3D printing."
+    },
+    "2d2cab23e108a5e342b3e8c7e377fc0f15f2a3f588cccb7cd13c5f033010a547": {
+      "did": "We conducted an in-the-wild study with 272 participants to explore user expectations of proactive AI systems through a mobile application called ProfileMe.",
+      "found": "We found that the majority of participants prefer proactive support from AI systems in various contexts, but are less inclined for it in areas related to mental health, where they often prefer reactive or no support.",
+      "takeaway": "Our findings suggest that AI system designers should tailor the proactivity levels based on user context and individual preferences to improve acceptance and functionality."
+    },
+    "2fbe67c08d119e237a1766bfcc6d10a43047fa10bf419131eb11dbbf6aeb8db4": {
+      "did": "We built ShadAR, an augmented reality application that transforms visual perception in real-time using shader generation via large language models.",
+      "found": "We found that ShadAR successfully enables users to express their visual intent through natural language, resulting in accurate and dynamic shader code generation.",
+      "takeaway": "Our application enhances inclusiveness and creativity in augmented reality experiences by allowing personalized visual modifications in real-time."
+    },
+    "314c3a2d4c01583720090553c4c657645c01a74ec23297c8ca5b452c48ec86f3": {
+      "did": "We conducted a high-fidelity Wizard of Oz study with 22 novice participants to explore their mental models in voice-based 3D modeling.",
+      "found": "We found that novices often use simple commands and expect voice assistants to manage vague requests, provide corrections, and accommodate their point of view.",
+      "takeaway": "Our findings highlight the need for voice-based 3D modeling tools to support novice users by implementing straightforward commands and adapting to user corrections to facilitate effective interaction."
+    },
+    "33fbac99824f328a4fadf7bfbf82fdef498ed9cf8474392eb458a356edf3556b": {
+      "did": "We conducted a user study to investigate the comfort and performance of rotational and translational mid-air interactions in Extended Reality (XR).",
+      "found": "We found that translational input is consistently more comfortable and efficient than rotational input, while indirect interaction reduces physical demand without compromising performance.",
+      "takeaway": "Our findings provide practical guidance for designing more ergonomic mid-air interactions, ultimately supporting sustainable augmented human experiences."
+    },
+    "3c689451c018f4c6675818befad479f881787085b3e99838f48613ce3b2d27b6": {
+      "did": "We conducted a controlled experiment to investigate the effects of imitation timing (parallel vs. sequential) and limb visualizations (hand vs. full arm) on task performance and memory retention during first-person augmented reality instructions.",
+      "found": "We found that parallel imitation is faster and increases embodiment, while sequential imitation enhances memory retention and user comfort.",
+      "takeaway": "Our results suggest that the design of augmented reality instruction systems should balance between quick execution and effective memory retention, guiding developers to tailor instructional approaches based on the goals of the task."
+    },
+    "3d9c72ff4d0a53c750ccb787a3bb5662706557e19031f09258b0310d10bc724b": {
+      "did": "We conducted an exploratory experiment with 20 climbers to evaluate the effectiveness of Virtual Reality (VR) as a fear-reduction training tool during simulated falls from a height of 5 meters.",
+      "found": "We found that while VR presents a promising approach to reducing fear during climbing falls, our method of scaling fall height did not enhance the exposure experience as anticipated.",
+      "takeaway": "Our research suggests that integrating VR into climbing training could help climbers manage their fear of falling, although future studies should focus on longitudinal designs and physiological measurements to better assess its efficacy."
+    },
+    "405e2d7fdf2f080c00717827d888f4c42e9d5d9eb12e44f9b43bffaa8052fbf5": {
+      "did": "We developed a manufacturing method for sensors utilizing 3D printing techniques that involve creating a non-conductive outer structure with an integrated electrode and conductive liquid.",
+      "found": "We demonstrated that this innovative approach allows for efficient sensor fabrication that combines both structural and functional elements within a single process.",
+      "takeaway": "Our method enhances the versatility and efficiency of sensor production, making it suitable for advanced applications in various fields."
+    },
+    "4809f8b58842e9e0f40ecb1a9a3ce935c604fd3f0b2146ef5e29daf107231390": {
+      "did": "We conducted a user study to investigate the effects of asynchronous expert perspectives and gaze visualizations on learning manual tasks in Extended Reality (XR).",
+      "found": "We found that the first-person perspective significantly enhances user efficiency, sense of embodiment, and social connectedness compared to the third-person perspective, with the 1PP being the preferred option among participants.",
+      "takeaway": "Our findings suggest that incorporating first-person perspectives in asynchronous XR training can optimize the transfer of complex practical skills, highlighting the need for future systems to focus on user experience and perspective customization."
+    },
+    "482bee9f2e90a6abfc8b140ca27d3588e2d9e7ad1b2dec7944f835a9bf99200a": {
+      "did": "We developed the Modularly Operated Digital Signage (MODS) framework to enhance the flexibility of digital signage solutions by using a modular, plugin-based approach.",
+      "found": "We found that users perceive the usability of MODS positively but identified areas for improvement, particularly regarding the intuitiveness of interaction during updates.",
+      "takeaway": "MODS facilitates dynamic adaptation of digital signage to diverse use-cases, allowing organizations to circumvent extensive reinstallation or costly modifications when their environments change."
+    },
+    "4a3b96e0f6a470a95fe05716ce228d26172f753352d2b8fb8170136b8956700a": {
+      "did": "We built a telepresence charades station designed to facilitate communication between museum visitors through pantomime and drawing.",
+      "found": "We found that using pantomime significantly enhanced efficiency and social connectedness in interactions compared to drawing.",
+      "takeaway": "Our findings suggest that incorporating telepresence technology in museums can foster meaningful interactions among visitors, promoting a more engaging and socially connected experience."
+    },
+    "4b160eb72c286563fd5f901058a5037a0d2f8f37d38b98a97524019bdc0a2455": {
+      "did": "We built PneumAct, a pneumatically actuated jacket that enables kinesthetic motion of body joints in Virtual Reality environments.",
+      "found": "We found that varying inflation patterns and durations significantly affect arm angles, which enhances the user's experience in VR applications.",
+      "takeaway": "Our system improves immersion and enjoyment in virtual experiences compared to traditional vibrotactile feedback, suggesting a promising direction for future VR haptic technologies."
+    },
+    "4ba71e3ebcbfb5bb24e886f4da1dc9baab87ceda7f8c4b1ff81ea1eb2a117eea": {
+      "did": "We conducted a comprehensive evaluation of lateral thumb-index pinching performance in a visual targeting task, varying grip span, counterforce, and direction to assess their impacts on accuracy and efficiency.",
+      "found": "We found that larger grip spans and the presence of a counterforce significantly enhance the accuracy and user experience of pinching interactions, while top-to-bottom pinching proved less effective.",
+      "takeaway": "Our study contributes valuable insights for designing future pinchable user interfaces by emphasizing the importance of larger spans and the use of counterforces for optimal interaction performance."
+    },
+    "4f420016573ebb2283d7e5370173e218f3688a104ea43069921f3a050f3d71b2": {
+      "did": "We built PneumoVolley, a virtual reality experience that utilizes pneumatic actuation to provide pressure-based haptic feedback on the head.",
+      "found": "We found that our pressure-based haptics significantly increased user involvement and enjoyment compared to a no-haptic baseline, demonstrating its effectiveness in enhancing the virtual reality experience.",
+      "takeaway": "Our work contributes valuable design considerations for implementing pressure-based haptic feedback on the head, which can improve user immersion and engagement in virtual reality applications."
+    },
+    "58620307a2f27909d929ad099b1f6664f10060bb01ff1ab002c46fb4dd79f322": {
+      "did": "We conducted a workshop titled 'Rethinking Smart Objects' to discuss novel interaction paradigms and the societal implications of using smart objects in interactive spaces.",
+      "found": "We found that participants emphasized the need for natural, efficient, and enjoyable interactions with smart objects, which could enhance user engagement and satisfaction.",
+      "takeaway": "The workshop highlights the importance of collaborative dialogue between researchers and practitioners to advance the design and implementation of smart objects in everyday environments."
+    },
+    "588745d91a8551567b2248931fc2e1c204cc88aac308ac69ae1f39b9727a8875": {
+      "did": "We designed and implemented CaMea, a camera-supported graphical user interface to assist users in measuring workpieces within CNC milling machines.",
+      "found": "We found that users completed tasks significantly faster and with fewer errors using CaMea compared to traditional numeric interfaces, enhancing overall user experience.",
+      "takeaway": "Our findings suggest that integrating augmented reality interfaces like CaMea can make CNC milling operations more accessible and efficient for novice users."
+    },
+    "5cac48bb18e3ec51314d7ae49b41e843c95e57386eca530464b8183b5a210836": {
+      "did": "We conducted a user study to investigate the effects of different AR content anchoring positions (hand, head, torso) on dual-task performance involving walking and a visual working memory task.",
+      "found": "We found that head-anchored AR content resulted in the best walking performance and accuracy in virtual tasks, while hand anchoring decreased efficiency and increased cognitive load, and torso anchoring led to slower performance in both tasks.",
+      "takeaway": "Our findings suggest that head anchoring is optimal for dual-task scenarios in mobile AR applications, as it minimizes cognitive load and enhances user performance, while also highlighting the need to consider task demands in AR design."
+    },
+    "5ccd46bad89eb68cdb42e5c529763988b20fb1fcf0e9637e2c06e6cfff2b4797": {
+      "did": "We conducted two experiments to understand the spacing of vibrotactile actuators on various body parts, analyzing both the maximum and minimum distances for effective feedback.",
+      "found": "We found that the effective spacing for vibrotactile actuators varies significantly across body locations, demonstrating higher sensitivity and localization accuracy at distal locations like the wrist compared to proximal areas like the stomach.",
+      "takeaway": "We propose VibroMap as a design guideline for interaction and hardware designers, helping to optimize the placement of vibrotactile actuators for enhanced user experiences."
+    },
+    "61e25a104f40d8256df05d444fa4f41429047811a9f0b56d1d1fd8b01e650424": {
+      "did": "We built VRtangibles, a system that combines tangible objects and touch input to enable children to create virtual scenes without the need for programming.",
+      "found": "We found that the majority of children successfully engaged and enjoyed creating virtual scenes with VRtangibles despite initial technical barriers.",
+      "takeaway": "Our work demonstrates that integrating tangible and touch-based interactions can effectively lower entry barriers for children to actively participate in virtual scene creation."
+    },
+    "64f6d5ca84b1845fe09f98829067e32723f1e306bb53adb613a66d07169bd23a": {
+      "did": "We designed Oh, Snap!: a fabrication pipeline that enables magnetic connections between 3D-printed objects with embedded passive sensing structures and conventional electronics.",
+      "found": "We found that our system provides a robust and reliable electrical connection for capacitive sensing, demonstrating ease of use and effectiveness over multiple attachment cycles.",
+      "takeaway": "Our approach facilitates the rapid prototyping of interactive 3D-printed objects, allowing users without expert knowledge in electronics to easily integrate and connect conventional electronics."
+    },
+    "674395ebf06f8cf3ed78b6739b669a12ed5af1c25d1a49f1311ce90f630e33ea": {
+      "did": "We conducted the sixth SmartObjects workshop to explore efficient and enjoyable interactions with smart objects through embedded intelligence.",
+      "found": "We found that the integration of multimodal interaction techniques significantly enhances user engagement with smart objects.",
+      "takeaway": "Our findings highlight the importance of designing intelligent interactions in smart objects to improve user experience across various domains, including automotive and smart spaces."
+    },
+    "69a8f62670ec73a6d1a4d821844b97de025120ee435341f3e8e718018d5526cc": {
+      "did": "We built a database of handwriting and drawing samples from 17 participants, collected alongside their perceived exertion ratings.",
+      "found": "We found that perceived exertion can be predicted using simple line drawings, particularly the task of drawing pentagons, which showed the lowest prediction error.",
+      "takeaway": "Our research suggests that handwriting and drawing could serve as non-invasive methods for detecting perceived exertion, potentially informing the design of interactive systems that respond to user discomfort."
+    },
+    "6c46d8c84012206636cdf40c29d7f4456c1733e0b26246d53a4b5fe1f61dd8c6": {
+      "did": "We conducted an online survey with 110 participants to explore how different spatial contexts and content characteristics affect user engagement with location-based AR social media content.",
+      "found": "We found that dynamic 2D AR content in private spaces is preferred for both sharing and consuming, as it significantly enhances comfort and reduces awkwardness compared to static and 3D content.",
+      "takeaway": "Our findings suggest that designing future location-based AR social media should prioritize dynamic 2D content in private settings to increase user comfort and engagement."
+    },
+    "73350e2efb62c601945cfdf2a6b59ec342349f67584539887d79f1a777335fb8": {
+      "did": "We designed and evaluated three different visualizations for tracking passersby in room-scale Virtual Reality using Augmented Virtuality techniques: an Avatar, a 3D-Scan, and a 2D-Image.",
+      "found": "We found that while the 2D-Image and Avatar visualizations allowed for the fastest identification of passersby, the Avatar visualization provided the most accurate representation of their position.",
+      "takeaway": "This research suggests that integrating passersby into Virtual Reality environments can enhance user interaction and safety, offering design recommendations based on the context of the user's task."
+    },
+    "76c963f98c06ff090531dbda6d15142c754f4fc6f5060ccc65ae7c20b881f908": {
+      "did": "We designed two interaction concepts that utilize the user's palm as an input modality for head-mounted displays (HMDs).",
+      "found": "We found that palm-based interactions can facilitate a more enjoyable and usable experience when interacting with both augmented reality and head-up display interfaces.",
+      "takeaway": "Our findings suggest that incorporating palm-based interactions could greatly enhance user interface design for HMDs, paving the way for more intuitive and efficient user engagements."
+    },
+    "782d018192764de75b020b9430e3dfb343a3524e89f3227b3c20f52f879c4223": {
+      "did": "We built ProxiWatch, a one-handed and proximity-based input modality for smartwatches that leverages the degree of freedom of the elbow joint.",
+      "found": "We found that users have unique personal interaction spaces for proximity-based smartwatch interactions, indicating the need for tailored interfaces rather than a one-size-fits-all approach.",
+      "takeaway": "Our research provides guidelines for designing proximity-based smartwatch interfaces and demonstrates the potential of enhancing user interaction experiences in mobile contexts."
+    },
+    "792203592e0b42bbff3ed27d83e93231b04c8584c3fb0dc39175d59e208b2efd": {
+      "did": "We conducted an overview of the outcomes from three workshops at the EICS 2019 conference focused on engineering interactive systems.",
+      "found": "We found that the discussions highlighted current challenges and innovations related to multi-stakeholder integration and smart object interaction design.",
+      "takeaway": "Our findings emphasize the need for refined methods and tools in HCI that accommodate emerging interaction techniques and diverse stakeholder perspectives."
+    },
+    "7a22f7f83dc82228b5717a5ca64cf0635653a1eb1e838ff6164373845cb84261": {
+      "did": "We built an augmented reality (AR) meme-sharing prototype that allows users to visualize memes in face-to-face conversations.",
+      "found": "We found three archetypes for integrating memes into conversations using AR: The Meme on Me, Me in the Meme, and Meme as Visual Reference, which demonstrate distinct interaction patterns.",
+      "takeaway": "Our research highlights how integrating AR memes into conversations enhances social interaction by blending user actions and environmental contexts with meme content, thus contributing to playful communication."
+    },
+    "7fdb08c49b7d96a259aee156d6c0bccf2af8fa0f274cba9a23b5240fea2fe4f7": {
+      "did": "We conducted a joint workshop on Smart Connected and Wearable Things, integrating discussions from various perspectives in HCI and AI to explore advanced interactions with smart objects.",
+      "found": "We found that the synergy between smart objects and wearables can significantly enhance user interactions by improving situational awareness and enabling more intuitive engagement.",
+      "takeaway": "Our work emphasizes the importance of interdisciplinary collaboration in developing innovative applications that leverage the intelligence of smart objects and wearables across various industries."
+    },
+    "838258ebdd9af287e768a9fcf16369b0470a0675f3899aa83276e2e9dd7b01c2": {
+      "did": "We conducted a user study to examine the impact of user involvement and uncertainty communication on frustration in human-robot collaboration under different speed-accuracy trade-off conditions.",
+      "found": "We found that user frustration was highest with risky robot behaviors and that involving users in decision-making reduced frustration only in these scenarios, while it increased frustration when robot actions were conservative.",
+      "takeaway": "Our results suggest that robots should selectively involve users during high-risk tasks to mitigate frustration, while operating autonomously in low-risk situations to enhance efficiency and user experience."
+    },
+    "87d509d685287f47a898630de8c7f2e1ed17e7067ecda8477e4e3ed71d2d38c0": {
+      "did": "We designed and conducted an exploratory study and a controlled experiment to investigate the use of the palm as an interactive surface for eyes-free TV remote control.",
+      "found": "We found that users can effectively and precisely touch landmarks on their palm without visual attention, achieving over 90% effectiveness for essential functions.",
+      "takeaway": "Our results suggest that leveraging palm-based interactions can enhance the user experience by allowing device-less and intuitive control of TV systems."
+    },
+    "885c02b4d0364b8796d319f973bf192970eb0f3047848df2a39d15d62b026bd8": {
+      "did": "We built CheckMate, a tangible Augmented Reality interface that combines 3D printed objects with interactive surfaces for remote interaction in games like chess.",
+      "found": "We found that participants felt a strong connection to their remote counterpart while using our system, as it provided a natural and immersive experience similar to playing traditional chess.",
+      "takeaway": "Our work demonstrates the potential of blending tangible user interfaces with augmented reality to enhance remote communication and collaboration, paving the way for future applications beyond gaming."
+    },
+    "88a491a16680b4e01525c0865072bc3e13a16ea3ee2996567408c91108cf1dec": {
+      "did": "We built Let’s Frets, a modular guitar learning system that incorporates visual indicators and capacitive sensing to assist students during practice sessions.",
+      "found": "We found that the combination of visual indicators and finger position capturing yielded the highest playing accuracy, while visual indicators alone allowed for the quickest realization of new finger positions.",
+      "takeaway": "Our findings suggest that Let’s Frets can significantly enhance the practice experience for guitar students, enabling more effective and independent skill acquisition, and can be adapted for other musical instruments."
+    },
+    "895df4c0b8337044fc364d64ea5cf9019c208f908871f7b2080a749930bd69b7": {
+      "did": "We hosted the Mensch und Computer 2022 conference at Technische Universität Darmstadt, welcoming nearly 600 attendees from academia and industry.",
+      "found": "We demonstrated the value of in-person interactions for fostering collaboration and knowledge exchange in the field of Human-Computer Interaction.",
+      "takeaway": "Our event reaffirmed the importance of physical presence in enhancing networking and learning opportunities within the HCI community."
+    },
+    "8a95ac08c6c910bda9dd8b0ee8e1c059d5f67649b12b060435ecce9cdbaeba76": {
+      "did": "We conducted a Wizard-of-Oz study to investigate how different modes of AI representation—highlighting, incremental visualization, and embodiment—affect user perception during 3D object co-creation in Virtual Reality.",
+      "found": "We found that while embodiment significantly improved user perceptions of support and partnership with the AI, highlighting diminished enjoyment and perceived ownership of the created objects.",
+      "takeaway": "Our findings suggest that designers of co-creative tools in VR should prioritize AI embodiment to enhance collaboration while being cautious about the use of highlighting, which may negatively impact user satisfaction."
+    },
+    "9053a8b623f7703bad7f2bd4db2402971c99a91ac4685c9fcfd5bc012e3079f0": {
+      "did": "We designed two augmented reality visualizations, X-ray and Countdown, to assist cyclists in making crossing decisions at uncontrolled intersections.",
+      "found": "We found that the X-ray visualization ensured faster selection of shorter gaps between cars, while the Countdown visualization enhanced feelings of safety and provided a better overview of the intersection.",
+      "takeaway": "Our research demonstrates the potential of augmented reality to improve cyclist safety and decision-making at intersections, highlighting the need for integrated systems in cycling infrastructure."
+    },
+    "92c18933c04880b57e6470c95660806ab1fcd54891dce87040b6fb92fc878b94": {
+      "did": "We designed CloudBits, an augmented reality system that facilitates conversation support through zero-query search visualization by displaying information bits that fall from a virtual cloud in users' peripheral vision.",
+      "found": "We found that CloudBits significantly improved mutual awareness and re-engagement during co-located conversations compared to traditional smartphone usage, enabling users to interact with shared information more fluidly.",
+      "takeaway": "Our findings suggest that augmented reality can enhance conversation quality by reducing cognitive load and enabling seamless information sharing, highlighting the importance of designing interfaces that leverage shared physical space."
+    },
+    "992a3963b53e6b75b0b42f8641d9b8571922e775cfd0e2f04e8e1129e11d4e7d": {
+      "did": "We designed four interaction techniques leveraging limb movements for engaging with digital information in an augmented physical world.",
+      "found": "We found that these techniques, including proximity-based interactions and foot-based interactions, enable more natural and efficient interactions, especially in mobile contexts where hands may not be free.",
+      "takeaway": "Our work contributes to the vision of more intuitive and physically engaging interfaces for head-mounted displays, harnessing the full range of human motor capabilities."
+    },
+    "992b6ab80b2c7f102a394105cd83166b2fa2404b3f59ca9e036542f549019b4c": {
+      "did": "We conducted a contextual investigation of social cues utilized by non-anthropomorphic robots in a hospital setting, testing 103 cues through an online survey with 1545 participants.",
+      "found": "We found that human interpretations of these social cues vary significantly across different contexts.",
+      "takeaway": "Our study emphasizes the necessity for designing dynamic and adaptive social cues to enhance interactions with non-anthropomorphic robots."
+    },
+    "9b184104efe55c85519f508533248dbc8b43a255ecc99c4b0e49357f427eae6c": {
+      "did": "We designed a location-aware virtual reality system for in-vehicle entertainment that incorporates real-world cues from specific locations along the ride.",
+      "found": "We found that while continually displaying live street views degrades virtual reality presence, using points of interest (POIs) with text or live views effectively preserves presence while enhancing situational awareness.",
+      "takeaway": "Our work underscores the importance of integrating spatio-temporal awareness in mobile VR systems to better balance user immersion and real-world situational awareness in dynamic transportation environments."
+    },
+    "9b1d09bb23d1762a94eba56938c359fa19cf42a625e6c7ea03776d5e26f57c6a": {
+      "did": "We conducted two user studies to investigate the perception of stationary and moving vibrotactile sensations on the palm.",
+      "found": "We found that a 9 actuator display with a 3 × 3 grid offers accurate localization for stationary sensations, while a 2 × 4 resolution can accurately convey moving sensations with a recognition rate exceeding 95%.",
+      "takeaway": "Our findings provide essential design guidelines for developing effective palm-based tactile displays that enhance user interaction across various applications."
+    },
+    "9d35ad9084d3267dd0bb630dcad2c2d588469acd07c637c6cc42b0f3f8ec4ab7": {
+      "did": "We built a personalized user-carried single button interface (PUCSBI) prototype for a coffee machine that allows users to trigger their preferred coffee recipe and handle payment with a single button press.",
+      "found": "We found that 30 out of 40 participants switched to using the new system within the first two weeks, citing its ease of use and speed compared to the previous method.",
+      "takeaway": "Our work demonstrates that personalized shortcuts for smart device interaction can significantly enhance user experience by simplifying the control process."
+    },
+    "9ef6fedeb67e6c73b72e029a4b3cffc90a86f04d491ab1842b603dc78060106b": {
+      "did": "We designed and evaluated two interaction modalities, a flashlight-inspired approach and a 3D cutting planes approach, for exploring Spatial Dense Dynamic Data (SDDD) in Virtual Reality (VR).",
+      "found": "We found that the flashlight modality improved tracking performance in SDDD, while the cutting planes modality was more effective for highlighting stationary volumes of interest, especially in high-density environments.",
+      "takeaway": "Our results indicate that effective interaction techniques are essential for navigating complex SDDD environments, providing users with crucial support to enhance their exploration and understanding of dynamic datasets."
+    },
+    "a11470a6cf3f754ee652ec7c8c0bd4a2632e8ed0b499a29e170aec81106fae35": {
+      "did": "We built nine novel foot-based locomotion concepts for virtual reality, utilizing the 3D position of the user's feet and pressure applied to the soles as input modalities.",
+      "found": "We found our foot-based locomotion techniques to be viable, with participants expressing interest in their use despite longer task completion times compared to traditional handheld teleportation methods.",
+      "takeaway": "Our work contributes to the field of HCI by demonstrating that foot-based locomotion can enhance user engagement in VR applications while allowing for hands-free interaction."
+    },
+    "a7fa783d9ed4c5a03d0f1a7a9f8f6a0309b342c14d1f9572533cf5deedc68c67": {
+      "did": "We built Embracer, a wearable encountered-type haptic controller that provides three degrees of freedom (3 DoF) for input and feedback through a wrist-mounted design.",
+      "found": "We found that Embracer effectively delivers nuanced haptic sensations, such as stretching and pressure, directly on the user's palm while allowing for natural input interactions.",
+      "takeaway": "Our findings suggest that Embracer significantly enhances the realism and immersion of haptic feedback and user control in virtual reality applications."
+    },
+    "a850422b7b684a66d79fedcb871b5f5ebc7f06bf13bb16fe0413b8e79286036e": {
+      "did": "We designed a virtual escape room game that visualizes asynchronous players' heartbeats to explore their impact on social connectedness in single-player VR scenarios.",
+      "found": "We found that visualizing heartbeats significantly enhanced participants' feelings of social connectedness, especially when using symbolic heart icons, compared to baseline conditions without visualizations.",
+      "takeaway": "Our work demonstrates the potential of embedding physiological data visualizations in single-player VR games to foster social connections, offering design recommendations for game developers."
+    },
+    "ab0101ed88f9ae63fecc6e2b30a3f01baae5255199d9c78f735cd48e54a9f2f5": {
+      "did": "We built ActuBoard, an open rapid prototyping platform that simplifies the integration of hardware actuators for remote applications.",
+      "found": "We found that ActuBoard significantly reduces the time and effort required for assembling and programming prototypes by allowing users to connect off-the-shelf components without complex wiring or coding.",
+      "takeaway": "Our platform enables both experienced and novice designers to focus more on interaction design rather than hardware complexities, fostering innovation in the field of HCI."
+    },
+    "ad84261aa8762410ba5cab6c29be362e540f2c9d2c5304f00cfedc8e15f5ed03": {
+      "did": "We designed VRChairRacer, a novel locomotion technique for VR racing games that maps the movement of an office chair's backrest to control speed and steering in a virtual environment.",
+      "found": "We found that using an office chair as a controller facilitates an immersive racing experience and allows for multiplayer competition without the need for additional hardware.",
+      "takeaway": "Our findings suggest that repurposing common office furniture for VR interaction can create realistic and accessible gaming experiences, democratizing access to immersive VR locomotion."
+    },
+    "af14d4c4729ccc35af1af9ae06de20ffa8807ca9b24ed8dd11e133a682486670": {
+      "did": "We conducted the 3rd International Workshop on Ubiquitous Personal Assistance (UPA’18) to discuss advancements in digital personal assistants.",
+      "found": "We found that there is significant potential for improving digital personal assistants through advanced personalization and proactive support mechanisms.",
+      "takeaway": "Our workshop highlights the need for interdisciplinary collaboration in research to overcome challenges and enhance the effectiveness of ubiquitous personal assistance."
+    },
+    "af2e5fb0414bb1e15394c9c76cc6497e3f4bdcf67603ec3d638014e7d905b15e": {
+      "did": "We built a system utilizing 3D printed customizable tangible objects to enhance interaction on touch-enabled surfaces for collaborative work.",
+      "found": "We found that our concepts, Bring Your Own Information (BYOI) and Bring Your Own Tool (BYOT), significantly reduce the complexity of sharing and manipulating digital content across diverse devices.",
+      "takeaway": "Our approach allows users to seamlessly transfer data and enrich their interaction with digital content using uniquely designed physical tools, fostering a more engaging collaborative environment."
+    },
+    "b5f05da9b13c49a8db0ae26e0962562dc701f960b43d267b1f0c691081fd7404": {
+      "did": "We built Itsy-Bits, a fabrication pipeline and recognition system for 3D-printed tangibles with footprints as small as a fingertip that can be recognized by commodity capacitive touchscreens.",
+      "found": "We found that Itsy-Bits reliably identify and locate up to 30 different shapes across three sizes with a shape accuracy of 95.63%, a size accuracy of 98.57%, and a mean rotation error of 6.53 degrees.",
+      "takeaway": "Itsy-Bits enable the creation of highly individualized tangible user interfaces on capacitive touchscreens, fostering innovative applications in digital environments."
+    },
+    "b75865337a66336e555fd408a0434bcc00e65ce8fd20f86bd0f0df195c4edd61": {
+      "did": "We conducted a user study comparing three order picking assistance systems: textual instructions in German, textual instructions in Finnish, and an Augmented Reality (AR) system using 3D arrows.",
+      "found": "We found that the AR feedback system significantly reduced task completion time and perceived cognitive load compared to both textual conditions.",
+      "takeaway": "Our findings suggest that Augmented Reality can enhance training efficiency in order picking tasks, enabling quicker integration of unskilled workers in multicultural environments."
+    },
+    "b767adb4f3064b3002661d46c176a26b80c7951da46483c2a29801000e890629": {
+      "did": "We conducted a study to investigate the efficiency and accuracy of proximity-based hand input for one-handed mobile interaction utilizing the elbow joint's flexion and extension.",
+      "found": "We found that the accuracy and efficiency of interactions significantly depend on the traveling distance to the target layer, with no substantial effects from hand side or direction of interaction.",
+      "takeaway": "Our findings suggest guidelines for designing on-body user interfaces that consider layer thickness and user comfort, supporting more effective proximity-based interactions."
+    },
+    "b7a8118935a9a21bf2f587b7819b7618cd3777ec494c045862b1cc7b0777be11": {
+      "did": "We designed and evaluated a tandem simulator to explore maneuver indications for self-driving bicycles, incorporating visual, auditory, and vibrotactile feedback modalities.",
+      "found": "We found that riders responded faster to visual cues such as ambient light and head-up display notifications compared to speech and vibration signals, while also maintaining concentration on reading tasks.",
+      "takeaway": "Our research indicates that effective communication of maneuver intentions is crucial for rider safety and trust in self-driving bicycles, highlighting the importance of leveraging visual cues in future designs."
+    },
+    "b7c5f0f741fd542afaef52cdfc5bd4d71b08c7135199bd61e0539640a575029f": {
+      "did": "We evaluated techniques to obscure hand movements during PIN authentication in VR, employing hand redirection and the shifting of virtual keypads.",
+      "found": "We found that the shifting technique significantly improved protection against shoulder-surfing attacks while maintaining user experience, though it increased subjective task load.",
+      "takeaway": "These findings highlight the need for balancing usability and security in VR authentication, suggesting the use of shifting methods in high-risk environments to enhance data protection."
+    },
+    "b943cf896afd1c52f0fbc5f9c22ed9daf8f952fce6363b52fb74cfcf5a7e53c4": {
+      "did": "We designed a system that uses smartphone sensors to classify Energy Metabolism Zones and Lactate Accumulation non-invasively through touch input.",
+      "found": "We found that smartphone interactions can effectively indicate physiological states related to blood lactate levels, achieving significant classification accuracy for detecting lactate accumulation.",
+      "takeaway": "Our research provides a foundation for accessible, smartphone-based training feedback for athletes, potentially transforming personal informatics practices in fitness and health monitoring."
+    },
+    "bb7aaf38211753fa6bc1dfeaddd420b511ad3a42136a90e65e6ba057ab81b636": {
+      "did": "We conducted an outdoor experiment to compare the effectiveness of Augmented Reality, auditory, and vibrotactile warnings for E-Scooter riders in preventing accidents at intersections.",
+      "found": "We found that both Augmented Reality and auditory warnings resulted in shorter reaction times and higher perceived safety compared to vibrotactile warnings, although the accident rate was consistent across all warning types.",
+      "takeaway": "Our study suggests that incorporating auditory and Augmented Reality warnings could enhance E-Scooter rider safety and should be considered in future designs of warning systems for micro-mobility."
+    },
+    "bd4306279a776b567b47545a05d2202e72d12e9616889eb08c412078c15ca1a0": {
+      "did": "We conducted a scoping review of 311 papers to map the current landscape of research intersecting Extended Reality (XR) and Artificial Intelligence (AI).",
+      "found": "We found five main topics driving the intersection of XR and AI, with a predominant focus on using AI to create realistic XR worlds and support interaction, while identifying a lack of research on using XR to enhance AI methods.",
+      "takeaway": "Our analysis highlights critical research opportunities, emphasizing the need for broader generalizability, robustness, and attention to ethical implications in XR and AI research."
+    },
+    "c61a7bdbed4b83c442321e1d40f7394a6506c3fb92893e3005e9e64e981e70f1": {
+      "did": "We designed a concept for around-body interaction utilizing the dexterity of our limbs for enhanced interaction with head-mounted displays (HMD).",
+      "found": "We show that utilizing the spatial reach of our lower limbs enables fast and enjoyable interactions while engaging with HMDs.",
+      "takeaway": "Our work contributes to the development of more immersive and intuitive interaction techniques that leverage the natural movement of the body."
+    },
+    "c67daa765353d1810f3c4b75baeabbd5915c11e54e7e26ae1b15ce85d5bdf0f1": {
+      "did": "We conducted a case study on the co-development of a custom peer feedback system integrated into a university course on scientific writing.",
+      "found": "We found that co-development resulted in improved alignment between software features and pedagogical goals, but also revealed usability challenges and infrastructure frustrations.",
+      "takeaway": "Our research emphasizes the importance of close coordination between teaching and technical teams to enhance the implementation of educational technologies."
+    },
+    "d34e1f09f56e305080986181b907be1ee3cd25e26539869a3572646bbe53ed27": {
+      "did": "We conducted a controlled experiment to investigate the use of lateral shifts of the walking path as an input modality for head-mounted displays (HMDs).",
+      "found": "We found that users achieved the highest accuracy rates when interacting with an 8-lane system at a selection time of 2/3 seconds, confirming the viability of our walking-based interface.",
+      "takeaway": "Our findings offer design guidelines for creating more comfortable and safe interaction experiences with HMDs while users are on the move."
+    },
+    "d49a2bc394fbb667d8969c604c51c30034d89700ca6ea7bb77a5a910069ca6a5": {
+      "did": "We conducted a user study to evaluate the effectiveness of leaning- and controller-based locomotion techniques for flying in virtual reality.",
+      "found": "We found that while leaning-based steering increased presence compared to controller-pointing, the combination of leaning-based steering with controller linear displacement resulted in poorer performance across various metrics.",
+      "takeaway": "This research highlights the importance of carefully selecting locomotion methods in VR experiences, as the choice of steering and velocity control can significantly impact performance, enjoyment, and user experience."
+    },
+    "d862d21031260146f4408802e61795fd2c4a93e13289cd890c76aa573931558c": {
+      "did": "We conducted a workshop focused on exploring issues related to the interaction and integration of smart objects within various contexts, including education and home environments.",
+      "found": "We found that effective interaction with smart objects can enhance user experiences and foster natural communication between devices and users.",
+      "takeaway": "We emphasize the need for designing ecosystems that allow smart objects to seamlessly communicate and adapt to user needs for improved usability and control."
+    },
+    "db49f035ef56622e7ec01966c6e0275fae1913ef628dec0e883bf995e7ef64c3": {
+      "did": "We designed TrackItPipe, a semi-automatic fabrication pipeline that integrates location and rotation tracking capabilities into 3D printed objects.",
+      "found": "We found that TrackItPipe allows users with no CAD experience to efficiently modify 3D models for tracking, resulting in positive feedback regarding its usability.",
+      "takeaway": "We contribute a valuable tool that simplifies the process of creating trackable 3D printed objects, enabling faster prototyping and interaction in mixed reality applications."
+    },
+    "dd0ee60e08702a434284788d9bb016a34bf2f1ff9b4a7c5cbaec142890296f39": {
+      "did": "We conducted two controlled lab experiments to investigate steering methods and countermeasures for reducing VR sickness in bicycle simulators.",
+      "found": "We found that handlebar steering leads to the lowest VR sickness and airfow is the most effective countermeasure across various cycling trajectories.",
+      "takeaway": "Our results suggest that optimizing steering methods and implementing airfow can significantly enhance the VR cycling experience by mitigating motion sickness."
+    },
+    "e61cd54f83e7234d1edf49349a3c8c8852a4e2c4eb38fd7a357ea61977cf4d8e": {
+      "did": "We developed four interaction techniques for around-body interaction with HMDs that utilize the skills and dexterity of both upper and lower limbs.",
+      "found": "We found that leveraging the movements of limbs for interaction allows for fast, accurate, and enjoyable engagement with HMDs, even when hands are occupied.",
+      "takeaway": "Our work demonstrates the potential for more natural and intuitive interactions in augmented reality environments by expanding input methods beyond current touch and voice-based approaches."
+    },
+    "e81cea100c2f79684071a2fd18c351c2dc8436e33e2437dc1d0b66ca1821b505": {
+      "did": "We designed a haptic feedback system that provides subtle vibrotactile and thermal nudges to support musicians in maintaining correct posture while playing their instruments.",
+      "found": "We found that haptic feedback can effectively guide musicians back to the correct posture without distracting them from their primary task of playing.",
+      "takeaway": "Our system could help prevent long-term injuries and movement disorders associated with improper posture during instrument practice, benefiting both beginners and advanced musicians."
+    },
+    "e9ea7ce03f2e378ce7e01368b2e02a211e574bfd46b23db9bb928834751dc9b8": {
+      "did": "We envisioned an AI-driven system for dynamic AR content placement that adapts to user movements and environmental changes.",
+      "found": "We demonstrate that incorporating AI capabilities allows for a more nuanced and context-aware placement of AR content, reducing cognitive load and improving user engagement.",
+      "takeaway": "Our vision suggests that this adaptive approach could transform AR interactions across various industries, making them more intuitive and user-centric."
+    },
+    "eae3b3ed93eb65b01595a5054b022af4c6e67b788c2a6daf62e49b8cb5fce8d8": {
+      "did": "We conducted a large-scale study involving 1126 participants to evaluate user preferences for the autonomy of Personalized Privacy Assistants (PPAs) in private IoT-equipped environments.",
+      "found": "We found that users' preferences shift based on the context and number of privacy decisions required; specifically, while users preferred notification or recommendation PPAs in low-decision scenarios, they opted for fully autonomous PPAs when decision frequency was high.",
+      "takeaway": "Our study suggests that scalable PPA designs should include contextual understanding and user preferences to effectively manage privacy decisions, emphasizing the importance of flexibility based on the number of decisions required."
+    },
+    "ee936956d86e6aa468f7767ca5550f924820165b278b2adb0b6c94c8c499ed7e": {
+      "did": "We designed VRSketchPen, a haptic feedback pen for accurate sketching in virtual 3D environments, utilizing pneumatic and vibrotactile feedback without constraining user actions.",
+      "found": "We found that VRSketchPen significantly improved 2D shape accuracy and reduced depth errors compared to a no-assistance condition, indicating its effectiveness in enhancing sketching performance.",
+      "takeaway": "Our work contributes to the field of virtual reality sketching by demonstrating that unconstrained haptic assistance can improve user confidence and experience while maintaining creative freedom."
+    },
+    "f099a046ac3fccade5b3c118f8a96a740631b000c0132994a8ade621880443aa": {
+      "did": "We built TactileGlove, a smart glove equipped with vibrotactile actuators for providing spatial guidance in 3D space.",
+      "found": "We found that using a Pull metaphor for vibrotactile navigation instructions is preferred by participants and reduces target acquisition time when more actuators are utilized.",
+      "takeaway": "Our results suggest that vibrotactile feedback can significantly enhance spatial guidance, particularly for assistive applications, by improving navigation efficiency in 3D environments."
+    },
+    "f62211147ae29ab194d6e7daf264352439204475168214dac4ce3d6d34a0f416": {
+      "did": "We conducted a study exploring the factors affecting private conversations in social virtual reality (VR) applications and developed a design space to enhance user experiences.",
+      "found": "We found that users prioritize nuanced features in private conversation systems, such as clear privacy indicators and seamless transitions between public and private dialogue.",
+      "takeaway": "This work provides a foundational design space for developers, emphasizing the importance of integrating user needs for privacy, social connection, and intuitive interaction in social VR environments."
+    },
+    "f6c96e1f0c630002666b1509e69ca11a3181a182fca5ca1f1bec3f432cf22a8f": {
+      "did": "We built Trilaterate, a fabrication pipeline that enables users to 3D print custom objects capable of detecting the 3D position of a finger through hover, touch, and force interactions by using capacitive trilateration.",
+      "found": "We found that our approach allows for reliable sensing of finger positions and force levels, with high accuracy affected by electrode coverage and distance to the object's surface.",
+      "takeaway": "Trilaterate simplifies the process of creating interactive 3D-printed objects, making advanced touch and force sensing more accessible for researchers, makers, and end users."
+    },
+    "f6f0de450ca2ebd318ad9fb7f17320e05685b32bd4383688cacde05ce3666c73": {
+      "did": "We conducted a study comparing three different notification selection techniques in Augmented Reality for cyclists: gaze-based Dwell Time, Gestures, and MAGIC Pointing.",
+      "found": "We found that MAGIC Pointing resulted in significantly faster response times compared to Dwell Time and Gestures, while Dwell Time produced a lower error rate than Gestures.",
+      "takeaway": "Our research highlights the potential of MAGIC Pointing as an effective interaction modality for cyclists in AR, facilitating quicker and safer engagement with notifications without compromising attention to road traffic."
+    },
+    "f84186ca766c0342d6548a7ac04192a6863217343d4f337b478a1768c8a13b78": {
+      "did": "We conducted an evaluation of a hybrid tabletop system called StackTop that enables true hybrid stacking of digital and physical documents.",
+      "found": "We found that users can effectively employ their natural practices of stacking in a hybrid environment, demonstrating a preference for conventional physical-like interactions when organizing content.",
+      "takeaway": "Our results suggest design implications for future hybrid stacking systems, emphasizing the need for intuitive, physically-inspired interaction techniques to enhance user experience."
+    },
+    "f896d23dd07adbe02afe28119dbe2f6fcebccc0ea7fb1dd98bdc5fb3ea90875c": {
+      "did": "We designed a method to embed liquids into 3D printed objects to enable capacitive sensing of tilting and motion.",
+      "found": "We found that this approach significantly reduces assembly effort and can accurately detect various tilting and motion interactions.",
+      "takeaway": "Our work provides a low-cost and easy-to-implement way of enhancing the interactivity of 3D printed objects, making them more versatile for various applications."
+    },
+    "fdfd33de7bc0c83f1e6a4c947540d537f28c84b27f7862e97fce02e1d0c11823": {
+      "did": "We conducted an experiment to investigate how augmented reality visual filters and synchronized audio cues affect taste perception in immersive environments.",
+      "found": "We found that a pink visual filter, typically associated with sweetness, decreased perceived bitterness in isolation but paradoxically increased bitterness perception when combined with sweet audio cues, highlighting unexpected crossmodal interactions.",
+      "takeaway": "Our findings suggest that incorporating users' confidence levels into multisensory experience design can lead to more nuanced understandings of perception, informing the development of interactive media that effectively manage sensory expectations."
+    },
+    "ff6644f703d59573756b6fcd2c128b3c58578e5679724dcba38261b45e91a562": {
+      "did": "We built FreeTop, an approach that identifies suitable projection areas in physical environments by combining color- and depth-based measures to assess projectability.",
+      "found": "We found that FreeTop generates a continuous projectability score for each pixel in the scene, enabling more flexible and effective placement of projected content compared to traditional methods.",
+      "takeaway": "By leveraging standard RGBD cameras, FreeTop can be easily integrated into both stationary and mobile setups, enhancing interactive projection systems' adaptability and usability."
+    }
+  },
+  "version": 1
+}

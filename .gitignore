@@ -13,6 +13,9 @@ content/publication/*.md
 # Claude Code local config
 .claude/
 
+# Environment / secrets
+.env
+
 # OS files
 .DS_Store
 Thumbs.db

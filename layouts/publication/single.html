@@ -75,6 +75,28 @@
                 {{ end }}
             </div>
 
+            {{ if .Params.tldr_did }}
+            <div class="pub-tldr-box">
+                <div class="pub-tldr-box-title">TL;DR</div>
+                <div class="pub-tldr-row">
+                    <span class="pub-tldr-label">What we did:</span>
+                    <span class="pub-tldr-text">{{ .Params.tldr_did }}</span>
+                </div>
+                {{ if .Params.tldr_found }}
+                <div class="pub-tldr-row">
+                    <span class="pub-tldr-label">What we found:</span>
+                    <span class="pub-tldr-text">{{ .Params.tldr_found }}</span>
+                </div>
+                {{ end }}
+                {{ if .Params.tldr_takeaway }}
+                <div class="pub-tldr-row">
+                    <span class="pub-tldr-label">Takeaway:</span>
+                    <span class="pub-tldr-text">{{ .Params.tldr_takeaway }}</span>
+                </div>
+                {{ end }}
+            </div>
+            {{ end }}
+
             {{ if .Content }}
             <div class="pub-single-abstract">
                 <h3>Abstract</h3>

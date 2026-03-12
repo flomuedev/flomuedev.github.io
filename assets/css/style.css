@@ -629,6 +629,26 @@ h3 {
   margin-bottom: var(--space-3);
 }
 
+.pub-card-tldr {
+  font-size: var(--font-size-sm);
+  font-style: italic;
+  margin-bottom: var(--space-3);
+  line-height: 1.5;
+  display: flex;
+  gap: var(--space-2);
+  align-items: baseline;
+}
+.pub-card-tldr-arrow {
+  flex-shrink: 0;
+  color: var(--color-accent);
+  font-style: normal;
+  font-size: 1.1em;
+  line-height: 1;
+}
+.pub-card-tldr-text {
+  color: var(--color-text-muted);
+}
+
 .venue-short-badge {
   display: inline-block;
   background: var(--color-accent-bg);
@@ -1002,6 +1022,41 @@ h3 {
 
 .pub-single-abstract p:last-child {
   margin-bottom: 0;
+}
+
+.pub-tldr-box {
+  background: var(--color-accent-bg);
+  border-left: 3px solid var(--color-accent);
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-6);
+  margin-bottom: var(--space-8);
+}
+.pub-tldr-box-title {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-accent-dark);
+  margin-bottom: var(--space-3);
+}
+.pub-tldr-row {
+  display: flex;
+  gap: var(--space-3);
+  margin-bottom: var(--space-2);
+  line-height: 1.6;
+}
+.pub-tldr-row:last-child { margin-bottom: 0; }
+.pub-tldr-label {
+  flex-shrink: 0;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-accent-dark);
+  min-width: 120px;
+}
+.pub-tldr-text {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  font-style: italic;
 }
 
 @media (min-width: 901px) {
