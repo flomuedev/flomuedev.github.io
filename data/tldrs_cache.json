@@ -101,9 +101,9 @@
       "takeaway": "Our work demonstrates that leveraging the palm as an input surface can enhance user experience by providing a device-less and intuitive method for interacting with television systems."
     },
     "2bf2633dbcf17a8e6b342c9acd6f98ea1f01c84fb69507f972a04aac62eb974a": {
-      "did": "We proposed six 3D teleportation methods in virtual environments that combine linear and parabolic aiming with three types of target transitioning.",
-      "found": "We found that the linear aiming method results in faster and more accurate target selection, particularly when paired with instant transitioning.",
-      "takeaway": "Our findings suggest that utilizing linear aiming with instant transitioning can enhance user experience in Virtual Reality by improving efficiency and accuracy while minimizing discomfort."
+      "did": "We designed six new 3D teleportation methods in virtual environments by combining linear and parabolic aiming with different transitioning types.",
+      "found": "We found that the linear aiming method significantly enhances target selection speed and accuracy, with the optimal combination being linear aiming paired with instant transitioning.",
+      "takeaway": "Our research provides valuable insights for improving locomotion techniques in Virtual Reality, suggesting that prioritizing linear aiming can optimize user experience without increasing Virtual Reality sickness."
     },
     "2c036f0882e997f20d1b85254990571c81d5848c951446b30e83c873d5de3cff": {
       "did": "We conducted a hands-on workshop focused on best practices and design recommendations for 3D printed electronics.",
@@ -326,9 +326,9 @@
       "takeaway": "Our work suggests that implementing foot-based locomotion can improve user experience in Virtual Reality applications by allowing simultaneous interaction tasks, though trade-offs in speed and accuracy should be assessed for specific applications."
     },
     "a3b4bd3420250621c253905539a82df43bdd2a5ec853f279b5e80640af5df8ce": {
-      "did": "We developed a location-independent mobile Extended Reality application to enable upper grade students to virtually explore a mountain-based observatory.",
-      "found": "We found that physical proximity significantly influences user experience factors such as presence, motivation, and perceived access, while having no measurable effect on quiz performance across different locations.",
-      "takeaway": "These findings underscore the importance of incorporating proximity-aware design in Extended Reality systems to enhance the educational engagement of users with otherwise inaccessible sites."
+      "did": "We developed a mobile Extended Reality application that allows users to explore and interact with a mountain observatory virtually, addressing physical accessibility barriers.",
+      "found": "We found that context-dependent physical proximity significantly influences user experience factors such as mental workload, presence, motivation, and perceived access, although quiz performance remained consistent across conditions.",
+      "takeaway": "Our results highlight the importance of incorporating proximity-aware design in Extended Reality systems to enhance educational engagement and make inaccessible locations more meaningful for users."
     },
     "a7fa783d9ed4c5a03d0f1a7a9f8f6a0309b342c14d1f9572533cf5deedc68c67": {
       "did": "We built Embracer, a wrist-mounted encountered-type haptic controller that provides three degrees of freedom for both input and feedback.",
@@ -506,9 +506,9 @@
       "takeaway": "Our approach offers a low-cost and efficient way to enhance the interactivity of 3D printed objects without the need for complex assembly after printing."
     },
     "f9d1b709872c6f65dff263d9797f1736ab024f2efbdd011db67ecdb4028bc9e7": {
-      "did": "We built a prototype of a simple non-humanoid robot that can track and synchronize with the upper body movements of humans.",
-      "found": "We found that synchronized movements led to significantly higher trust ratings between humans and the robot based on an established questionnaire.",
-      "takeaway": "Our research contributes a new design strategy suggesting that movement synchronization can enhance trust in non-humanoid robots, offering insights for future human-robot interaction designs."
+      "did": "We built a prototype of a simple non-humanoid robot that tracks and synchronizes with the upper body movements of humans to explore the impact of synchronization on trust.",
+      "found": "We found that synchronized movements significantly increased participants' trust ratings toward the robot compared to random and simple movement patterns.",
+      "takeaway": "Our research demonstrates that synchronization can be an effective strategy for enhancing trust in non-humanoid robots, offering insights for designers of future human-robot interfaces."
     },
     "fdfd33de7bc0c83f1e6a4c947540d537f28c84b27f7862e97fce02e1d0c11823": {
       "did": "We conducted a study to explore how augmented reality visual filters and synchronized audio cues influence taste perception in Extended Reality environments.",
