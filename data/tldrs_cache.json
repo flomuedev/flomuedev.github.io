@@ -1,9 +1,9 @@
 {
   "entries": {
     "014e3c1fa86ae01a25eb56ff64e8679a5f9c7af15657eed6c9575dab7c81afee": {
-      "did": "We conducted an investigation into user interfaces that prioritize human-centered design principles for improved control environments.",
-      "found": "We found that user-friendly interfaces that incorporate intuitive access and high recognition significantly enhance user experience and satisfaction.",
-      "takeaway": "Our work contributes to the development of more efficient user interfaces in the information and communication technology market, emphasizing the need for designs that align with user needs."
+      "did": "We conducted an investigation into user interfaces that prioritize human interaction through intuitive design and accessibility.",
+      "found": "We found that user-friendly interfaces significantly enhance user satisfaction and operational efficiency in technology environments.",
+      "takeaway": "Our findings contribute to the development of interface design principles that can improve user engagement and accessibility in the Information and Communication Technology market."
     },
     "01824fd1d42c21fa6c321d3849e3a50e85ba00497136bf6302176614dd0cbde9": {
       "did": "We built Therminator, a thermal display concept that provides localized thermal feedback using flowing liquids through a network of tubes in Virtual Reality.",
@@ -121,9 +121,9 @@
       "takeaway": "Our application highlights the potential of using large language models for enhancing accessibility and creativity in visual experiences."
     },
     "314c3a2d4c01583720090553c4c657645c01a74ec23297c8ca5b452c48ec86f3": {
-      "did": "We conducted a high-fidelity Wizard of Oz study with 22 novice participants to explore how their mental models translate into voice-based 3D modeling.",
-      "found": "We found that novices tend to rely on simple command structures, often requiring voice assistants to handle vague, incomplete, and incorrect commands, while also needing to manage corrections during the command process.",
-      "takeaway": "Our findings suggest that future voice-based 3D modeling systems must be designed to understand user corrections, accommodate a variety of command structures, and provide clear guidance to effectively support novice designers."
+      "did": "We conducted a high-fidelity Wizard of Oz study with 22 novice participants to explore how they approach voice-based 3D modeling.",
+      "found": "We found that novices rely on simple commands, often involving corrections and vague instructions, which highlights gaps in their understanding and expectations from voice assistants.",
+      "takeaway": "Our work provides design implications for future voice-based 3D modeling tools, aiming to lower barriers for novice users and facilitate a more intuitive design and customization process."
     },
     "33fbac99824f328a4fadf7bfbf82fdef498ed9cf8474392eb458a356edf3556b": {
       "did": "We conducted a user study to analyze the perceived comfort and performance of rotational and translational mid-air interactions in Extended Reality.",
@@ -331,9 +331,9 @@
       "takeaway": "Our results highlight the importance of incorporating proximity-aware design in Extended Reality systems to enhance educational engagement and make inaccessible locations more meaningful for users."
     },
     "a7fa783d9ed4c5a03d0f1a7a9f8f6a0309b342c14d1f9572533cf5deedc68c67": {
-      "did": "We built Embracer, a wrist-mounted encountered-type haptic controller that provides three degrees of freedom for both input and feedback.",
-      "found": "We found that Embracer can deliver nuanced omnidirectional haptic sensations while allowing for natural user manipulation, enhancing realism in Virtual Reality interactions.",
-      "takeaway": "Our work contributes to the field of Human-Computer Interaction by enabling more immersive Virtual Reality experiences through a versatile haptic interface that integrates both feedback and input functionalities."
+      "did": "We built Embracer, a wearable encountered-type haptic controller that allows for three degrees of freedom input and feedback.",
+      "found": "We found that Embracer provides nuanced haptic sensations and allows for natural user input, significantly enhancing the immersive experience in Virtual Reality environments.",
+      "takeaway": "Our work contributes to the development of more realistic haptic feedback systems, paving the way for improved engagement in training simulations and entertainment applications."
     },
     "a850422b7b684a66d79fedcb871b5f5ebc7f06bf13bb16fe0413b8e79286036e": {
       "did": "We designed a virtual escape room game that visualizes asynchronous players' heartbeats using various types of data visualizations.",
@@ -386,9 +386,9 @@
       "takeaway": "Our results suggest that effective communication of maneuver intentions through visual signals can enhance safety and trust in self-driving bicycles, paving the way for improved designs in micro-mobility automation."
     },
     "b7c5f0f741fd542afaef52cdfc5bd4d71b08c7135199bd61e0539640a575029f": {
-      "did": "We conducted two experimental studies to evaluate techniques for obscuring hand movements during PIN authentication in Virtual Reality, focusing on redirection and shifting methods to combat shoulder-surfing attacks.",
-      "found": "We found that shifting the virtual keypad before each key press significantly enhanced security against shoulder-surfing while ensuring better user performance, whereas continuous hand redirection techniques introduced more errors and task completion time.",
-      "takeaway": "Our findings suggest that balancing security and user experience is vital for Virtual Reality authentication, with recommendations for employing shifting techniques in high-security contexts to effectively protect sensitive information."
+      "did": "We designed and evaluated several masking techniques to obscure hand movements during PIN authentication in Virtual Reality to prevent shoulder-surfing attacks.",
+      "found": "We found that the discrete shifting of the virtual keypad significantly improved security against shoulder-surfing without excessively impacting user performance or experience.",
+      "takeaway": "Our findings indicate that integrating these masking techniques into future Virtual Reality authentication systems can enhance user security effectively while maintaining usability."
     },
     "b943cf896afd1c52f0fbc5f9c22ed9daf8f952fce6363b52fb74cfcf5a7e53c4": {
       "did": "We designed a method to non-invasively infer Energy Metabolism Zones and Lactate Accumulation using smartphone touchscreen input combined with built-in sensors.",
@@ -406,9 +406,9 @@
       "takeaway": "We emphasize the need for enhanced collaboration, ethical consideration, and methodological rigor in future research at the intersection of Extended Reality and Artificial Intelligence."
     },
     "c61a7bdbed4b83c442321e1d40f7394a6506c3fb92893e3005e9e64e981e70f1": {
-      "did": "We designed a framework for around-body interaction that utilizes the reach of our limbs for more effective interactions with Head-Mounted Displays.",
-      "found": "We demonstrate that engaging both upper and lower limbs enhances the speed and accuracy of interactions within virtual environments.",
-      "takeaway": "Our work contributes to the development of more intuitive interaction techniques for Head-Mounted Displays, potentially improving user experience in immersive environments."
+      "did": "We designed a conceptual framework for around-body interaction techniques using the natural skills and dexterity of our limbs.",
+      "found": "We demonstrate that integrating lower limb movements can enhance fast, accurate, and enjoyable interactions with Head-Mounted Displays.",
+      "takeaway": "Our research highlights the potential for improved user experiences in Extended Reality by leveraging the body's natural capabilities for interaction."
     },
     "c67daa765353d1810f3c4b75baeabbd5915c11e54e7e26ae1b15ce85d5bdf0f1": {
       "did": "We conducted a case study on the co-development of curriculum and a custom-built peer feedback system for a university course on scientific writing.",
