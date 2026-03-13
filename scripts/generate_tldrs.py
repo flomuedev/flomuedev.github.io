@@ -12,6 +12,7 @@ import hashlib
 import json
 import os
 import re
+import subprocess
 import sys
 
 MODEL = "gpt-4o-mini"
@@ -145,6 +146,11 @@ def main():
     cache_path = os.path.join(project_dir, "data", "tldrs_cache.json")
     content_dir = os.path.join(project_dir, "content", "publication")
     pdf_dir = os.path.join(project_dir, "static", "pdf")
+
+    # Always re-parse bib.bib first so publications.json and .md files are fresh
+    print("Running parse_bib.py...")
+    parse_bib = os.path.join(os.path.dirname(os.path.abspath(__file__)), "parse_bib.py")
+    subprocess.run([sys.executable, parse_bib], check=True)
 
     publications = json.load(open(pubs_path, encoding="utf-8"))
     cache = load_cache(cache_path)
