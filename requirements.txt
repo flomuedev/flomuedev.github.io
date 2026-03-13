@@ -1,0 +1,8 @@
+# Dependencies for scripts/manage.py (paper management GUI)
+flask
+pymupdf
+pillow
+
+# Dependencies for scripts/generate_tldrs.py
+openai
+pypdf
