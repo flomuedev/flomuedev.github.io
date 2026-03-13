@@ -40,6 +40,11 @@
       "found": "We found that two levels of physical roughness are sufficient to convey a realistic illusion of matching textures across different visualizations in Virtual Reality.",
       "takeaway": "Our results imply that future haptic systems can be simplified by using only two roughness textures, thereby enhancing device compactness while maintaining immersive experiences."
     },
+    "12a0e9340b5eeb16d849d931c4c40e8a3ab6aff73a3958ed969b515f5f55d7ee": {
+      "did": "We built UndoPort, an extension of the point-and-teleport locomotion technique that incorporates undo actions for reverting position and orientation changes in Virtual Reality.",
+      "found": "We found that the combination of position and orientation undo along with discrete visualization resulted in the highest efficiency without increasing orientation errors in our controlled experiment.",
+      "takeaway": "Our results suggest that implementing undo actions in Virtual Reality can significantly enhance user efficiency while navigating, though attention should be given to potential disorientation issues."
+    },
     "1655def6b0f83f50a5621e5e79e9b6d95dc3aa612df8cfd9a33868e3bca15451": {
       "did": "We conducted a user study to investigate the effects of visual shape and size illusions on user performance, experience, and behavior during collaborative object handover tasks in Virtual Reality.",
       "found": "We found that visuo-haptic mismatches negatively impacted both performance and experience, and users adapted to these discrepancies by shifting reliance from visual to haptic cues, but could not fully mitigate the effects of visual inconsistencies.",
@@ -84,6 +89,11 @@
       "did": "We conducted a user study to explore the potential of Large Language Models in co-creating internet memes with human participants.",
       "found": "We found that while LLM assistance resulted in a higher quantity of generated meme ideas and reduced perceived effort, it did not enhance the overall quality of the memes compared to those created solely by humans.",
       "takeaway": "Our research highlights the importance of human creativity in achieving deeper connections in humor, suggesting that while AI can boost idea generation, it is crucial for collaborative frameworks to integrate human input effectively."
+    },
+    "2571f815243f225c6fb27de6cf91cf647a7dae56b05a09134fa6090105d9dd15": {
+      "did": "We designed a novel technique for altering the perceived stiffness of objects in Virtual Reality by manipulating the Control-to-Display ratio while users press down on a fixed stiffness object.",
+      "found": "We found that our technique allows objects to be perceived as up to 28.1% softer and 8.9% stiffer without users detecting the manipulation of their hand movements.",
+      "takeaway": "This approach has significant implications for enhancing haptic feedback in Virtual Reality applications, providing a cost-effective option for improving user immersion and interaction with virtual environments."
     },
     "2879a011f743548251b1498d8f42504f54693ab85890239dbcf55f4a068f2ece": {
       "did": "We built PalmRC, an eyes-free, palm-surface-based television remote control that allows users to interact with their non-dominant hand while focusing on the television screen.",
@@ -210,6 +220,11 @@
       "found": "We found that dynamic 2D Augmented Reality content is significantly more favored for sharing and consuming in private spaces compared to public or semi-public environments.",
       "takeaway": "Our study highlights the importance of context in designing future location-based Augmented Reality social media platforms, suggesting a focus on dynamic 2D content embedded in private spaces to enhance user comfort and engagement."
     },
+    "6cc94fb711f0c8deccdb5f72f82bfe391c98ed33c3cf69426521d5509ddd2cbd": {
+      "did": "We hosted the Mensch und Computer 2022 conference at the Technische Universität Darmstadt, gathering nearly 600 participants from academia and industry.",
+      "found": "We found that the conference theme 'Facing Realities' resonated strongly with attendees, highlighting the importance of real-world applications in Human-Computer Interaction.",
+      "takeaway": "We contribute to the ongoing dialogue in Human-Computer Interaction by emphasizing the value of in-person interactions and practical engagement within the field."
+    },
     "73350e2efb62c601945cfdf2a6b59ec342349f67584539887d79f1a777335fb8": {
       "did": "We designed and evaluated three different visualizations to represent physical passersby in a Virtual Environment using Augmented Virtuality.",
       "found": "We found that while the 2D-Image and Avatar representations allowed for the fastest spotting of passersby, the Avatar and 3D-Scan visualizations provided the most accurate location information.",
@@ -310,6 +325,11 @@
       "found": "We found that while foot-based teleportation methods require longer task completion times than traditional controller-based teleportation, they provide a hands-free engagement that could enhance interactions in virtual environments.",
       "takeaway": "Our work suggests that implementing foot-based locomotion can improve user experience in Virtual Reality applications by allowing simultaneous interaction tasks, though trade-offs in speed and accuracy should be assessed for specific applications."
     },
+    "a3b4bd3420250621c253905539a82df43bdd2a5ec853f279b5e80640af5df8ce": {
+      "did": "We developed a location-independent mobile Extended Reality application to enable upper grade students to virtually explore a mountain-based observatory.",
+      "found": "We found that physical proximity significantly influences user experience factors such as presence, motivation, and perceived access, while having no measurable effect on quiz performance across different locations.",
+      "takeaway": "These findings underscore the importance of incorporating proximity-aware design in Extended Reality systems to enhance the educational engagement of users with otherwise inaccessible sites."
+    },
     "a7fa783d9ed4c5a03d0f1a7a9f8f6a0309b342c14d1f9572533cf5deedc68c67": {
       "did": "We built Embracer, a wrist-mounted encountered-type haptic controller that provides three degrees of freedom for both input and feedback.",
       "found": "We found that Embracer can deliver nuanced omnidirectional haptic sensations while allowing for natural user manipulation, enhancing realism in Virtual Reality interactions.",
@@ -319,6 +339,11 @@
       "did": "We designed a virtual escape room game that visualizes asynchronous players' heartbeats using various types of data visualizations.",
       "found": "We found that visualizing heartbeats significantly increases feelings of social connectedness among players, particularly when using symbolic heart icons compared to electrocardiogram visualizations.",
       "takeaway": "Our work demonstrates that incorporating physiological data visualizations in single-player games can enrich the social experience and support connections between players who are not playing simultaneously."
+    },
+    "aa4ad12c7362419848ef3761ee21ab9f11e53695845ec059f57a3774a043f553": {
+      "did": "We conducted a controlled experiment to assess the feasibility of using toe movements as an input modality for computer systems, focusing on the influence of five factors on interaction performance.",
+      "found": "We found that toe-based interactions can achieve high accuracy and efficiency, with performance significantly affected by the scaling, toes used, and user posture, particularly favoring sitting positions and all-toe movements.",
+      "takeaway": "Our results provide design recommendations for future toe-based interfaces, emphasizing their potential for hands-free, efficient interaction in situations where traditional input methods are impractical."
     },
     "ab0101ed88f9ae63fecc6e2b30a3f01baae5255199d9c78f735cd48e54a9f2f5": {
       "did": "We built ActuBoard, a prototyping platform designed to minimize initial setup and facilitate the integration of hardware actuators in remote applications.",
@@ -400,6 +425,11 @@
       "found": "We found that using headset-leaning for steering increases the sense of presence compared to controller-pointing; however, combining headset-leaning with controller-based velocity led to poorer performance across multiple metrics.",
       "takeaway": "Our findings suggest that while leaning enhances presence, careful consideration of the combinations of locomotion methods is crucial for optimizing user experience in flying simulations."
     },
+    "d65f8f70768baf147e1fe6e7aed6901a16ffd4388c8d62e5b6c0954f109ba283": {
+      "did": "We designed and implemented three intention communication methods for multi-user locomotion in Virtual Reality, comparing them with two baseline methods in a controlled experiment.",
+      "found": "We found that shared visualizations significantly enhance understanding of movement intentions among users, leading to a stronger sense of group connectedness while preserving individual freedom of movement.",
+      "takeaway": "Our work contributes valuable insights for improving social interactions in Virtual Reality settings, suggesting that shared visualizations facilitate more collaborative navigation experiences."
+    },
     "d862d21031260146f4408802e61795fd2c4a93e13289cd890c76aa573931558c": {
       "did": "We conducted a workshop focused on the interaction capabilities and functionalities of smart objects in various contexts.",
       "found": "We found that natural interaction with smart objects can be enhanced through effective communication between these objects, facilitating a more integrated ecosystem.",
@@ -445,6 +475,11 @@
       "found": "We found that the Pull metaphor for vibrotactile navigation instructions is preferred, leading to faster target identification and fewer errors compared to the Push metaphor.",
       "takeaway": "The use of more actuators significantly improves performance in task completion time, highlighting the potential of vibrotactile feedback for assistive navigation technologies."
     },
+    "f0f3f08a67da607d209af89c8fde7b4a495a04bf285394dc37e73048bb2da6ff": {
+      "did": "We conducted a systematic evaluation of the ergonomics of rotational mid-air interactions in Augmented Reality environments through a controlled experiment with 19 participants.",
+      "found": "We found that close-to-body interactions significantly improve user comfort and accuracy, particularly in seated positions, while rotations around the upper axis reduce the number of required interactions.",
+      "takeaway": "Our findings highlight the importance of ergonomic considerations in the design of Augmented Reality interfaces to enhance user experience and minimize discomfort."
+    },
     "f62211147ae29ab194d6e7daf264352439204475168214dac4ce3d6d34a0f416": {
       "did": "We conducted a study on the design of private conversation methods in Social Virtual Reality applications, focusing on user needs and interaction methods.",
       "found": "We found that users prioritize privacy, ease of use, and awareness of surroundings when engaging in private conversations, revealing significant limitations in existing methods like Private Talk and Private Room.",
@@ -470,6 +505,11 @@
       "found": "We found that tap water serves as the most suitable liquid for achieving accurate and linear capacity measurements in our designs.",
       "takeaway": "Our approach offers a low-cost and efficient way to enhance the interactivity of 3D printed objects without the need for complex assembly after printing."
     },
+    "f9d1b709872c6f65dff263d9797f1736ab024f2efbdd011db67ecdb4028bc9e7": {
+      "did": "We built a prototype of a simple non-humanoid robot that can track and synchronize with the upper body movements of humans.",
+      "found": "We found that synchronized movements led to significantly higher trust ratings between humans and the robot based on an established questionnaire.",
+      "takeaway": "Our research contributes a new design strategy suggesting that movement synchronization can enhance trust in non-humanoid robots, offering insights for future human-robot interaction designs."
+    },
     "fdfd33de7bc0c83f1e6a4c947540d537f28c84b27f7862e97fce02e1d0c11823": {
       "did": "We conducted a study to explore how augmented reality visual filters and synchronized audio cues influence taste perception in Extended Reality environments.",
       "found": "We found that while a pink visual filter reduced perceived bitterness alone, it unexpectedly increased bitterness perception when combined with sweet-associated audio cues, highlighting complex crossmodal interactions.",
@@ -479,11 +519,6 @@
       "did": "We built FreeTop, an approach that automatically identifies suitable areas for projection and touch interaction using depth and color information.",
       "found": "We found that FreeTop generates a continuous projectability score for each pixel, allowing for flexible and adaptive placement of projected content based on various environmental factors.",
       "takeaway": "Our work significantly enhances the usability of projection technologies in dynamic environments by providing a system that adjusts to surface conditions and user preferences."
-    },
-    "6cc94fb711f0c8deccdb5f72f82bfe391c98ed33c3cf69426521d5509ddd2cbd": {
-      "did": "We hosted the Mensch und Computer 2022 conference at the Technische Universität Darmstadt, gathering nearly 600 participants from academia and industry.",
-      "found": "We found that the conference theme 'Facing Realities' resonated strongly with attendees, highlighting the importance of real-world applications in Human-Computer Interaction.",
-      "takeaway": "We contribute to the ongoing dialogue in Human-Computer Interaction by emphasizing the value of in-person interactions and practical engagement within the field."
     }
   },
   "version": 1

@@ -54,7 +54,11 @@ def extract_pdf_text(pdf_path):
         import pypdf
         reader = pypdf.PdfReader(pdf_path)
         pages = [page.extract_text() or "" for page in reader.pages]
-        return "\n".join(pages).strip()
+        text = "\n".join(pages).strip()
+        # pypdf can produce lone UTF-16 surrogates (e.g. \ud835 for math symbols);
+        # strip them so the text can be safely JSON-serialized as UTF-8.
+        text = re.sub(r'[\ud800-\udfff]', '', text)
+        return text
     except Exception as e:
         print(f"  WARNING: could not extract PDF text ({e})")
         return ""
