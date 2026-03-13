@@ -116,9 +116,9 @@
       "takeaway": "Our findings suggest that designers of proactive AI systems should adapt their systems to match user expectations, ensuring clear communication and user control to foster acceptance and utilization."
     },
     "2fbe67c08d119e237a1766bfcc6d10a43047fa10bf419131eb11dbbf6aeb8db4": {
-      "did": "We built ShadAR, an Augmented Reality application that uses large language models to generate real-time visual perception transformations based on user-defined inputs.",
-      "found": "We found that ShadAR effectively enables users to express their visual intent through natural language, yielding immediate changes in visual perception without the need for predefined effects.",
-      "takeaway": "Our work contributes to the inclusiveness and creativity of Augmented Reality experiences by allowing personalized visual transformations that cater to individual needs."
+      "did": "We designed ShadAR, an Augmented Reality application that enables real-time transformation of visual perception through shader generation using large language models.",
+      "found": "We demonstrate that ShadAR allows users to express their visual intent in natural language, which is then translated into shader code for immediate application in Augmented Reality experiences.",
+      "takeaway": "Our application highlights the potential of using large language models for enhancing accessibility and creativity in visual experiences."
     },
     "314c3a2d4c01583720090553c4c657645c01a74ec23297c8ca5b452c48ec86f3": {
       "did": "We conducted a high-fidelity Wizard of Oz study with 22 novice participants to explore how their mental models translate into voice-based 3D modeling.",
