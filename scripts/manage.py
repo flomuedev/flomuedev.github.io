@@ -162,6 +162,11 @@ def api_render(key):
     return resp
 
 
+@app.route("/api/check-openai")
+def api_check_openai():
+    return jsonify({"available": bool(os.environ.get("OPENAI_API_KEY"))})
+
+
 @app.route("/api/<key>/preview-image")
 def api_preview_image(key):
     for ext in (".jpg", ".jpeg", ".png", ".gif", ".webp"):
@@ -600,14 +605,11 @@ async function init(){
 }
 
 async function checkApiKey(){
-  // Try a dummy request; if 400 with "not set" message, warn
-  const r = await fetch(`/api/${KEY}/generate-tldr`,{method:'POST',headers:{'Content-Type':'application/json'},body:'{}'});
-  if(r.status===400){
-    const d = await r.json();
-    if(d.error && d.error.includes('OPENAI_API_KEY')){
-      document.getElementById('no-key-warn').style.display = 'block';
-      document.getElementById('btn-gen').disabled = true;
-    }
+  const r = await fetch('/api/check-openai');
+  const d = await r.json();
+  if(!d.available){
+    document.getElementById('no-key-warn').style.display = 'block';
+    document.getElementById('btn-gen').disabled = true;
   }
 }
 
