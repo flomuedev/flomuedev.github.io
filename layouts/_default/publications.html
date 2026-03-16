@@ -55,14 +55,15 @@
             {{ if .preview }}
             {{ $img := resources.Get (printf "publication_preview/%s" .preview) }}
             {{ if $img }}
-            {{ $webp := $img.Process "webp" }}
+            {{ $imgResized := $img.Resize "400x" }}
+            {{ $webp := $imgResized.Process "webp" }}
             <picture>
                 <source type="image/webp" srcset="{{ $webp.RelPermalink }}">
-                <img src="{{ $img.RelPermalink }}" alt="{{ .title }}" class="pub-card-image"
-                     loading="lazy" width="{{ $img.Width }}" height="{{ $img.Height }}">
+                <img src="{{ $imgResized.RelPermalink }}" alt="{{ .title }}" class="pub-card-image"
+                     loading="lazy" width="{{ $imgResized.Width }}" height="{{ $imgResized.Height }}">
             </picture>
             {{ else }}
-            <img src="/publication_preview/{{ .preview }}" alt="{{ .title }}" class="pub-card-image" loading="lazy">
+            <img src="/publication_preview/{{ .preview }}" alt="{{ .title }}" class="pub-card-image" loading="lazy" width="200" height="200">
             {{ end }}
             {{ end }}
             <div class="pub-card-content">

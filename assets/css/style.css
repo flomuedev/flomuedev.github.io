@@ -313,7 +313,7 @@ h3 {
 }
 
 .hero-subtitle {
-  color: var(--color-text-muted);
+  color: var(--color-text-secondary);
   font-size: var(--font-size-sm);
   font-weight: 500;
   letter-spacing: 0.06em;
@@ -646,7 +646,7 @@ h3 {
   line-height: 1;
 }
 .pub-card-tldr-text {
-  color: var(--color-text-muted);
+  color: var(--color-text-secondary);
 }
 
 .venue-short-badge {

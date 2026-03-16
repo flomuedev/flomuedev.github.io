@@ -44,6 +44,23 @@
 <meta name="twitter:description" content="{{ $metaDesc }}">
 <meta name="twitter:image" content="{{ $ogImage }}">
 
+<!-- Preload LCP image on homepage -->
+{{- if .IsHome -}}
+{{- $p := resources.Get "img/profile.jpg" -}}
+{{- $pSmall := $p.Resize "260x" -}}
+{{- $pLarge := $p.Resize "440x" -}}
+{{- $pSmallWebP := $pSmall.Process "webp" -}}
+{{- $pLargeWebP := $pLarge.Process "webp" -}}
+<link rel="preload" as="image"
+      imagesrcset="{{ $pSmallWebP.RelPermalink }} 260w, {{ $pLargeWebP.RelPermalink }} 440w"
+      imagesizes="(max-width: 480px) 130px, (max-width: 768px) 160px, 220px"
+      type="image/webp" fetchpriority="high">
+{{- end }}
+
+<!-- Preload fonts so download starts before CSS is parsed -->
+<link rel="preload" as="font" href="/fonts/InterVariable.woff2" type="font/woff2" crossorigin>
+<link rel="preload" as="font" href="/fonts/InterVariable-Italic.woff2" type="font/woff2" crossorigin>
+
 <!-- Self-hosted Inter font -->
 <style>
     @font-face {
@@ -63,7 +80,7 @@
     }
 </style>
 
-{{ $style := resources.Get "css/style.css" | fingerprint }}
+{{ $style := resources.Get "css/style.css" | minify | fingerprint }}
 <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}" crossorigin="anonymous">
 <link rel="canonical" href="{{ .Permalink }}">
 {{ if .IsHome -}}
@@ -74,6 +91,7 @@
 
 <!-- TelemetryDeck Analytics -->
 {{ if hugo.IsProduction }}
+<link rel="preconnect" href="https://cdn.telemetrydeck.com">
 <script defer src="https://cdn.telemetrydeck.com/websdk/telemetrydeck.min.js"
     data-app-id="A19A11BC-58CD-4EB7-83FA-40FFCFEB64F1"></script>
 {{ end }}

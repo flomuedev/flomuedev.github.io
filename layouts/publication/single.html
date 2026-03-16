@@ -234,14 +234,15 @@
             <div class="pub-single-thumbnail-wrapper">
                 {{ $img := resources.Get (printf "publication_preview/%s" .Params.preview) }}
                 {{ if $img }}
-                {{ $webp := $img.Process "webp" }}
+                {{ $imgResized := $img.Resize "480x" }}
+                {{ $webp := $imgResized.Process "webp" }}
                 <picture>
                     <source type="image/webp" srcset="{{ $webp.RelPermalink }}">
-                    <img src="{{ $img.RelPermalink }}" alt="{{ .Title }}" class="pub-single-thumbnail"
-                         width="{{ $img.Width }}" height="{{ $img.Height }}">
+                    <img src="{{ $imgResized.RelPermalink }}" alt="{{ .Title }}" class="pub-single-thumbnail"
+                         width="{{ $imgResized.Width }}" height="{{ $imgResized.Height }}">
                 </picture>
                 {{ else }}
-                <img src="/publication_preview/{{ .Params.preview }}" alt="{{ .Title }}" class="pub-single-thumbnail">
+                <img src="/publication_preview/{{ .Params.preview }}" alt="{{ .Title }}" class="pub-single-thumbnail" width="480" height="320">
                 {{ end }}
             </div>
             {{ end }}
