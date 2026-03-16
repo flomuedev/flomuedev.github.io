@@ -34,7 +34,7 @@ disablePathToLower = true
     weight = 3
 
 [outputs]
-  home = ["HTML"]
+  home = ["HTML", "RSS"]
 
 [taxonomies]
 

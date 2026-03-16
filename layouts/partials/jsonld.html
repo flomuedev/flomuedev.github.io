@@ -47,14 +47,25 @@
                 "https://www.linkedin.com/in/florian-mueller-hci",
                 "https://github.com/flomuedev",
                 "https://www.wikidata.org/wiki/Q130893717"
+            ],
+            "mainEntityOfPage": {
+                "@id": "{{ .Site.BaseURL }}#webpage"
+            },
+            "knowsAbout": [
+                "Human-Computer Interaction",
+                "Mobile Human-Computer Interaction",
+                "Extended Reality",
+                "Embodied Interaction",
+                "Human-AI Interaction"
             ]
         },{{- if .IsHome }}{
-            "@type": ["WebPage", "AboutPage"],
+            "@type": ["WebPage", "AboutPage", "ProfilePage"],
             "@id": "{{ .Site.BaseURL }}#webpage",
             "url": "{{ .Site.BaseURL }}",
             "name": "Florian Müller — About",
             "description": "{{ .Site.Params.description }}",
             "dateModified": "{{ .Lastmod.Format "2006-01-02" }}",
+            "inLanguage": "en",
             "isPartOf": {
                 "@id": "{{ .Site.BaseURL }}#website"
             },
@@ -77,6 +88,8 @@
             "url": "{{ .Permalink }}",
             "name": "{{ .Title }} | {{ .Site.Title }}",
             "description": "{{ .Site.Params.description }}",
+            "dateModified": "{{ .Lastmod.Format "2006-01-02" }}",
+            "inLanguage": "en",
             "about": {
                 "@id": "{{ .Site.BaseURL }}#person"
             },
@@ -89,12 +102,40 @@
             "url": "{{ .Permalink }}",
             "name": "{{ .Title }} | {{ .Site.Title }}",
             "description": {{ .Summary | plainify | htmlUnescape | jsonify }},
+            "dateModified": "{{ .Lastmod.Format "2006-01-02" }}",
+            "inLanguage": "en",
             "isPartOf": {
                 "@id": "{{ .Site.BaseURL }}#website"
+            },
+            "breadcrumb": {
+                "@id": "{{ .Permalink }}#breadcrumb"
             },
             "mainEntity": {
                 "@id": "{{ .Permalink }}#article"
             }
+        },{
+            "@type": "BreadcrumbList",
+            "@id": "{{ .Permalink }}#breadcrumb",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "{{ .Site.BaseURL }}"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Publications",
+                    "item": "{{ .Site.BaseURL }}publications/"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 3,
+                    "name": {{ .Title | jsonify }},
+                    "item": "{{ .Permalink }}"
+                }
+            ]
         },{
             "@type": "ScholarlyArticle",
             "@id": "{{ .Permalink }}#article",
@@ -114,7 +155,7 @@
                 {{- end }}
             ],
             "datePublished": "{{ .Date.Format "2006-01-02" }}",
-            "description": {{ .Summary | plainify | htmlUnescape | jsonify }},
+            "description": {{ with .Params.tldr_found }}{{ printf "%s %s" ($.Params.tldr_did | default "") . | strings.TrimLeft " " | jsonify }}{{ else }}{{ $.Summary | plainify | htmlUnescape | jsonify }}{{ end }},
             "isPartOf": {
                 "@type": "CreativeWork",
                 "name": {{ .Params.venue | jsonify }}
@@ -149,6 +190,8 @@
             "url": "{{ .Permalink }}",
             "name": "{{ .Title }} | {{ .Site.Title }}",
             "description": "{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}",
+            "dateModified": "{{ .Lastmod.Format "2006-01-02" }}",
+            "inLanguage": "en",
             "isPartOf": {
                 "@id": "{{ .Site.BaseURL }}#website"
             }
