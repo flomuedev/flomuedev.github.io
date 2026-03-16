@@ -6,8 +6,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // ---- Scroll-based header shadow ----
   const header = document.getElementById('site-header');
   if (header) {
+    let ticking = false;
     const onScroll = () => {
-      header.classList.toggle('scrolled', window.scrollY > 20);
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          header.classList.toggle('scrolled', window.scrollY > 20);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
