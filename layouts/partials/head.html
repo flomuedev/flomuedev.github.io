@@ -4,9 +4,17 @@
 <link rel="icon" href="/favicon-96x96.png" type="image/png" sizes="96x96">
 <link rel="apple-touch-icon" href="/favicon-96x96.png">
 {{- $pubTitle := "" -}}
-{{- if eq .Type "publication" -}}{{- $pubTitle = .Title | truncate 60 "…" -}}{{- end -}}
+{{- if eq .Type "publication" -}}{{- $pubTitle = printf "%s | %s" .Title .Site.Title -}}{{- end -}}
 {{- $metaDesc := "" -}}
-{{- with .Description -}}{{- $metaDesc = . | truncate 155 "…" -}}{{- else -}}{{- with .Summary -}}{{- $metaDesc = . | plainify | htmlUnescape | truncate 155 "…" -}}{{- else -}}{{- $metaDesc = $.Site.Params.description -}}{{- end -}}{{- end -}}
+{{- if eq .Type "publications" -}}
+  {{- $pubCount := len (where site.RegularPages "Section" "publication") -}}
+  {{- $metaDesc = printf "Florian Müller authored and co-authored %d publications at international peer-reviewed conferences and journals." $pubCount -}}
+{{- else -}}
+  {{- with .Description -}}{{- $metaDesc = . | truncate 155 "…" -}}{{- else -}}{{- with .Summary -}}{{- $metaDesc = . | plainify | htmlUnescape | truncate 155 "…" -}}{{- else -}}{{- $metaDesc = $.Site.Params.description -}}{{- end -}}{{- end -}}
+{{- end -}}
+{{- if and (eq .Type "publication") .Params.tldr_takeaway -}}
+  {{- $metaDesc = .Params.tldr_takeaway | truncate 155 -}}
+{{- end -}}
 {{- $ogImage := "" -}}
 {{- if .Params.preview -}}
   {{- $img := resources.Get (printf "publication_preview/%s" .Params.preview) -}}
@@ -22,7 +30,7 @@
 <!-- Open Graph -->
 <meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else if eq .Type "publication" }}{{ $pubTitle }}{{ else }}{{ .Title }}{{ end }}">
 <meta property="og:description" content="{{ $metaDesc }}">
-<meta property="og:type" content="{{ if .IsHome }}profile{{ else }}article{{ end }}">
+<meta property="og:type" content="{{ if .IsHome }}profile{{ else if eq .Type "publication" }}article{{ else }}website{{ end }}">
 {{ if .IsHome -}}
 <meta property="profile:first_name" content="Florian">
 <meta property="profile:last_name" content="Müller">

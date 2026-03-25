@@ -9,11 +9,6 @@
             "name": "{{ .Site.Title }}",
             "publisher": {
                 "@id": "{{ .Site.BaseURL }}#person"
-            },
-            "potentialAction": {
-                "@type": "SearchAction",
-                "target": "{{ .Site.BaseURL }}publication/?q={search_term_string}",
-                "query-input": "required name=search_term_string"
             }
         },{
             "@type": "Person",
@@ -26,7 +21,7 @@
             "url": "{{ .Site.BaseURL }}",
             "image": "{{ .Site.BaseURL }}img/profile.jpg",
             "jobTitle": "Assistant Professor for Mobile Human-Computer Interaction",
-            "description": "{{ .Site.Params.description }}",
+            "description": {{ .Site.Params.description | jsonify | safeJS }},
             "worksFor": {
                 "@type": "CollegeOrUniversity",
                 "name": "TU Darmstadt",
@@ -63,8 +58,8 @@
             "@id": "{{ .Site.BaseURL }}#webpage",
             "url": "{{ .Site.BaseURL }}",
             "name": "Florian Müller — About",
-            "description": "{{ .Site.Params.description }}",
-            "dateModified": "{{ .Lastmod.Format "2006-01-02" }}",
+            "description": {{ .Site.Params.description | jsonify | safeJS }},
+            "dateModified": "{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}",
             "inLanguage": "en",
             "isPartOf": {
                 "@id": "{{ .Site.BaseURL }}#website"
@@ -86,9 +81,9 @@
             "@type": ["WebPage", "CollectionPage"],
             "@id": "{{ .Permalink }}#webpage",
             "url": "{{ .Permalink }}",
-            "name": "{{ .Title }} | {{ .Site.Title }}",
-            "description": "{{ .Site.Params.description }}",
-            "dateModified": "{{ .Lastmod.Format "2006-01-02" }}",
+            "name": {{ printf "%s | %s" .Title .Site.Title | jsonify | safeJS }},
+            "description": {{ .Site.Params.description | jsonify | safeJS }},
+            "dateModified": "{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}",
             "inLanguage": "en",
             "about": {
                 "@id": "{{ .Site.BaseURL }}#person"
@@ -100,9 +95,9 @@
             "@type": ["WebPage", "ItemPage"],
             "@id": "{{ .Permalink }}#webpage",
             "url": "{{ .Permalink }}",
-            "name": "{{ .Title }} | {{ .Site.Title }}",
-            "description": {{ .Summary | plainify | htmlUnescape | jsonify }},
-            "dateModified": "{{ .Lastmod.Format "2006-01-02" }}",
+            "name": {{ printf "%s | %s" .Title .Site.Title | jsonify | safeJS }},
+            "description": {{ .Summary | plainify | htmlUnescape | jsonify | safeJS }},
+            "dateModified": "{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}",
             "inLanguage": "en",
             "isPartOf": {
                 "@id": "{{ .Site.BaseURL }}#website"
@@ -132,22 +127,22 @@
                 {
                     "@type": "ListItem",
                     "position": 3,
-                    "name": {{ .Title | jsonify }},
+                    "name": {{ .Title | jsonify | safeJS }},
                     "item": "{{ .Permalink }}"
                 }
             ]
         },{
             "@type": "ScholarlyArticle",
             "@id": "{{ .Permalink }}#article",
-            "headline": {{ .Title | jsonify }},
-            "name": {{ .Title | jsonify }},
+            "headline": {{ .Title | jsonify | safeJS }},
+            "name": {{ .Title | jsonify | safeJS }},
             "author": [
                 {{- $authors := split .Params.authors ", " -}}
                 {{- range $i, $a := $authors -}}
                 {{- if $i }},{{ end }}
                 {
                     "@type": "Person",
-                    "name": {{ $a | jsonify }}
+                    "name": {{ $a | jsonify | safeJS }}
                     {{- if findRE `(?i)florian.*m.ller|m.ller.*florian` $a }},
                     "@id": "{{ $.Site.BaseURL }}#person"
                     {{- end }}
@@ -155,10 +150,10 @@
                 {{- end }}
             ],
             "datePublished": "{{ .Date.Format "2006-01-02" }}",
-            "description": {{ with .Params.tldr_found }}{{ printf "%s %s" ($.Params.tldr_did | default "") . | strings.TrimLeft " " | jsonify }}{{ else }}{{ $.Summary | plainify | htmlUnescape | jsonify }}{{ end }},
+            "description": {{ with .Params.tldr_found }}{{ printf "%s %s" ($.Params.tldr_did | default "") . | strings.TrimLeft " " | jsonify | safeJS }}{{ else }}{{ $.Summary | plainify | htmlUnescape | jsonify | safeJS }}{{ end }},
             "isPartOf": {
                 "@type": "CreativeWork",
-                "name": {{ .Params.venue | jsonify }}
+                "name": {{ .Params.venue | jsonify | safeJS }}
             }
             {{- if .Params.doi }},
             "identifier": {
@@ -171,7 +166,7 @@
             {{- if .Params.publisher }},
             "publisher": {
                 "@type": "Organization",
-                "name": {{ .Params.publisher | jsonify }}
+                "name": {{ .Params.publisher | jsonify | safeJS }}
             }
             {{- end }}
             {{- if .Params.pdf }},
@@ -188,9 +183,9 @@
             "@type": "WebPage",
             "@id": "{{ .Permalink }}#webpage",
             "url": "{{ .Permalink }}",
-            "name": "{{ .Title }} | {{ .Site.Title }}",
-            "description": "{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}",
-            "dateModified": "{{ .Lastmod.Format "2006-01-02" }}",
+            "name": {{ printf "%s | %s" .Title .Site.Title | jsonify | safeJS }},
+            "description": {{ with .Description }}{{ . | jsonify | safeJS }}{{ else }}{{ .Site.Params.description | jsonify | safeJS }}{{ end }},
+            "dateModified": "{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}",
             "inLanguage": "en",
             "isPartOf": {
                 "@id": "{{ .Site.BaseURL }}#website"

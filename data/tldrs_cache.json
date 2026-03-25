@@ -230,6 +230,11 @@
       "found": "We found that while the 2D-Image and Avatar representations allowed for the fastest spotting of passersby, the Avatar and 3D-Scan visualizations provided the most accurate location information.",
       "takeaway": "Our research indicates that to minimize distractions and enhance user safety in Virtual Reality, it is beneficial to employ representations like the Avatar, which balances detail and immersion."
     },
+    "75d577e90f20da08db4de0f50fb7e7e8a1a1893fa11d1222fa4af90d8c06bc95": {
+      "did": "We built Trilaterate, a fabrication pipeline that enables users to 3D print custom objects capable of detecting hover, touch, and force interactions through embedded capacitive sensors.",
+      "found": "We found that Trilaterate successfully allows for the estimation of a finger's 3D position using capacitive trilateration, significantly improving interaction accuracy and reducing assembly effort.",
+      "takeaway": "Our work demonstrates that integrating capacitive sensing into 3D printed objects can enhance user interaction possibilities in various applications, paving the way for more expressive and multifunctional designs."
+    },
     "76c963f98c06ff090531dbda6d15142c754f4fc6f5060ccc65ae7c20b881f908": {
       "did": "We designed two interaction concepts that leverage the user's palm as a 2D interactive surface for head-mounted displays.",
       "found": "We found that palm-based interactions can significantly enhance user experience and usability when interfacing with augmented reality and head-up display systems.",

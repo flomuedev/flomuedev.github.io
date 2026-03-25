@@ -118,6 +118,7 @@ def clean_latex(text):
         "\\'a": 'á', "\\'e": 'é', "\\'i": 'í', "\\'o": 'ó', "\\'u": 'ú',
         "\\'A": 'Á', "\\'E": 'É',
         "\\'{a}": 'á', "\\'{e}": 'é', "\\'{i}": 'í', "\\'{o}": 'ó', "\\'{u}": 'ú',
+        "\\'{c}": 'ć', "\\'{C}": 'Ć',
         '\\"{a}': 'ä', '\\"{o}': 'ö', '\\"{u}': 'ü',
         '\\"{A}': 'Ä', '\\"{O}': 'Ö', '\\"{U}': 'Ü',
         '\\ss': 'ß', '\\ss{}': 'ß',
@@ -125,7 +126,9 @@ def clean_latex(text):
         '\\o': 'ø', '\\O': 'Ø',
         '\\aa': 'å', '\\AA': 'Å',
         '\\v{c}': 'č', '\\v{s}': 'š', '\\v{z}': 'ž',
-        '\\c{c}': 'ç',
+        '\\v{C}': 'Č', '\\v{S}': 'Š', '\\v{Z}': 'Ž',
+        '\\c{c}': 'ç', '\\c{C}': 'Ç',
+        '\\c{s}': 'ş', '\\c{S}': 'Ş',
         '\\~{n}': 'ñ', '\\~n': 'ñ',
         '\\l': 'ł',
         '\\i': 'ı',
@@ -145,6 +148,9 @@ def clean_latex(text):
     text = re.sub(r'\s+', ' ', text)
     # Strip spurious wrapping quotes left by {"Title"}-style BibTeX entries
     text = text.strip('"')
+    # Remove any remaining unconverted \cmd{X} or \cmd X patterns (keep X)
+    text = re.sub(r'\\[a-zA-Z]+\{([^}]*)\}', r'\1', text)
+    text = re.sub(r'\\[a-zA-Z]+ ', ' ', text)
 
     return text.strip()
 
@@ -160,7 +166,7 @@ def format_authors(author_str):
     formatted_html = []
 
     for author in authors:
-        author = author.strip()
+        author = author.strip().strip('"')
         if not author:
             continue
 
