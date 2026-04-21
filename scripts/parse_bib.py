@@ -86,8 +86,9 @@ def parse_bibtex(filepath):
                 idx += 1
             idx += 1 # skip the comma
             
-            # Clean up value
-            value = clean_latex(value)
+            # Clean up value (skip LaTeX cleanup for path fields)
+            if field_name != 'file':
+                value = clean_latex(value)
             # Remove any trailing commas or newlines that might have snuck in (for unquoted values)
             entry[field_name] = value.strip()
             

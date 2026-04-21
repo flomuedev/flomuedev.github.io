@@ -175,6 +175,11 @@
       "found": "We found that participants experienced significantly higher involvement and enjoyment when using our pressure-based haptic feedback compared to a no-haptics baseline.",
       "takeaway": "Our findings suggest that pressure-based haptic feedback can enhance the immersive experience in Virtual Reality applications and warrant further exploration in various interactive contexts."
     },
+    "573d6ea62ab578f95152d29ee380d6fb72b4b44a369e8e3b5879091a67764bba": {
+      "did": "We built ShadAR, an Augmented Reality prototyping pipeline that enables real-time creation of visualizations through large language models and object detection.",
+      "found": "We found that ShadAR effectively interprets natural language commands to generate corresponding HLSL shader code, allowing users to flexibly alter their visual experiences in real time.",
+      "takeaway": "We demonstrate that integrating large language models with object detection can enable novel on-demand Augmented Reality applications, enabling broader user interaction and engagement."
+    },
     "58620307a2f27909d929ad099b1f6664f10060bb01ff1ab002c46fb4dd79f322": {
       "did": "We conducted the Rethinking Smart Objects workshop, focusing on the interaction paradigms and societal implications of smart objects in interactive spaces.",
       "found": "We found that while significant technical challenges in implementing smart objects have been overcome, there remains a need for further research on user interaction techniques and ethical considerations.",

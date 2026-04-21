@@ -3,7 +3,7 @@
 Paper management web GUI for flomue.com.
 
 Usage:
-    pip install flask pymupdf pillow
+    pip install flask pymupdf pillow python-dotenv
     python scripts/manage.py
 
 Opens http://localhost:5000
@@ -19,6 +19,12 @@ import threading
 import webbrowser
 
 from flask import Flask, Response, jsonify, request, send_from_directory
+
+try:
+    from dotenv import load_dotenv
+    load_dotenv(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '.env'), override=True)
+except ImportError:
+    pass
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from parse_bib import parse_bibtex
