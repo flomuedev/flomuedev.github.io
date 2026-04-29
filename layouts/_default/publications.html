@@ -3,7 +3,7 @@
     <div class="section-header">
         <h1 class="section-title">Publications</h1>
         <p class="section-description">
-            For an up-to-date list of {{ mul (div (len .Site.Data.publications) 10) 10 }}+ publications, please see
+            For an up-to-date list of {{ mul (div (len hugo.Data.publications) 10) 10 }}+ publications, please see
             <a href="{{ .Site.Params.googleScholar }}" target="_blank" rel="noopener">Google Scholar</a>.
         </p>
     </div>
@@ -16,12 +16,12 @@
         </svg>
         <input type="text" id="pub-search" class="pub-search"
             placeholder="Search publications by title, author, venue, or keyword…" aria-label="Search publications">
-        <div id="pub-count" class="pub-count">{{ len .Site.Data.publications }} publications</div>
+        <div id="pub-count" class="pub-count">{{ len hugo.Data.publications }} publications</div>
     </div>
 
     <div class="pillar-filters">
         <button class="pillar-filter-btn pillar-filter-btn--all active" data-pillar-filter="">All</button>
-        {{ range .Site.Data.pillars }}
+        {{ range hugo.Data.pillars }}
         <button class="pillar-filter-btn pillar-filter-btn--{{ .color }}" data-pillar-filter="{{ .id }}">{{ .short }}</button>
         {{ end }}
     </div>
@@ -29,12 +29,12 @@
     {{/* Group publications by year */}}
     {{ $currentYear := 0 }}
     {{ $inGroup := false }}
-    {{ range .Site.Data.publications }}
+    {{ range hugo.Data.publications }}
     {{/* Assign pillars based on keyword matching */}}
     {{ $pub := . }}
     {{ $assigned := slice }}
     {{ $text := lower (printf "%s %s %s" $pub.title $pub.keywords $pub.venue) }}
-    {{ range $.Site.Data.pillars }}
+    {{ range hugo.Data.pillars }}
         {{ $pillar := . }}
         {{ $matched := false }}
         {{ range $pillar.keywords }}
