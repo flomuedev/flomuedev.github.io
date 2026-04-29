@@ -321,9 +321,9 @@
       "takeaway": "This work contributes to the field of Human-Computer Interaction by providing novel input modalities that facilitate mobile, hands-free interactions in digitally augmented environments."
     },
     "992b6ab80b2c7f102a394105cd83166b2fa2404b3f59ca9e036542f549019b4c": {
-      "did": "We conducted a contextual investigation of social cues used by non-anthropomorphic robots in a hospital setting, testing 103 cues from literature through a large online survey.",
-      "found": "We found that human interpretations of social cues vary significantly by context, indicating that perception of robotic communication is not uniform across different situations.",
-      "takeaway": "We highlight the necessity for designing dynamic and adaptive social cues in interactive robotic systems to enhance their effective communication."
+      "did": "We conducted a study examining how humans interpret social signals from non-anthropomorphic robots in a hospital setting, testing 103 cues with 1,545 participants.",
+      "found": "We found that the interpretation of social cues is highly context-dependent, with significant variability in how cues were understood across different scenarios.",
+      "takeaway": "We emphasize the necessity for designing dynamic and context-sensitive social cues in non-anthropomorphic robots to facilitate effective human-robot interactions."
     },
     "9b184104efe55c85519f508533248dbc8b43a255ecc99c4b0e49357f427eae6c": {
       "did": "We designed a location-aware Virtual Reality system that incorporates real-world cues during mobile interactions in vehicles, using two visualizations based on points of interest.",
