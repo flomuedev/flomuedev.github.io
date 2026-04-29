@@ -1,0 +1,134 @@
+Bach:
+- firstname:
+  - Johann Sebastian
+  - J. S.
+  url: https://en.wikipedia.org/wiki/Johann_Sebastian_Bach
+- firstname:
+  - Carl Philipp Emanuel
+  - C. P. E.
+  url: https://en.wikipedia.org/wiki/Carl_Philipp_Emanuel_Bach
+Günther:
+- firstname:
+  - Sebastian
+  - S.
+  url: https://www.sebastian-guenther.com/
+Schmitz:
+- firstname:
+  - Martin
+  - M
+  url: https://mschmitz.org/
+Rasch:
+- firstname:
+  - Julian
+  - J
+  url: https://julian-rasch.com/
+Matviienko:
+- firstname:
+  - Andrii
+  - A
+  url: http://andriimatviienko.com/
+Kosch:
+- firstname:
+  - Thomas
+  - T
+  url: https://thomaskosch.com/
+Marky:
+- firstname:
+  - Karola
+  - K
+  url: https://karolamarky.pinyto.de/en/home/
+Mayer:
+- firstname:
+  - Sven
+  - S
+  url: https://sven-mayer.com/
+Mühlhäuser:
+- firstname:
+  - Max
+  - M
+  url: https://www.informatik.tu-darmstadt.de/telekooperation/staff_tk/tk_staff_details_23168.en.jsp
+Villa:
+- firstname:
+  - Steeven
+  - S
+  url: https://posthci.com/
+Weiss:
+- firstname:
+  - Yannick
+  - Y
+  url: https://yannick-weiss.com/
+Welsch:
+- firstname:
+  - Robin
+  - R
+  url: https://human-ai-interaction.com/
+Feger:
+- firstname:
+  - Sebastian
+  - S
+  url: https://sebastian-feger.com/
+Hirsch:
+- firstname:
+  - Linda
+  - L
+  url: https://www.lindahirsch.de/
+Zyska:
+- firstname:
+  - Dennis
+  - D
+  url: http://zyska.org/
+Chiossi:
+- firstname:
+  - Francesco
+  - F
+  url: https://www.francesco-chiossi-hci.com/
+Hirzle:
+- firstname:
+  - Teresa
+  - T
+  url: https://thirzle.github.io/
+Gurevych:
+- firstname:
+  - Iryna
+  - I
+  url: https://www.informatik.tu-darmstadt.de/ukp/ukp_home/head_ukp/index.en.jsp
+Schön:
+- firstname:
+  - Dominik
+  - D
+  url: https://dominikschoen.com/
+Leusmann:
+- firstname:
+  - Jan
+  - J
+  url: https://leusmann.io/
+Schömbs:
+- firstname:
+  - Sarah
+  - S
+  url: https://sites.google.com/view/sarahschombs/
+Gugenheimer:
+- firstname:
+  - Jan
+  - J
+  url: https://gugenheimer.com/
+Sayffaerth:
+- firstname:
+  - Clara
+  - C
+  url: https://www.medien.ifi.lmu.de/team/clara.sayffaerth/
+Schmidt:
+- firstname:
+  - Albrecht
+  - A
+  url: https://www.um.informatik.uni-muenchen.de/personen/professoren/schmidt/index.html
+Wombacher:
+- firstname:
+  - Jonas
+  - J
+  url: https://jonaswombacher.de/
+Väänänen:
+- firstname:
+  - Kaisa
+  - K
+  url: https://research.tuni.fi/kaisa-vaananen/

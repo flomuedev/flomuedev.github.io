@@ -10,6 +10,12 @@ import re
 import os
 import sys
 
+try:
+    import yaml
+    _YAML_AVAILABLE = True
+except ImportError:
+    _YAML_AVAILABLE = False
+
 
 def parse_bibtex(filepath):
     """Parse a BibTeX file and return a list of entry dicts."""
@@ -156,15 +162,47 @@ def clean_latex(text):
     return text.strip()
 
 
-def format_authors(author_str):
-    """Format authors string and return both plain text and HTML with Florian Müller highlighted."""
-    if not author_str:
-        return '', ''
+def load_coauthors(project_dir):
+    """Load coauthors.yml and return a dict keyed by lowercase last name."""
+    if not _YAML_AVAILABLE:
+        return {}
+    path = os.path.join(project_dir, 'data', 'coauthors.yml')
+    if not os.path.isfile(path):
+        return {}
+    try:
+        with open(path, encoding='utf-8') as f:
+            data = yaml.safe_load(f) or {}
+        # Normalise keys to lowercase for case-insensitive lookup
+        return {k.lower(): v for k, v in data.items()}
+    except Exception:
+        return {}
 
+
+def _coauthor_url(name, last, first, coauthors):
+    """Return the URL for a co-author, or None if not found."""
+    entries = coauthors.get(last.lower(), [])
+    for entry in entries:
+        variants = entry.get('firstname', [])
+        if isinstance(variants, str):
+            variants = [variants]
+        for variant in variants:
+            # Match if the stored first-name variant is a prefix of the parsed first name
+            if first.lower().startswith(variant.lower().rstrip('.')):
+                return entry.get('url') or None
+    return None
+
+
+def format_authors(author_str, coauthors=None):
+    """Format authors string; return (plain, html_no_links, html_linked)."""
+    if not author_str:
+        return '', '', ''
+
+    coauthors = coauthors or {}
     # Split by ' and '
     authors = re.split(r'\s+and\s+', author_str)
     formatted = []
     formatted_html = []
+    formatted_html_linked = []
 
     for author in authors:
         author = author.strip().strip('"')
@@ -174,21 +212,38 @@ def format_authors(author_str):
         # Handle "Last, First" format
         if ',' in author:
             parts = author.split(',', 1)
-            name = f"{parts[1].strip()} {parts[0].strip()}"
+            last = parts[0].strip()
+            first = parts[1].strip()
+            name = f"{first} {last}"
         else:
             name = author
+            # Best-effort split: last word is the last name
+            parts = name.rsplit(' ', 1)
+            last = parts[-1] if len(parts) > 1 else name
+            first = parts[0] if len(parts) > 1 else ''
 
         formatted.append(name)
 
-        # Highlight Florian Müller / Florian Mueller
-        if 'müller' in name.lower() and 'florian' in name.lower():
-            formatted_html.append(f'<span class="highlight-author">{name}</span>')
-        elif 'mueller' in name.lower() and 'florian' in name.lower():
+        is_self = ('müller' in name.lower() or 'mueller' in name.lower()) and 'florian' in name.lower()
+
+        # Plain HTML (no links) — same as before
+        if is_self:
             formatted_html.append(f'<span class="highlight-author">{name}</span>')
         else:
             formatted_html.append(name)
 
-    return ', '.join(formatted), ', '.join(formatted_html)
+        # Linked HTML — wrap in <a> if we have a URL
+        url = _coauthor_url(name, last, first, coauthors)
+        if url:
+            inner = f'<a href="{url}" target="_blank" rel="noopener">{name}</a>'
+        else:
+            inner = name
+        if is_self:
+            formatted_html_linked.append(f'<span class="highlight-author">{inner}</span>')
+        else:
+            formatted_html_linked.append(inner)
+
+    return ', '.join(formatted), ', '.join(formatted_html), ', '.join(formatted_html_linked)
 
 
 def find_file(directory, key, extensions):
@@ -393,6 +448,12 @@ def main():
     entries = parse_bibtex(bib_path)
     print(f"Parsed {len(entries)} BibTeX entries")
 
+    coauthors = load_coauthors(project_dir)
+    if coauthors:
+        print(f"Loaded {len(coauthors)} co-author entries")
+    elif not _YAML_AVAILABLE:
+        print("Warning: PyYAML not installed — co-author links disabled (pip install pyyaml)")
+
     # Load TL;DR cache (committed to git, keyed by SHA256 of abstract)
     tldr_cache_path = os.path.join(project_dir, "data", "tldrs_cache.json")
     tldr_entries = {}
@@ -413,7 +474,7 @@ def main():
         except (ValueError, TypeError):
             year = 0
 
-        authors_plain, authors_html = format_authors(entry.get('author', ''))
+        authors_plain, authors_html, authors_html_linked = format_authors(entry.get('author', ''), coauthors)
 
         # Determine venue
         venue = entry.get('booktitle', '') or entry.get('journal', '') or entry.get('publisher', '')
@@ -441,6 +502,7 @@ def main():
             'title': entry.get('title', ''),
             'authors': authors_plain,
             'authors_html': authors_html,
+            'authors_html_linked': authors_html_linked,
             'year': year,
             'month': month_to_num(entry.get('month', '')),
             'venue': venue,
@@ -500,6 +562,7 @@ def main():
             f"aliases = [\"/publications/{pub['key']}/\"]",
             f"authors = {json.dumps(pub['authors'])}",
             f"authors_html = {json.dumps(pub['authors_html'])}",
+            f"authors_html_linked = {json.dumps(pub['authors_html_linked'])}",
             f"venue = {json.dumps(pub['venue'])}",
         ]
         if pub.get('venue_short'):
