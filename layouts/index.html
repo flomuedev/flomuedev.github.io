@@ -33,7 +33,7 @@
 
 <section class="research-pillars fade-in">
     <div class="pillar-grid stagger">
-        {{ range .Site.Data.pillars }}
+        {{ range hugo.Data.pillars }}
         <a href="/publications/?pillar={{ .id }}" class="pillar-card pillar-card--{{ .color }}">
             <div class="pillar-card-icon">
                 {{ if eq .icon "globe" }}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>{{ end }}
@@ -55,7 +55,7 @@
         <a href="/publications/" class="view-all-link">View all publications</a>
     </div>
     <div class="stagger">
-        {{ range first 6 .Site.Data.publications }}
+        {{ range first 6 hugo.Data.publications }}
         <article class="pub-card">
             {{ if .preview }}
             {{ $img := resources.Get (printf "publication_preview/%s" .preview) }}
