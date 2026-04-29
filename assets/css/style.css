@@ -886,6 +886,20 @@ h3 {
   background-clip: text;
 }
 
+.pub-single-authors a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 3px;
+  text-decoration-color: currentColor;
+  opacity: 0.75;
+}
+
+.pub-single-authors a:hover {
+  opacity: 1;
+  text-decoration-style: solid;
+}
+
 .pub-single-venue {
   display: flex;
   align-items: center;

@@ -32,14 +32,21 @@ from generate_tldrs import (
     abstract_hash, generate_tldr, load_cache, patch_md_frontmatter, save_cache,
 )
 
-SCRIPT_DIR  = os.path.dirname(os.path.abspath(__file__))
-PROJECT_DIR = os.path.dirname(SCRIPT_DIR)
-BIB_PATH    = os.path.join(SCRIPT_DIR,  "bib.bib")
-PDF_DIR     = os.path.join(PROJECT_DIR, "static", "pdf")
-PREVIEW_DIR = os.path.join(PROJECT_DIR, "assets", "publication_preview")
-PUBS_JSON   = os.path.join(PROJECT_DIR, "data", "publications.json")
-CACHE_PATH  = os.path.join(PROJECT_DIR, "data", "tldrs_cache.json")
-CONTENT_DIR = os.path.join(PROJECT_DIR, "content", "publication")
+try:
+    import yaml as _yaml
+    _YAML_OK = True
+except ImportError:
+    _YAML_OK = False
+
+SCRIPT_DIR      = os.path.dirname(os.path.abspath(__file__))
+PROJECT_DIR     = os.path.dirname(SCRIPT_DIR)
+BIB_PATH        = os.path.join(SCRIPT_DIR,  "bib.bib")
+PDF_DIR         = os.path.join(PROJECT_DIR, "static", "pdf")
+PREVIEW_DIR     = os.path.join(PROJECT_DIR, "assets", "publication_preview")
+PUBS_JSON       = os.path.join(PROJECT_DIR, "data", "publications.json")
+CACHE_PATH      = os.path.join(PROJECT_DIR, "data", "tldrs_cache.json")
+CONTENT_DIR     = os.path.join(PROJECT_DIR, "content", "publication")
+COAUTHORS_PATH  = os.path.join(PROJECT_DIR, "data", "coauthors.yml")
 
 app = Flask(__name__)
 
@@ -275,6 +282,23 @@ def api_save_tldr(key):
     return jsonify({"ok": True})
 
 
+@app.route("/api/run-parse", methods=["POST"])
+def api_run_parse():
+    def stream():
+        proc = subprocess.Popen(
+            [sys.executable, os.path.join(SCRIPT_DIR, "parse_bib.py")],
+            stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+            text=True, encoding="utf-8", errors="replace",
+            cwd=PROJECT_DIR,
+        )
+        for line in proc.stdout:
+            yield f"data: {json.dumps(line.rstrip())}\n\n"
+        proc.wait()
+        yield f"data: {json.dumps('__DONE__')}\n\n"
+
+    return Response(stream(), mimetype="text/event-stream")
+
+
 @app.route("/api/run-pipeline", methods=["POST"])
 def api_run_pipeline():
     def stream():
@@ -290,6 +314,104 @@ def api_run_pipeline():
         yield f"data: {json.dumps('__DONE__')}\n\n"
 
     return Response(stream(), mimetype="text/event-stream")
+
+
+# ── coauthor helpers ──────────────────────────────────────────────────────────
+
+def _load_coauthors_raw():
+    """Return the coauthors dict exactly as stored in YAML."""
+    if not _YAML_OK or not os.path.isfile(COAUTHORS_PATH):
+        return {}
+    with open(COAUTHORS_PATH, encoding="utf-8") as f:
+        return _yaml.safe_load(f) or {}
+
+
+def _save_coauthors(data):
+    with open(COAUTHORS_PATH, "w", encoding="utf-8") as f:
+        _yaml.dump(data, f, allow_unicode=True, default_flow_style=False, sort_keys=False)
+
+
+@app.route("/coauthors")
+def coauthors_page():
+    if not _YAML_OK:
+        return "PyYAML is not installed. Run: pip install pyyaml", 500
+    return Response(COAUTHORS_HTML, mimetype="text/html")
+
+
+@app.route("/api/coauthors")
+def api_coauthors_list():
+    data = _load_coauthors_raw()
+    # Flatten to a list for easy JS consumption
+    flat = []
+    for lastname, entries in data.items():
+        for e in (entries or []):
+            variants = e.get("firstname", [])
+            if isinstance(variants, str):
+                variants = [variants]
+            flat.append({
+                "lastname":  lastname,
+                "firstname": variants[0] if variants else "",
+                "short":     variants[1] if len(variants) > 1 else "",
+                "url":       e.get("url", ""),
+            })
+    return jsonify(flat)
+
+
+@app.route("/api/coauthors", methods=["POST"])
+def api_coauthors_add():
+    if not _YAML_OK:
+        return jsonify({"error": "PyYAML not installed"}), 500
+    d = request.json
+    lastname  = (d.get("lastname")  or "").strip()
+    firstname = (d.get("firstname") or "").strip()
+    short     = (d.get("short")     or "").strip()
+    url       = (d.get("url")       or "").strip()
+    if not lastname or not firstname:
+        return jsonify({"error": "lastname and firstname are required"}), 400
+
+    data = _load_coauthors_raw()
+    variants = [firstname] + ([short] if short else [])
+    entry = {"firstname": variants, "url": url}
+
+    existing = data.get(lastname, []) or []
+    # Replace entry with same first name, otherwise append
+    replaced = False
+    for i, e in enumerate(existing):
+        ev = e.get("firstname", [])
+        if isinstance(ev, str):
+            ev = [ev]
+        if ev and ev[0].lower() == firstname.lower():
+            existing[i] = entry
+            replaced = True
+            break
+    if not replaced:
+        existing.append(entry)
+    data[lastname] = existing
+    _save_coauthors(data)
+    return jsonify({"ok": True, "replaced": replaced})
+
+
+@app.route("/api/coauthors/<lastname>/<firstname>", methods=["DELETE"])
+def api_coauthors_delete(lastname, lastname2=None, firstname=None):
+    if not _YAML_OK:
+        return jsonify({"error": "PyYAML not installed"}), 500
+    data = _load_coauthors_raw()
+    entries = data.get(lastname, []) or []
+    before = len(entries)
+    entries = [
+        e for e in entries
+        if (lambda v: v[0].lower() if v else "")(
+            [e["firstname"]] if isinstance(e.get("firstname"), str) else (e.get("firstname") or [])
+        ) != firstname.lower()
+    ]
+    if not entries:
+        data.pop(lastname, None)
+    else:
+        data[lastname] = entries
+    if len(entries) == before:
+        return jsonify({"error": "Entry not found"}), 404
+    _save_coauthors(data)
+    return jsonify({"ok": True})
 
 
 # ── HTML templates ────────────────────────────────────────────────────────────
@@ -334,7 +456,10 @@ tr:hover td{background:#fafafe}
 </head>
 <body>
 <div class="container">
-  <h1>&#x1F4C4; Paper Manager</h1>
+  <div style="display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:8px">
+    <h1>&#x1F4C4; Paper Manager</h1>
+    <a href="/coauthors" style="font-size:.875rem;color:#4f46e5;text-decoration:none;font-weight:500">&#x1F517; Co-author Links &rarr;</a>
+  </div>
   <p class="subtitle">Manage publications for flomue.com &mdash; <span id="stat" class="stat"></span></p>
 
   <div class="toolbar">
@@ -796,6 +921,222 @@ function msg(id, text, type){
 }
 
 init();
+</script>
+</body>
+</html>"""
+
+
+COAUTHORS_HTML = """<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Co-author Links</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;background:#f5f5f7;color:#1d1d1f;min-height:100vh}
+.container{max-width:900px;margin:0 auto;padding:28px 20px}
+.back{display:inline-flex;align-items:center;gap:5px;color:#4f46e5;font-size:.875rem;text-decoration:none;margin-bottom:20px}
+.back:hover{text-decoration:underline}
+h1{font-size:1.6rem;font-weight:700;letter-spacing:-.02em;margin-bottom:4px}
+.subtitle{color:#888;font-size:.875rem;margin-bottom:24px}
+.card{background:#fff;border-radius:12px;box-shadow:0 1px 4px rgba(0,0,0,.08);overflow:hidden;margin-bottom:20px}
+table{width:100%;border-collapse:collapse}
+th,td{padding:10px 16px;text-align:left;font-size:.875rem}
+th{background:#fafafa;font-weight:600;color:#666;border-bottom:1px solid #e8e8ed}
+tr:not(:last-child) td{border-bottom:1px solid #f0f0f5}
+tr:hover td{background:#fafafe}
+.url-cell a{color:#4f46e5;text-decoration:none;font-size:.82rem}
+.url-cell a:hover{text-decoration:underline}
+.empty{text-align:center;padding:32px;color:#aaa;font-size:.875rem}
+.add-form{background:#fff;border-radius:12px;box-shadow:0 1px 4px rgba(0,0,0,.08);padding:20px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr 1fr 2fr;gap:10px;margin-bottom:12px}
+@media(max-width:640px){.form-grid{grid-template-columns:1fr 1fr}}
+input{width:100%;border:1.5px solid #e0e0e8;border-radius:7px;padding:7px 10px;font-size:.875rem;font-family:inherit}
+input:focus{outline:none;border-color:#4f46e5}
+label.fl{display:block;font-size:.72rem;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
+button{cursor:pointer;border:none;border-radius:7px;padding:8px 18px;font-size:.875rem;font-weight:600;transition:.15s}
+button:hover{filter:brightness(.9)}
+button:disabled{opacity:.5;cursor:default}
+.btn-primary{background:#4f46e5;color:#fff}
+.btn-danger{background:#fee2e2;color:#991b1b;border:none;padding:4px 10px;font-size:.78rem;border-radius:5px}
+.btn-edit{background:#f0f0ff;color:#4f46e5;border:none;padding:4px 10px;font-size:.78rem;border-radius:5px}
+.editing-row td{background:#f5f4ff}
+.btn-parse{background:#f0fdf4;color:#166534;border:1.5px solid #bbf7d0;padding:8px 18px}
+.row-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:12px}
+.status{font-size:.82rem;color:#555;margin-left:6px}
+.ok-msg{color:#065f46}
+.err-msg{color:#991b1b}
+.spin{display:inline-block;width:12px;height:12px;border:2px solid rgba(79,70,229,.3);border-top-color:#4f46e5;border-radius:50%;animation:sp .65s linear infinite;vertical-align:middle;margin-right:4px}
+@keyframes sp{to{transform:rotate(360deg)}}
+#log-wrap{margin-top:14px;display:none}
+#log{background:#111;color:#8efa8e;font-family:monospace;font-size:.76rem;padding:12px 14px;border-radius:8px;height:140px;overflow-y:auto;white-space:pre-wrap}
+</style>
+</head>
+<body>
+<div class="container">
+  <a class="back" href="/">&#x2190; Dashboard</a>
+  <h1>&#x1F517; Co-author Links</h1>
+  <p class="subtitle">Names linked on paper detail pages. Changes take effect after re-parsing.</p>
+
+  <div class="card">
+    <table>
+      <thead><tr>
+        <th>Last name</th>
+        <th>Full first name</th>
+        <th>Short</th>
+        <th>URL</th>
+        <th></th>
+      </tr></thead>
+      <tbody id="tbody"><tr><td colspan="5" class="empty">Loading&hellip;</td></tr></tbody>
+    </table>
+  </div>
+
+  <div class="add-form">
+    <h2 style="font-size:1rem;font-weight:600;margin-bottom:14px">Add / update co-author</h2>
+    <div class="form-grid">
+      <div><label class="fl">Last name *</label><input id="in-last" placeholder="Müller"></div>
+      <div><label class="fl">Full first name *</label><input id="in-first" placeholder="Florian"></div>
+      <div><label class="fl">Short / initial</label><input id="in-short" placeholder="F."></div>
+      <div><label class="fl">URL</label><input id="in-url" placeholder="https://example.com/"></div>
+    </div>
+    <div class="row-actions">
+      <button class="btn-primary" onclick="addEntry()">&#x2795; Add / Update</button>
+      <button class="btn-edit" id="btn-cancel" onclick="cancelEdit()" style="display:none">&#x2715; Cancel</button>
+      <span id="add-msg" class="status"></span>
+    </div>
+  </div>
+
+  <div style="margin-top:20px">
+    <div class="row-actions">
+      <button class="btn-parse" id="btn-parse" onclick="reparse()">&#x21BA; Re-parse BibTeX (apply links)</button>
+      <span id="parse-msg" class="status"></span>
+    </div>
+    <div id="log-wrap"><div id="log"></div></div>
+  </div>
+</div>
+
+<script>
+function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }
+
+async function load(){
+  const r = await fetch('/api/coauthors');
+  const data = await r.json();
+  const tbody = document.getElementById('tbody');
+  if(!data.length){
+    tbody.innerHTML = '<tr><td colspan="5" class="empty">No co-authors yet &mdash; add one below.</td></tr>';
+    return;
+  }
+  tbody.innerHTML = data.map(e => `
+    <tr>
+      <td><strong>${esc(e.lastname)}</strong></td>
+      <td>${esc(e.firstname)}</td>
+      <td style="color:#888">${esc(e.short)}</td>
+      <td class="url-cell">${e.url ? `<a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.url)}</a>` : '<span style="color:#ccc">\\u2014</span>'}</td>
+      <td style="white-space:nowrap">
+        <button class="btn-edit" data-last="${esc(e.lastname)}" data-first="${esc(e.firstname)}" data-short="${esc(e.short)}" data-url="${esc(e.url)}" onclick="editFromBtn(this)">&#x270E;</button>
+        <button class="btn-danger" style="margin-left:4px" data-last="${esc(e.lastname)}" data-first="${esc(e.firstname)}" onclick="delFromBtn(this)">&#x1F5D1;</button>
+      </td>
+    </tr>`).join('');
+}
+
+async function addEntry(){
+  const last  = document.getElementById('in-last').value.trim();
+  const first = document.getElementById('in-first').value.trim();
+  const short = document.getElementById('in-short').value.trim();
+  const url   = document.getElementById('in-url').value.trim();
+  if(!last||!first){ setMsg('add-msg','Last name and first name are required.','err'); return; }
+  setMsg('add-msg','Saving…','');
+  const r = await fetch('/api/coauthors',{
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({lastname:last, firstname:first, short, url})
+  });
+  const d = await r.json();
+  if(d.ok){
+    setMsg('add-msg', d.replaced ? '\\u2713 Updated.' : '\\u2713 Added.', 'ok');
+    if(editingRow){ editingRow.classList.remove('editing-row'); editingRow = null; }
+    ['in-last','in-first','in-short','in-url'].forEach(id=>document.getElementById(id).value='');
+    document.getElementById('btn-cancel').style.display = 'none';
+    load();
+  } else {
+    setMsg('add-msg','Error: '+d.error,'err');
+  }
+}
+
+let editingRow = null;
+
+function editFromBtn(btn){ edit(btn.dataset.last, btn.dataset.first, btn.dataset.short, btn.dataset.url, btn); }
+function delFromBtn(btn){ del(btn.dataset.last, btn.dataset.first, btn); }
+
+function edit(lastname, firstname, short, url, btn){
+  // Highlight the row being edited
+  if(editingRow) editingRow.classList.remove('editing-row');
+  editingRow = btn.closest('tr');
+  editingRow.classList.add('editing-row');
+
+  document.getElementById('in-last').value  = lastname;
+  document.getElementById('in-first').value = firstname;
+  document.getElementById('in-short').value = short || '';
+  document.getElementById('in-url').value   = url   || '';
+  document.getElementById('btn-cancel').style.display = '';
+  document.getElementById('add-msg').innerHTML = '';
+  document.querySelector('.add-form').scrollIntoView({behavior:'smooth', block:'nearest'});
+  document.getElementById('in-last').focus();
+}
+
+function cancelEdit(){
+  if(editingRow){ editingRow.classList.remove('editing-row'); editingRow = null; }
+  ['in-last','in-first','in-short','in-url'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('btn-cancel').style.display = 'none';
+  document.getElementById('add-msg').innerHTML = '';
+}
+
+async function del(lastname, firstname, btn){
+  if(!confirm(`Remove ${firstname} ${lastname}?`)) return;
+  btn.disabled = true;
+  const r = await fetch(`/api/coauthors/${encodeURIComponent(lastname)}/${encodeURIComponent(firstname)}`,{method:'DELETE'});
+  const d = await r.json();
+  if(d.ok) load();
+  else { alert('Error: '+d.error); btn.disabled=false; }
+}
+
+async function reparse(){
+  const btn = document.getElementById('btn-parse');
+  const logWrap = document.getElementById('log-wrap');
+  const log = document.getElementById('log');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spin"></span>Parsing…';
+  logWrap.style.display = 'block';
+  log.textContent = '';
+  setMsg('parse-msg','','');
+
+  const resp = await fetch('/api/run-parse',{method:'POST'});
+  const reader = resp.body.getReader();
+  const dec = new TextDecoder();
+  let buf = '';
+  while(true){
+    const {done,value} = await reader.read();
+    if(done) break;
+    buf += dec.decode(value,{stream:true});
+    const lines = buf.split('\\n');
+    buf = lines.pop();
+    for(const line of lines){
+      if(!line.startsWith('data: ')) continue;
+      const msg = JSON.parse(line.slice(6));
+      if(msg==='__DONE__'){ log.textContent += '\\n\\u2713 Done.\\n'; setMsg('parse-msg','\\u2713 Re-parse complete.','ok'); }
+      else { log.textContent += msg+'\\n'; log.scrollTop=log.scrollHeight; }
+    }
+  }
+  btn.disabled = false;
+  btn.innerHTML = '&#x21BA; Re-parse BibTeX (apply links)';
+}
+
+function setMsg(id, text, type){
+  const el = document.getElementById(id);
+  el.innerHTML = text;
+  el.className = 'status'+(type==='ok'?' ok-msg':type==='err'?' err-msg':'');
+}
+
+load();
 </script>
 </body>
 </html>"""

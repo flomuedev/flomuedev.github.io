@@ -10,7 +10,7 @@
 
     <header class="pub-single-header">
         <h1 class="pub-single-title">{{ .Title }}</h1>
-        <div class="pub-single-authors">{{ .Params.authors_html | safeHTML }}</div>
+        <div class="pub-single-authors">{{ with .Params.authors_html_linked }}{{ . | safeHTML }}{{ else }}{{ $.Params.authors_html | safeHTML }}{{ end }}</div>
         <div class="pub-single-venue">
             {{ if .Params.venue_short }}<span class="venue-badge">{{ .Params.venue_short }}</span>{{ end }}
             <span class="venue-year">{{ if .Date }}{{ .Date.Format "2006" }}{{ end }}</span>
