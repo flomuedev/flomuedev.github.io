@@ -145,6 +145,11 @@
       "found": "We demonstrated that our method effectively integrates conductive and non-conductive materials to create functional sensor architectures.",
       "takeaway": "Our approach offers a novel technique for producing customized sensors that could enhance the design flexibility in various engineering applications."
     },
+    "471f927ffadb59fa67369aa9f784323e9627158c38b7771cb1d0818d989dbdda": {
+      "did": "We designed and implemented Teachyverse, an immersive Virtual Reality lecture hall that blends e-learning, traditional learning, and remote collaboration.",
+      "found": "We found that students perceived lectures in Teachyverse as enjoyable and expressed a strong interest in using it as a viable e-learning option.",
+      "takeaway": "Teachyverse demonstrates the potential to improve e-learning experiences by bridging the gap between traditional classroom interactions and modern digital learning environments."
+    },
     "4809f8b58842e9e0f40ecb1a9a3ce935c604fd3f0b2146ef5e29daf107231390": {
       "did": "We conducted a user study to explore the impact of asynchronous first- and third-person perspectives and gaze visualizations on the efficiency, embodiment, and social connectedness during manual tasks in Extended Reality.",
       "found": "We found that the first-person perspective significantly improves efficiency, while incorporating gaze cues did not enhance performance but increased mental load.",
@@ -179,6 +184,11 @@
       "did": "We built ShadAR, an Augmented Reality prototyping pipeline that enables real-time creation of visualizations through large language models and object detection.",
       "found": "We found that ShadAR effectively interprets natural language commands to generate corresponding HLSL shader code, allowing users to flexibly alter their visual experiences in real time.",
       "takeaway": "We demonstrate that integrating large language models with object detection can enable novel on-demand Augmented Reality applications, enabling broader user interaction and engagement."
+    },
+    "57bc7c9775eb3d00571ed45bc7618715f343fdc01a947f55a43bf0fb5d823e08": {
+      "did": "We hosted the 7th Workshop on Interacting with Smart Objects in conjunction with EICS'19.",
+      "found": "",
+      "takeaway": ""
     },
     "58620307a2f27909d929ad099b1f6664f10060bb01ff1ab002c46fb4dd79f322": {
       "did": "We conducted the Rethinking Smart Objects workshop, focusing on the interaction paradigms and societal implications of smart objects in interactive spaces.",
@@ -227,8 +237,8 @@
     },
     "6cc94fb711f0c8deccdb5f72f82bfe391c98ed33c3cf69426521d5509ddd2cbd": {
       "did": "We hosted the Mensch und Computer 2022 conference at the Technische Universität Darmstadt, gathering nearly 600 participants from academia and industry.",
-      "found": "We found that the conference theme 'Facing Realities' resonated strongly with attendees, highlighting the importance of real-world applications in Human-Computer Interaction.",
-      "takeaway": "We contribute to the ongoing dialogue in Human-Computer Interaction by emphasizing the value of in-person interactions and practical engagement within the field."
+      "found": "The conference theme 'Facing Realities' resonated strongly with attendees, highlighting the importance of real-world applications in Human-Computer Interaction.",
+      "takeaway": "The conference contributed to the ongoing dialogue in Human-Computer Interaction by emphasizing the value of in-person interactions and practical engagement within the field."
     },
     "73350e2efb62c601945cfdf2a6b59ec342349f67584539887d79f1a777335fb8": {
       "did": "We designed and evaluated three different visualizations to represent physical passersby in a Virtual Environment using Augmented Virtuality.",
@@ -271,9 +281,9 @@
       "takeaway": "Our findings suggest that robots should defer to users in high-risk situations to mitigate frustration but operate autonomously in low-risk scenarios to enhance efficiency."
     },
     "87d509d685287f47a898630de8c7f2e1ed17e7067ecda8477e4e3ed71d2d38c0": {
-      "did": "We designed a palm-based interface for eyes-free television control that allows users to interact without the need for a traditional remote control.",
-      "found": "We found that users can effectively and accurately touch specific landmarks on their palm to control television functions without visual attention, achieving an effectiveness of over 94% for palm landmarks.",
-      "takeaway": "Our work suggests that leveraging the palm as an interactive surface could significantly enhance user experience by enabling device-less and attention-free interactions with television systems."
+      "did": "We designed a palm-based interaction system that enables device-less and eyes-free control of televisions.",
+      "found": "We found that participants could effectively and accurately touch five landmarks on their palm without visual attention, achieving over 90% effectiveness in mapping to the corresponding television interface.",
+      "takeaway": "Our research indicates that utilizing the palm as a remote control can enhance user experience by allowing seamless interaction with televisions, eliminating the need for handheld devices."
     },
     "885c02b4d0364b8796d319f973bf192970eb0f3047848df2a39d15d62b026bd8": {
       "did": "We built CheckMate, a tangible Augmented Reality interface that integrates 3D printed objects and touch-enabled surfaces for remote interaction.",
@@ -299,6 +309,11 @@
       "did": "We built CloudBits, an augmented reality system for head-mounted displays that visualizes and retrieves information proactively during conversations.",
       "found": "We found that CloudBits enhances mutual awareness and re-engagement in conversations by providing shared, spatially organized, and contextually relevant information bits.",
       "takeaway": "Our work contributes guidelines for designing conversation support systems that leverage spatial interaction and allow for selective sharing of private and public information."
+    },
+    "9891437485ca34f9e2dd8b864d25f6488c42d62331692b1ef94ee54be4358fac": {
+      "did": "We conducted the 6th Workshop on Interacting with Smart Objects to explore the interactive capabilities and functionalities of smart objects in various contexts.",
+      "found": "We discussed how integrating smart objects into everyday environments can enhance user interaction, learning experiences, and operational efficiency.",
+      "takeaway": "We highlight that advancing the design and operation of smart objects facilitates more natural interactions, ultimately contributing to the development of a seamless interactive ecosystem."
     },
     "992a3963b53e6b75b0b42f8641d9b8571922e775cfd0e2f04e8e1129e11d4e7d": {
       "did": "We designed interaction techniques that leverage limb movements for augmented reality applications using head-mounted displays.",
