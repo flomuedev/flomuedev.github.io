@@ -12,10 +12,8 @@
         <h1 class="pub-single-title">{{ .Title }}</h1>
         <div class="pub-single-authors">{{ with .Params.authors_html_linked }}{{ . | safeHTML }}{{ else }}{{ $.Params.authors_html | safeHTML }}{{ end }}</div>
         <div class="pub-single-venue">
-            {{ if .Params.venue_short }}<span class="venue-badge">{{ .Params.venue_short }}</span>{{ end }}
-            <span class="venue-year">{{ if .Date }}{{ .Date.Format "2006" }}{{ end }}</span>
+            <span class="venue-full">{{ if .Params.venue_short }}<span class="venue-short">{{ .Params.venue_short }}</span> · {{ end }}{{ if .Params.venue }}{{ .Params.venue }}{{ end }}{{ if .Date }} · {{ .Date.Format "2006" }}{{ end }}</span>
         </div>
-        {{ if .Params.venue }}<div class="pub-single-venue-full">{{ .Params.venue }}</div>{{ end }}
     </header>
 
     <div class="pub-single-grid">
