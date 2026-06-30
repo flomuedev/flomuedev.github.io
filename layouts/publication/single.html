@@ -164,7 +164,6 @@
                     {{ if $pimg }}{{ $poster = ($pimg.Resize "640x").RelPermalink }}{{ end }}
                     {{ end }}
                     <video class="pub-video-player" controls preload="none"
-                        style="width:100%;border-radius:8px;background:#000;display:block"
                         {{ with $poster }}poster="{{ . }}"{{ end }}>
                         <source src="{{ $url }}">
                         <a href="{{ $url }}" target="_blank" rel="noopener">Download video</a>
@@ -237,7 +236,6 @@
                     {{ if $pimg }}{{ $poster = ($pimg.Resize "640x").RelPermalink }}{{ end }}
                     {{ end }}
                     <video class="pub-video-player" controls preload="none"
-                        style="width:100%;border-radius:8px;background:#000;display:block"
                         {{ with $poster }}poster="{{ . }}"{{ end }}>
                         <source src="{{ $url }}">
                         <a href="{{ $url }}" target="_blank" rel="noopener">Download video</a>

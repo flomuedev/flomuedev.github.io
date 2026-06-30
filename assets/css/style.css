@@ -1219,6 +1219,18 @@ h3 {
   border: 0;
 }
 
+/* Self-hosted / direct-file player — match the 16:9 box of YouTube embeds.
+   object-fit: contain letterboxes any aspect ratio so the video (and its
+   poster) are never stretched or distorted. */
+.pub-video-player {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: 70vh;
+  object-fit: contain;
+  background: #000;
+}
+
 /* ---------- Imprint ---------- */
 .imprint-content {
   max-width: var(--content-width);
