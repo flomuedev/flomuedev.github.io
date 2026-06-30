@@ -2,6 +2,10 @@
 flask
 pymupdf
 pillow
+pyyaml
+requests
+beautifulsoup4
+boto3
 
 # Dependencies for scripts/generate_tldrs.py
 openai

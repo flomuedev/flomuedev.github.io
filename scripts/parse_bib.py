@@ -178,6 +178,31 @@ def load_coauthors(project_dir):
         return {}
 
 
+def clean_url(s):
+    """Strip BibTeX backslash-escapes (\\_  \\&  \\#  \\%  \\~  \\$  \\{  \\}) from a
+    URL field, e.g. a YouTube link stored as ...?v=uXctClcQu\\_g in Zotero."""
+    return re.sub(r'\\([_&%#~${}])', r'\1', s or '').strip()
+
+
+def load_videos(project_dir):
+    """Load data/videos.yml -> {citekey: url}.
+
+    Kept beside the bib (like coauthors.yml / tldrs_cache.json) so video links
+    survive both Hugo .md regeneration and Zotero re-exports of bib.bib.
+    """
+    if not _YAML_AVAILABLE:
+        return {}
+    path = os.path.join(project_dir, 'data', 'videos.yml')
+    if not os.path.isfile(path):
+        return {}
+    try:
+        with open(path, encoding='utf-8') as f:
+            data = yaml.safe_load(f) or {}
+        return {str(k): str(v).strip() for k, v in data.items() if v and str(v).strip()}
+    except Exception:
+        return {}
+
+
 def _coauthor_url(name, last, first, coauthors):
     """Return the URL for a co-author, or None if not found."""
     entries = coauthors.get(last.lower(), [])
@@ -454,6 +479,10 @@ def main():
     elif not _YAML_AVAILABLE:
         print("Warning: PyYAML not installed — co-author links disabled (pip install pyyaml)")
 
+    videos = load_videos(project_dir)
+    if videos:
+        print(f"Loaded {len(videos)} video link(s)")
+
     # Load TL;DR cache (committed to git, keyed by SHA256 of abstract)
     tldr_cache_path = os.path.join(project_dir, "data", "tldrs_cache.json")
     tldr_entries = {}
@@ -512,10 +541,10 @@ def main():
             'doi': doi,
             'pdf': pdf_file,
             'preview': preview_file,
-            'video': entry.get('video', ''),
-            'talk': entry.get('talk', ''),
-            'code': entry.get('code', '') or entry.get('website', ''),
-            'supps': entry.get('supps', ''),
+            'video': clean_url(videos.get(entry['key']) or entry.get('video', '')),
+            'talk': clean_url(entry.get('talk', '')),
+            'code': clean_url(entry.get('code', '') or entry.get('website', '')),
+            'supps': clean_url(entry.get('supps', '')),
             'publisher': entry.get('publisher', ''),
             'arxiv': arxiv_url,
             'keywords': entry.get('keywords', ''),

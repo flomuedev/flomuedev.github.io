@@ -27,7 +27,7 @@ except ImportError:
     pass
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from parse_bib import parse_bibtex
+from parse_bib import parse_bibtex, clean_url
 from generate_tldrs import (
     abstract_hash, generate_tldr, load_cache, patch_md_frontmatter, save_cache,
 )
@@ -47,6 +47,31 @@ PUBS_JSON       = os.path.join(PROJECT_DIR, "data", "publications.json")
 CACHE_PATH      = os.path.join(PROJECT_DIR, "data", "tldrs_cache.json")
 CONTENT_DIR     = os.path.join(PROJECT_DIR, "content", "publication")
 COAUTHORS_PATH  = os.path.join(PROJECT_DIR, "data", "coauthors.yml")
+VIDEOS_PATH     = os.path.join(PROJECT_DIR, "data", "videos.yml")
+
+# Backblaze B2 (S3-compatible) config — read from .env. Public bucket assumed.
+B2_ENDPOINT     = (os.environ.get("B2_ENDPOINT") or "").rstrip("/")
+B2_REGION       = os.environ.get("B2_REGION", "")
+B2_BUCKET       = os.environ.get("B2_BUCKET", "")
+B2_KEY_ID       = os.environ.get("B2_KEY_ID", "")
+B2_APP_KEY      = os.environ.get("B2_APP_KEY", "")
+# Base used to build the public playback URL. Defaults to the S3 path-style URL
+# for a public bucket; override with B2_PUBLIC_BASE if you front it with a CDN.
+B2_PUBLIC_BASE  = (os.environ.get("B2_PUBLIC_BASE")
+                   or (f"{B2_ENDPOINT}/{B2_BUCKET}" if B2_ENDPOINT and B2_BUCKET else "")).rstrip("/")
+
+VIDEO_EXTS      = (".mp4", ".webm", ".mov", ".m4v")
+UA_HEADERS      = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                  "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,"
+              "image/webp,*/*;q=0.8",
+    "Accept-Language": "en-US,en;q=0.9",
+    "Upgrade-Insecure-Requests": "1",
+    "Sec-Fetch-Dest": "document",
+    "Sec-Fetch-Mode": "navigate",
+    "Sec-Fetch-Site": "none",
+}
 
 app = Flask(__name__)
 
@@ -71,6 +96,79 @@ def parse_file_field(raw):
     return None
 
 
+def load_videos_map():
+    """Return the {citekey: url} map from data/videos.yml."""
+    if not _YAML_OK or not os.path.isfile(VIDEOS_PATH):
+        return {}
+    with open(VIDEOS_PATH, encoding="utf-8") as f:
+        data = _yaml.safe_load(f) or {}
+    return {str(k): str(v).strip() for k, v in data.items() if v and str(v).strip()}
+
+
+def save_videos_map(data):
+    with open(VIDEOS_PATH, "w", encoding="utf-8") as f:
+        _yaml.dump(data, f, allow_unicode=True, default_flow_style=False, sort_keys=True)
+
+
+def b2_configured():
+    return all([B2_ENDPOINT, B2_BUCKET, B2_KEY_ID, B2_APP_KEY, B2_PUBLIC_BASE])
+
+
+def _b2_client():
+    import boto3
+    return boto3.client(
+        "s3",
+        endpoint_url=B2_ENDPOINT,
+        aws_access_key_id=B2_KEY_ID,
+        aws_secret_access_key=B2_APP_KEY,
+        region_name=B2_REGION or None,
+    )
+
+
+def scrape_acm_videos(doi):
+    """Fetch an ACM DL page for a DOI and return candidate supplementary
+    video URLs as [{url, filename}]. Best-effort; ACM markup may change."""
+    import requests
+    from urllib.parse import urljoin
+
+    url = f"https://dl.acm.org/doi/{doi}"
+    r = requests.get(url, headers=UA_HEADERS, timeout=30)
+    r.raise_for_status()
+    html = r.text
+
+    found = {}
+
+    # 1) Anchor/href parsing (preferred — gives proper filenames).
+    try:
+        from bs4 import BeautifulSoup
+        soup = BeautifulSoup(html, "html.parser")
+        for a in soup.find_all(["a", "source"], href=True) + soup.find_all("source", src=True):
+            href = a.get("href") or a.get("src") or ""
+            low = href.lower().split("?")[0]
+            if low.endswith(VIDEO_EXTS) or ("suppl" in low and low.endswith(VIDEO_EXTS)):
+                full = urljoin(url, href)
+                found[full] = full.rstrip("/").split("/")[-1].split("?")[0]
+    except ImportError:
+        pass
+
+    # 2) Regex fallback over raw HTML for any video URL.
+    for m in re.finditer(r'https?://[^\s"\'<>]+?\.(?:mp4|webm|mov|m4v)', html, re.I):
+        full = m.group(0)
+        found.setdefault(full, full.rstrip("/").split("/")[-1].split("?")[0])
+
+    return [{"url": u, "filename": fn} for u, fn in found.items()]
+
+
+def upload_to_b2(src_path, object_name, content_type="video/mp4"):
+    """Upload a local file to the B2 bucket and return its public URL."""
+    client = _b2_client()
+    client.upload_file(
+        src_path, B2_BUCKET, object_name,
+        ExtraArgs={"ContentType": content_type},
+    )
+    return f"{B2_PUBLIC_BASE}/{object_name}"
+
+
 def load_papers():
     """Return list of paper dicts with status info."""
     entries = parse_bibtex(BIB_PATH)
@@ -79,6 +177,8 @@ def load_papers():
     if os.path.isfile(PUBS_JSON):
         for p in json.load(open(PUBS_JSON, encoding="utf-8")):
             pubs[p["key"]] = p
+
+    videos = load_videos_map()
 
     out = []
     for e in entries:
@@ -104,6 +204,11 @@ def load_papers():
             "has_preview": has_preview,
             "has_tldr":    bool(tldr.get("did")),
             "tldr":        tldr,
+            "doi":         e.get("doi", ""),
+            # videos.yml wins, but a `video` field set in Zotero/bib also counts.
+            "video_url":   clean_url(videos.get(key) or e.get("video", "")),
+            "video_src":   "yml" if videos.get(key) else ("bib" if e.get("video") else ""),
+            "has_video":   bool(videos.get(key) or e.get("video")),
         })
     return out
 
@@ -178,6 +283,143 @@ def api_render(key):
 @app.route("/api/check-openai")
 def api_check_openai():
     return jsonify({"available": bool(os.environ.get("OPENAI_API_KEY"))})
+
+
+@app.route("/api/check-b2")
+def api_check_b2():
+    return jsonify({"available": b2_configured(), "bucket": B2_BUCKET})
+
+
+@app.route("/api/<key>/scrape-video")
+def api_scrape_video(key):
+    doi = request.args.get("doi", "").strip()
+    if not doi:
+        entries = parse_bibtex(BIB_PATH)
+        e = next((x for x in entries if x["key"] == key), None)
+        doi = (e or {}).get("doi", "").strip()
+    if not doi:
+        return jsonify({"error": "No DOI for this paper — paste a video URL manually."}), 400
+    try:
+        candidates = scrape_acm_videos(doi)
+    except ImportError:
+        return jsonify({"error": "pip install requests beautifulsoup4"}), 500
+    except Exception as ex:
+        import requests as _rq
+        if isinstance(ex, _rq.HTTPError) and getattr(ex.response, "status_code", None) in (403, 401):
+            return jsonify({"error": "ACM blocked automated access (Cloudflare). "
+                                     "Download the video in your browser and use "
+                                     "'Upload file & host on B2' below."}), 502
+        return jsonify({"error": f"Scrape failed: {ex}"}), 502
+    return jsonify({"doi": doi, "candidates": candidates})
+
+
+@app.route("/api/<key>/set-video", methods=["POST"])
+def api_set_video(key):
+    """Store a video URL directly (manual paste — YouTube or already-hosted)."""
+    if not _YAML_OK:
+        return jsonify({"error": "PyYAML not installed"}), 500
+    url = (request.json or {}).get("url", "").strip()
+    if not url:
+        return jsonify({"error": "No URL provided"}), 400
+    data = load_videos_map()
+    data[key] = url
+    save_videos_map(data)
+    return jsonify({"ok": True, "url": url})
+
+
+@app.route("/api/<key>/host-video", methods=["POST"])
+def api_host_video(key):
+    """Download a (scraped) video URL and re-host it on Backblaze B2."""
+    if not _YAML_OK:
+        return jsonify({"error": "PyYAML not installed"}), 500
+    if not b2_configured():
+        return jsonify({"error": "B2 not configured — set B2_* vars in .env"}), 400
+    src_url = (request.json or {}).get("url", "").strip()
+    if not src_url:
+        return jsonify({"error": "No source URL provided"}), 400
+
+    try:
+        import requests
+    except ImportError:
+        return jsonify({"error": "pip install requests boto3"}), 500
+
+    ext = "." + src_url.split("?")[0].rsplit(".", 1)[-1].lower()
+    if ext not in VIDEO_EXTS:
+        ext = ".mp4"
+    object_name = f"{key}{ext}"
+    ctype = "video/webm" if ext == ".webm" else "video/mp4"
+
+    tmp = os.path.join(PROJECT_DIR, f".video_tmp_{key}{ext}")
+    try:
+        with requests.get(src_url, headers=UA_HEADERS, stream=True, timeout=120) as r:
+            r.raise_for_status()
+            with open(tmp, "wb") as f:
+                for chunk in r.iter_content(chunk_size=1 << 20):
+                    if chunk:
+                        f.write(chunk)
+        public_url = upload_to_b2(tmp, object_name, ctype)
+    except Exception as ex:
+        return jsonify({"error": f"Host failed: {ex}"}), 502
+    finally:
+        if os.path.isfile(tmp):
+            try:
+                os.remove(tmp)
+            except OSError:
+                pass
+
+    data = load_videos_map()
+    data[key] = public_url
+    save_videos_map(data)
+    return jsonify({"ok": True, "url": public_url})
+
+
+@app.route("/api/<key>/upload-video", methods=["POST"])
+def api_upload_video(key):
+    """Upload a local video file straight to B2 (the reliable path when ACM is
+    behind Cloudflare / institutional access)."""
+    if not _YAML_OK:
+        return jsonify({"error": "PyYAML not installed"}), 500
+    if not b2_configured():
+        return jsonify({"error": "B2 not configured — set B2_* vars in .env"}), 400
+
+    f = request.files.get("video")
+    if not f or not f.filename:
+        return jsonify({"error": "No file uploaded"}), 400
+
+    ext = "." + f.filename.rsplit(".", 1)[-1].lower() if "." in f.filename else ".mp4"
+    if ext not in VIDEO_EXTS:
+        return jsonify({"error": f"Unsupported type {ext} (use mp4/webm/mov/m4v)"}), 400
+    object_name = f"{key}{ext}"
+    ctype = "video/webm" if ext == ".webm" else "video/mp4"
+
+    tmp = os.path.join(PROJECT_DIR, f".video_tmp_{key}{ext}")
+    try:
+        f.save(tmp)
+        public_url = upload_to_b2(tmp, object_name, ctype)
+    except Exception as ex:
+        return jsonify({"error": f"Upload failed: {ex}"}), 502
+    finally:
+        if os.path.isfile(tmp):
+            try:
+                os.remove(tmp)
+            except OSError:
+                pass
+
+    data = load_videos_map()
+    data[key] = public_url
+    save_videos_map(data)
+    return jsonify({"ok": True, "url": public_url})
+
+
+@app.route("/api/<key>/video", methods=["DELETE"])
+def api_delete_video(key):
+    if not _YAML_OK:
+        return jsonify({"error": "PyYAML not installed"}), 500
+    data = load_videos_map()
+    if data.pop(key, None) is None:
+        return jsonify({"error": "No video set for this paper"}), 404
+    save_videos_map(data)
+    return jsonify({"ok": True})
 
 
 @app.route("/api/<key>/preview-image")
@@ -513,8 +755,9 @@ tr:hover td{background:#fafafe}
         <th class="ctr">PDF</th>
         <th class="ctr">Preview</th>
         <th class="ctr">TL;DR</th>
+        <th class="ctr">Video</th>
       </tr></thead>
-      <tbody id="tbody"><tr><td colspan="6" class="empty">Loading&hellip;</td></tr></tbody>
+      <tbody id="tbody"><tr><td colspan="7" class="empty">Loading&hellip;</td></tr></tbody>
     </table>
   </div>
 </div>
@@ -548,8 +791,9 @@ function render(){
       <td class="ctr">${badge(p.has_pdf)}</td>
       <td class="ctr">${badge(p.has_preview)}</td>
       <td class="ctr">${badge(p.has_tldr)}</td>
+      <td class="ctr">${p.has_video ? badge(true) : '<span style="color:#ccc">&mdash;</span>'}</td>
     </tr>`).join('') :
-    '<tr><td colspan="6" class="empty">No papers match the filter.</td></tr>';
+    '<tr><td colspan="7" class="empty">No papers match the filter.</td></tr>';
 }
 
 async function runPipeline(){
@@ -723,6 +967,39 @@ textarea:focus{outline:none;border-color:#4f46e5}
       </div>
     </div>
   </div>
+
+  <!-- Video -->
+  <div class="section">
+    <div class="sec-head" onclick="toggle('video')">
+      <div class="sec-title"><span id="video-badge"></span>4 &mdash; Supplementary Video</div>
+      <span class="chevron" id="video-chev">&#x25BC;</span>
+    </div>
+    <div class="sec-body open" id="video-body">
+      <div id="video-current"></div>
+      <div class="warn" id="no-b2-warn">&#x26A0; Backblaze B2 not configured (set B2_* in .env) &mdash; hosting disabled. You can still paste an already-public URL.</div>
+      <div class="row" style="margin-top:4px">
+        <button class="btn-outline" id="btn-scrape" onclick="scrapeVideo()">&#x1F50D; Find on ACM</button>
+        <span id="scrape-msg" class="status-msg"></span>
+      </div>
+      <div id="candidates"></div>
+      <div class="or-divider"><span>or upload a file</span></div>
+      <div class="upload-row">
+        <input type="file" id="video-file-input" accept="video/mp4,video/webm,video/quicktime,.mp4,.webm,.mov,.m4v">
+        <button class="btn-primary" id="btn-upload-video" onclick="uploadVideoFile()" disabled>&#x2601; Upload file &amp; host on B2</button>
+        <span id="video-upload-msg" class="status-msg"></span>
+      </div>
+      <div class="or-divider"><span>or paste a URL</span></div>
+      <div class="row">
+        <input type="text" id="video-url-input" placeholder="https://&hellip; YouTube or .mp4 URL"
+               style="flex:1;border:1.5px solid #e0e0e8;border-radius:7px;padding:7px 10px;font-size:.875rem">
+      </div>
+      <div class="row">
+        <button class="btn-primary" onclick="setVideoUrl()">&#x1F4BE; Save URL as-is</button>
+        <button class="btn-outline" id="btn-host-pasted" onclick="hostVideo(document.getElementById('video-url-input').value)">&#x2601; Download &amp; host on B2</button>
+        <span id="video-msg" class="status-msg"></span>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -779,6 +1056,11 @@ async function init(){
   }
   // Check OpenAI key availability
   checkApiKey();
+
+  // Video
+  setBadge('video-badge', p.has_video);
+  renderVideoCurrent(p.video_url || '');
+  checkB2();
 }
 
 async function checkApiKey(){
@@ -983,6 +1265,105 @@ async function saveTldr(){
   const d = await r.json();
   if(d.ok){ msg('tldr-msg','&#x2713; Saved to cache + .md file.','ok'); setBadge('tldr-badge',true); }
   else     { msg('tldr-msg','Error: '+d.error,'err'); }
+}
+
+// ── video ─────────────────────────────────────────────────────────────────────
+let b2Available = false;
+
+async function checkB2(){
+  const r = await fetch('/api/check-b2');
+  const d = await r.json();
+  b2Available = d.available;
+  if(!d.available){
+    document.getElementById('no-b2-warn').style.display = 'block';
+    document.getElementById('btn-host-pasted').disabled = true;
+  }
+}
+
+function renderVideoCurrent(url){
+  const el = document.getElementById('video-current');
+  el.innerHTML = url
+    ? `<p class="status-msg ok-msg">&#x2713; Current video:</p>
+       <div class="row"><span class="path">${esc(url)}</span>
+       <button class="btn-danger" onclick="removeVideo()">Remove</button></div>`
+    : '';
+}
+
+async function scrapeVideo(){
+  const btn = document.getElementById('btn-scrape');
+  btn.disabled = true; btn.innerHTML = '<span class="spin"></span>Searching&hellip;';
+  msg('scrape-msg','','');
+  const r = await fetch(`/api/${KEY}/scrape-video`);
+  const d = await r.json();
+  btn.disabled = false; btn.innerHTML = '&#x1F50D; Find on ACM';
+  const box = document.getElementById('candidates');
+  if(d.error){ msg('scrape-msg','Error: '+d.error,'err'); box.innerHTML=''; return; }
+  if(!d.candidates.length){ msg('scrape-msg','No video found on the ACM page.','err'); box.innerHTML=''; return; }
+  msg('scrape-msg',`Found ${d.candidates.length} candidate(s):`,'ok');
+  box.innerHTML = d.candidates.map(c=>`
+    <div class="row" style="margin-top:8px">
+      <span class="path">${esc(c.filename)}</span>
+      <button class="btn-primary" ${b2Available?'':'disabled'}
+        onclick="hostVideo('${encodeURIComponent(c.url)}',true)">&#x2601; Host on B2</button>
+    </div>`).join('');
+}
+
+async function hostVideo(url, encoded){
+  if(encoded) url = decodeURIComponent(url);
+  url = (url||'').trim();
+  if(!url){ msg('video-msg','Provide a URL first.','err'); return; }
+  if(!b2Available){ msg('video-msg','B2 not configured.','err'); return; }
+  msg('video-msg','<span class="spin"></span>Downloading &amp; uploading&hellip; (may take a while)','');
+  const r = await fetch(`/api/${KEY}/host-video`,{
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({url})
+  });
+  const d = await r.json();
+  if(d.ok){ msg('video-msg','&#x2713; Hosted on B2.','ok'); setBadge('video-badge',true); renderVideoCurrent(d.url); }
+  else     { msg('video-msg','Error: '+d.error,'err'); }
+}
+
+document.getElementById('video-file-input').addEventListener('change', e => {
+  document.getElementById('btn-upload-video').disabled = !e.target.files.length || !b2Available;
+  msg('video-upload-msg','','');
+});
+
+async function uploadVideoFile(){
+  const input = document.getElementById('video-file-input');
+  const file = input.files[0];
+  if(!file){ msg('video-upload-msg','Choose a file first.','err'); return; }
+  if(!b2Available){ msg('video-upload-msg','B2 not configured.','err'); return; }
+  const btn = document.getElementById('btn-upload-video');
+  btn.disabled = true; btn.innerHTML = '<span class="spin"></span>Uploading&hellip;';
+  const fd = new FormData(); fd.append('video', file);
+  const r = await fetch(`/api/${KEY}/upload-video`,{method:'POST', body:fd});
+  const d = await r.json();
+  btn.innerHTML = '&#x2601; Upload file &amp; host on B2';
+  if(d.ok){
+    msg('video-upload-msg','&#x2713; Hosted on B2.','ok');
+    setBadge('video-badge',true); renderVideoCurrent(d.url); input.value='';
+  } else {
+    msg('video-upload-msg','Error: '+d.error,'err'); btn.disabled=false;
+  }
+}
+
+async function setVideoUrl(){
+  const url = document.getElementById('video-url-input').value.trim();
+  if(!url){ msg('video-msg','Paste a URL first.','err'); return; }
+  const r = await fetch(`/api/${KEY}/set-video`,{
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({url})
+  });
+  const d = await r.json();
+  if(d.ok){ msg('video-msg','&#x2713; Saved.','ok'); setBadge('video-badge',true); renderVideoCurrent(d.url); }
+  else     { msg('video-msg','Error: '+d.error,'err'); }
+}
+
+async function removeVideo(){
+  const r = await fetch(`/api/${KEY}/video`,{method:'DELETE'});
+  const d = await r.json();
+  if(d.ok){ msg('video-msg','Removed.','ok'); setBadge('video-badge',false); renderVideoCurrent(''); }
+  else     { msg('video-msg','Error: '+d.error,'err'); }
 }
 
 // ── utils ─────────────────────────────────────────────────────────────────────

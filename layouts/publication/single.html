@@ -157,6 +157,18 @@
                             </div>
                         </div>
                     </div>
+                    {{ else if or (hasSuffix (lower $url) ".mp4") (hasSuffix (lower $url) ".webm") (hasSuffix (lower $url) ".mov") (hasSuffix (lower $url) ".m4v") }}
+                    {{ $poster := "" }}
+                    {{ with .Params.preview }}
+                    {{ $pimg := resources.Get (printf "publication_preview/%s" .) }}
+                    {{ if $pimg }}{{ $poster = ($pimg.Resize "640x").RelPermalink }}{{ end }}
+                    {{ end }}
+                    <video class="pub-video-player" controls preload="none"
+                        style="width:100%;border-radius:8px;background:#000;display:block"
+                        {{ with $poster }}poster="{{ . }}"{{ end }}>
+                        <source src="{{ $url }}">
+                        <a href="{{ $url }}" target="_blank" rel="noopener">Download video</a>
+                    </video>
                     {{ else }}
                     <a href="{{ $url }}" class="pub-action-btn secondary" target="_blank" rel="noopener">External Video
                         Link</a>
@@ -218,6 +230,18 @@
                             </div>
                         </div>
                     </div>
+                    {{ else if or (hasSuffix (lower $url) ".mp4") (hasSuffix (lower $url) ".webm") (hasSuffix (lower $url) ".mov") (hasSuffix (lower $url) ".m4v") }}
+                    {{ $poster := "" }}
+                    {{ with .Params.preview }}
+                    {{ $pimg := resources.Get (printf "publication_preview/%s" .) }}
+                    {{ if $pimg }}{{ $poster = ($pimg.Resize "640x").RelPermalink }}{{ end }}
+                    {{ end }}
+                    <video class="pub-video-player" controls preload="none"
+                        style="width:100%;border-radius:8px;background:#000;display:block"
+                        {{ with $poster }}poster="{{ . }}"{{ end }}>
+                        <source src="{{ $url }}">
+                        <a href="{{ $url }}" target="_blank" rel="noopener">Download video</a>
+                    </video>
                     {{ else }}
                     <a href="{{ $url }}" class="pub-action-btn secondary" target="_blank" rel="noopener">External Talk
                         Link</a>
