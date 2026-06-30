@@ -480,6 +480,11 @@
       "found": "We found that our proposed system can effectively detect incorrect posture and provide subtle feedback to guide musicians back to the correct position without distracting them from their performance.",
       "takeaway": "Our research contributes to the development of ergonomic practices in music education, potentially preventing injuries and improving performance efficiency for both beginners and advanced musicians."
     },
+    "e9299f3c1ddc63b1efe2f6c5cd147d411a0b2f31b0124bd3a6e16624befafc19": {
+      "did": "We conducted a workshop aimed at engineering cross-compatible personalization for interactive AI-driven services.",
+      "found": "We discussed that creating user-sovereign representations and interoperable protocols can enhance user control over their digital self-representations in AI systems.",
+      "takeaway": "Our work contributes to establishing a framework that enables users to inspect, edit, and share their AI-driven profiles, addressing privacy concerns and fostering interoperability."
+    },
     "e9ea7ce03f2e378ce7e01368b2e02a211e574bfd46b23db9bb928834751dc9b8": {
       "did": "We designed an AI-driven system for dynamic Augmented Reality content placement that adapts to user movement and environmental changes.",
       "found": "We found that this system significantly reduces cognitive load by intelligently managing content distribution between external projections and head-mounted displays.",

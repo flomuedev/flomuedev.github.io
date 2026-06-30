@@ -216,6 +216,41 @@ def api_save_preview(key):
     return jsonify({"ok": True})
 
 
+@app.route("/api/<key>/upload-preview", methods=["POST"])
+def api_upload_preview(key):
+    try:
+        from PIL import Image
+    except ImportError:
+        return jsonify({"error": "pip install pillow"}), 500
+
+    f = request.files.get("image")
+    if not f or not f.filename:
+        return jsonify({"error": "No file uploaded"}), 400
+
+    try:
+        img = Image.open(f.stream)
+        img.load()
+    except Exception as ex:
+        return jsonify({"error": f"Not a valid image: {ex}"}), 400
+
+    os.makedirs(PREVIEW_DIR, exist_ok=True)
+    # Replace any existing preview for this key, regardless of extension.
+    for ext in (".jpg", ".jpeg", ".png", ".gif", ".webp"):
+        old = os.path.join(PREVIEW_DIR, f"{key}{ext}")
+        if os.path.isfile(old):
+            os.remove(old)
+
+    # Keep transparency for images that have it; otherwise store as JPEG.
+    has_alpha = img.mode in ("RGBA", "LA") or (img.mode == "P" and "transparency" in img.info)
+    if has_alpha:
+        img.convert("RGBA").save(os.path.join(PREVIEW_DIR, f"{key}.png"), "PNG")
+    else:
+        img.convert("RGB").save(
+            os.path.join(PREVIEW_DIR, f"{key}.jpg"), "JPEG", quality=92
+        )
+    return jsonify({"ok": True})
+
+
 @app.route("/api/<key>/generate-tldr", methods=["POST"])
 def api_generate_tldr(key):
     api_key = os.environ.get("OPENAI_API_KEY", "")
@@ -603,6 +638,11 @@ textarea:focus{outline:none;border-color:#4f46e5}
 #page-info{font-size:.82rem;color:#666}
 #crop-hint{font-size:.78rem;color:#888;margin-top:6px}
 .preview-img{max-width:220px;border-radius:8px;margin-top:10px;border:1px solid #e0e0e8}
+.upload-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:12px}
+.upload-row input[type=file]{font-size:.8rem;color:#555;max-width:100%}
+.upload-row input[type=file]::file-selector-button{cursor:pointer;border:1.5px solid #4f46e5;background:#fff;color:#4f46e5;border-radius:7px;padding:6px 12px;font-size:.8rem;font-weight:600;margin-right:10px}
+.or-divider{display:flex;align-items:center;gap:10px;color:#bbb;font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;margin:16px 0 4px}
+.or-divider::before,.or-divider::after{content:"";flex:1;height:1px;background:#eee}
 .spin{display:inline-block;width:13px;height:13px;border:2px solid rgba(79,70,229,.3);border-top-color:#4f46e5;border-radius:50%;animation:sp .65s linear infinite;vertical-align:middle;margin-right:4px}
 @keyframes sp{to{transform:rotate(360deg)}}
 </style>
@@ -635,6 +675,12 @@ textarea:focus{outline:none;border-color:#4f46e5}
     </div>
     <div class="sec-body open" id="prev-body">
       <div id="prev-current"></div>
+      <div class="upload-row">
+        <input type="file" id="upload-input" accept="image/*">
+        <button class="btn-primary" id="btn-upload" onclick="uploadImage()" disabled>&#x2B06; Upload from disk</button>
+        <span id="upload-msg" class="status-msg"></span>
+      </div>
+      <div class="or-divider"><span>or crop from the PDF</span></div>
       <div class="page-nav" id="page-nav" style="display:none">
         <button class="btn-outline" onclick="changePage(-1)">&#x25C4;</button>
         <span id="page-info">Page 1</span>
@@ -872,6 +918,37 @@ async function saveCrop(){
       `<p class="status-msg ok-msg">&#x2713; Preview saved:</p><img class="preview-img" src="/api/${KEY}/preview-image?t=${Date.now()}">`;
   } else {
     msg('crop-msg','Error: '+d.error,'err');
+  }
+}
+
+// ── upload from disk ──────────────────────────────────────────────────────────
+document.getElementById('upload-input').addEventListener('change', e => {
+  document.getElementById('btn-upload').disabled = !e.target.files.length;
+  msg('upload-msg','','');
+});
+
+async function uploadImage(){
+  const input = document.getElementById('upload-input');
+  const file = input.files[0];
+  if(!file){ msg('upload-msg','Choose an image first.','err'); return; }
+  const btn = document.getElementById('btn-upload');
+  btn.disabled = true; btn.innerHTML = '<span class="spin"></span>Uploading&hellip;';
+
+  const fd = new FormData();
+  fd.append('image', file);
+  const r = await fetch(`/api/${KEY}/upload-preview`,{method:'POST', body:fd});
+  const d = await r.json();
+  btn.innerHTML = '&#x2B06; Upload from disk';
+  if(d.ok){
+    msg('upload-msg','&#x2713; Uploaded!','ok');
+    setBadge('prev-badge', true);
+    document.getElementById('prev-current').innerHTML =
+      `<p class="status-msg ok-msg">&#x2713; Preview saved:</p><img class="preview-img" src="/api/${KEY}/preview-image?t=${Date.now()}">`;
+    input.value = '';
+    btn.disabled = true;
+  } else {
+    msg('upload-msg','Error: '+d.error,'err');
+    btn.disabled = false;
   }
 }
 
