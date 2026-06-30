@@ -10,6 +10,9 @@ content/publication/*.md
 # Hugo lock file
 .hugo_build.lock
 
+# Pre-shrink PDF originals kept by scripts/manage.py for revert
+.pdf_originals/
+
 # Claude Code local config
 .claude/
 

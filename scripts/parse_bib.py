@@ -525,6 +525,13 @@ def main():
         tldr_hash = hashlib.sha256(abstract.strip().encode("utf-8")).hexdigest() if abstract else ""
         tldr = tldr_entries.get(tldr_hash, {})
 
+        # Page range for Google Scholar citation_firstpage / citation_lastpage.
+        # Handles "1--7", "1-7", "12:1--12:30" (article numbers), single pages.
+        pages = entry.get('pages', '').strip()
+        page_parts = [s.strip() for s in re.split(r'-{1,2}', pages) if s.strip()]
+        firstpage = page_parts[0] if page_parts else ''
+        lastpage  = page_parts[-1] if len(page_parts) > 1 else ''
+
         pub = {
             'key': entry['key'],
             'type': entry.get('type', 'misc'),
@@ -548,6 +555,13 @@ def main():
             'publisher': entry.get('publisher', ''),
             'arxiv': arxiv_url,
             'keywords': entry.get('keywords', ''),
+            # Scholarly metadata for Google Scholar citation_* tags
+            'firstpage': firstpage,
+            'lastpage': lastpage,
+            'volume': entry.get('volume', ''),
+            'issue': entry.get('number', ''),
+            'isbn': entry.get('isbn', ''),
+            'issn': entry.get('issn', ''),
             'tldr_did': tldr.get('did', ''),
             'tldr_found': tldr.get('found', ''),
             'tldr_takeaway': tldr.get('takeaway', ''),
@@ -599,8 +613,14 @@ def main():
         if pub.get('bibtex'):
             frontmatter.append(f"bibtex = {json.dumps(pub['bibtex'])}")
 
+        # BibTeX entry type drives journal-vs-conference choice in citation meta
+        if pub.get('type'):
+            frontmatter.append(f"pub_type = {json.dumps(pub['type'])}")
+
         # Add optional items
-        for field in ['pdf', 'preview', 'video', 'talk', 'code', 'supps', 'arxiv', 'doi', 'publisher', 'keywords']:
+        for field in ['pdf', 'preview', 'video', 'talk', 'code', 'supps', 'arxiv', 'doi',
+                      'publisher', 'firstpage', 'lastpage', 'volume', 'issue', 'isbn', 'issn',
+                      'keywords']:
             if pub.get(field):
                 if field == 'keywords':
                     kws = [k.strip() for k in pub[field].split(',') if k.strip()]

@@ -1,0 +1,51 @@
+{{- /*
+  Google Scholar / Highwire Press citation_* meta tags.
+  Emitted on publication landing pages so Scholar can index the paper and find
+  the freely downloadable PDF (citation_pdf_url). Fields come from the bib via
+  scripts/parse_bib.py. https://scholar.google.com/intl/en/scholar/inclusion.html
+*/ -}}
+{{- if eq .Type "publication" -}}
+<meta name="citation_title" content="{{ .Title }}">
+{{- range $a := split .Params.authors ", " }}
+<meta name="citation_author" content="{{ $a }}">
+{{- end }}
+<meta name="citation_publication_date" content="{{ .Date.Format "2006/01/02" }}">
+{{- with .Params.venue }}
+{{- if eq ($.Params.pub_type | default "") "article" }}
+<meta name="citation_journal_title" content="{{ . }}">
+{{- else }}
+<meta name="citation_conference_title" content="{{ . }}">
+{{- end }}
+{{- end }}
+{{- with .Params.publisher }}
+<meta name="citation_publisher" content="{{ . }}">
+{{- end }}
+{{- with .Params.volume }}
+<meta name="citation_volume" content="{{ . }}">
+{{- end }}
+{{- with .Params.issue }}
+<meta name="citation_issue" content="{{ . }}">
+{{- end }}
+{{- with .Params.firstpage }}
+<meta name="citation_firstpage" content="{{ . }}">
+{{- end }}
+{{- with .Params.lastpage }}
+<meta name="citation_lastpage" content="{{ . }}">
+{{- end }}
+{{- with .Params.doi }}
+<meta name="citation_doi" content="{{ . }}">
+{{- end }}
+{{- with .Params.isbn }}
+<meta name="citation_isbn" content="{{ . }}">
+{{- end }}
+{{- with .Params.issn }}
+<meta name="citation_issn" content="{{ . }}">
+{{- end }}
+{{- range $kw := .Params.keywords }}
+<meta name="citation_keywords" content="{{ $kw }}">
+{{- end }}
+{{- with .Params.pdf }}
+<meta name="citation_pdf_url" content="{{ printf "%spdf/%s" $.Site.BaseURL . }}">
+{{- end }}
+<meta name="citation_abstract_html_url" content="{{ .Permalink }}">
+{{- end -}}

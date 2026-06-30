@@ -1,6 +1,7 @@
 # Dependencies for scripts/manage.py (paper management GUI)
 flask
 pymupdf
+pikepdf
 pillow
 pyyaml
 requests

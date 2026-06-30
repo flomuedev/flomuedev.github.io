@@ -3,7 +3,7 @@
 Paper management web GUI for flomue.com.
 
 Usage:
-    pip install flask pymupdf pillow python-dotenv
+    pip install flask pymupdf pikepdf pillow python-dotenv
     python scripts/manage.py
 
 Opens http://localhost:5000
@@ -31,6 +31,7 @@ from parse_bib import parse_bibtex, clean_url
 from generate_tldrs import (
     abstract_hash, generate_tldr, load_cache, patch_md_frontmatter, save_cache,
 )
+import pdf_tools
 
 try:
     import yaml as _yaml
@@ -77,6 +78,11 @@ app = Flask(__name__)
 
 
 # ── helpers ───────────────────────────────────────────────────────────────────
+
+def _sse(line):
+    """Format one Server-Sent-Events data frame (matches the stream consumers)."""
+    return f"data: {json.dumps(line)}\n\n"
+
 
 def parse_file_field(raw):
     """Extract the first accessible PDF path from a BibTeX file field."""
@@ -192,6 +198,9 @@ def load_papers():
             os.path.isfile(os.path.join(PREVIEW_DIR, f"{key}{x}"))
             for x in (".jpg", ".jpeg", ".png", ".gif", ".webp")
         )
+        pdf_path  = os.path.join(PDF_DIR, f"{key}.pdf")
+        has_pdf   = os.path.isfile(pdf_path)
+        pdf_size  = os.path.getsize(pdf_path) if has_pdf else 0
         out.append({
             "key":         key,
             "title":       e.get("title", key),
@@ -199,7 +208,9 @@ def load_papers():
             "venue_short": pub.get("venue_short", ""),
             "abstract":    abstract,
             "file_raw":    e.get("file", ""),
-            "has_pdf":     os.path.isfile(os.path.join(PDF_DIR, f"{key}.pdf")),
+            "has_pdf":     has_pdf,
+            "pdf_size":    pdf_size,
+            "pdf_over":    pdf_size >= pdf_tools.SIZE_LIMIT,
             "source_pdf":  parse_file_field(e.get("file", "")),
             "has_preview": has_preview,
             "has_tldr":    bool(tldr.get("did")),
@@ -278,6 +289,72 @@ def api_render(key):
         "Access-Control-Expose-Headers": "X-Page-Count,X-Page-Width,X-Page-Height",
     })
     return resp
+
+
+# ── PDF optimisation (Google Scholar < 5 MB, searchable) ───────────────────────
+
+@app.route("/api/<key>/pdf-health")
+def api_pdf_health(key):
+    return jsonify(pdf_tools.pdf_health(os.path.join(PDF_DIR, f"{key}.pdf")))
+
+
+@app.route("/api/<key>/shrink", methods=["POST"])
+def api_shrink(key):
+    pdf = os.path.join(PDF_DIR, f"{key}.pdf")
+    if not os.path.isfile(pdf):
+        return jsonify({"error": "No PDF copied for this paper"}), 404
+    allow_raster = bool((request.json or {}).get("raster"))
+    try:
+        result = pdf_tools.shrink_pdf(pdf, allow_raster=allow_raster)
+    except Exception as ex:
+        return jsonify({"error": f"Shrink failed: {ex}"}), 500
+    return jsonify(result)
+
+
+@app.route("/api/<key>/revert-pdf", methods=["POST"])
+def api_revert_pdf(key):
+    pdf = os.path.join(PDF_DIR, f"{key}.pdf")
+    if pdf_tools.revert(pdf):
+        return jsonify({"ok": True, "health": pdf_tools.pdf_health(pdf)})
+    return jsonify({"error": "No backed-up original to restore"}), 404
+
+
+@app.route("/api/shrink-all", methods=["POST"])
+def api_shrink_all():
+    """Batch-shrink every PDF at or over the 5 MB limit, streaming progress."""
+    allow_raster = request.args.get("raster") == "1"
+
+    def stream():
+        papers  = [p for p in load_papers() if p["has_pdf"] and p["pdf_over"]]
+        yield _sse(f"Found {len(papers)} PDF(s) at or over "
+                   f"{pdf_tools.SIZE_LIMIT // (1024*1024)} MB"
+                   + (" — rasterising allowed" if allow_raster else "") + ".")
+        ok = fail = 0
+        for i, p in enumerate(papers, 1):
+            key = p["key"]
+            pdf = os.path.join(PDF_DIR, f"{key}.pdf")
+            yield _sse(f"[{i}/{len(papers)}] {key} … "
+                       f"{round(p['pdf_size']/(1024*1024), 2)} MB")
+            try:
+                r = pdf_tools.shrink_pdf(pdf, allow_raster=allow_raster)
+            except Exception as ex:
+                fail += 1
+                yield _sse(f"    ✗ error: {ex}")
+                continue
+            tag = "✓" if r["under_limit"] else "⚠"
+            yield _sse(f"    {tag} {r['before_mb']} → {r['after_mb']} MB "
+                       f"[{r['method']}] searchable={r['searchable_after']}")
+            if r["under_limit"]:
+                ok += 1
+            else:
+                fail += 1
+                yield _sse(f"    still over 5 MB — vector-heavy; "
+                           f"re-run with rasterising enabled" if not allow_raster
+                           else "    still over 5 MB after rasterising")
+        yield _sse(f"Done. {ok} under limit, {fail} still need attention.")
+        yield _sse("__DONE__")
+
+    return Response(stream(), mimetype="text/event-stream")
 
 
 @app.route("/api/check-openai")
@@ -709,7 +786,11 @@ button{cursor:pointer;border:none;border-radius:7px;padding:8px 18px;font-size:.
 button:hover{filter:brightness(.9)}
 button:disabled{opacity:.5;cursor:default}
 .btn-primary{background:#4f46e5;color:#fff}
+.btn-shrink{background:#fff7ed;color:#9a3412;border:1.5px solid #fed7aa}
 label.check{font-size:.875rem;display:flex;align-items:center;gap:6px;cursor:pointer;color:#555}
+.size-pill{font-size:.74rem;font-weight:600;padding:2px 7px;border-radius:20px;font-variant-numeric:tabular-nums}
+.size-ok{background:#f0f0f5;color:#666}
+.size-over{background:#fee2e2;color:#991b1b}
 .card{background:#fff;border-radius:12px;box-shadow:0 1px 4px rgba(0,0,0,.08);overflow:hidden}
 table{width:100%;border-collapse:collapse}
 th,td{padding:10px 16px;text-align:left;font-size:.875rem}
@@ -741,6 +822,8 @@ tr:hover td{background:#fafafe}
 
   <div class="toolbar">
     <button class="btn-primary" id="btn-pipe" onclick="runPipeline()">&#x25B6; Run Full Pipeline</button>
+    <button class="btn-shrink" id="btn-shrink" onclick="shrinkAll()">&#x1F5DC; Shrink PDFs &ge; 5&nbsp;MB</button>
+    <label class="check" title="For vector-heavy papers image recompression can't fix: render pages to images and keep an invisible, still-searchable text layer."><input type="checkbox" id="chk-raster"> allow rasterising</label>
     <label class="check"><input type="checkbox" id="chk-incomplete" onchange="render()"> Show only incomplete</label>
   </div>
 
@@ -749,15 +832,16 @@ tr:hover td{background:#fafafe}
   <div class="card" style="margin-top:16px">
     <table>
       <thead><tr>
-        <th style="width:45%">Title</th>
+        <th style="width:42%">Title</th>
         <th>Year</th>
         <th>Venue</th>
         <th class="ctr">PDF</th>
+        <th class="ctr">Size</th>
         <th class="ctr">Preview</th>
         <th class="ctr">TL;DR</th>
         <th class="ctr">Video</th>
       </tr></thead>
-      <tbody id="tbody"><tr><td colspan="7" class="empty">Loading&hellip;</td></tr></tbody>
+      <tbody id="tbody"><tr><td colspan="8" class="empty">Loading&hellip;</td></tr></tbody>
     </table>
   </div>
 </div>
@@ -774,12 +858,20 @@ async function load(){
   render();
 }
 
+function mb(bytes){ return (bytes/1048576).toFixed(bytes>=10485760?0:1); }
+function sizePill(p){
+  if(!p.has_pdf) return '<span style="color:#ccc">&mdash;</span>';
+  return `<span class="size-pill ${p.pdf_over?'size-over':'size-ok'}">${mb(p.pdf_size)} MB</span>`;
+}
+
 function render(){
   const onlyBad = document.getElementById('chk-incomplete').checked;
-  const rows = onlyBad ? all.filter(p=>!p.has_pdf||!p.has_preview||!p.has_tldr) : all;
+  const rows = onlyBad ? all.filter(p=>!p.has_pdf||!p.has_preview||!p.has_tldr||p.pdf_over) : all;
   const incomplete = all.filter(p=>!p.has_pdf||!p.has_preview||!p.has_tldr).length;
+  const over = all.filter(p=>p.pdf_over).length;
   document.getElementById('stat').textContent =
-    `${all.length} papers \u2022 ${incomplete} incomplete`;
+    `${all.length} papers \u2022 ${incomplete} incomplete \u2022 ${over} PDF${over===1?'':'s'} \u2265 5 MB`;
+  document.getElementById('btn-shrink').disabled = over===0;
   document.getElementById('tbody').innerHTML = rows.length ? rows.map(p=>`
     <tr>
       <td class="title-cell">
@@ -789,11 +881,47 @@ function render(){
       <td>${p.year||''}</td>
       <td>${p.venue_short||''}</td>
       <td class="ctr">${badge(p.has_pdf)}</td>
+      <td class="ctr">${sizePill(p)}</td>
       <td class="ctr">${badge(p.has_preview)}</td>
       <td class="ctr">${badge(p.has_tldr)}</td>
       <td class="ctr">${p.has_video ? badge(true) : '<span style="color:#ccc">&mdash;</span>'}</td>
     </tr>`).join('') :
-    '<tr><td colspan="7" class="empty">No papers match the filter.</td></tr>';
+    '<tr><td colspan="8" class="empty">No papers match the filter.</td></tr>';
+}
+
+async function shrinkAll(){
+  const over = all.filter(p=>p.pdf_over).length;
+  if(!over) return;
+  const raster = document.getElementById('chk-raster').checked;
+  if(!confirm(`Shrink ${over} PDF(s) \u2265 5 MB toward Google Scholar's limit?\n`
+      + (raster ? 'Vector-heavy papers will be rasterised (figures become images; '
+                + 'text stays searchable).' : 'Image recompression only; originals are '
+                + 'backed up to .pdf_originals/.'))) return;
+  const btn = document.getElementById('btn-shrink');
+  const logWrap = document.getElementById('log-wrap');
+  const log = document.getElementById('log');
+  btn.disabled = true; btn.innerHTML = '<span class="spin"></span>Shrinking&hellip;';
+  logWrap.style.display = 'block'; log.textContent = '';
+
+  const resp = await fetch('/api/shrink-all'+(raster?'?raster=1':''), {method:'POST'});
+  const reader = resp.body.getReader();
+  const dec = new TextDecoder();
+  let buf = '';
+  while(true){
+    const {done,value} = await reader.read();
+    if(done) break;
+    buf += dec.decode(value,{stream:true});
+    const lines = buf.split('\\n');
+    buf = lines.pop();
+    for(const line of lines){
+      if(!line.startsWith('data: ')) continue;
+      const msg = JSON.parse(line.slice(6));
+      if(msg==='__DONE__'){ await load(); }
+      else { log.textContent += msg+'\\n'; log.scrollTop=log.scrollHeight; }
+    }
+  }
+  btn.innerHTML = '&#x1F5DC; Shrink PDFs &ge; 5&nbsp;MB';
+  document.getElementById('btn-shrink').disabled = all.filter(p=>p.pdf_over).length===0;
 }
 
 async function runPipeline(){
@@ -864,6 +992,11 @@ button:disabled{opacity:.45;cursor:default}
 .btn-danger{background:#fee2e2;color:#991b1b}
 .row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
 .path{font-family:monospace;font-size:.75rem;background:#f5f5f7;padding:4px 8px;border-radius:5px;color:#555;word-break:break-all;flex:1}
+.pdf-health{margin-top:14px;padding-top:14px;border-top:1px solid #f0f0f5}
+.health-grid{display:flex;gap:18px;flex-wrap:wrap;font-size:.8rem;color:#666}
+.health-grid b{color:#1d1d1f;font-variant-numeric:tabular-nums}
+.mini{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;font-size:.66rem;font-weight:700;vertical-align:middle}
+.hint{font-size:.78rem;color:#92400e;margin-top:8px}
 .status-msg{font-size:.8rem;color:#555}
 .ok-msg{color:#065f46}
 .err-msg{color:#991b1b}
@@ -908,6 +1041,21 @@ textarea:focus{outline:none;border-color:#4f46e5}
         <button class="btn-primary" id="btn-copy" onclick="copyPdf()" disabled>Copy to site</button>
       </div>
       <div id="pdf-msg" class="status-msg"></div>
+      <div id="pdf-health" class="pdf-health" style="display:none">
+        <div class="health-grid">
+          <span>Size <b id="h-size">&mdash;</b></span>
+          <span>Pages <b id="h-pages">&mdash;</b></span>
+          <span id="h-search">Searchable <span id="h-search-badge"></span></span>
+          <span id="h-limit">Scholar &lt;5 MB <span id="h-limit-badge"></span></span>
+        </div>
+        <div class="row" style="margin-top:10px">
+          <button class="btn-outline" id="btn-shrink" onclick="shrinkPdf()">&#x1F5DC; Shrink PDF</button>
+          <label class="check" title="Render pages to images while keeping an invisible, searchable text layer — for vector-heavy papers image recompression can't shrink."><input type="checkbox" id="chk-raster"> allow rasterising</label>
+          <button class="btn-outline" id="btn-revert" onclick="revertPdf()" style="display:none">&#x21BA; Revert</button>
+          <span id="shrink-msg" class="status-msg"></span>
+        </div>
+        <p class="hint" id="search-warn" style="display:none">&#x26A0; No text layer detected &mdash; this scanned PDF won't be indexed by Google Scholar. Run OCR (e.g. <code>ocrmypdf in.pdf out.pdf</code>) before copying.</p>
+      </div>
     </div>
   </div>
 
@@ -1033,6 +1181,7 @@ async function init(){
     document.getElementById('pdf-src').textContent = 'No file field found in bib entry';
     msg('pdf-msg','Cannot auto-copy — set a file path in Zotero.','err');
   }
+  if(p.has_pdf) loadHealth();
 
   // Preview
   setBadge('prev-badge', p.has_preview);
@@ -1083,10 +1232,59 @@ async function copyPdf(){
     setBadge('pdf-badge', true);
     document.getElementById('page-nav').style.display = 'flex';
     renderPage();
+    loadHealth();
   } else {
     msg('pdf-msg','Error: '+d.error,'err');
     btn.disabled = false; btn.innerHTML = 'Copy to site';
   }
+}
+
+// ── PDF health / shrink ───────────────────────────────────────────────────────
+function miniBadge(ok){ return `<span class="mini ${ok?'ok':'miss'}">${ok?'&#x2713;':'&#x2717;'}</span>`; }
+
+async function loadHealth(){
+  const r = await fetch(`/api/${KEY}/pdf-health`);
+  const h = await r.json();
+  if(!h.exists){ return; }
+  document.getElementById('pdf-health').style.display = 'block';
+  const sizeMb = (h.size/1048576).toFixed(h.size>=10485760?0:1);
+  const sizeEl = document.getElementById('h-size');
+  sizeEl.textContent = sizeMb+' MB';
+  sizeEl.style.color = h.over_limit ? '#991b1b' : '#1d1d1f';
+  document.getElementById('h-pages').textContent = h.pages ?? '—';
+  document.getElementById('h-search-badge').innerHTML = miniBadge(h.searchable);
+  document.getElementById('h-limit-badge').innerHTML  = miniBadge(!h.over_limit);
+  document.getElementById('search-warn').style.display = h.searchable ? 'none' : 'block';
+  document.getElementById('btn-revert').style.display  = h.has_backup ? '' : 'none';
+  document.getElementById('btn-shrink').disabled = false;
+}
+
+async function shrinkPdf(){
+  const btn = document.getElementById('btn-shrink');
+  const raster = document.getElementById('chk-raster').checked;
+  btn.disabled = true; btn.innerHTML = '<span class="spin"></span>Shrinking&hellip;';
+  msg('shrink-msg','','');
+  const r = await fetch(`/api/${KEY}/shrink`,{
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({raster})
+  });
+  const d = await r.json();
+  btn.disabled = false; btn.innerHTML = '&#x1F5DC; Shrink PDF';
+  if(d.error){ msg('shrink-msg','Error: '+d.error,'err'); return; }
+  let txt = `${d.before_mb} → ${d.after_mb} MB [${d.method}]`;
+  if(d.under_limit){ msg('shrink-msg','&#x2713; '+txt,'ok'); }
+  else if(!raster){ msg('shrink-msg','⚠ '+txt+' — still ≥5 MB (vector-heavy). Tick "allow rasterising" and retry.','err'); }
+  else { msg('shrink-msg','⚠ '+txt+' — still ≥5 MB even after rasterising.','err'); }
+  loadHealth();
+}
+
+async function revertPdf(){
+  if(!confirm('Restore the original PDF from backup?')) return;
+  const r = await fetch(`/api/${KEY}/revert-pdf`,{method:'POST'});
+  const d = await r.json();
+  if(d.error){ msg('shrink-msg','Error: '+d.error,'err'); return; }
+  msg('shrink-msg','&#x2713; Original restored.','ok');
+  loadHealth();
 }
 
 // ── PDF render ────────────────────────────────────────────────────────────────

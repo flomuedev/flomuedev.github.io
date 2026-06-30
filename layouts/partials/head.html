@@ -28,6 +28,9 @@
 <meta name="description" content="{{ $metaDesc }}">
 <meta name="author" content="{{ with .Params.authors }}{{ . }}{{ else }}{{ $.Site.Params.author }}{{ end }}">
 
+{{- /* Google Scholar citation_* metadata (publication pages only) */ -}}
+{{ partial "citation_meta.html" . }}
+
 <!-- Open Graph -->
 <meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else if eq .Type "publication" }}{{ $pubTitle }}{{ else }}{{ .Title }}{{ end }}">
 <meta property="og:description" content="{{ $metaDesc }}">
