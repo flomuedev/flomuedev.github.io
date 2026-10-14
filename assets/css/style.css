@@ -28,7 +28,7 @@
   --color-surface: #ffffff;
   --color-text: #1a1d2e;
   --color-text-secondary: #5a5f7a;
-  --color-text-muted: #8a8fa8;
+  --color-text-muted: #686d86; /* ≥ 4.5:1 on --color-bg and --color-bg-alt */
   --color-accent: #6366f1;
   --color-accent-light: #818cf8;
   --color-accent-dark: #4f46e5;
@@ -1340,28 +1340,48 @@ h3 {
   color: var(--color-accent);
 }
 
-/* ---------- Animations ---------- */
-.fade-in {
+/* ---------- Animations ----------
+   Elements start hidden only when JS is running (html.js, set in head.html),
+   so content stays visible if main.js fails or JS is disabled. */
+.js .fade-in {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity var(--transition-slow), transform var(--transition-slow);
 }
 
-.fade-in.visible {
+.js .fade-in.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
 /* Stagger children */
-.stagger>* {
+.js .stagger>* {
   opacity: 0;
   transform: translateY(16px);
   transition: opacity 400ms ease, transform 400ms ease;
 }
 
-.stagger>*.visible {
+.js .stagger>*.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .fade-in,
+  .js .stagger>* {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* ---------- Responsive ---------- */

@@ -9,6 +9,7 @@ import json
 import re
 import os
 import sys
+import unicodedata
 
 try:
     import yaml
@@ -94,7 +95,7 @@ def parse_bibtex(filepath):
             
             # Clean up value (skip LaTeX cleanup for path fields)
             if field_name != 'file':
-                value = clean_latex(value)
+                value = clean_latex(value, dashes=field_name not in VERBATIM_DASH_FIELDS)
             # Remove any trailing commas or newlines that might have snuck in (for unquoted values)
             entry[field_name] = value.strip()
             
@@ -103,46 +104,60 @@ def parse_bibtex(filepath):
     return entries
 
 
-def clean_latex(text):
+# Fields whose "--" must stay literal (BibTeX page ranges, identifiers).
+VERBATIM_DASH_FIELDS = {'pages', 'doi', 'url', 'eprint', 'isbn', 'issn'}
+
+# Combining marks for LaTeX accent commands: \'e, \"{u}, \v{c}, ...
+_ACCENT_MARKS = {
+    "'": '\u0301', '"': '\u0308', '`': '\u0300', '^': '\u0302',
+    '~': '\u0303', '=': '\u0304', '.': '\u0307',
+    'v': '\u030c', 'c': '\u0327', 'r': '\u030a', 'u': '\u0306',
+    'H': '\u030b', 'k': '\u0328', 'd': '\u0323',
+}
+
+# Letter commands like \ss, \o, \l. A control word swallows one following
+# space or an empty {} group (so "gr\"o\ss te" -> "größte", "\ss{} x" -> "ß x").
+_LETTER_COMMANDS = {
+    'ss': 'ß', 'ae': 'æ', 'AE': 'Æ', 'oe': 'œ', 'OE': 'Œ',
+    'aa': 'å', 'AA': 'Å', 'o': 'ø', 'O': 'Ø', 'l': 'ł', 'L': 'Ł',
+    'i': 'ı', 'j': 'ȷ',
+}
+
+
+def _accent(match):
+    mark = _ACCENT_MARKS[match.group(1)]
+    base = match.group(2) or match.group(3)
+    base = {'\\i': 'i', '\\j': 'j'}.get(base, base)
+    return unicodedata.normalize('NFC', base + mark)
+
+
+def clean_latex(text, dashes=True):
     """Remove common LaTeX formatting from text."""
+    # Undo Zotero's double escaping of LaTeX in exported fields, e.g.
+    # "\textbackslash emph\textbraceleft x\textbraceright" or "\$3\textbackslash times3\$"
+    text = re.sub(r'\\textbackslash(?:\{\}| )?', lambda m: '\\', text)
+    text = re.sub(r'\\textbraceleft(?:\{\}| )?', '{', text)
+    text = re.sub(r'\\textbraceright(?:\{\}| )?', '}', text)
+    text = text.replace('\\$', '$')
     # LaTeX quotation marks → Unicode (must be before brace/other processing)
     text = text.replace('``', '\u201c')   # `` → " (left double quotation mark)
     text = text.replace("''", '\u201d')   # '' → " (right double quotation mark)
     text = text.replace(',,', '\u201e')   # ,, → „ (double low-9 / German open quote)
-    # Remove \textbackslash
-    text = text.replace('\\textbackslash', '\\')
-    # Remove \texttimes
-    text = text.replace('\\texttimes', '×')
-    # Remove \& -> &
+    # Symbols
+    text = re.sub(r'\\(?:text)?times(?![a-zA-Z])\s*', '×', text)
     text = text.replace('\\&', '&')
-    # Remove copyright
-    text = text.replace('\\copyright{}', '©')
-    text = text.replace('\\copyright', '©')
-    # Handle accented characters
-    replacements = {
-        '\\"a': 'ä', '\\"o': 'ö', '\\"u': 'ü',
-        '\\"A': 'Ä', '\\"O': 'Ö', '\\"U': 'Ü',
-        "\\'a": 'á', "\\'e": 'é', "\\'i": 'í', "\\'o": 'ó', "\\'u": 'ú',
-        "\\'A": 'Á', "\\'E": 'É',
-        "\\'{a}": 'á', "\\'{e}": 'é', "\\'{i}": 'í', "\\'{o}": 'ó', "\\'{u}": 'ú',
-        "\\'{c}": 'ć', "\\'{C}": 'Ć',
-        '\\"{a}': 'ä', '\\"{o}': 'ö', '\\"{u}': 'ü',
-        '\\"{A}': 'Ä', '\\"{O}': 'Ö', '\\"{U}': 'Ü',
-        '\\ss': 'ß', '\\ss{}': 'ß',
-        '\\ae': 'æ', '\\AE': 'Æ',
-        '\\o': 'ø', '\\O': 'Ø',
-        '\\aa': 'å', '\\AA': 'Å',
-        '\\v{c}': 'č', '\\v{s}': 'š', '\\v{z}': 'ž',
-        '\\v{C}': 'Č', '\\v{S}': 'Š', '\\v{Z}': 'Ž',
-        '\\c{c}': 'ç', '\\c{C}': 'Ç',
-        '\\c{s}': 'ş', '\\c{S}': 'Ş',
-        '\\~{n}': 'ñ', '\\~n': 'ñ',
-        '\\l': 'ł',
-        '\\i': 'ı',
-        '\\r{a}': 'å',
-    }
-    for latex, char in replacements.items():
-        text = text.replace(latex, char)
+    text = text.replace('\\%', '%')
+    text = re.sub(r'\\copyright(?:\{\})?', '©', text)
+    # Text formatting commands: keep the argument (before braces get stripped)
+    text = re.sub(r'\\(?:emph|textit|textbf|textsc|texttt|textrm|textsf|underline)\s*\{([^{}]*)\}', r'\1', text)
+    # Accented characters: \'e, \'{e}, \"{u}, \v{c}, \'{\i}, ...
+    text = re.sub(r'\\([\'"`^~=.])\s*(?:\{(\\[ij]|[a-zA-Z])\}|([a-zA-Z]))', _accent, text)
+    text = re.sub(r'\\([vcruHkd])(?:\s*\{(\\[ij]|[a-zA-Z])\}| ([a-zA-Z]))', _accent, text)
+    text = re.sub(r'\\(ss|ae|AE|oe|OE|aa|AA|o|O|l|L|i|j)(?![a-zA-Z])(?:\{\}| )?',
+                  lambda m: _LETTER_COMMANDS[m.group(1)], text)
+    # Dashes: --- → em dash, -- → en dash (prose fields only)
+    if dashes:
+        text = text.replace('---', '\u2014').replace('--', '\u2013')
 
     # Remove remaining {{}} and {} wrappers
     text = re.sub(r'\{\{(.*?)\}\}', r'\1', text)
@@ -640,6 +655,13 @@ def main():
             f.write("\n".join(frontmatter))
 
     print(f"Generated {len(publications)} markdown files -> {pub_content_dir}")
+
+    # Remove pages left over from entries that were deleted or re-keyed in the bib
+    current = {f"{pub['key']}.md" for pub in publications}
+    for name in sorted(os.listdir(pub_content_dir)):
+        if name.endswith('.md') and name != '_index.md' and name not in current:
+            os.remove(os.path.join(pub_content_dir, name))
+            print(f"  Removed stale page: {name}")
 
     # Write bib.json for lazy-loading BibTeX on the publications page
     bib_json_path = os.path.join(os.path.dirname(__file__), '..', 'static', 'bib.json')

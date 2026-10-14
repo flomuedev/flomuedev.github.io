@@ -132,7 +132,7 @@
                         {{ end }}
                       {{ end }}
                     {{ end }}
-                    <div class="video-container gdpr-video-container" data-youtube-id="{{ $youtube_id }}" {{ if $thumb
+                    <div class="video-container gdpr-video-container" data-youtube-id="{{ $youtube_id }}" data-title="Video: {{ $.Title }}" {{ if $thumb
                         }}style="background-image: url('{{ $thumb.RelPermalink }}'); background-size: cover; background-position: center;"
                         {{ end }}>
                         <div class="gdpr-overlay" {{ if $thumb
@@ -204,7 +204,7 @@
                         {{ end }}
                       {{ end }}
                     {{ end }}
-                    <div class="video-container gdpr-video-container" data-youtube-id="{{ $youtube_id }}" {{ if $thumb
+                    <div class="video-container gdpr-video-container" data-youtube-id="{{ $youtube_id }}" data-title="Talk: {{ $.Title }}" {{ if $thumb
                         }}style="background-image: url('{{ $thumb.RelPermalink }}'); background-size: cover; background-position: center;"
                         {{ end }}>
                         <div class="gdpr-overlay" {{ if $thumb

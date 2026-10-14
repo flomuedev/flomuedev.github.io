@@ -1,3 +1,4 @@
+{{- $profile := resources.Get "img/profile.jpg" -}}
 <script type="application/ld+json">
 {
     "@context": "https://schema.org",
@@ -19,7 +20,7 @@
             "familyName": "Müller",
             "alternateName": ["Florian Mueller"],
             "url": "{{ .Site.BaseURL }}",
-            "image": "{{ .Site.BaseURL }}img/profile.jpg",
+            "image": "{{ $profile.Permalink }}",
             "jobTitle": "Assistant Professor for Mobile Human-Computer Interaction",
             "description": {{ .Site.Params.description | jsonify | safeJS }},
             "worksFor": {
@@ -73,9 +74,9 @@
             "primaryImageOfPage": {
                 "@type": "ImageObject",
                 "@id": "{{ .Site.BaseURL }}#primaryimage",
-                "url": "{{ .Site.BaseURL }}img/profile.jpg",
-                "width": 1417,
-                "height": 1418
+                "url": "{{ $profile.Permalink }}",
+                "width": {{ $profile.Width }},
+                "height": {{ $profile.Height }}
             }
         }{{- else if eq .Type "publications" }}{
             "@type": ["WebPage", "CollectionPage"],

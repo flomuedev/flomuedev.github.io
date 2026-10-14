@@ -24,21 +24,26 @@ document.addEventListener('DOMContentLoaded', () => {
   const navToggle = document.getElementById('nav-toggle');
   const navLinks = document.getElementById('nav-links');
   if (navToggle && navLinks) {
+    const setNavOpen = (open) => {
+      navLinks.classList.toggle('open', open);
+      navToggle.classList.toggle('active', open);
+      navToggle.setAttribute('aria-expanded', String(open));
+    };
     navToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('open');
-      navToggle.classList.toggle('active');
+      setNavOpen(!navLinks.classList.contains('open'));
     });
     // Close on link click
     navLinks.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('open');
-        navToggle.classList.remove('active');
-      });
+      link.addEventListener('click', () => setNavOpen(false));
     });
   }
 
   // ---- Fade-in on scroll (Intersection Observer) ----
   const fadeEls = document.querySelectorAll('.fade-in');
+  if (!('IntersectionObserver' in window)) {
+    // No observer: reveal everything instead of leaving it hidden
+    document.querySelectorAll('.fade-in, .stagger > *').forEach(el => el.classList.add('visible'));
+  }
   if (fadeEls.length > 0 && 'IntersectionObserver' in window) {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -143,19 +148,33 @@ document.addEventListener('DOMContentLoaded', () => {
     const bibtexCopyBtn = bibtexModal.querySelector('.bibtex-copy-btn');
     const bibtexClose = bibtexModal.querySelector('.bibtex-modal-close');
     const bibtexOverlay = bibtexModal.querySelector('.bibtex-modal-overlay');
+    let lastFocused = null;
 
     function openBibtex(text) {
+      lastFocused = document.activeElement;
       bibtexContent.textContent = text;
       bibtexModal.hidden = false;
       document.body.style.overflow = 'hidden';
       bibtexCopyBtn.textContent = 'Copy to clipboard';
       bibtexCopyBtn.classList.remove('copied');
+      bibtexCopyBtn.focus();
     }
 
     function closeBibtex() {
+      if (bibtexModal.hidden) return;
       bibtexModal.hidden = true;
       document.body.style.overflow = '';
+      if (lastFocused) lastFocused.focus();
     }
+
+    // Keep Tab focus inside the dialog while it is open
+    bibtexModal.addEventListener('keydown', e => {
+      if (e.key !== 'Tab') return;
+      const focusable = [bibtexClose, bibtexCopyBtn];
+      const i = focusable.indexOf(document.activeElement);
+      if (e.shiftKey && i <= 0) { e.preventDefault(); focusable[focusable.length - 1].focus(); }
+      else if (!e.shiftKey && i === focusable.length - 1) { e.preventDefault(); focusable[0].focus(); }
+    });
 
     let bibCache = null;
     async function fetchBib(key) {
@@ -205,10 +224,12 @@ document.addEventListener('DOMContentLoaded', () => {
           // Create and inject the iframe
           const iframe = document.createElement('iframe');
           iframe.src = `https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1`;
+          iframe.title = container.dataset.title || 'YouTube video player';
           iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
           iframe.setAttribute('allowfullscreen', 'true');
 
           container.appendChild(iframe);
+          iframe.focus();
         }
       });
     }
