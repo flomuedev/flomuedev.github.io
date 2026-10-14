@@ -22,6 +22,14 @@ description: "Courses taught by Florian Müller at TU Darmstadt."
       The goal of this class is to walk you through the whole research cycle in Human-Computer Interaction. The class connects theory and practice, including lectures on research methods and data analysis, alongside practical assignments. Working in small groups, you will gain hands-on experience in experimental design and have the opportunity to publish your first scientific paper based on your practical assignments.
     </p>
   </div>
+
+  <div class="course-card">
+    <h3 class="course-title"><a href="https://www.informatik.tu-darmstadt.de/systems/teach/other_courses/seminar___agentic_ai__from_theory_to_practice/index.en.jsp" target="_blank" rel="noopener">Agentic AI: From Theory to Practice</a></h3>
+    <div class="course-meta">Seminar · TU Darmstadt · with <a href="https://zistvan.github.io/" target="_blank" rel="noopener">Zsolt István</a></div>
+    <p class="course-description">
+      This seminar covers the design, implementation, and evaluation of LLM-based agents that plan, use tools, act in environments, and coordinate with other agents. Students gain hands-on experience building and working with such systems in projects, and then reflect on the underlying theory and practical considerations in their final presentations.
+    </p>
+  </div>
   </div>
 
   <div class="teaching-semester">
