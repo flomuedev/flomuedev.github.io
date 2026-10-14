@@ -1,11 +1,11 @@
-{{- /* "Also published as" links to the other versions of a paper (grouped in
+{{- /* "Other versions" links to the other versions of a paper (grouped in
        data/projects.yml; resolved into "versions" by scripts/parse_bib.py).
        Args: key, class (CSS class of the wrapper). */ -}}
 {{- $types := dict "book" "Book" "incollection" "Book chapter" "article" "Journal article" "misc" "Preprint" -}}
 {{- range where hugo.Data.publications "key" .key -}}
   {{- with .versions }}
 <div class="{{ $.class }}">
-    <span class="pub-versions-label">Also published as</span>
+    <span class="pub-versions-label">Other versions</span>
     {{- range $i, $k := . }}
     {{- range where hugo.Data.publications "key" $k }}
     {{- if $i }}<span class="pub-versions-sep" aria-hidden="true">·</span>{{ end }}
