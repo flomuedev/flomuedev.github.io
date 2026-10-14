@@ -28,12 +28,13 @@
   {{- $metaDesc = .Params.tldr_takeaway | truncate 155 -}}
 {{- end -}}
 {{- $ogImage := "" -}}
+{{- $ogSize := slice 1200 630 -}}
 {{- if .Params.preview -}}
   {{- $img := resources.Get (printf "publication_preview/%s" .Params.preview) -}}
-  {{- if $img -}}{{- $ogImage = ($img.Fill "1200x628").Permalink -}}{{- else -}}{{- $ogImage = printf "%spublication_preview/%s" .Site.BaseURL .Params.preview -}}{{- end -}}
+  {{- if $img -}}{{- with $img.Fill "1200x630" -}}{{- $ogImage = .Permalink -}}{{- $ogSize = slice .Width .Height -}}{{- end -}}{{- else -}}{{- $ogImage = printf "%spublication_preview/%s" .Site.BaseURL .Params.preview -}}{{- end -}}
 {{- else -}}
   {{- $profileImg := resources.Get "img/profile.jpg" -}}
-  {{- if $profileImg -}}{{- $ogImage = ($profileImg.Resize "1200x").Permalink -}}{{- else -}}{{- $ogImage = printf "%s%s" .Site.BaseURL (strings.TrimPrefix "/" .Site.Params.profileImage) -}}{{- end -}}
+  {{- if $profileImg -}}{{- with $profileImg.Resize "1200x" -}}{{- $ogImage = .Permalink -}}{{- $ogSize = slice .Width .Height -}}{{- end -}}{{- else -}}{{- $ogImage = printf "%s%s" .Site.BaseURL (strings.TrimPrefix "/" .Site.Params.profileImage) -}}{{- end -}}
 {{- end -}}
 <title>{{ if .IsHome }}{{ .Site.Title }}{{ else if eq .Type "publication" }}{{ $pubTitle }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
 <meta name="description" content="{{ $metaDesc }}">
@@ -52,8 +53,8 @@
 {{- end }}
 <meta property="og:url" content="{{ .Permalink }}">
 <meta property="og:image" content="{{ $ogImage }}">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="{{ if .Params.preview }}628{{ else }}1200{{ end }}">
+<meta property="og:image:width" content="{{ index $ogSize 0 }}">
+<meta property="og:image:height" content="{{ index $ogSize 1 }}">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="{{ .Site.Title }}">
 {{ if eq .Type "publication" }}
