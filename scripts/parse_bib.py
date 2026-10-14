@@ -477,6 +477,18 @@ def get_venue_short(venue):
     if re.search(r'interactive, mobile, wearable and ubiquitous|imwut', v):
         return 'IMWUT'
 
+    # Augmented Humans
+    if re.search(r'augmented humans', v):
+        return 'AHs'
+
+    # SportsHCI
+    if re.search(r'human.computer interaction and sports|sportshci', v):
+        return 'SportsHCI'
+
+    # arXiv preprints
+    if v.strip() == 'arxiv':
+        return 'arXiv'
+
     # EuroiTV
     if re.search(r'european.*interactive tv|euroitv|european conference on interactive tv', v):
         return 'EuroiTV'

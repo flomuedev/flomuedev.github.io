@@ -9,6 +9,14 @@
 <link rel="apple-touch-icon" href="/favicon-96x96.png">
 {{- $pubTitle := "" -}}
 {{- if eq .Type "publication" -}}{{- $pubTitle = printf "%s | %s" .Title .Site.Title -}}{{- end -}}
+{{- /* Social previews: og:site_name names the site, so only the (shortened) page title */ -}}
+{{- $socialTitle := cond .IsHome .Site.Title (.Title | plainify | htmlUnescape | truncate 59 "…" | htmlUnescape) -}}
+{{- if eq .Type "publication" -}}
+  {{- /* Papers: "Title (CHI 2025)" — venue and year always fit, the title takes the rest of 60 chars */ -}}
+  {{- $suffix := printf " (%s)" (.Date.Format "2006") -}}
+  {{- with .Params.venue_short -}}{{- $suffix = printf " (%s %s)" . ($.Date.Format "2006") -}}{{- end -}}
+  {{- $socialTitle = printf "%s%s" (.Title | plainify | htmlUnescape | truncate (sub 59 (strings.RuneCount $suffix)) "…" | htmlUnescape) $suffix -}}
+{{- end -}}
 {{- $metaDesc := "" -}}
 {{- if eq .Type "publications" -}}
   {{- $pubCount := len (where site.RegularPages "Section" "publication") -}}
@@ -35,7 +43,7 @@
 {{ partial "citation_meta.html" . }}
 
 <!-- Open Graph -->
-<meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else if eq .Type "publication" }}{{ $pubTitle }}{{ else }}{{ .Title }}{{ end }}">
+<meta property="og:title" content="{{ $socialTitle }}">
 <meta property="og:description" content="{{ $metaDesc }}">
 <meta property="og:type" content="{{ if .IsHome }}profile{{ else if eq .Type "publication" }}article{{ else }}website{{ end }}">
 {{ if .IsHome -}}
@@ -55,7 +63,7 @@
 
 <!-- Twitter / X Cards -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else if eq .Type "publication" }}{{ $pubTitle }}{{ else }}{{ .Title }}{{ end }}">
+<meta name="twitter:title" content="{{ $socialTitle }}">
 <meta name="twitter:description" content="{{ $metaDesc }}">
 <meta name="twitter:image" content="{{ $ogImage }}">
 
