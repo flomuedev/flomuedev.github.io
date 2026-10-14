@@ -1,0 +1,43 @@
+{{- /* RSS 2.0 feed of all publications, newest first. Called with the page
+       that owns the feed (used for the self link). */ -}}
+{{- $pubs := (where site.RegularPages "Section" "publication").ByDate.Reverse -}}
+{{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Publications · {{ site.Title }}</title>
+    <link>{{ "publications/" | absURL }}</link>
+    <description>New papers by {{ site.Params.author }} and collaborators on human-computer interaction.</description>
+    <language>en</language>
+    <generator>Hugo</generator>
+    {{- with $pubs }}
+    <lastBuildDate>{{ (index . 0).Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</lastBuildDate>
+    {{- end }}
+    {{- with .OutputFormats.Get "RSS" }}
+    <atom:link href="{{ .Permalink }}" rel="self" type="application/rss+xml" />
+    {{- end }}
+    {{- range $pubs }}
+    <item>
+      <title>{{ .Title }}</title>
+      <link>{{ .Permalink }}</link>
+      <guid isPermaLink="true">{{ .Permalink }}</guid>
+      <pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
+      {{- with .Params.authors }}
+      <dc:creator>{{ . }}</dc:creator>
+      {{- end }}
+      {{- with .Params.venue_short }}
+      <category>{{ . }}</category>
+      {{- end }}
+      {{- $html := "" }}
+      {{- with .Params.preview }}
+        {{- with resources.Get (printf "publication_preview/%s" .) }}
+          {{- $html = printf "<p><img src=\"%s\" alt=\"\" width=\"600\"></p>" (.Resize "600x").Permalink }}
+        {{- end }}
+      {{- end }}
+      {{- $html = printf "%s<p><em>%s</em><br>%s</p>" $html (.Params.authors | htmlEscape) (.Params.venue | htmlEscape) }}
+      {{- with .Params.tldr_did }}{{ $html = printf "%s<p><strong>TL;DR:</strong> %s</p>" $html (. | htmlEscape) }}{{ end }}
+      {{- with .Content }}{{ $html = printf "%s%s" $html . }}{{ end }}
+      <description>{{ $html | transform.XMLEscape | safeHTML }}</description>
+    </item>
+    {{- end }}
+  </channel>
+</rss>

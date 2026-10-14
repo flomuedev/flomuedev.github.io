@@ -1,0 +1,22 @@
+# Papers that are versions of the same work (extended abstract + full paper,
+# demo + paper, dissertation + summary article, ...). Grouped versions link to
+# each other on paper pages and never appear as each other's related papers.
+# Edit here or via scripts/manage.py -> Paper Versions; re-parse to apply.
+groups:
+  shadar:
+    - mei2026shadar
+    - meiShadARLLMdrivenShader2026
+    - meiShadARLLMdrivenShader2025
+  lets-frets:
+    - markyLetsFretsAssisting2021
+    - markyLetsFretsMastering2021
+  around-body-interaction:
+    - Mueller_Diss_published
+    - Muller2020c
+    - Muller2020a
+  palmrc:
+    - Dezfuli2012
+    - dezfuliLeveragingPalmSurface2012
+# Suggested pairs that are NOT versions of each other (e.g. workshop editions)
+dismissed:
+  - [muller2018smartobjects, schnelle2017smartobjects]

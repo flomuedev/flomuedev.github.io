@@ -32,6 +32,7 @@ from generate_tldrs import (
     abstract_hash, generate_tldr, load_cache, patch_md_frontmatter, save_cache,
 )
 import pdf_tools
+import related
 
 try:
     import yaml as _yaml
@@ -49,6 +50,8 @@ CACHE_PATH      = os.path.join(PROJECT_DIR, "data", "tldrs_cache.json")
 CONTENT_DIR     = os.path.join(PROJECT_DIR, "content", "publication")
 COAUTHORS_PATH  = os.path.join(PROJECT_DIR, "data", "coauthors.yml")
 VIDEOS_PATH     = os.path.join(PROJECT_DIR, "data", "videos.yml")
+PROJECTS_PATH   = os.path.join(PROJECT_DIR, "data", "projects.yml")
+EMBEDDINGS_PATH = os.path.join(PROJECT_DIR, "data", "embeddings_cache.json")
 
 # Backblaze B2 (S3-compatible) config — read from .env. Public bucket assumed.
 B2_ENDPOINT     = (os.environ.get("B2_ENDPOINT") or "").rstrip("/")
@@ -185,6 +188,7 @@ def load_papers():
             pubs[p["key"]] = p
 
     videos = load_videos_map()
+    embeddings = related.load_cache(EMBEDDINGS_PATH)
 
     out = []
     for e in entries:
@@ -220,6 +224,10 @@ def load_papers():
             "video_url":   clean_url(videos.get(key) or e.get("video", "")),
             "video_src":   "yml" if videos.get(key) else ("bib" if e.get("video") else ""),
             "has_video":   bool(videos.get(key) or e.get("video")),
+            # Bib entries carry the same title/keywords/abstract fields parse_bib uses
+            "has_embedding": related.text_hash(related.embedding_text(e)) in embeddings,
+            "related":     [{"key": k, "title": pubs[k].get("title", k)}
+                            for k in pub.get("related", []) if k in pubs],
         })
     return out
 
@@ -404,6 +412,13 @@ def api_set_video(key):
     return jsonify({"ok": True, "url": url})
 
 
+def _looks_like_video(path):
+    """True if the file starts like an MP4/MOV (ftyp box) or WebM (EBML header)."""
+    with open(path, "rb") as f:
+        head = f.read(12)
+    return head[4:8] == b"ftyp" or head[:4] == b"\x1a\x45\xdf\xa3"
+
+
 @app.route("/api/<key>/host-video", methods=["POST"])
 def api_host_video(key):
     """Download a (scraped) video URL and re-host it on Backblaze B2."""
@@ -414,6 +429,11 @@ def api_host_video(key):
     src_url = (request.json or {}).get("url", "").strip()
     if not src_url:
         return jsonify({"error": "No source URL provided"}), 400
+
+    # Video platforms serve a web page, not the file; the site embeds them directly
+    if re.search(r"(youtube\.com|youtu\.be|vimeo\.com)/", src_url, re.I):
+        return jsonify({"error": "YouTube/Vimeo links can't be downloaded. Use \"Save URL as-is\" instead; "
+                                 "the website embeds them behind a privacy consent overlay."}), 400
 
     try:
         import requests
@@ -434,6 +454,10 @@ def api_host_video(key):
                 for chunk in r.iter_content(chunk_size=1 << 20):
                     if chunk:
                         f.write(chunk)
+        if not _looks_like_video(tmp):
+            served = r.headers.get("Content-Type", "unknown type")
+            return jsonify({"error": f"The URL did not return a video file (got {served}). "
+                                     "Use a direct link to an .mp4/.webm file."}), 400
         public_url = upload_to_b2(tmp, object_name, ctype)
     except Exception as ex:
         return jsonify({"error": f"Host failed: {ex}"}), 502
@@ -472,6 +496,8 @@ def api_upload_video(key):
     tmp = os.path.join(PROJECT_DIR, f".video_tmp_{key}{ext}")
     try:
         f.save(tmp)
+        if not _looks_like_video(tmp):
+            return jsonify({"error": "That file is not an MP4/MOV/WebM video."}), 400
         public_url = upload_to_b2(tmp, object_name, ctype)
     except Exception as ex:
         return jsonify({"error": f"Upload failed: {ex}"}), 502
@@ -611,6 +637,41 @@ def api_generate_tldr(key):
     return jsonify(tldr)
 
 
+@app.route("/api/<key>/embed", methods=["POST"])
+def api_embed(key):
+    """Embed one paper, then re-parse so every related-papers list is updated."""
+    api_key = os.environ.get("OPENAI_API_KEY", "")
+    if not api_key:
+        return jsonify({"error": "OPENAI_API_KEY not set in environment"}), 400
+    try:
+        from openai import OpenAI
+    except ImportError:
+        return jsonify({"error": "pip install openai"}), 500
+
+    entries = parse_bibtex(BIB_PATH)
+    e = next((x for x in entries if x["key"] == key), None)
+    if not e:
+        return jsonify({"error": "Key not found"}), 404
+
+    text  = related.embedding_text(e)
+    cache = related.load_cache(EMBEDDINGS_PATH)
+    cache[related.text_hash(text)] = related.embed(OpenAI(api_key=api_key), [text])[0]
+    # Drop vectors of texts that no longer exist (e.g. this paper's old abstract)
+    current = {related.text_hash(related.embedding_text(x)) for x in entries}
+    cache = {h: v for h, v in cache.items() if h in current}
+    related.save_cache(EMBEDDINGS_PATH, cache)
+
+    proc = subprocess.run(
+        [sys.executable, os.path.join(SCRIPT_DIR, "parse_bib.py")],
+        capture_output=True, text=True, encoding="utf-8", errors="replace", cwd=PROJECT_DIR,
+    )
+    if proc.returncode:
+        return jsonify({"error": "parse_bib.py failed: " + proc.stdout[-500:]}), 500
+    paper = next((p for p in load_papers() if p["key"] == key), {})
+    return jsonify({"ok": True, "has_embedding": paper.get("has_embedding", False),
+                    "related": paper.get("related", [])})
+
+
 @app.route("/api/<key>/save-tldr", methods=["POST"])
 def api_save_tldr(key):
     d    = request.json
@@ -656,15 +717,20 @@ def api_run_parse():
 @app.route("/api/run-pipeline", methods=["POST"])
 def api_run_pipeline():
     def stream():
-        proc = subprocess.Popen(
-            [sys.executable, os.path.join(SCRIPT_DIR, "generate_tldrs.py")],
-            stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
-            text=True, encoding="utf-8", errors="replace",
-            cwd=PROJECT_DIR,
-        )
-        for line in proc.stdout:
-            yield f"data: {json.dumps(line.rstrip())}\n\n"
-        proc.wait()
+        # TL;DRs first, then embeddings for the related-papers ranking
+        for script in ("generate_tldrs.py", "generate_embeddings.py"):
+            proc = subprocess.Popen(
+                [sys.executable, os.path.join(SCRIPT_DIR, script)],
+                stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+                text=True, encoding="utf-8", errors="replace",
+                cwd=PROJECT_DIR,
+            )
+            for line in proc.stdout:
+                yield f"data: {json.dumps(line.rstrip())}\n\n"
+            proc.wait()
+            if proc.returncode:
+                yield f"data: {json.dumps(f'{script} failed (exit {proc.returncode})')}\n\n"
+                break
         yield f"data: {json.dumps('__DONE__')}\n\n"
 
     return Response(stream(), mimetype="text/event-stream")
@@ -768,6 +834,107 @@ def api_coauthors_delete(lastname, lastname2=None, firstname=None):
     return jsonify({"ok": True})
 
 
+# ── paper versions (data/projects.yml) ────────────────────────────────────────
+
+PROJECTS_HEADER = """\
+# Papers that are versions of the same work (extended abstract + full paper,
+# demo + paper, dissertation + summary article, ...). Grouped versions link to
+# each other on paper pages and never appear as each other's related papers.
+# Edit here or via scripts/manage.py -> Paper Versions; re-parse to apply.
+"""
+
+
+def _load_projects_raw():
+    if not _YAML_OK or not os.path.isfile(PROJECTS_PATH):
+        return {"groups": {}, "dismissed": []}
+    with open(PROJECTS_PATH, encoding="utf-8") as f:
+        data = _yaml.safe_load(f) or {}
+    return {"groups": data.get("groups") or {}, "dismissed": data.get("dismissed") or []}
+
+
+def _save_projects(data):
+    groups = {name: keys for name, keys in data["groups"].items() if len(keys) >= 2}
+    with open(PROJECTS_PATH, "w", encoding="utf-8") as f:
+        f.write(PROJECTS_HEADER)
+        _yaml.dump({"groups": groups}, f, allow_unicode=True, default_flow_style=False, sort_keys=False)
+        f.write("# Suggested pairs that are NOT versions of each other (e.g. workshop editions)\n")
+        _yaml.dump({"dismissed": data["dismissed"]}, f, allow_unicode=True,
+                   default_flow_style=None, sort_keys=False)
+
+
+def _paper_summary(pub):
+    return {"key": pub["key"], "title": pub.get("title", ""), "year": pub.get("year", ""),
+            "venue": pub.get("venue_short") or pub.get("venue", "") or pub.get("type", "")}
+
+
+@app.route("/versions")
+def versions_page():
+    if not _YAML_OK:
+        return "PyYAML is not installed. Run: pip install pyyaml", 500
+    return Response(VERSIONS_HTML, mimetype="text/html")
+
+
+@app.route("/api/versions")
+def api_versions():
+    pubs = json.load(open(PUBS_JSON, encoding="utf-8")) if os.path.isfile(PUBS_JSON) else []
+    by_key = {p["key"]: p for p in pubs}
+    data = _load_projects_raw()
+    groups = [{"name": name, "papers": [_paper_summary(by_key[k]) if k in by_key
+                                        else {"key": k, "title": "(unknown key)", "year": "", "venue": ""}
+                                        for k in keys]}
+              for name, keys in data["groups"].items()]
+    suggestions = related.suggest_versions(
+        pubs, related.load_cache(EMBEDDINGS_PATH), list(data["groups"].values()), data["dismissed"])
+    return jsonify({
+        "groups": groups,
+        "suggestions": [{"a": _paper_summary(by_key[a]), "b": _paper_summary(by_key[b]), "reason": r}
+                        for a, b, r in suggestions],
+    })
+
+
+@app.route("/api/versions/confirm", methods=["POST"])
+def api_versions_confirm():
+    a, b = request.json.get("a"), request.json.get("b")
+    data = _load_projects_raw()
+    groups = data["groups"]
+    ga = next((n for n, keys in groups.items() if a in keys), None)
+    gb = next((n for n, keys in groups.items() if b in keys), None)
+    if ga and gb and ga != gb:  # the pair links two existing groups: merge them
+        groups[ga] += [k for k in groups.pop(gb) if k not in groups[ga]]
+    elif ga or gb:
+        name = ga or gb
+        groups[name] += [k for k in (a, b) if k not in groups[name]]
+    else:
+        pubs = {p["key"]: p for p in json.load(open(PUBS_JSON, encoding="utf-8"))}
+        prefix = related.title_prefix(pubs.get(a, {}).get("title", ""))
+        name = re.sub(r"[^a-z0-9]+", "-", prefix).strip("-") or a
+        while name in groups:
+            name += "-2"
+        groups[name] = [a, b]
+    _save_projects(data)
+    return jsonify({"ok": True})
+
+
+@app.route("/api/versions/dismiss", methods=["POST"])
+def api_versions_dismiss():
+    a, b = request.json.get("a"), request.json.get("b")
+    data = _load_projects_raw()
+    data["dismissed"].append([a, b])
+    _save_projects(data)
+    return jsonify({"ok": True})
+
+
+@app.route("/api/versions/remove", methods=["POST"])
+def api_versions_remove():
+    key = request.json.get("key")
+    data = _load_projects_raw()
+    for name, keys in data["groups"].items():
+        if key in keys:
+            keys.remove(key)
+    _save_projects(data)
+    return jsonify({"ok": True})
+
+
 # ── HTML templates ────────────────────────────────────────────────────────────
 
 DASHBOARD_HTML = """<!DOCTYPE html>
@@ -816,7 +983,10 @@ tr:hover td{background:#fafafe}
 <div class="container">
   <div style="display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:8px">
     <h1>&#x1F4C4; Paper Manager</h1>
-    <a href="/coauthors" style="font-size:.875rem;color:#4f46e5;text-decoration:none;font-weight:500">&#x1F517; Co-author Links &rarr;</a>
+    <span style="display:flex;gap:18px">
+      <a href="/versions" style="font-size:.875rem;color:#4f46e5;text-decoration:none;font-weight:500">&#x1F4DA; Paper Versions &rarr;</a>
+      <a href="/coauthors" style="font-size:.875rem;color:#4f46e5;text-decoration:none;font-weight:500">&#x1F517; Co-author Links &rarr;</a>
+    </span>
   </div>
   <p class="subtitle">Manage publications for flomue.com &mdash; <span id="stat" class="stat"></span></p>
 
@@ -839,9 +1009,10 @@ tr:hover td{background:#fafafe}
         <th class="ctr">Size</th>
         <th class="ctr">Preview</th>
         <th class="ctr">TL;DR</th>
+        <th class="ctr" title="Embedding for related papers">Embed</th>
         <th class="ctr">Video</th>
       </tr></thead>
-      <tbody id="tbody"><tr><td colspan="8" class="empty">Loading&hellip;</td></tr></tbody>
+      <tbody id="tbody"><tr><td colspan="9" class="empty">Loading&hellip;</td></tr></tbody>
     </table>
   </div>
 </div>
@@ -866,8 +1037,8 @@ function sizePill(p){
 
 function render(){
   const onlyBad = document.getElementById('chk-incomplete').checked;
-  const rows = onlyBad ? all.filter(p=>!p.has_pdf||!p.has_preview||!p.has_tldr||p.pdf_over) : all;
-  const incomplete = all.filter(p=>!p.has_pdf||!p.has_preview||!p.has_tldr).length;
+  const rows = onlyBad ? all.filter(p=>!p.has_pdf||!p.has_preview||!p.has_tldr||!p.has_embedding||p.pdf_over) : all;
+  const incomplete = all.filter(p=>!p.has_pdf||!p.has_preview||!p.has_tldr||!p.has_embedding).length;
   const over = all.filter(p=>p.pdf_over).length;
   document.getElementById('stat').textContent =
     `${all.length} papers \u2022 ${incomplete} incomplete \u2022 ${over} PDF${over===1?'':'s'} \u2265 5 MB`;
@@ -884,9 +1055,10 @@ function render(){
       <td class="ctr">${sizePill(p)}</td>
       <td class="ctr">${badge(p.has_preview)}</td>
       <td class="ctr">${badge(p.has_tldr)}</td>
+      <td class="ctr">${badge(p.has_embedding)}</td>
       <td class="ctr">${p.has_video ? badge(true) : '<span style="color:#ccc">&mdash;</span>'}</td>
     </tr>`).join('') :
-    '<tr><td colspan="8" class="empty">No papers match the filter.</td></tr>';
+    '<tr><td colspan="9" class="empty">No papers match the filter.</td></tr>';
 }
 
 async function shrinkAll(){
@@ -1148,6 +1320,22 @@ textarea:focus{outline:none;border-color:#4f46e5}
       </div>
     </div>
   </div>
+
+  <!-- Related papers -->
+  <div class="section">
+    <div class="sec-head" onclick="toggle('related')">
+      <div class="sec-title"><span id="related-badge"></span>5 &mdash; Related Papers</div>
+      <span class="chevron" id="related-chev">&#x25BC;</span>
+    </div>
+    <div class="sec-body open" id="related-body">
+      <p class="status-msg" id="embed-state"></p>
+      <div id="related-list"></div>
+      <div class="tldr-actions">
+        <button class="btn-outline" id="btn-embed" onclick="embedPaper()">&#x1F9ED; Generate embedding</button>
+        <span id="embed-msg" class="status-msg"></span>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -1210,6 +1398,41 @@ async function init(){
   setBadge('video-badge', p.has_video);
   renderVideoCurrent(p.video_url || '');
   checkB2();
+
+  // Related papers
+  renderRelated(p.has_embedding, p.related || []);
+}
+
+function renderRelated(hasEmbedding, rel){
+  setBadge('related-badge', hasEmbedding);
+  document.getElementById('embed-state').innerHTML = hasEmbedding
+    ? '&#x2713; Embedding is up to date. Related papers are ranked by meaning.'
+    : '&#x26A0; No embedding for the current title/keywords/abstract. Related papers fall back to word matching.';
+  document.getElementById('embed-state').className = 'status-msg ' + (hasEmbedding ? 'ok-msg' : 'err-msg');
+  document.getElementById('btn-embed').innerHTML = hasEmbedding
+    ? '&#x1F9ED; Regenerate embedding' : '&#x1F9ED; Generate embedding';
+  document.getElementById('related-list').innerHTML = rel.length
+    ? '<label class="field-label">Shown on the website</label><ol style="margin:4px 0 0 20px;font-size:.875rem">'
+      + rel.map(r => `<li><a href="/paper/${encodeURIComponent(r.key)}" style="color:#4f46e5;text-decoration:none">${r.title.replace(/</g,'&lt;')}</a></li>`).join('')
+      + '</ol>'
+    : '<p class="status-msg">No related papers (nothing similar enough).</p>';
+}
+
+async function embedPaper(){
+  const btn = document.getElementById('btn-embed');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spin"></span>Embedding &amp; re-parsing&hellip;';
+  msg('embed-msg','','');
+  const r = await fetch(`/api/${KEY}/embed`,{method:'POST'});
+  const d = await r.json();
+  btn.disabled = false;
+  if(d.error){
+    msg('embed-msg','Error: '+d.error,'err');
+    btn.innerHTML = '&#x1F9ED; Generate embedding';
+    return;
+  }
+  renderRelated(d.has_embedding, d.related);
+  msg('embed-msg','&#x2713; Embedded and re-parsed.','ok');
 }
 
 async function checkApiKey(){
@@ -1218,6 +1441,7 @@ async function checkApiKey(){
   if(!d.available){
     document.getElementById('no-key-warn').style.display = 'block';
     document.getElementById('btn-gen').disabled = true;
+    document.getElementById('btn-embed').disabled = true;
   }
 }
 
@@ -1790,6 +2014,138 @@ function setMsg(id, text, type){
   const el = document.getElementById(id);
   el.innerHTML = text;
   el.className = 'status'+(type==='ok'?' ok-msg':type==='err'?' err-msg':'');
+}
+
+load();
+</script>
+</body>
+</html>"""
+
+
+VERSIONS_HTML = """<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Paper Versions</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;background:#f5f5f7;color:#1d1d1f;min-height:100vh}
+.container{max-width:900px;margin:0 auto;padding:28px 20px}
+.back{display:inline-flex;align-items:center;gap:5px;color:#4f46e5;font-size:.875rem;text-decoration:none;margin-bottom:20px}
+.back:hover{text-decoration:underline}
+h1{font-size:1.6rem;font-weight:700;letter-spacing:-.02em;margin-bottom:4px}
+h2{font-size:1rem;font-weight:600;margin:24px 0 10px}
+.subtitle{color:#888;font-size:.875rem;margin-bottom:8px}
+.card{background:#fff;border-radius:12px;box-shadow:0 1px 4px rgba(0,0,0,.08);padding:14px 16px;margin-bottom:12px}
+.paper{display:flex;gap:10px;align-items:baseline;font-size:.875rem;padding:3px 0}
+.paper .venue{flex:0 0 130px;color:#4f46e5;font-weight:600;font-size:.8rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.paper .title{flex:1}
+.paper .key{color:#aaa;font-size:.75rem;font-family:monospace}
+.group-name{font-size:.72rem;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
+.reason{font-size:.78rem;color:#888;margin:6px 0 10px}
+.empty{text-align:center;padding:24px;color:#aaa;font-size:.875rem}
+button{cursor:pointer;border:none;border-radius:7px;padding:6px 14px;font-size:.82rem;font-weight:600;transition:.15s}
+button:hover{filter:brightness(.92)}
+button:disabled{opacity:.5;cursor:default}
+.btn-ok{background:#4f46e5;color:#fff}
+.btn-no{background:#f0f0f5;color:#555;margin-left:6px}
+.btn-x{background:none;color:#c33;padding:0 6px;font-size:.9rem}
+.btn-parse{background:#f0fdf4;color:#166534;border:1.5px solid #bbf7d0;padding:8px 18px}
+.status{font-size:.82rem;color:#555;margin-left:6px}
+.spin{display:inline-block;width:12px;height:12px;border:2px solid rgba(79,70,229,.3);border-top-color:#4f46e5;border-radius:50%;animation:sp .65s linear infinite;vertical-align:middle;margin-right:4px}
+@keyframes sp{to{transform:rotate(360deg)}}
+#log-wrap{margin-top:14px;display:none}
+#log{background:#111;color:#8efa8e;font-family:monospace;font-size:.76rem;padding:12px 14px;border-radius:8px;height:140px;overflow-y:auto;white-space:pre-wrap}
+</style>
+</head>
+<body>
+<div class="container">
+  <a class="back" href="/">&#x2190; Dashboard</a>
+  <h1>&#x1F4DA; Paper Versions</h1>
+  <p class="subtitle">Papers that are versions of the same work link to each other and are never shown as each other's
+    related papers. Stored in data/projects.yml; changes take effect after re-parsing.</p>
+
+  <h2>Suggestions</h2>
+  <div id="suggestions"><div class="empty">Loading&hellip;</div></div>
+
+  <h2>Groups</h2>
+  <div id="groups"><div class="empty">Loading&hellip;</div></div>
+
+  <div style="margin-top:20px">
+    <button class="btn-parse" id="btn-parse" onclick="reparse()">&#x21BA; Re-parse BibTeX (apply)</button>
+    <span id="parse-msg" class="status"></span>
+    <div id="log-wrap"><div id="log"></div></div>
+  </div>
+</div>
+
+<script>
+function esc(s){ return String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;') }
+function paper(p, extra){
+  return `<div class="paper"><span class="venue">${esc(p.venue)} ${esc(p.year)}</span>
+    <span class="title">${esc(p.title)} <span class="key">${esc(p.key)}</span></span>${extra||''}</div>`;
+}
+
+async function load(){
+  const data = await (await fetch('/api/versions')).json();
+  const sug = document.getElementById('suggestions');
+  sug.innerHTML = data.suggestions.length ? data.suggestions.map(s => `
+    <div class="card">
+      ${paper(s.a)}${paper(s.b)}
+      <div class="reason">Why suggested: ${esc(s.reason)}</div>
+      <button class="btn-ok" data-a="${esc(s.a.key)}" data-b="${esc(s.b.key)}" onclick="act('confirm',this)">Same work</button>
+      <button class="btn-no" data-a="${esc(s.a.key)}" data-b="${esc(s.b.key)}" onclick="act('dismiss',this)">Different works</button>
+    </div>`).join('') : '<div class="empty">No open suggestions.</div>';
+
+  const grp = document.getElementById('groups');
+  grp.innerHTML = data.groups.length ? data.groups.map(g => `
+    <div class="card">
+      <div class="group-name">${esc(g.name)}</div>
+      ${g.papers.map(p => paper(p, `<button class="btn-x" title="Remove from group" data-key="${esc(p.key)}" onclick="removeKey(this)">&#x2715;</button>`)).join('')}
+    </div>`).join('') : '<div class="empty">No groups yet.</div>';
+}
+
+async function post(url, body){
+  const r = await fetch(url, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body)});
+  if(!r.ok){ alert((await r.json()).error || 'Request failed'); }
+}
+async function act(kind, btn){
+  btn.disabled = true;
+  await post('/api/versions/'+kind, {a:btn.dataset.a, b:btn.dataset.b});
+  await load();
+}
+async function removeKey(btn){
+  btn.disabled = true;
+  await post('/api/versions/remove', {key:btn.dataset.key});
+  await load();
+}
+
+async function reparse(){
+  const btn = document.getElementById('btn-parse');
+  const logWrap = document.getElementById('log-wrap');
+  const log = document.getElementById('log');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spin"></span>Parsing&hellip;';
+  logWrap.style.display = 'block';
+  log.textContent = '';
+  const resp = await fetch('/api/run-parse',{method:'POST'});
+  const reader = resp.body.getReader();
+  const dec = new TextDecoder();
+  let buf = '';
+  while(true){
+    const {done,value} = await reader.read();
+    if(done) break;
+    buf += dec.decode(value,{stream:true});
+    const lines = buf.split('\\n');
+    buf = lines.pop();
+    for(const line of lines){
+      if(!line.startsWith('data: ')) continue;
+      const msg = JSON.parse(line.slice(6));
+      if(msg==='__DONE__'){ log.textContent += '\\n\\u2713 Done.\\n'; await load(); }
+      else { log.textContent += msg+'\\n'; log.scrollTop=log.scrollHeight; }
+    }
+  }
+  btn.disabled = false;
+  btn.innerHTML = '&#x21BA; Re-parse BibTeX (apply)';
 }
 
 load();

@@ -5,6 +5,11 @@
         <p class="section-description">
             For an up-to-date list of {{ mul (div (len hugo.Data.publications) 10) 10 }}+ publications, please see
             <a href="{{ .Site.Params.googleScholar }}" target="_blank" rel="noopener">Google Scholar</a>.
+            New papers are also available as an
+            <a href="{{ "publications/index.xml" | relURL }}" class="feed-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                    <path d="M4 11a9 9 0 0 1 9 9" /><path d="M4 4a16 16 0 0 1 16 16" /><circle cx="5" cy="19" r="1" />
+                </svg>RSS feed</a>.
         </p>
     </div>
 
@@ -16,7 +21,7 @@
         </svg>
         <input type="text" id="pub-search" class="pub-search"
             placeholder="Search publications by title, author, venue, or keyword…" aria-label="Search publications">
-        <div id="pub-count" class="pub-count">{{ len hugo.Data.publications }} publications</div>
+        <div id="pub-count" class="pub-count" role="status">{{ len hugo.Data.publications }} publications</div>
     </div>
 
     <div class="pillar-filters">
@@ -26,24 +31,55 @@
         {{ end }}
     </div>
 
+    {{/* Venue counts for the venue filter, most frequent first */}}
+    {{ $venueCounts := dict }}
+    {{ range hugo.Data.publications }}
+        {{ with .venue_short }}
+            {{ $venueCounts = merge $venueCounts (dict . (add 1 (index $venueCounts .  | default 0))) }}
+        {{ end }}
+    {{ end }}
+    {{ $venues := slice }}
+    {{ range $name, $count := $venueCounts }}
+        {{ $venues = $venues | append (dict "name" $name "count" $count) }}
+    {{ end }}
+    {{ $years := slice }}
+    {{ range hugo.Data.publications }}{{ $years = $years | append .year }}{{ end }}
+    {{ $years = sort (uniq $years) "value" "desc" }}
+
+    <div class="pub-filter-bar">
+        <label class="pub-filter-select">
+            <span class="pub-filter-label">Venue</span>
+            <select id="pub-venue">
+                <option value="">All venues</option>
+                {{ range sort $venues "count" "desc" }}
+                <option value="{{ .name }}">{{ .name }} ({{ .count }})</option>
+                {{ end }}
+            </select>
+        </label>
+        <label class="pub-filter-select">
+            <span class="pub-filter-label">Since</span>
+            <select id="pub-since">
+                <option value="">Any year</option>
+                {{ range $years }}
+                <option value="{{ . }}">{{ . }}</option>
+                {{ end }}
+            </select>
+        </label>
+        <div class="pub-has-filters" role="group" aria-label="Only show papers with">
+            <span class="pub-filter-label" aria-hidden="true">With</span>
+            <button type="button" class="pub-has-btn" data-has="pdf" aria-pressed="false">PDF</button>
+            <button type="button" class="pub-has-btn" data-has="video" aria-pressed="false">Video</button>
+            <button type="button" class="pub-has-btn" data-has="code" aria-pressed="false">Code</button>
+            <button type="button" class="pub-has-btn" data-has="data" aria-pressed="false">Data</button>
+        </div>
+        <button type="button" id="pub-reset" class="pub-reset" hidden>Clear filters</button>
+    </div>
+
     {{/* Group publications by year */}}
     {{ $currentYear := 0 }}
     {{ $inGroup := false }}
     {{ range hugo.Data.publications }}
-    {{/* Assign pillars based on keyword matching */}}
-    {{ $pub := . }}
-    {{ $assigned := slice }}
-    {{ $text := lower (printf "%s %s %s" $pub.title $pub.keywords $pub.venue) }}
-    {{ range hugo.Data.pillars }}
-        {{ $pillar := . }}
-        {{ $matched := false }}
-        {{ range $pillar.keywords }}
-            {{ if and (not $matched) (strings.Contains $text .) }}
-                {{ $assigned = $assigned | append $pillar.id }}
-                {{ $matched = true }}
-            {{ end }}
-        {{ end }}
-    {{ end }}
+    {{ $assigned := partialCached "pub-pillars.html" . .key }}
     {{ if ne .year $currentYear }}
     {{ if $inGroup }}</div>{{ end }}
     {{ $currentYear = .year }}
@@ -51,7 +87,13 @@
     <div class="pub-year-group">
         <h2 class="pub-year-label">{{ .year }}</h2>
         {{ end }}
-        <article class="pub-card" data-pillar="{{ delimit $assigned " " }}">
+        {{ $has := slice }}
+        {{ if .pdf }}{{ $has = $has | append "pdf" }}{{ end }}
+        {{ if .video }}{{ $has = $has | append "video" }}{{ end }}
+        {{ if .code }}{{ $has = $has | append "code" }}{{ end }}
+        {{ if .supps }}{{ $has = $has | append "data" }}{{ end }}
+        <article class="pub-card" data-pillar="{{ delimit $assigned " " }}" data-venue="{{ .venue_short }}"
+            data-year="{{ .year }}" data-has="{{ delimit $has " " }}">
             {{ if .preview }}
             {{ $img := resources.Get (printf "publication_preview/%s" .preview) }}
             {{ if $img }}

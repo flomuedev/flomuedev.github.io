@@ -20,6 +20,24 @@ document.addEventListener('DOMContentLoaded', () => {
     onScroll();
   }
 
+  // ---- Theme toggle (light / dark) ----
+  const themeToggle = document.getElementById('theme-toggle');
+  if (themeToggle) {
+    const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const isDark = () => (document.documentElement.dataset.theme || (darkQuery.matches ? 'dark' : 'light')) === 'dark';
+    const syncLabel = () => {
+      themeToggle.setAttribute('aria-label', isDark() ? 'Switch to light theme' : 'Switch to dark theme');
+    };
+    themeToggle.addEventListener('click', () => {
+      const next = isDark() ? 'light' : 'dark';
+      document.documentElement.dataset.theme = next;
+      try { localStorage.setItem('theme', next); } catch (e) { /* storage blocked */ }
+      syncLabel();
+    });
+    darkQuery.addEventListener('change', syncLabel);
+    syncLabel();
+  }
+
   // ---- Mobile nav toggle ----
   const navToggle = document.getElementById('nav-toggle');
   const navLinks = document.getElementById('nav-links');
@@ -81,64 +99,121 @@ document.addEventListener('DOMContentLoaded', () => {
     staggerContainers.forEach(el => staggerObserver.observe(el));
   }
 
-  // ---- Publication search + pillar filter ----
+  // ---- Publication search + filters (state mirrored in the URL) ----
+  // URL params: q, pillar, venue, since, has (comma-separated: pdf,video,code,data)
   const searchInput = document.getElementById('pub-search');
   const pubCards = document.querySelectorAll('.pub-card');
   const yearGroups = document.querySelectorAll('.pub-year-group');
   const pubCount = document.getElementById('pub-count');
   const pillarButtons = document.querySelectorAll('.pillar-filter-btn');
+  const venueSelect = document.getElementById('pub-venue');
+  const sinceSelect = document.getElementById('pub-since');
+  const hasButtons = document.querySelectorAll('.pub-has-btn');
+  const resetButton = document.getElementById('pub-reset');
 
   if (pubCards.length > 0) {
-    let activePillar = '';
+    const state = { q: '', pillar: '', venue: '', since: '', has: [] };
+    const optionValues = sel => sel ? Array.from(sel.options, o => o.value).filter(Boolean) : [];
+    const validPillars = Array.from(pillarButtons, b => b.dataset.pillarFilter).filter(Boolean);
+    const validHas = Array.from(hasButtons, b => b.dataset.has);
+
+    // Read and validate the initial state from the URL
+    const params = new URLSearchParams(window.location.search);
+    const pick = (name, allowed) => (allowed.includes(params.get(name)) ? params.get(name) : '');
+    state.q = (params.get('q') || '').trim();
+    state.pillar = pick('pillar', validPillars);
+    state.venue = pick('venue', optionValues(venueSelect));
+    state.since = pick('since', optionValues(sinceSelect));
+    state.has = (params.get('has') || '').split(',').filter(h => validHas.includes(h));
+
+    function isFiltered() {
+      return Boolean(state.q || state.pillar || state.venue || state.since || state.has.length);
+    }
+
+    function syncControls() {
+      if (searchInput) searchInput.value = state.q;
+      if (venueSelect) venueSelect.value = state.venue;
+      if (sinceSelect) sinceSelect.value = state.since;
+      pillarButtons.forEach(b => {
+        const active = b.dataset.pillarFilter === state.pillar;
+        b.classList.toggle('active', active);
+        b.setAttribute('aria-pressed', String(active));
+      });
+      hasButtons.forEach(b => {
+        const active = state.has.includes(b.dataset.has);
+        b.classList.toggle('active', active);
+        b.setAttribute('aria-pressed', String(active));
+      });
+      if (resetButton) resetButton.hidden = !isFiltered();
+    }
+
+    function writeUrl() {
+      const p = new URLSearchParams();
+      if (state.q) p.set('q', state.q);
+      if (state.pillar) p.set('pillar', state.pillar);
+      if (state.venue) p.set('venue', state.venue);
+      if (state.since) p.set('since', state.since);
+      if (state.has.length) p.set('has', state.has.join(','));
+      const qs = p.toString();
+      history.replaceState(null, '', qs ? `?${qs}` : window.location.pathname);
+    }
 
     function applyFilters() {
-      const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
+      const query = state.q.toLowerCase();
+      const since = state.since ? Number(state.since) : 0;
       let visibleCount = 0;
       pubCards.forEach(card => {
-        const textMatch = !query || card.textContent.toLowerCase().includes(query);
-        const pillarMatch = !activePillar || (card.dataset.pillar || '').split(' ').includes(activePillar);
-        const show = textMatch && pillarMatch;
-        card.style.display = show ? '' : 'none';
+        const has = (card.dataset.has || '').split(' ');
+        const show = (!query || card.textContent.toLowerCase().includes(query))
+          && (!state.pillar || (card.dataset.pillar || '').split(' ').includes(state.pillar))
+          && (!state.venue || card.dataset.venue === state.venue)
+          && (!since || Number(card.dataset.year) >= since)
+          && state.has.every(h => has.includes(h));
+        card.hidden = !show;
         if (show) visibleCount++;
       });
       yearGroups.forEach(group => {
-        const visible = group.querySelectorAll('.pub-card:not([style*="display: none"])');
-        group.style.display = visible.length > 0 ? '' : 'none';
+        group.hidden = !group.querySelector('.pub-card:not([hidden])');
       });
       if (pubCount) pubCount.textContent = `${visibleCount} publication${visibleCount !== 1 ? 's' : ''}`;
     }
 
-    // Read URL param on page load
-    const validPillars = ['xr', 'mobile', 'embodied', 'ai'];
-    const urlPillar = validPillars.includes(new URLSearchParams(window.location.search).get('pillar'))
-      ? new URLSearchParams(window.location.search).get('pillar') : '';
-    if (urlPillar) {
-      activePillar = urlPillar;
-      const activeBtn = document.querySelector(`[data-pillar-filter="${urlPillar}"]`);
-      if (activeBtn) activeBtn.classList.add('active');
-      document.querySelector('.pillar-filter-btn--all')?.classList.remove('active');
+    function update() {
+      syncControls();
       applyFilters();
-      document.querySelector('.pillar-filters')?.scrollIntoView({ block: 'start' });
-    } else {
-      document.querySelector('.pillar-filter-btn--all')?.classList.add('active');
+      writeUrl();
     }
 
-    // Pillar button clicks
     pillarButtons.forEach(btn => {
       btn.addEventListener('click', () => {
         const pillar = btn.dataset.pillarFilter;
-        activePillar = activePillar === pillar ? '' : pillar;
-        pillarButtons.forEach(b => b.classList.remove('active'));
-        const nextActive = activePillar
-          ? document.querySelector(`[data-pillar-filter="${activePillar}"]`)
-          : document.querySelector('[data-pillar-filter=""]');
-        if (nextActive) nextActive.classList.add('active');
-        history.replaceState(null, '', activePillar ? `?pillar=${activePillar}` : window.location.pathname);
-        applyFilters();
+        state.pillar = state.pillar === pillar ? '' : pillar;
+        update();
       });
     });
+    hasButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const h = btn.dataset.has;
+        state.has = state.has.includes(h) ? state.has.filter(x => x !== h) : [...state.has, h];
+        update();
+      });
+    });
+    if (venueSelect) venueSelect.addEventListener('change', () => { state.venue = venueSelect.value; update(); });
+    if (sinceSelect) sinceSelect.addEventListener('change', () => { state.since = sinceSelect.value; update(); });
+    if (searchInput) searchInput.addEventListener('input', () => { state.q = searchInput.value.trim(); update(); });
+    if (resetButton) {
+      resetButton.addEventListener('click', () => {
+        Object.assign(state, { q: '', pillar: '', venue: '', since: '', has: [] });
+        update();
+        if (searchInput) searchInput.focus();
+      });
+    }
 
-    if (searchInput) searchInput.addEventListener('input', applyFilters);
+    syncControls();
+    if (isFiltered()) {
+      applyFilters();
+      document.querySelector('.pillar-filters')?.scrollIntoView({ block: 'start' });
+    }
   }
 
   // ---- BibTeX Modal ----

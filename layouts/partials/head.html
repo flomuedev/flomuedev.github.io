@@ -1,6 +1,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>document.documentElement.classList.add('js')</script>
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta name="color-scheme" content="light dark">
 <meta name="google-site-verification" content="ctqw05FivCdQP1HmXHimH4Yvfv_UENkbs7s01QyG4Uc" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-96x96.png" type="image/png" sizes="96x96">
@@ -96,9 +98,7 @@
 {{ $style := resources.Get "css/style.css" | minify | fingerprint }}
 <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}" crossorigin="anonymous">
 <link rel="canonical" href="{{ .Permalink }}">
-{{ if .IsHome -}}
-<link rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" href="{{ .Site.BaseURL }}index.xml">
-{{- end }}
+<link rel="alternate" type="application/rss+xml" title="Publications by {{ .Site.Title }}" href="{{ "publications/index.xml" | absURL }}">
 
 {{- partial "jsonld.html" . -}}
 

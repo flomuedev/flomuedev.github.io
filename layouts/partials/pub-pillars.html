@@ -1,0 +1,16 @@
+{{- /* Returns the ids of the research pillars a publication (an entry of
+       data/publications.json) belongs to, by keyword matching.
+       Call with partialCached "pub-pillars.html" $pub $pub.key. */ -}}
+{{- $assigned := slice -}}
+{{- $text := lower (printf "%s %s %s" .title .keywords .venue) -}}
+{{- range hugo.Data.pillars -}}
+  {{- $pillar := . -}}
+  {{- $matched := false -}}
+  {{- range $pillar.keywords -}}
+    {{- if and (not $matched) (strings.Contains $text .) -}}
+      {{- $assigned = $assigned | append $pillar.id -}}
+      {{- $matched = true -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $assigned -}}

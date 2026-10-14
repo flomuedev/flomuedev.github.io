@@ -11,6 +11,9 @@ import os
 import sys
 import unicodedata
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import related
+
 try:
     import yaml
     _YAML_AVAILABLE = True
@@ -216,6 +219,40 @@ def load_videos(project_dir):
         return {str(k): str(v).strip() for k, v in data.items() if v and str(v).strip()}
     except Exception:
         return {}
+
+
+def load_related_overrides(project_dir):
+    """Load data/related_overrides.yml -> {citekey: {"pin": [...], "block": [...]}}."""
+    if not _YAML_AVAILABLE:
+        return {}
+    path = os.path.join(project_dir, 'data', 'related_overrides.yml')
+    if not os.path.isfile(path):
+        return {}
+    try:
+        with open(path, encoding='utf-8') as f:
+            data = yaml.safe_load(f) or {}
+        return {str(k): v for k, v in data.items() if isinstance(v, dict)}
+    except Exception as e:
+        print(f"Warning: could not read related_overrides.yml ({e})")
+        return {}
+
+
+def load_projects(project_dir):
+    """Load data/projects.yml -> (groups as key lists, dismissed pairs)."""
+    if not _YAML_AVAILABLE:
+        return [], []
+    path = os.path.join(project_dir, 'data', 'projects.yml')
+    if not os.path.isfile(path):
+        return [], []
+    try:
+        with open(path, encoding='utf-8') as f:
+            data = yaml.safe_load(f) or {}
+        groups = [[str(k) for k in keys] for keys in (data.get('groups') or {}).values() if keys]
+        dismissed = [[str(k) for k in pair] for pair in (data.get('dismissed') or []) if pair]
+        return groups, dismissed
+    except Exception as e:
+        print(f"Warning: could not read projects.yml ({e})")
+        return [], []
 
 
 def _coauthor_url(name, last, first, coauthors):
@@ -586,6 +623,30 @@ def main():
 
     # Sort by year descending, then month descending
     publications.sort(key=lambda p: (p['year'], p['month']), reverse=True)
+
+    # Related papers from cached embeddings (see scripts/related.py)
+    embeddings = related.load_cache(os.path.join(project_dir, 'data', 'embeddings_cache.json'))
+    groups, dismissed = load_projects(project_dir)
+    known = {pub['key'] for pub in publications}
+    for key in sorted({k for g in groups for k in g} - known):
+        print(f"Warning: projects.yml lists unknown key {key}")
+    related_map = related.compute_related(
+        publications, embeddings, owner='Florian Müller',
+        overrides=load_related_overrides(project_dir), groups=groups)
+    versions = related.group_index(groups)
+    for pub in publications:
+        pub['related'] = related_map.get(pub['key'], [])
+        # Other versions of the same work, newest first (publications are sorted)
+        pub['versions'] = [p['key'] for p in publications if p['key'] in versions.get(pub['key'], ())]
+    suggestions = related.suggest_versions(publications, embeddings, groups, dismissed)
+    if suggestions:
+        print(f"Possible versions of the same work ({len(suggestions)}), confirm or dismiss in projects.yml:")
+        for a, b, reason in suggestions:
+            print(f"  {a} <-> {b} ({reason})")
+    embedded = sum(1 for p in publications if related.text_hash(related.embedding_text(p)) in embeddings)
+    print(f"Related papers: {embedded}/{len(publications)} publications have cached embeddings")
+    if embedded < len(publications):
+        print("  (the rest use TF-IDF; run scripts/generate_embeddings.py to embed them)")
 
     # Write JSON
     os.makedirs(os.path.dirname(output_path), exist_ok=True)

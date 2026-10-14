@@ -1,0 +1,39 @@
+{{- /* Related publications for a paper page. Called with the paper key.
+       The ranking is precomputed by scripts/parse_bib.py (see scripts/related.py)
+       and stored as "related" in data/publications.json. */ -}}
+{{- $key := . -}}
+{{- range where hugo.Data.publications "key" $key -}}
+  {{- $related := slice -}}
+  {{- range .related -}}
+    {{- range where hugo.Data.publications "key" . }}{{ $related = $related | append (dict "pub" .) }}{{ end -}}
+  {{- end -}}
+  {{- with $related }}
+<section class="related-pubs" aria-labelledby="related-pubs-title">
+    <h2 class="related-pubs-title" id="related-pubs-title">Related publications</h2>
+    <div class="related-pubs-grid">
+        {{- range . }}{{ with .pub }}
+        <article class="related-pub">
+            {{- with .preview }}
+            {{- $img := resources.Get (printf "publication_preview/%s" .) }}
+            {{- if $img }}
+            {{- $small := $img.Fill "480x270 Center" }}
+            {{- $webp := $small.Process "webp" }}
+            <picture>
+                <source type="image/webp" srcset="{{ $webp.RelPermalink }}">
+                <img src="{{ $small.RelPermalink }}" alt="" class="related-pub-image" loading="lazy" width="{{ $small.Width }}" height="{{ $small.Height }}">
+            </picture>
+            {{- end }}
+            {{- end }}
+            <div class="related-pub-body">
+                <div class="related-pub-venue">{{ with .venue_short }}<span class="venue-short-badge">{{ . }}</span> {{ end }}{{ .year }}</div>
+                <h3 class="related-pub-heading"><a href="/publication/{{ .key }}/" class="related-pub-link">{{ .title }}</a></h3>
+                {{- with .tldr_did }}
+                <p class="related-pub-tldr">{{ . }}</p>
+                {{- end }}
+            </div>
+        </article>
+        {{- end }}{{ end }}
+    </div>
+</section>
+  {{- end }}
+{{- end -}}

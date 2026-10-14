@@ -55,7 +55,16 @@
         <a href="/publications/" class="view-all-link">View all publications</a>
     </div>
     <div class="stagger">
-        {{ range first 6 hugo.Data.publications }}
+        {{/* Newest six works: skip older versions of a work already listed */}}
+        {{ $latest := slice }}
+        {{ $seen := slice }}
+        {{ range hugo.Data.publications }}
+            {{ if and (lt (len $latest) 6) (not (in $seen .key)) }}
+                {{ $latest = $latest | append . }}
+                {{ $seen = $seen | append .key | append .versions }}
+            {{ end }}
+        {{ end }}
+        {{ range $latest }}
         <article class="pub-card">
             {{ if .preview }}
             {{ $img := resources.Get (printf "publication_preview/%s" .preview) }}

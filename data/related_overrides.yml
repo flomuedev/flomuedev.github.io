@@ -1,0 +1,6 @@
+# Manual tweaks to the "Related publications" section on paper pages.
+# Rankings come from scripts/related.py; use this only to fix specific cases.
+#
+# <citekey of the paper page>:
+#   pin: [citekey, ...]    # always show these first, in this order
+#   block: [citekey, ...]  # never show these on this page
