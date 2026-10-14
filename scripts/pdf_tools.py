@@ -190,6 +190,7 @@ def _recompress_images(pdf, max_dim, quality):
 
         smask = raw.get("/SMask")           # preserve transparency reference
         raw.write(data, filter=Name("/DCTDecode"))
+        raw.Width, raw.Height = pil.size    # must match the resampled pixels
         raw.ColorSpace = Name("/DeviceGray") if gray else Name("/DeviceRGB")
         raw.BitsPerComponent = 8
         if smask is not None:
@@ -269,10 +270,11 @@ def shrink_pdf(path, target=TARGET_SIZE, limit=SIZE_LIMIT, allow_raster=False):
 
     Returns a result dict describing what happened.
     """
-    before = os.path.getsize(path)
-    expect_text = is_searchable(path)
     ensure_backup(path)
     src = backup_path(path)             # always shrink from the pristine original
+    # Measure against the original too, so a re-shrink replaces an earlier result
+    before = os.path.getsize(src)
+    expect_text = is_searchable(src)
 
     tmp  = path + ".shrink.tmp"
     best = path + ".shrink.best"
@@ -283,7 +285,7 @@ def shrink_pdf(path, target=TARGET_SIZE, limit=SIZE_LIMIT, allow_raster=False):
             return
         size = os.path.getsize(tmp)
         if size < state["size"] and _valid_output(src, tmp, expect_text):
-            shutil.move(tmp, best)
+            os.replace(tmp, best)
             state.update(size=size, method=method, file=best)
         elif os.path.isfile(tmp):
             os.remove(tmp)
@@ -325,10 +327,12 @@ def shrink_pdf(path, target=TARGET_SIZE, limit=SIZE_LIMIT, allow_raster=False):
 
     changed = False
     if state["file"] and state["size"] < before:
-        shutil.move(state["file"], path)
+        os.replace(state["file"], path)
         changed = True
-    elif os.path.isfile(best):
-        os.remove(best)
+    else:
+        if os.path.isfile(best):
+            os.remove(best)
+        shutil.copy2(src, path)         # nothing beat the original: keep it
 
     after = os.path.getsize(path)
     return {
